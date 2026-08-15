@@ -174,6 +174,70 @@ const rawProjects: Project[] = [
       'Cloudflare R2',
     ],
   },
+  {
+    id: 'storia',
+    name: 'Storía',
+    tagline: {
+      en: 'AI customer service for LATAM small business',
+      es: 'Atención al cliente con IA para pymes de LATAM',
+    },
+    status: 'building',
+    role: { en: 'Architecture and implementation', es: 'Arquitectura e implementación' },
+    period: '2026',
+    lead: true,
+    caseSlug: 'work/storia',
+    summary: {
+      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit — across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
+      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita — en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
+    },
+    problem: {
+      en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',
+      es: 'A una pyme en Latinoamérica la contactan por WhatsApp, Messenger, Instagram y teléfono al mismo tiempo, y responde los cuatro desde el celular de una persona. Storia pone esos canales detrás de agentes de IA capaces de sostener la conversación.',
+    },
+    built: {
+      en: [
+        'Unified inbox across WhatsApp, Messenger, Instagram and the phone line',
+        'WhatsApp Cloud API integration under Meta Tech Provider onboarding',
+        'Agent orchestrator with 10 tools: catalogue search, images, quoting, lead scoring, appointments, human handoff',
+        'Hybrid product search over typed columns, JSONB attributes, full-text and pgvector in one query',
+        'Multi-tenant schema, 25 models, every query scoped and every vector search filtered before the distance operator',
+        'Twelve security modules: prompt-injection detection, per-tenant token budgets, rate limits, circuit breaker, PII redaction',
+        'Voice agents for the telephone channel',
+      ],
+      es: [
+        'Bandeja unificada para WhatsApp, Messenger, Instagram y la línea telefónica',
+        'Integración con WhatsApp Cloud API bajo el onboarding de Meta Tech Provider',
+        'Orquestador de agente con 10 herramientas: búsqueda en catálogo, imágenes, cotización, puntaje de leads, citas, traspaso a humano',
+        'Búsqueda híbrida de productos sobre columnas tipadas, atributos JSONB, full-text y pgvector en una sola consulta',
+        'Esquema multi-tenant, 25 modelos, cada consulta acotada y cada búsqueda vectorial filtrada antes del operador de distancia',
+        'Doce módulos de seguridad: detección de inyección de prompts, presupuesto de tokens por tenant, rate limits, circuit breaker, redacción de datos personales',
+        'Agentes de voz para el canal telefónico',
+      ],
+    },
+    decisions: [
+      {
+        title: {
+          en: 'Went through Meta Tech Provider onboarding rather than reselling a wrapper',
+          es: 'Pasé por el onboarding de Meta Tech Provider en vez de revender un wrapper',
+        },
+        body: {
+          en: 'Going direct on the WhatsApp Cloud API means owning Meta\'s review process and everything compliance touches. It also means the per-conversation economics and the customer relationship stay with the product instead of with a middleman.',
+          es: 'Construir directo sobre la WhatsApp Cloud API implica hacerse cargo del proceso de revisión de Meta y de su superficie de cumplimiento. También implica que la economía por conversación y la relación con el cliente se quedan en el producto y no en un intermediario.',
+        },
+      },
+    ],
+    // The old outcome restated the decision almost verbatim. This one only
+    // says where it stands; the "why" is already in the hard call above.
+    outcome: {
+      en: 'In development, on Meta\'s own rails from day one.',
+      es: 'En desarrollo, sobre los rieles de Meta desde el primer día.',
+    },
+    stack: [
+      'Next.js', 'TypeScript', 'React', 'Prisma', 'PostgreSQL', 'pgvector',
+      'Redis', 'BullMQ', 'WhatsApp Cloud API', 'Meta Graph API', 'Voice agents',
+      'Capacitor', 'Tailwind',
+    ],
+  },
 
   {
     id: 'mate',
@@ -359,70 +423,6 @@ const rawProjects: Project[] = [
     ],
   },
 
-  {
-    id: 'storia',
-    name: 'Storía',
-    tagline: {
-      en: 'AI customer service for LATAM small business',
-      es: 'Atención al cliente con IA para pymes de LATAM',
-    },
-    status: 'building',
-    role: { en: 'Architecture and implementation', es: 'Arquitectura e implementación' },
-    period: '2026',
-    lead: false,
-    caseSlug: 'work/storia',
-    summary: {
-      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit — across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
-      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita — en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
-    },
-    problem: {
-      en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',
-      es: 'A una pyme en Latinoamérica la contactan por WhatsApp, Messenger, Instagram y teléfono al mismo tiempo, y responde los cuatro desde el celular de una persona. Storia pone esos canales detrás de agentes de IA capaces de sostener la conversación.',
-    },
-    built: {
-      en: [
-        'Unified inbox across WhatsApp, Messenger, Instagram and the phone line',
-        'WhatsApp Cloud API integration under Meta Tech Provider onboarding',
-        'Agent orchestrator with 10 tools: catalogue search, images, quoting, lead scoring, appointments, human handoff',
-        'Hybrid product search over typed columns, JSONB attributes, full-text and pgvector in one query',
-        'Multi-tenant schema, 25 models, every query scoped and every vector search filtered before the distance operator',
-        'Twelve security modules: prompt-injection detection, per-tenant token budgets, rate limits, circuit breaker, PII redaction',
-        'Voice agents for the telephone channel',
-      ],
-      es: [
-        'Bandeja unificada para WhatsApp, Messenger, Instagram y la línea telefónica',
-        'Integración con WhatsApp Cloud API bajo el onboarding de Meta Tech Provider',
-        'Orquestador de agente con 10 herramientas: búsqueda en catálogo, imágenes, cotización, puntaje de leads, citas, traspaso a humano',
-        'Búsqueda híbrida de productos sobre columnas tipadas, atributos JSONB, full-text y pgvector en una sola consulta',
-        'Esquema multi-tenant, 25 modelos, cada consulta acotada y cada búsqueda vectorial filtrada antes del operador de distancia',
-        'Doce módulos de seguridad: detección de inyección de prompts, presupuesto de tokens por tenant, rate limits, circuit breaker, redacción de datos personales',
-        'Agentes de voz para el canal telefónico',
-      ],
-    },
-    decisions: [
-      {
-        title: {
-          en: 'Went through Meta Tech Provider onboarding rather than reselling a wrapper',
-          es: 'Pasé por el onboarding de Meta Tech Provider en vez de revender un wrapper',
-        },
-        body: {
-          en: 'Going direct on the WhatsApp Cloud API means owning Meta\'s review process and everything compliance touches. It also means the per-conversation economics and the customer relationship stay with the product instead of with a middleman.',
-          es: 'Construir directo sobre la WhatsApp Cloud API implica hacerse cargo del proceso de revisión de Meta y de su superficie de cumplimiento. También implica que la economía por conversación y la relación con el cliente se quedan en el producto y no en un intermediario.',
-        },
-      },
-    ],
-    // The old outcome restated the decision almost verbatim. This one only
-    // says where it stands; the "why" is already in the hard call above.
-    outcome: {
-      en: 'In development, on Meta\'s own rails from day one.',
-      es: 'En desarrollo, sobre los rieles de Meta desde el primer día.',
-    },
-    stack: [
-      'Next.js', 'TypeScript', 'React', 'Prisma', 'PostgreSQL', 'pgvector',
-      'Redis', 'BullMQ', 'WhatsApp Cloud API', 'Meta Graph API', 'Voice agents',
-      'Capacitor', 'Tailwind',
-    ],
-  },
 
   {
     id: 'clinic-matching',
