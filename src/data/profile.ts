@@ -110,13 +110,28 @@ export const profile = {
    * one that sagged, and it was near-tautological besides: a user is someone
    * who installed. It is back to "I buy its users", now with no conjunction,
    * so the three clauses land flat and escalate on their own.
+   *
+   * FOUR is counted, not rounded. Luxura, Mate, Femi and Storia are Henry's
+   * from an empty repo. Level60 is integration inside Microsoft estates that
+   * already existed and HairBackNow was contract growth work, so neither is
+   * ground-up. Those two are real and they are named, they are just a
+   * different kind of work, and the old opener ("four domains that share
+   * nothing") blurred the two kinds together. Recount before editing this.
+   *
+   * The hero does NOT say which of the four shipped, and it must not start.
+   * Every card renders a status badge from STATUS_LABEL, so the reader
+   * already sees "In development" on three of them. Repeating it here turns
+   * structure into confession, which is the same reason the shipping-status
+   * paragraph below was removed. "Some were experiments" is also less
+   * accurate than the badges: Femi is substantially built and Storia is a
+   * commercial product in Meta Tech Provider onboarding.
    */
   lede: {
-    en: 'Four domains that share nothing: Microsoft enterprise systems, a multi-agent AI platform, a safety product with real-time alerts, and Luxura, live on Google Play. I built it, I run its server, I buy its users.',
+    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I buy its users.',
     // "I buy its users" works in English; in Spanish "comprar usuarios" reads
     // as buying fake followers, so the Spanish buys the traffic instead, which
     // is also the wording the Luxura outcome uses.
-    es: 'Cuatro dominios que no comparten nada: sistemas empresariales de Microsoft, una plataforma de IA multiagente, un producto de seguridad con alertas en tiempo real, y Luxura, publicada en Google Play. La construí, opero su servidor, le compro el tráfico.',
+    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, le compro el tráfico.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */
