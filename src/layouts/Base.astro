@@ -87,6 +87,52 @@ const ogImage = new URL(`${base.replace(/\/+$/, '')}/images/og.png`, Astro.site)
 
     <Motion duration={scrollDuration} />
 
+    <!-- Lightbox for [data-zoom] images. One dialog, built on first click.
+         Dense product screenshots are unreadable at a third of the column
+         width, so opening one full size is the point of showing it. -->
+    <script is:inline>
+      (function () {
+        var imgs = document.querySelectorAll('[data-zoom]');
+        if (!imgs.length || typeof HTMLDialogElement === 'undefined') return;
+
+        var dlg = null;
+        var full = null;
+
+        function build() {
+          dlg = document.createElement('dialog');
+          dlg.className = 'case-zoom';
+          full = document.createElement('img');
+          var close = document.createElement('button');
+          close.type = 'button';
+          close.className = 'close';
+          close.textContent = document.documentElement.lang === 'es' ? 'Cerrar' : 'Close';
+          close.addEventListener('click', function () { dlg.close(); });
+          full.addEventListener('click', function () { dlg.close(); });
+          dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+          dlg.appendChild(close);
+          dlg.appendChild(full);
+          document.body.appendChild(dlg);
+        }
+
+        imgs.forEach(function (img) {
+          img.setAttribute('role', 'button');
+          img.setAttribute('tabindex', '0');
+          img.addEventListener('click', function () {
+            if (!dlg) build();
+            full.src = img.currentSrc || img.src;
+            full.alt = img.alt;
+            dlg.showModal();
+          });
+          img.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              img.click();
+            }
+          });
+        });
+      })();
+    </script>
+
     <script is:inline>
       // Theme toggle. Every variant renders a [data-theme-toggle] button.
       (function () {

@@ -175,6 +175,96 @@ const rawProjects: Project[] = [
     ],
   },
   {
+    id: 'monia',
+    name: 'monia',
+    tagline: {
+      en: 'Personal finance ledger built from bank email',
+      es: 'Libro contable personal armado desde el correo del banco',
+    },
+    status: 'live',
+    statusNote: {
+      en: 'Live, with a public demo account',
+      es: 'En vivo, con cuenta demo pública',
+    },
+    role: { en: 'Sole engineer, schema to production deploy', es: 'Único ingeniero, del esquema al deploy' },
+    period: '2026',
+    lead: true,
+    url: 'https://monia-rho.vercel.app',
+    urlLabel: { en: 'Open the demo', es: 'Abrir el demo' },
+    caseSlug: 'work/monia',
+    summary: {
+      en: 'No aggregator reaches Colombian banks, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
+      es: 'Ningún agregador llega a los bancos colombianos, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. Siete días, 271 commits, y una ronda de revisión que probó que 678 tests en verde no eran cobertura.',
+    },
+    shots: [
+      {
+        src: 'images/monia-ledger.jpg',
+        alt: { en: 'The monia ledger with multi-currency amounts', es: 'El libro de monia con montos en varias monedas' },
+      },
+      {
+        src: 'images/monia-overview.jpg',
+        alt: { en: 'The monia overview screen', es: 'La pantalla de resumen de monia' },
+      },
+      {
+        src: 'images/monia-sources.jpg',
+        alt: { en: 'The monia Sources screen', es: 'La pantalla de Fuentes de monia' },
+      },
+    ],
+    problem: {
+      en: 'I bank in Colombia across five institutions and five currencies, and no aggregator covers any of them. Plaid and its peers do not reach Colombian banks, and the banks publish no usable API, so the standard answer, connect your accounts and see one ledger, does not exist here. What the banks do send is email: an alert per transaction and a statement PDF per month. That is a complete, timestamped record sitting in Gmail in a format no ledger reads. monia reads it. The mailbox is the API.',
+      es: 'Tengo plata en Colombia en cinco instituciones y cinco monedas, y ningún agregador cubre ninguna. Plaid y sus pares no llegan a los bancos colombianos, y los bancos no publican una API usable, así que la respuesta estándar, conecta tus cuentas y ve un solo libro, no existe acá. Lo que los bancos sí mandan es correo: una alerta por transacción y un PDF de extracto por mes. Eso es un registro completo y con fecha sentado en Gmail en un formato que ningún libro lee. monia lo lee. El buzón es la API.',
+    },
+    built: {
+      en: [
+        'Gmail ingestion in two passes: a small daily catch-up and a chunked backfill that walks history backwards without a tab held open',
+        'Statement PDF parsing with pdf.js taught to run server-side with no DOM and no fonts, reconciled against the email ledger',
+        'A money module where every amount is a bigint in its currency\'s minor units and no JavaScript number ever touches one',
+        'Per-user reporting currency as a read-time SQL view over a frozen storage base, converted at each row\'s own date',
+        'An assistant that never supplies a number: the app computes every figure and the model only picks which one answers',
+        '1,028 unit, 186 integration and 173 end-to-end tests, with CI running a second job against a real Postgres container',
+      ],
+      es: [
+        'Ingesta de Gmail en dos pasadas: una puesta al día diaria pequeña y un relleno por bloques que camina la historia hacia atrás sin una pestaña abierta',
+        'Parseo de PDF de extractos con pdf.js enseñado a correr del lado del servidor sin DOM y sin fuentes, conciliado contra el libro de correo',
+        'Un módulo de dinero donde cada monto es un bigint en las unidades menores de su moneda y ningún number de JavaScript toca uno',
+        'Moneda de reporte por usuario como vista SQL en tiempo de lectura sobre una base congelada, convertida a la fecha de cada fila',
+        'Un asistente que nunca aporta un número: la app calcula cada cifra y el modelo solo elige cuál responde',
+        '1.028 tests unitarios, 186 de integración y 173 end-to-end, con CI corriendo un segundo job contra un contenedor real de Postgres',
+      ],
+    },
+    decisions: [
+      {
+        title: {
+          en: 'Made the assistant choose figures rather than calculate them',
+          es: 'Hice que el asistente eligiera cifras en vez de calcularlas',
+        },
+        body: {
+          en: 'Ask a language model how much you spent on food in March and it produces a confident, plausible, wrong figure. In a ledger that is worse than no answer, because the user cannot tell it from a right one. So the application computes every figure first, with the same typed queries the screens use, and hands the model a fact sheet. The model says which figures answer the question and writes the sentence around them. I rejected three designs in writing first: raw SQL is one malformed query from a wrong total, query tools still let the model pick the window and the filter, and retrieval over transaction text answers "did I pay X" well and "how much" badly.',
+          es: 'Pregúntale a un modelo cuánto gastaste en comida en marzo y produce una cifra segura, plausible y equivocada. En un libro contable eso es peor que ninguna respuesta, porque el usuario no la puede distinguir de una correcta. Así que la aplicación calcula cada cifra primero, con las mismas consultas tipadas que usan las pantallas, y le entrega al modelo una hoja de datos. El modelo dice qué cifras responden la pregunta y escribe la frase alrededor. Rechacé tres diseños por escrito antes: SQL crudo está a una consulta mal formada de un total equivocado, las herramientas de consulta igual dejan que el modelo elija la ventana y el filtro, y la recuperación sobre el texto responde bien "¿pagué X?" y mal "¿cuánto?".',
+        },
+      },
+      {
+        title: {
+          en: 'Kept the Gmail scope off the sign-in grant',
+          es: 'Dejé el permiso de Gmail fuera del inicio de sesión',
+        },
+        body: {
+          en: 'Signing in with Google asks for identity only. The Gmail read scope is requested separately, from Settings, and only by the accounts that import mail. The reason is regulatory: it is a restricted scope, and attaching it to sign-in puts the whole application under the restricted-scope regime, which means an annual third-party CASA assessment before the consent screen can be published, and weekly refresh-token expiry until it passes.',
+          es: 'Iniciar sesión con Google pide identidad y nada más. El permiso de lectura de Gmail se pide aparte, desde Ajustes, y solo por las cuentas que importan correo. La razón es regulatoria: es un permiso restringido, y pegarlo al inicio de sesión mete la aplicación entera bajo ese régimen, lo que significa una evaluación CASA anual de un tercero antes de poder publicar la pantalla de consentimiento, y vencimiento semanal de refresh tokens hasta que pase.',
+        },
+      },
+    ],
+    outcome: {
+      en: 'Live with a public demo account. The numbers on its page are read off the repository, and the known-issues list is on the page rather than in my head.',
+      es: 'En vivo con cuenta demo pública. Los números de su página se leen del repositorio, y la lista de problemas conocidos está en la página y no en mi cabeza.',
+    },
+    stack: [
+      'Next.js', 'TypeScript', 'React', 'PostgreSQL', 'Drizzle', 'Neon',
+      'Gmail API', 'pdfjs-dist', 'Binance API', 'Better Auth', 'Tailwind',
+      'Vitest', 'Playwright', 'Vercel',
+    ],
+  },
+  {
     id: 'storia',
     name: 'Storía',
     tagline: {

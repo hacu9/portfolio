@@ -1,0 +1,611 @@
+---
+/**
+ * The monia teardown.
+ *
+ * Third teardown, third palette. Cool slate chrome with an amber accent,
+ * taken from monia's own theme, where the amber belongs to the review queue
+ * and nothing else may take it. Deliberately cooler than Luxura's gold so the
+ * two pages do not read as the same product.
+ *
+ * Every figure here was re-derived from the repository on 2026-08-15 rather
+ * than carried over from the earlier write-up. One number changed: the
+ * Playwright suite is 15 spec files, not 17.
+ *
+ * Structure comes from src/styles/case.css.
+ */
+import Base from './Base.astro';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
+import type { Lang, L, LList } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import '../styles/reset.css';
+import '../styles/case.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const other = OTHER_LANG[lang];
+const altHref = langPath(base, other, 'work/monia');
+const indexHref = langPath(base, lang);
+const workHref = `${langPath(base, lang)}#work`;
+const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
+const DEMO = 'https://monia-rho.vercel.app';
+
+const copy = {
+  title: {
+    en: 'monia teardown · Henry Cabello',
+    es: 'monia, por dentro · Henry Cabello',
+  } as L,
+  description: {
+    en: 'A personal finance ledger that builds itself from bank email. Seven days, 271 commits, and the review round that proved 678 green tests were not coverage.',
+    es: 'Un libro contable personal que se arma solo desde el correo del banco. Siete días, 271 commits, y la ronda de revisión que probó que 678 tests en verde no eran cobertura.',
+  } as L,
+  back: { en: 'back to ./work', es: 'volver a ./work' } as L,
+  status: { en: 'Live in production', es: 'En producción' } as L,
+  lede: {
+    en: 'A personal finance ledger that builds itself from bank email. I bank in Colombia across five institutions and five currencies, and no aggregator covers any of them, so no product could show me one ledger. monia reads the mailbox instead: it parses the banks\' transaction alerts and their monthly statement PDFs into ledger rows. The user never types a transaction.',
+    es: 'Un libro contable personal que se arma solo desde el correo del banco. Tengo plata en Colombia en cinco instituciones y cinco monedas, y ningún agregador cubre ninguna, así que ningún producto podía mostrarme un solo libro. monia lee el buzón: convierte las alertas de transacción de los bancos y sus PDF de extracto mensual en filas del libro. El usuario nunca escribe una transacción.',
+  } as L,
+
+  kStatus: { en: 'Status', es: 'Estado' } as L,
+  vStatus: { en: 'Live, public demo account', es: 'En vivo, cuenta demo pública' } as L,
+  kBuilt: { en: 'Built', es: 'Construido' } as L,
+  vBuilt: { en: 'Seven days, 271 commits', es: 'Siete días, 271 commits' } as L,
+  kRole: { en: 'Role', es: 'Rol' } as L,
+  vRole: { en: 'Sole engineer, agentic workflow', es: 'Único ingeniero, flujo agéntico' } as L,
+  kScope: { en: 'Scope', es: 'Alcance' } as L,
+  vScope: { en: 'Schema to production deploy', es: 'Del esquema al deploy en producción' } as L,
+
+  shotsCap: {
+    en: 'Ledger, overview and sources. Every amount keeps the currency it happened in and shows the reporting figure beside it. Each panel names its currency once, in the corner, rather than repeating a code beside every number.',
+    es: 'Libro, resumen y fuentes. Cada monto conserva la moneda en que ocurrió y muestra la cifra de reporte al lado. Cada panel nombra su moneda una vez, en la esquina, en vez de repetir un código junto a cada número.',
+  } as L,
+  shotAlt1: {
+    en: 'The monia ledger: transaction rows with payee, account, category and amount, a cash flow panel and spending by category',
+    es: 'El libro de monia: filas de transacciones con beneficiario, cuenta, categoría y monto, un panel de flujo de caja y gasto por categoría',
+  } as L,
+  shotAlt2: {
+    en: 'The monia overview screen with balances across accounts and currencies',
+    es: 'La pantalla de resumen de monia con saldos por cuenta y moneda',
+  } as L,
+  shotAlt3: {
+    en: 'The Sources screen: a card per bank showing what monia has read and what it is waiting on',
+    es: 'La pantalla de Fuentes: una tarjeta por banco que muestra qué ha leído monia y qué está esperando',
+  } as L,
+
+  originH: {
+    en: 'No aggregator covers Colombian banks, so I built the one that reads their email.',
+    es: 'Ningún agregador cubre los bancos colombianos, así que construí el que lee su correo.',
+  } as L,
+  origin: {
+    en: [
+      'My money lives in Bancolombia (a savings account and a Visa credit card), plus Nequi, Payoneer, Meru and Binance. It moves in COP, USD, USDC, USDT and EUR. Plaid and its peers do not reach Colombian banks, and the banks publish no API I can use. So the standard answer, connect your accounts and see one ledger, does not exist for me.',
+      'What the banks do send is email. Every transaction produces an alert. Every month produces a statement PDF. That is a complete, timestamped record of my finances, sitting in Gmail in a format no ledger reads. monia reads it. The mailbox is the API.',
+    ],
+    es: [
+      'Mi plata vive en Bancolombia (una cuenta de ahorros y una tarjeta Visa), más Nequi, Payoneer, Meru y Binance. Se mueve en COP, USD, USDC, USDT y EUR. Plaid y sus pares no llegan a los bancos colombianos, y los bancos no publican ninguna API que yo pueda usar. Así que la respuesta estándar, conecta tus cuentas y ve un solo libro, no existe para mí.',
+      'Lo que los bancos sí mandan es correo. Cada transacción produce una alerta. Cada mes produce un PDF de extracto. Eso es un registro completo y con fecha de mis finanzas, sentado en Gmail en un formato que ningún libro contable lee. monia lo lee. El buzón es la API.',
+    ],
+  } as LList,
+
+  totalsFoot: {
+    en: 'Counts read off the repository on 15 August 2026. The integration and end-to-end figures are the spec files themselves, not an estimate. The unit suite finishes in 1.45 seconds, because the domain layer imports neither the database nor React.',
+    es: 'Conteos leídos del repositorio el 15 de agosto de 2026. Las cifras de integración y end-to-end son los archivos de spec, no una estimación. La suite unitaria termina en 1,45 segundos, porque la capa de dominio no importa ni la base de datos ni React.',
+  } as L,
+
+  logH: {
+    en: 'Seven days, in the order the dependencies forced.',
+    es: 'Siete días, en el orden que impusieron las dependencias.',
+  } as L,
+
+  engH: {
+    en: 'Three problems carried the build: the arithmetic, the mailbox, and a column nothing read.',
+    es: 'Tres problemas cargaron el build: la aritmética, el buzón, y una columna que nadie leía.',
+  } as L,
+  moneyT: {
+    en: 'The money layer went first, because every other decision sits on top of it',
+    es: 'La capa de dinero fue primero, porque toda otra decisión se apoya en ella',
+  } as L,
+  moneyB: {
+    en: 'One module does all arithmetic on amounts. An amount is a bigint in the minor units of its own currency, and the scale comes from a currencies.decimals column rather than a hardcoded constant: pesos are configured at two decimals here because Bancolombia reports centavos on tax and interest lines. No JavaScript number ever touches an amount, not to parse it, not to convert it, not to format it. Rounding is half away from zero, so a debit and a credit of the same size round to the same size. Asymmetric rounding would bias expenses against income.',
+    es: 'Un solo módulo hace toda la aritmética sobre montos. Un monto es un bigint en las unidades menores de su propia moneda, y la escala sale de una columna currencies.decimals y no de una constante fija: los pesos están configurados a dos decimales acá porque Bancolombia reporta centavos en las líneas de impuestos e intereses. Ningún number de JavaScript toca nunca un monto, ni para parsearlo, ni para convertirlo, ni para formatearlo. El redondeo es medio hacia afuera del cero, así que un débito y un crédito del mismo tamaño redondean igual. Un redondeo asimétrico sesgaría los gastos contra los ingresos.',
+  } as L,
+  mailT: {
+    en: 'Reading a mailbox is two jobs, not one',
+    es: 'Leer un buzón son dos trabajos, no uno',
+  } as L,
+  mailB: {
+    en: 'There is a catch-up pass for new mail, which is small and runs daily, and a backfill walk that goes backwards through history, is large, and takes days. Every serverless route has a duration cap, so a server-side loop that runs past that cap dies mid-flight and reports nothing at all. Instead each request is bounded and lands its own work: it writes its rows and moves the history floor before it returns. A run that dies, whether from a closed tab or a deploy, loses at most the chunk in flight. The browser loop reads 800 messages a chunk; the cron reads 80.',
+    es: 'Hay una pasada de puesta al día para correo nuevo, que es chica y corre a diario, y una caminata de relleno que va hacia atrás en la historia, es grande, y toma días. Toda ruta serverless tiene un tope de duración, así que un bucle del lado del servidor que pasa ese tope muere a medio vuelo y no reporta nada. En cambio cada request está acotado y aterriza su propio trabajo: escribe sus filas y mueve el piso de la historia antes de responder. Una corrida que muere, sea por una pestaña cerrada o por un deploy, pierde a lo sumo el bloque en vuelo. El bucle del navegador lee 800 mensajes por bloque; el cron lee 80.',
+  } as L,
+  joinT: {
+    en: 'An INNER JOIN silently skipped the exact mailbox the job existed for',
+    es: 'Un INNER JOIN saltaba en silencio justo el buzón para el que existía el job',
+  } as L,
+  joinB: {
+    en: 'Two tables carry the import state. One holds a row per message the importer has looked at, with the outcome it reached and the evidence it had. The other holds one row per user with the oldest day read so far. When a user adds an account or a template, the app deletes the seen-rows the change unblocks, so the next import reads them again. Without that step, mail that was one account away from landing stays marked seen forever. The trap: a user with no backfill row has never walked backwards at all, which is the same state as an unfinished walk, and it belongs to the newest account, the one the job exists for. It needs a LEFT JOIN.',
+    es: 'Dos tablas cargan el estado de importación. Una guarda una fila por mensaje que el importador ha mirado, con el resultado al que llegó y la evidencia que tenía. La otra guarda una fila por usuario con el día más viejo leído hasta ahora. Cuando un usuario agrega una cuenta o una plantilla, la app borra las filas de vistos que ese cambio desbloquea, para que la siguiente importación las lea otra vez. Sin ese paso, el correo que estaba a una cuenta de aterrizar queda marcado como visto para siempre. La trampa: un usuario sin fila de relleno nunca ha caminado hacia atrás, que es el mismo estado que una caminata sin terminar, y le pertenece a la cuenta más nueva, la misma para la que existe el job. Necesita un LEFT JOIN.',
+  } as L,
+  colT: {
+    en: 'The largest single bug was invisible from the schema',
+    es: 'El bug más grande era invisible desde el esquema',
+  } as L,
+  colB: {
+    en: 'reporting_currency existed as a column, appeared on the settings screen, and was read by nothing. Every page hardcoded the storage base, so a Colombian user with 7,749 peso rows could only ever see dollars. The fix is a SQL expression with three cases, in order of cheapness. If the reporting currency equals the storage base, return the frozen column untouched, so today\'s numbers equal yesterday\'s by construction. If the row is already in the reporting currency, return its native amount, because a round trip through USD loses a centavo per row for nothing. Otherwise divide by the rate for that row\'s own date, never today\'s rate. A verification script then walked real rows and compared them one at a time: zero mismatches across 184 converted rows.',
+    es: 'reporting_currency existía como columna, aparecía en la pantalla de ajustes, y nadie la leía. Cada página fijaba la base de almacenamiento, así que un usuario colombiano con 7.749 filas en pesos solo podía ver dólares. El arreglo es una expresión SQL con tres casos, en orden de costo. Si la moneda de reporte es igual a la base de almacenamiento, devuelve la columna congelada sin tocar, para que los números de hoy sean iguales a los de ayer por construcción. Si la fila ya está en la moneda de reporte, devuelve su monto nativo, porque un viaje de ida y vuelta por USD pierde un centavo por fila para nada. Si no, divide por la tasa de la fecha de esa fila, nunca por la de hoy. Un script de verificación después caminó filas reales y las comparó una por una: cero diferencias en 184 filas convertidas.',
+  } as L,
+
+  decH: {
+    en: 'The calls I would defend in an interview, and what each one cost.',
+    es: 'Las decisiones que defendería en una entrevista, y lo que costó cada una.',
+  } as L,
+
+  askCap: {
+    en: 'The assistant, and its one rule. The answer cites the figure it used, and that figure matches the accounts panel to the centavo, because the application computed it and handed it over. The model chose which number answered the question. It did not calculate one.',
+    es: 'El asistente, y su única regla. La respuesta cita la cifra que usó, y esa cifra coincide al centavo con el panel de cuentas, porque la aplicación la calculó y se la entregó. El modelo eligió qué número respondía la pregunta. No calculó ninguno.',
+  } as L,
+  askAlt: {
+    en: 'The monia assistant answering a spending question, citing the figure it was given',
+    es: 'El asistente de monia respondiendo una pregunta de gasto, citando la cifra que le entregaron',
+  } as L,
+
+  methodH: {
+    en: '271 commits in seven days, and the guardrail that earned its place.',
+    es: '271 commits en siete días, y la baranda que se ganó su lugar.',
+  } as L,
+  method: {
+    en: [
+      'An agentic workflow, run the way the rest of my work is run: blind review, a non-Anthropic second opinion, and every finding triaged rather than adopted. What monia added to that was a measurement.',
+      'A reviewer deleted the Gmail cursor\'s write path, its dry-run guard and its invalidation, all three at once, and 678 unit tests stayed green. A test that passes with the fix removed is not coverage. That single result is why CI now runs a second job against a real Postgres service container, and why the reason for it sits in a comment at the top of the CI file rather than in someone\'s memory.',
+      'It also set the working rule for the rest of the build: mutate, do not read. Nearly every high-value finding after that came from reverting a line and watching what stayed green, not from reasoning about the code. Five rounds produced 222 findings, filed at 21 High, 83 Medium, 86 Low and 32 Nit.',
+      'The reviewer gets the diff and the acceptance criteria and nothing else: no pull-request title, no commit message, no branch name, no prior verdict. A controlled study holds the code constant and varies only the surrounding narrative. Framing a change as bug-free cuts defect detection by 16 to 93 percentage points, asymmetric toward false negatives, and redacting the description alone restored detection in 70% of the missed cases. My reasoning produces ratification, so my reasoning stays out of the brief.',
+      'The tooling gets the same treatment, because it lies. A caching shell proxy replayed a stale test result and reported 8 failures in a file that no longer existed on disk; later it summarised a failing run as no tests collected. And during one review I called a cited file fabricated because a truncated git ls-tree did not show it. It was the fourth entry. Two rules came out of that pair: never let a summarising tool be the sole source of a load-bearing fact, and never truncate the command that proves a negative.',
+    ],
+    es: [
+      'Un flujo agéntico, corrido como corro el resto de mi trabajo: revisión ciega, una segunda opinión que no es de Anthropic, y cada hallazgo triado en vez de adoptado. Lo que monia le sumó a eso fue una medición.',
+      'Un revisor borró la ruta de escritura del cursor de Gmail, su guarda de dry-run y su invalidación, las tres a la vez, y 678 tests unitarios siguieron en verde. Un test que pasa con el arreglo quitado no es cobertura. Ese solo resultado es la razón por la que CI ahora corre un segundo job contra un contenedor real de Postgres, y por la que el motivo está en un comentario al inicio del archivo de CI y no en la memoria de alguien.',
+      'También fijó la regla de trabajo para el resto del build: mutar, no leer. Casi todo hallazgo de valor después de eso salió de revertir una línea y ver qué seguía en verde, no de razonar sobre el código. Cinco rondas produjeron 222 hallazgos, archivados como 21 Altos, 83 Medios, 86 Bajos y 32 Nits.',
+      'El revisor recibe el diff y los criterios de aceptación y nada más: sin título de pull request, sin mensaje de commit, sin nombre de rama, sin veredicto previo. Un estudio controlado mantiene el código constante y varía solo la narrativa alrededor. Presentar un cambio como libre de bugs baja la detección de defectos entre 16 y 93 puntos porcentuales, asimétrico hacia los falsos negativos, y solo redactar la descripción restauró la detección en el 70% de los casos perdidos. Mi razonamiento produce ratificación, así que mi razonamiento se queda fuera del brief.',
+      'A las herramientas les doy el mismo trato, porque mienten. Un proxy de shell con caché repitió un resultado de test viejo y reportó 8 fallas en un archivo que ya no existía en disco; después resumió una corrida fallida como no se recogieron tests. Y durante una revisión llamé fabricado a un archivo citado porque un git ls-tree truncado no lo mostraba. Era la cuarta entrada. De ese par salieron dos reglas: nunca dejar que una herramienta que resume sea la única fuente de un hecho que carga peso, y nunca truncar el comando que prueba una negación.',
+    ],
+  } as LList,
+  methodFoot: {
+    en: 'What the discipline buys is knowing which claims to verify, which designs to reject in writing, and which green test suite to distrust.',
+    es: 'Lo que compra la disciplina es saber qué afirmaciones verificar, qué diseños rechazar por escrito, y de qué suite de tests en verde desconfiar.',
+  } as L,
+
+  commitsH: {
+    en: 'A commit message names the effect on the person using the app.',
+    es: 'Un mensaje de commit nombra el efecto sobre la persona que usa la app.',
+  } as L,
+  commitsFoot: {
+    en: 'It is the cheapest documentation there is, and it survives the refactor that moves the code.',
+    es: 'Es la documentación más barata que existe, y sobrevive al refactor que mueve el código.',
+  } as L,
+
+  gapsH: { en: 'Known issues', es: 'Problemas conocidos' } as L,
+} as const;
+
+const days = [
+  { d: '2026-08-08', n: '40', t: { en: 'The schema, and the arithmetic under it.', es: 'El esquema, y la aritmética debajo.' } as L,
+    b: { en: 'Multi-tenant migrations, the money module, a rules engine that is pure and carries 40 tests of its own, and invite-only auth. Then the first Gmail import lands 244 real transactions out of live mail.', es: 'Migraciones multi-tenant, el módulo de dinero, un motor de reglas puro con 40 tests propios, y auth solo por invitación. Después la primera importación de Gmail aterriza 244 transacciones reales de correo en vivo.' } as L },
+  { d: '2026-08-09', n: '34', t: { en: 'More surface, then the first audit.', es: 'Más superficie, después la primera auditoría.' } as L,
+    b: { en: 'Budgets, cash flow and net worth. Binance ingestion: transactions, Earn rewards, P2P pairing and crypto prices. Then four agents read the tree in parallel on neutral briefs, and a separate pass verifies every load-bearing claim. Eleven defects in the money layer. All eleven close.', es: 'Presupuestos, flujo de caja y patrimonio. Ingesta de Binance: transacciones, recompensas de Earn, emparejamiento P2P y precios cripto. Después cuatro agentes leen el árbol en paralelo con briefs neutrales, y una pasada aparte verifica cada afirmación que carga peso. Once defectos en la capa de dinero. Los once cierran.' } as L },
+  { d: '2026-08-10', n: '32', t: { en: 'A deployment rather than a demo.', es: 'Un despliegue en vez de un demo.' } as L,
+    b: { en: 'The build applies its own migrations, so production stops drifting from the repository. A failing screen stops taking the whole app down with it. Privacy policy and terms in two languages, and a person can delete their own account and revoke the Google grant with it.', es: 'El build aplica sus propias migraciones, así que producción deja de desviarse del repositorio. Una pantalla que falla deja de tumbar la app entera con ella. Política de privacidad y términos en dos idiomas, y una persona puede borrar su propia cuenta y revocar el permiso de Google con ella.' } as L },
+  { d: '2026-08-11', n: '52', t: { en: 'The review day.', es: 'El día de revisión.' } as L,
+    b: { en: 'Five rounds of blind review produce 222 findings, and the fixes land against them one branch at a time. The largest: the importer had been reading the same 200 messages on every run. One press now reads the whole mailbox instead of fifteen.', es: 'Cinco rondas de revisión ciega producen 222 hallazgos, y los arreglos aterrizan contra ellos una rama a la vez. El más grande: el importador venía leyendo los mismos 200 mensajes en cada corrida. Ahora un click lee el buzón entero en vez de quince.' } as L },
+  { d: '2026-08-12', n: '18', t: { en: 'Statements, and the overlap between two sources.', es: 'Extractos, y el traslape entre dos fuentes.' } as L,
+    b: { en: 'A statement PDF can be uploaded and reconciled against the ledger. Keyboard navigation across the table. And the defect only real data shows: the same payment, arriving once by email and once by statement, stops being booked twice.', es: 'Un PDF de extracto se puede subir y conciliar contra el libro. Navegación por teclado en la tabla. Y el defecto que solo muestran los datos reales: el mismo pago, que llega una vez por correo y otra por extracto, deja de contabilizarse dos veces.' } as L },
+  { d: '2026-08-13', n: '86', t: { en: 'The long day.', es: 'El día largo.' } as L,
+    b: { en: 'Bancolombia, Binance and Meru each word the same event differently, and differently again by year, so the template layer earns its keep. pdf.js has to be taught to run on a server with no DOM and no fonts. The mailbox learns to read itself on a schedule, with no tab held open. The assistant ships.', es: 'Bancolombia, Binance y Meru redactan el mismo evento distinto cada uno, y distinto otra vez según el año, así que la capa de plantillas se gana su lugar. Hay que enseñarle a pdf.js a correr en un servidor sin DOM y sin fuentes. El buzón aprende a leerse solo con un horario, sin una pestaña abierta. Sale el asistente.' } as L },
+  { d: '2026-08-14', n: '9', t: { en: 'Naming where the money comes from.', es: 'Nombrar de dónde viene la plata.' } as L,
+    b: { en: 'Half a transfer stops counting as a transfer. One writer per rate source, so a single bad symbol no longer discards the run. And the Sources screen: a board of cards answering, per bank, what monia has read and what it is still waiting on.', es: 'Media transferencia deja de contar como transferencia. Un escritor por fuente de tasas, así que un solo símbolo malo ya no descarta la corrida. Y la pantalla de Fuentes: un tablero de tarjetas que responde, por banco, qué ha leído monia y qué sigue esperando.' } as L },
+];
+
+const decisions = [
+  { q: { en: 'Froze the storage base, and made the reporting currency a read-time view', es: 'Congelé la base de almacenamiento, y volví la moneda de reporte una vista en tiempo de lectura' } as L,
+    b: { en: 'Every row\'s USD base amount is written once at insert and never recomputed, so historical totals are stable by construction, and so the base currency can never change without invalidating every stored row. The per-user reporting currency costs nothing to change, because nothing is stored in it.', es: 'El monto base en USD de cada fila se escribe una vez al insertar y nunca se recalcula, así que los totales históricos son estables por construcción, y por eso la moneda base no puede cambiar sin invalidar cada fila guardada. La moneda de reporte por usuario no cuesta nada cambiarla, porque no se guarda nada en ella.' } as L,
+    c: { en: 'One irreversible decision buys an unlimited number of reversible ones.', es: 'Una decisión irreversible compra una cantidad ilimitada de reversibles.' } as L },
+  { q: { en: 'The assistant never supplies a number', es: 'El asistente nunca aporta un número' } as L,
+    b: { en: 'Ask a language model how much you spent on food in March and it produces a confident, plausible, wrong figure. In a ledger a plausible wrong figure is worse than no answer, because the user cannot tell it from a right one. So the application computes every figure first, with the same typed queries the screens use, and hands the model a fact sheet; the model says which figures answer the question and writes the sentence around them. I rejected three designs in writing first. Raw SQL for the model is one malformed query from a wrong total and one DELETE from worse. Query tools are better, but the model still picks the window and the filter, so it still owns the number. Retrieval over transaction text answers "did I pay X" well and "how much" badly.', es: 'Pregúntale a un modelo de lenguaje cuánto gastaste en comida en marzo y produce una cifra segura, plausible y equivocada. En un libro contable una cifra plausible y equivocada es peor que ninguna respuesta, porque el usuario no la puede distinguir de una correcta. Así que la aplicación calcula cada cifra primero, con las mismas consultas tipadas que usan las pantallas, y le entrega al modelo una hoja de datos; el modelo dice qué cifras responden la pregunta y escribe la frase alrededor. Rechacé tres diseños por escrito antes. SQL crudo para el modelo está a una consulta mal formada de un total equivocado y a un DELETE de algo peor. Las herramientas de consulta son mejores, pero el modelo igual elige la ventana y el filtro, así que igual es dueño del número. La recuperación sobre el texto de las transacciones responde bien "¿pagué X?" y mal "¿cuánto?".' } as L,
+    c: { en: 'A narrower feature that is always right beats a broader one that is usually right.', es: 'Una función más angosta que siempre acierta le gana a una más amplia que suele acertar.' } as L },
+  { q: { en: 'Kept the Gmail scope off the sign-in grant', es: 'Dejé el permiso de Gmail fuera del inicio de sesión' } as L,
+    b: { en: 'Signing in with Google asks for identity only. gmail.readonly is requested separately, from Settings, and only by the accounts that import mail. The reason is regulatory rather than ergonomic: it is a Google restricted scope, and attaching it to sign-in puts the whole application under the restricted-scope regime. Publishing the consent screen then requires an annual third-party CASA Tier 2 assessment, and until that passes Google expires every refresh token after seven days, which breaks the daily import cron.', es: 'Iniciar sesión con Google pide identidad y nada más. gmail.readonly se pide aparte, desde Ajustes, y solo por las cuentas que importan correo. La razón es regulatoria y no ergonómica: es un permiso restringido de Google, y pegarlo al inicio de sesión mete la aplicación entera bajo el régimen de permisos restringidos. Publicar la pantalla de consentimiento exige entonces una evaluación anual CASA Tier 2 de un tercero, y hasta que eso pase Google vence cada refresh token a los siete días, lo que rompe el cron de importación diaria.' } as L,
+    c: { en: 'The cost is one extra consent step, paid only by the users who need it.', es: 'El costo es un paso extra de consentimiento, que pagan solo los usuarios que lo necesitan.' } as L },
+  { q: { en: 'Made every ingestion request land its own work', es: 'Hice que cada request de ingesta aterrice su propio trabajo' } as L,
+    b: { en: 'A serverless loop that runs past the duration cap dies mid-flight and reports nothing, so no request is allowed to depend on the next one. Each writes its rows and moves the history floor before it returns, and a dropped connection loses at most one chunk.', es: 'Un bucle serverless que pasa el tope de duración muere a medio vuelo y no reporta nada, así que a ningún request se le permite depender del siguiente. Cada uno escribe sus filas y mueve el piso de la historia antes de responder, y una conexión caída pierde a lo sumo un bloque.' } as L,
+    c: { en: 'The trade is chunked progress and more requests instead of one long run, and on this platform the long run was never on offer.', es: 'El intercambio es progreso por bloques y más requests en vez de una corrida larga, y en esta plataforma la corrida larga nunca estuvo disponible.' } as L },
+  { q: { en: 'Made a total over a subset say so', es: 'Hice que un total sobre un subconjunto lo diga' } as L,
+    b: { en: 'When a row has no exchange rate the conversion returns NULL, and sum() skips it without a word. The app counts those rows and shows the count beside the total.', es: 'Cuando una fila no tiene tasa de cambio la conversión devuelve NULL, y sum() la salta sin decir nada. La app cuenta esas filas y muestra el conteo al lado del total.' } as L,
+    c: { en: 'The alternative is a clean-looking number over incomplete data, which is the kind of bug a user never files, because it looks like a fact.', es: 'La alternativa es un número que se ve limpio sobre datos incompletos, que es el tipo de bug que un usuario nunca reporta, porque parece un hecho.' } as L },
+];
+
+const commits = [
+  ['adb0c6e', 'fix:', { en: 'half a transfer is not a transfer', es: 'media transferencia no es una transferencia' } as L],
+  ['229c44e', 'fix:', { en: 'an Uber authorisation hold is not a charge', es: 'una retención de Uber no es un cobro' } as L],
+  ['5c8d454', 'fix:', { en: 'a $0.00 card authorisation is not a transaction', es: 'una autorización de $0,00 no es una transacción' } as L],
+  ['bc334ce', 'fix:', { en: '97 of 400 emails needed a template; six actually did', es: '97 de 400 correos necesitaban plantilla; seis de verdad la necesitaban' } as L],
+  ['17bac55', 'fix:', { en: 'a mis-scaled crypto row put $10.3M on a Visa card', es: 'una fila cripto mal escalada puso $10,3M en una tarjeta Visa' } as L],
+  ['53eae42', 'fix:', { en: 'accented weekdays dropped 26 purchases', es: 'los días de semana con tilde tumbaron 26 compras' } as L],
+  ['89d8f38', 'fix:', { en: '584 messages were stuck with nothing offered to unstick them', es: '584 mensajes estaban trabados sin nada que los destrabara' } as L],
+  ['5e03048', 'test:', { en: 'the import rollback is proved, not asserted', es: 'el rollback de importación se prueba, no se afirma' } as L],
+  ['e335e0b', 'feat:', { en: 'the mailbox reads itself, without a tab held open', es: 'el buzón se lee solo, sin una pestaña abierta' } as L],
+  ['62e8927', 'fix:', { en: 'the app was rendering in Times New Roman', es: 'la app estaba renderizando en Times New Roman' } as L],
+];
+
+const issues = [
+  { k: 'gap', t: { en: 'The Playwright suite is not in CI.', es: 'La suite de Playwright no está en CI.' } as L,
+    b: { en: '173 tests across 15 spec files, run by hand. They need Postgres plus a seeded fixture tenant. The CI file says so in a comment rather than pretending otherwise.', es: '173 tests en 15 archivos de spec, corridos a mano. Necesitan Postgres más un tenant de fixture sembrado. El archivo de CI lo dice en un comentario en vez de fingir lo contrario.' } as L },
+  { k: 'gap', t: { en: 'The Google consent screen is still in Testing.', es: 'La pantalla de consentimiento de Google sigue en Testing.' } as L,
+    b: { en: 'Gmail import therefore works only for listed test users, and their refresh tokens expire weekly. Publishing it means the CASA assessment described above.', es: 'La importación de Gmail funciona entonces solo para usuarios de prueba listados, y sus refresh tokens vencen cada semana. Publicarla implica la evaluación CASA descrita arriba.' } as L },
+  { k: 'gap', t: { en: 'A Hobby cron fires anywhere inside its hour.', es: 'Un cron de plan Hobby dispara en cualquier punto de su hora.' } as L,
+    b: { en: 'A schedule here is an hour, not a minute, and an hourly expression fails the deployment outright. That is why one job is registered four times at spread hours instead of once.', es: 'Un horario acá es una hora, no un minuto, y una expresión por hora hace fallar el despliegue de una. Por eso un job está registrado cuatro veces en horas separadas en vez de una.' } as L },
+  { k: 'none', t: { en: 'No mobile app, and no bank integrations.', es: 'Sin app móvil, y sin integraciones bancarias.' } as L,
+    b: { en: 'The interface is responsive, but there is no native client. There is no bank API to integrate, and that absence is the reason the project exists.', es: 'La interfaz es responsive, pero no hay cliente nativo. No hay API bancaria que integrar, y esa ausencia es la razón por la que el proyecto existe.' } as L },
+  { k: 'none', t: { en: 'One mailbox at volume.', es: 'Un solo buzón con volumen.' } as L,
+    b: { en: 'monia is multi-tenant from the schema up and the tenancy filters are covered by tests, but the only mailbox it has read thousands of messages from is mine.', es: 'monia es multi-tenant desde el esquema y los filtros de tenencia están cubiertos por tests, pero el único buzón del que ha leído miles de mensajes es el mío.' } as L },
+];
+
+const stack = ['Next.js 16','React 19','TypeScript','Postgres','Neon','Drizzle','Better Auth','Tailwind 4','Base UI','Gmail API','pdfjs-dist','Binance API','Vitest','Playwright','Vercel'];
+---
+
+<Base
+  lang={lang}
+  title={t(copy.title, lang)}
+  description={t(copy.description, lang)}
+  slug="work/monia"
+  themeColor="#0e1116"
+  grain={false}
+>
+  <div class="case">
+  <a class="skip" href="#main">{t(ui.skipToContent, lang)}</a>
+
+  <header class="bar">
+    <a class="mark" href={indexHref}>~/henry-cabello</a>
+    <div class="tools">
+      <a class="cv-link" href={cvHref}>CV</a>
+      <a href={altHref} hreflang={other} lang={other}>{LANG_LABEL[other]}</a>
+      <button data-theme-toggle type="button">
+        <span class="visually-hidden">{t(ui.toggleTheme, lang)}</span>
+        <span aria-hidden="true">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <a class="back" href={workHref}>← {t(copy.back, lang)}</a>
+
+    <section class="hero">
+      <span class="pill">{t(copy.status, lang)}</span>
+      <h1 style="view-transition-name: proj-monia">monia</h1>
+      <p class="lede">{t(copy.lede, lang)}</p>
+
+      <dl class="kv">
+        <div><dt>{t(copy.kStatus, lang)}</dt><dd>{t(copy.vStatus, lang)}</dd></div>
+        <div><dt>{t(copy.kBuilt, lang)}</dt><dd>{t(copy.vBuilt, lang)}</dd></div>
+        <div><dt>{t(copy.kRole, lang)}</dt><dd>{t(copy.vRole, lang)}</dd></div>
+        <div><dt>{t(copy.kScope, lang)}</dt><dd>{t(copy.vScope, lang)}</dd></div>
+      </dl>
+
+      <p class="ext"><a href={DEMO} target="_blank" rel="noopener">{lang === 'es' ? 'Abrir el demo' : 'Open the demo'} ↗</a></p>
+    </section>
+
+    {/* Wide desktop UI, so the lead shot runs full width and the other two
+        pair beneath it. Three across turned a dense ledger into a postage
+        stamp. All of them open full size. */}
+    <figure class="shots">
+      <img class="lead-shot" data-zoom src={asset(base, 'images/monia-ledger.jpg')} alt={t(copy.shotAlt1, lang)} loading="eager" decoding="async" />
+      <div class="pair-shots">
+        <img data-zoom src={asset(base, 'images/monia-overview.jpg')} alt={t(copy.shotAlt2, lang)} loading="lazy" decoding="async" />
+        <img data-zoom src={asset(base, 'images/monia-sources.jpg')} alt={t(copy.shotAlt3, lang)} loading="lazy" decoding="async" />
+      </div>
+      <figcaption>{t(copy.shotsCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat ORIGIN.md</h2>
+      <div class="out">
+        <h3>{t(copy.originH, lang)}</h3>
+        {tl(copy.origin, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ./bin/report --totals</h2>
+      <div class="out">
+        <div class="grid">
+          <div><b>271</b><span>Commits</span></div>
+          <div><b>7</b><span>{lang === 'es' ? 'Días' : 'Days'}</span></div>
+          <div><b>59</b><span>{lang === 'es' ? 'Pull requests' : 'Pull requests'}</span></div>
+          <div><b>21</b><span>{lang === 'es' ? 'Tablas' : 'Tables'}</span></div>
+          <div><b>1,028</b><span>{lang === 'es' ? 'Tests unitarios' : 'Unit tests'}</span></div>
+          <div><b>186</b><span>{lang === 'es' ? 'Integración' : 'Integration'}</span></div>
+          <div><b>173</b><span>End to end</span></div>
+          <div class="hot"><b>222</b><span>{lang === 'es' ? 'Hallazgos triados' : 'Findings triaged'}</span></div>
+        </div>
+        <p class="foot">{t(copy.totalsFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ git log --since="7 days ago" --stat</h2>
+      <div class="out">
+        <h3>{t(copy.logH, lang)}</h3>
+        <div class="log">
+          {days.map((d) => (
+            <div class="day">
+              <span class="when">{d.d}<span class="n">{d.n} commits</span></span>
+              <p><strong>{t(d.t, lang)}</strong><span class="txt">{t(d.b, lang)}</span></p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls -la ./engineering</h2>
+      <div class="out">
+        <h3>{t(copy.engH, lang)}</h3>
+        <div class="call"><b>{t(copy.moneyT, lang)}</b><p>{t(copy.moneyB, lang)}</p></div>
+        <div class="call"><b>{t(copy.mailT, lang)}</b><p>{t(copy.mailB, lang)}</p></div>
+        <div class="call"><b>{t(copy.joinT, lang)}</b><p>{t(copy.joinB, lang)}</p></div>
+        <div class="call"><b>{t(copy.colT, lang)}</b><p>{t(copy.colB, lang)}</p></div>
+        <div class="chips">{stack.map((s) => <span class="chip">{s}</span>)}</div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat DECISIONS.md</h2>
+      <div class="out">
+        <h3>{t(copy.decH, lang)}</h3>
+        {decisions.map((d) => (
+          <div class="call">
+            <b>{t(d.q, lang)}</b>
+            <p>{t(d.b, lang)}</p>
+            <p class="cost">{t(d.c, lang)}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <figure class="wide">
+      <img data-zoom src={asset(base, 'images/monia-ask.jpg')} alt={t(copy.askAlt, lang)} loading="lazy" decoding="async" />
+      <figcaption>{t(copy.askCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat method.md</h2>
+      <div class="out">
+        <h3>{t(copy.methodH, lang)}</h3>
+        {tl(copy.method, lang).map((p) => <p>{p}</p>)}
+        <p class="foot">{t(copy.methodFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat commits.log</h2>
+      <div class="out">
+        <h3>{t(copy.commitsH, lang)}</h3>
+        <div class="commits">
+          {commits.map(([sha, kind, msg]) => (
+            <div><span class="sha">{sha}</span><span class="msg"><span class="kind">{kind}</span> {t(msg as L, lang)}</span></div>
+          ))}
+        </div>
+        <p class="foot">{t(copy.commitsFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat KNOWN-ISSUES.md</h2>
+      <div class="out">
+        <h3>{t(copy.gapsH, lang)}</h3>
+        <ul class="issues">
+          {issues.map((i) => (
+            <li>
+              <span class={`tag ${i.k}`}>{i.k === 'gap' ? (lang === 'es' ? 'Brecha' : 'Gap') : (lang === 'es' ? 'No hecho' : 'Not built')}</span>
+              <span><b>{t(i.t, lang)}</b> <span class="txt">{t(i.b, lang)}</span></span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <p class="cursor-line" aria-hidden="true">
+      <span class="prompt">henry@bogota:~/monia$</span> <span class="caret"></span>
+    </p>
+
+    <p class="back-foot"><a href={workHref}>← {t(copy.back, lang)}</a></p>
+  </main>
+  </div>
+</Base>
+
+<style>
+  /* ── Amber on cool slate. monia's own accent, which in the app belongs to
+     the review queue and nothing else. Kept deliberately cooler in the
+     chrome than Luxura's warm gold, so the two teardowns do not read as
+     the same product. ─────────────────────────────────────────────────── */
+  @property --accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3ddc84;
+  }
+
+  :root {
+    --ground: #0e1116;
+    --raise: #151a21;
+    --ink: #e8ecf2;
+    --ink-2: #a3adbb;
+    --dim: #6b7684;
+    --line: #222933;
+    --accent: #e59b3f;
+    --warn: #e0b341;
+    --good: #5fb894;
+    --bad: #e8705a;
+    --focus: #e59b3f;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --shell: 74rem;
+    --read: 40rem;
+    --pad: clamp(1rem, 3vw, 2.25rem);
+    animation: enter-monia 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(:root[data-theme='light']) {
+    --ground: #f5f6f8;
+    --raise: #ffffff;
+    --ink: #10151c;
+    --ink-2: #414a56;
+    --dim: #6b7480;
+    --line: #dde1e8;
+    --accent: #a3610d;
+    --warn: #8a6410;
+    --good: #2f7a5c;
+    --bad: #a6462f;
+    --focus: #a3610d;
+    animation-name: enter-monia-light;
+  }
+
+  @keyframes enter-monia {
+    from { --accent: #3ddc84; }
+    to { --accent: #e59b3f; }
+  }
+  @keyframes enter-monia-light {
+    from { --accent: #0f7b4a; }
+    to { --accent: #a3610d; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+  }
+
+  :global(body) {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.68;
+  }
+
+  /* ── Sections this page alone needs ─────────────────────────────────── */
+  .cost {
+    color: var(--ink) !important;
+    margin-top: 0.5rem !important;
+  }
+  .cost::before {
+    content: '↳ ';
+    color: var(--accent);
+  }
+
+  .log {
+    margin: 0 0 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .day {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1rem;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .day:last-child { border-bottom: 0; }
+  .when { color: var(--accent); white-space: nowrap; }
+  .when .n { display: block; color: var(--dim); }
+  .day p { margin: 0; max-width: 46rem; }
+  .day strong { display: block; font-weight: 500; color: var(--ink); }
+  .day .txt { color: var(--ink-2); }
+  @media (max-width: 640px) {
+    .day { grid-template-columns: 1fr; gap: 0.2rem; }
+    .when .n { display: inline; margin-left: 0.5rem; }
+  }
+
+  .commits {
+    margin: 0 0 1.2rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .commits > div {
+    display: flex;
+    gap: 0.9rem;
+    padding: 0.35rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .commits > div:last-child { border-bottom: 0; }
+  .sha { color: var(--dim); flex: none; }
+  .msg { color: var(--ink-2); }
+  .msg .kind { color: var(--accent); }
+
+  .issues {
+    max-width: 56rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .issues li {
+    display: grid;
+    grid-template-columns: 6.5rem 1fr;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .issues li:last-child { border-bottom: 0; }
+  .issues .tag {
+    font-size: 0.6563rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-top: 0.28rem;
+  }
+  .issues .tag.gap { color: var(--accent); }
+  .issues .tag.none { color: var(--dim); }
+  .issues b { font-weight: 500; color: var(--ink); }
+  .issues .txt { color: var(--ink-2); }
+  @media (max-width: 640px) {
+    .issues li { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0; max-width: 56rem; }
+  .chip {
+    padding: 0.18rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--dim);
+    font-size: 0.72rem;
+  }
+
+  .lead-shot,
+  .pair-shots img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  .pair-shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+  }
+  @media (max-width: 640px) {
+    .pair-shots { grid-template-columns: 1fr; }
+  }
+
+  figure.wide { margin: clamp(2rem, 5vw, 3.2rem) 0 0; }
+  figure.wide img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  figure.wide figcaption {
+    max-width: var(--read);
+    margin: 0.9rem 0 0;
+    color: var(--dim);
+    font-size: 0.75rem;
+  }
+</style>

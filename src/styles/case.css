@@ -616,3 +616,71 @@
   font-size: 0.75rem;
   max-width: var(--read);
 }
+
+/* ── Lightbox ─────────────────────────────────────────────────────────────
+   Any image marked [data-zoom] opens full size. No library: one <dialog>,
+   created once, reused. Screenshots of a dense UI are unreadable at a third
+   of the column width, so on these pages the click is the point.
+
+   The trigger stays a <button> so it is reachable by keyboard and announces
+   itself; <dialog> brings focus trapping and Escape for free. */
+.case [data-zoom] {
+  cursor: zoom-in;
+}
+.case-zoom {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.case-zoom::backdrop {
+  background: rgb(0 0 0 / 0.82);
+  backdrop-filter: blur(3px);
+}
+.case-zoom img {
+  display: block;
+  margin: auto;
+  max-width: min(1600px, 96vw);
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  cursor: zoom-out;
+}
+.case-zoom .close {
+  position: fixed;
+  top: 0.8rem;
+  right: 1rem;
+  z-index: 2;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgb(0 0 0 / 0.55);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  border-radius: 999px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+}
+.case-zoom .close:hover {
+  background: rgb(0 0 0 / 0.8);
+}
+.case-zoom .close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .case-zoom[open] img {
+    animation: zoom-in 0.22s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+  }
+}
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: none; }
+}

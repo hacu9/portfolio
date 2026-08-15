@@ -431,7 +431,7 @@ const shots = [
     <figure class="shots">
       <div class="shot-row">
         {shots.map((s) => (
-          <img src={asset(base, s.src)} alt={t(s.alt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+          <img data-zoom src={asset(base, s.src)} alt={t(s.alt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
         ))}
       </div>
       <figcaption>{t(copy.shotsCap, lang)}</figcaption>
@@ -675,9 +675,9 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
 
         <figure class="ads">
           <div class="ad-row">
-            <img src={asset(base, 'images/luxura-ad-men.jpg')} alt={t(copy.adsAlt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
-            <img src={asset(base, 'images/luxura-ad-women.jpg')} alt={t(copy.adsAlt2, lang)} loading="lazy" decoding="async" width="720" height="1280" />
-            <img src={asset(base, 'images/luxura-ad-lgbt.jpg')} alt={t(copy.adsAlt3, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+            <img data-zoom src={asset(base, 'images/luxura-ad-men.jpg')} alt={t(copy.adsAlt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+            <img data-zoom src={asset(base, 'images/luxura-ad-women.jpg')} alt={t(copy.adsAlt2, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+            <img data-zoom src={asset(base, 'images/luxura-ad-lgbt.jpg')} alt={t(copy.adsAlt3, lang)} loading="lazy" decoding="async" width="720" height="1280" />
           </div>
           <figcaption>{t(copy.adsCap, lang)}</figcaption>
         </figure>
