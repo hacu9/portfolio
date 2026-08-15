@@ -1,4 +1,4 @@
-# henry-portafolio
+# portfolio
 
 Personal portfolio, Henry Cabello. A bilingual single-page site styled as a
 terminal: boot sequence, sections as shell commands, ⌘K palette. One shared
@@ -11,8 +11,8 @@ npm install
 npm run dev
 ```
 
-Then open <http://localhost:4321/>. It forwards to `/en/` or `/es/` by browser
-language.
+Then open <http://localhost:4321/>. English is the root, Spanish is `/es/`.
+`/en/` forwards to the root, so links shared before the move still resolve.
 
 ```bash
 npm run build     # static output to dist/
@@ -46,5 +46,10 @@ Pages.
 
 One-time setup: repository **Settings → Pages → Source → GitHub Actions**.
 
-The workflow sets `SITE_BASE=/henry-portafolio` for a project repo. Rename the
-repo to `hacu9.github.io` and set `SITE_BASE=/` to serve from the root instead.
+The workflow sets `SITE_BASE=/portfolio` for a project repo, which serves the
+site at <https://hacu9.github.io/portfolio/>. Rename the repo to
+`hacu9.github.io` and set `SITE_BASE=/` to serve from the root instead.
+
+`hacu9/henry-portafolio` is the previous home of this site. It still serves its
+last build at <https://hacu9.github.io/henry-portafolio/> so old links keep
+working. It receives no more commits. Archive it once the links are updated.

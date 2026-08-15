@@ -20,12 +20,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # A project repo is served from https://hacu9.github.io/henry-portafolio/,
-      # so the build needs that subpath baked into every asset and link.
+      # A project repo is served from https://hacu9.github.io/portfolio/, so the
+      # build needs that subpath baked into every asset and link.
       #
       # If you rename the repo to hacu9.github.io (a user site served from the
-      # root), set this to "/" instead — nothing else changes.
-      SITE_BASE: /henry-portafolio
+      # root), set this to "/" instead. Nothing else changes.
+      SITE_BASE: /portfolio
     steps:
       - uses: actions/checkout@v4
       - uses: withastro/action@v3

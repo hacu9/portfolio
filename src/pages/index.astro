@@ -1,56 +1,17 @@
 ---
-// GitHub Pages has no server, so the language split happens on the client.
-// This page guesses from navigator.language and forwards, with real links
-// underneath for anyone without JS or with an unexpected locale.
-import { path } from '../i18n/types';
-
-const base = import.meta.env.BASE_URL;
-const en = path(base, 'en');
-const es = path(base, 'es');
+/**
+ * The site, in English, at the root.
+ *
+ * English is the default language, so it has no prefix. Spanish lives at
+ * /es/. This used to be a JavaScript shim that read navigator.language and
+ * forwarded to /en/ or /es/. That cost every visitor a redirect, gave search
+ * engines a blank page to index at the root, and sent an English recruiter
+ * with a Spanish laptop to the wrong version.
+ *
+ * The language switch in the header is now the only thing that changes
+ * language, which is what a reader expects.
+ */
+import Home from '../layouts/Home.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Henry Cabello, Senior Full-Stack Engineer</title>
-    <meta
-      name="description"
-      content="Senior full-stack engineer, 8+ years. Ships and operates complete products: enterprise Microsoft integrations, AI agents, and a mobile app in production."
-    />
-    <link rel="alternate" hreflang="en" href={en} />
-    <link rel="alternate" hreflang="es" href={es} />
-    <link rel="alternate" hreflang="x-default" href={en} />
-    <script is:inline define:vars={{ en, es }}>
-      var target = (navigator.language || 'en').toLowerCase().startsWith('es') ? es : en;
-      location.replace(target);
-    </script>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        gap: 1rem;
-        background: #0c1017;
-        color: #d8dee7;
-        font-family: system-ui, sans-serif;
-      }
-      div {
-        display: grid;
-        gap: 0.75rem;
-        text-align: center;
-      }
-      a {
-        color: #f0a423;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <p>Henry Cabello</p>
-      <p><a href={en}>English</a> · <a href={es}>Español</a></p>
-    </div>
-  </body>
-</html>
+<Home lang="en" />

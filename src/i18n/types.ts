@@ -22,9 +22,9 @@ export const OTHER_LANG: Record<Lang, Lang> = { en: 'es', es: 'en' };
 /**
  * Join Astro's BASE_URL with path segments.
  *
- * BASE_URL is '/' locally but '/henry-portafolio' (no trailing slash) when the
- * Pages workflow sets SITE_BASE. Interpolating it directly produces
- * '/henry-portafolioen/'. Always build URLs through this.
+ * BASE_URL is '/' locally but '/portfolio' (no trailing slash) when the Pages
+ * workflow sets SITE_BASE. Interpolating it directly produces '/portfolioes/'.
+ * Always build URLs through this.
  *
  * Returns a trailing slash to match `build.format: 'directory'`.
  */
@@ -36,6 +36,20 @@ export function path(base: string, ...parts: string[]): string {
     .filter(Boolean)
     .join('/');
   return tail ? `${head}/${tail}/` : `${head}/`;
+}
+
+/**
+ * The URL of a page in a given language.
+ *
+ * English is the default and sits at the root: "/" and "/cv/". Spanish sits
+ * under "/es/". English gets no prefix, because a prefix gives one page two
+ * URLs and splits the search ranking between them.
+ *
+ * "/en/" still resolves. src/pages/en/index.astro forwards it to the root, so
+ * every link shared before this change keeps working.
+ */
+export function langPath(base: string, lang: Lang, ...parts: string[]): string {
+  return lang === 'en' ? path(base, ...parts) : path(base, lang, ...parts);
 }
 
 /**

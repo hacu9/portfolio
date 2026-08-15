@@ -1,6 +1,6 @@
 ---
 import type { Lang } from '../i18n/types';
-import { OTHER_LANG, path } from '../i18n/types';
+import { OTHER_LANG, langPath } from '../i18n/types';
 import Motion from '../components/Motion.astro';
 import '../styles/motion.css';
 
@@ -8,7 +8,7 @@ interface Props {
   lang: Lang;
   title: string;
   description: string;
-  /** Slug under /<lang>/ for a subpage; empty on the home page. Drives canonical + hreflang. */
+  /** Slug under the language root for a subpage; empty on the home page. Drives canonical + hreflang. */
   slug?: string;
   /** Theme colour for the browser chrome. */
   themeColor?: string;
@@ -30,8 +30,10 @@ const {
 
 const base = import.meta.env.BASE_URL;
 const altLang = OTHER_LANG[lang];
-const canonical = new URL(path(base, lang, slug ?? ''), Astro.site);
-const alternate = new URL(path(base, altLang, slug ?? ''), Astro.site);
+// English is the root and Spanish is /es/, so the two URLs are not symmetric.
+// langPath() carries that rule; do not rebuild these by hand.
+const canonical = new URL(langPath(base, lang, slug ?? ''), Astro.site);
+const alternate = new URL(langPath(base, altLang, slug ?? ''), Astro.site);
 // Without this every shared link, LinkedIn, WhatsApp, email, previews blank.
 const ogImage = new URL(`${base.replace(/\/+$/, '')}/images/og.png`, Astro.site);
 ---
@@ -47,6 +49,11 @@ const ogImage = new URL(`${base.replace(/\/+$/, '')}/images/og.png`, Astro.site)
     <link rel="canonical" href={canonical.href} />
     <link rel="alternate" hreflang={altLang} href={alternate.href} />
     <link rel="alternate" hreflang={lang} href={canonical.href} />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={lang === 'en' ? canonical.href : alternate.href}
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="profile" />
