@@ -276,6 +276,11 @@ const rawProjects: Project[] = [
     period: '2026',
     lead: true,
     caseSlug: 'work/storia',
+    shots: [
+      { src: 'images/storia-inbox.jpg', alt: { en: 'The Storia unified inbox with a live WhatsApp conversation', es: 'La bandeja unificada de Storia con una conversación de WhatsApp en vivo' } },
+      { src: 'images/storia-dashboard.jpg', alt: { en: 'The Storia dashboard', es: 'El panel de Storia' } },
+      { src: 'images/storia-agent.jpg', alt: { en: 'The Storia agent builder', es: 'El constructor de agentes de Storia' } },
+    ],
     summary: {
       en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet.',
       es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto.',

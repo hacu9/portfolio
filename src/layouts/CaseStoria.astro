@@ -15,7 +15,7 @@
  * earlier write-up, which had drifted low on line count.
  */
 import Base from './Base.astro';
-import { t, tl, OTHER_LANG, LANG_LABEL, langPath } from '../i18n/types';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
 import type { Lang, L, LList } from '../i18n/types';
 import { ui } from '../i18n/ui';
 import '../styles/reset.css';
@@ -68,6 +68,23 @@ const copy = {
   threadNote: {
     en: 'One worked example, not a transcript. Behind those six lines: referral context from the Marketplace listing · hybrid product search (SQL filters + tsvector + pgvector) · three images sent and de-duplicated · lead scored and written to the CRM · appointment flagged for the human inbox.',
     es: 'Un ejemplo trabajado, no una transcripción. Detrás de esas seis líneas: contexto de referencia del anuncio de Marketplace · búsqueda híbrida de productos (filtros SQL + tsvector + pgvector) · tres imágenes enviadas y de-duplicadas · lead puntuado y escrito en el CRM · cita marcada para la bandeja humana.',
+  } as L,
+
+  shotsCap: {
+    en: 'The running product. The inbox carries one thread per customer across every channel, with the sentiment tag and the escalate control the agent hands off through. Then the agent builder and the analytics the conversations feed.',
+    es: 'El producto corriendo. La bandeja lleva un hilo por cliente en todos los canales, con la etiqueta de sentimiento y el control de escalar por el que el agente traspasa. Después el constructor de agentes y la analítica que alimentan las conversaciones.',
+  } as L,
+  shotInbox: {
+    en: 'The Storia unified inbox: a conversation list on the left, a live WhatsApp thread in Spanish on the right, with escalate and resolve controls',
+    es: 'La bandeja unificada de Storia: lista de conversaciones a la izquierda, un hilo de WhatsApp en vivo en español a la derecha, con controles de escalar y resolver',
+  } as L,
+  shotAgent: {
+    en: 'The Storia agent builder',
+    es: 'El constructor de agentes de Storia',
+  } as L,
+  shotAnalytics: {
+    en: 'The Storia analytics screen',
+    es: 'La pantalla de analítica de Storia',
   } as L,
 
   originH: {
@@ -362,6 +379,15 @@ const thread = [
         <p class="thread-ft">{t(copy.threadNote, lang)}</p>
       </div>
     </section>
+
+    <figure class="shots">
+      <img class="lead-shot" data-zoom src={asset(base, 'images/storia-inbox.jpg')} alt={t(copy.shotInbox, lang)} loading="eager" decoding="async" />
+      <div class="pair-shots">
+        <img data-zoom src={asset(base, 'images/storia-agent.jpg')} alt={t(copy.shotAgent, lang)} loading="lazy" decoding="async" />
+        <img data-zoom src={asset(base, 'images/storia-analytics.jpg')} alt={t(copy.shotAnalytics, lang)} loading="lazy" decoding="async" />
+      </div>
+      <figcaption>{t(copy.shotsCap, lang)}</figcaption>
+    </figure>
 
     <section class="blk">
       <h2 class="cmd">$ cat ORIGIN.md</h2>
@@ -691,6 +717,25 @@ const thread = [
   @keyframes bub-rise {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: none; }
+  }
+
+  .lead-shot,
+  .pair-shots img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  .pair-shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.5rem, 2vw, 1rem);
+    margin-top: clamp(0.5rem, 2vw, 1rem);
+  }
+  @media (max-width: 640px) {
+    .pair-shots { grid-template-columns: 1fr; }
   }
 
   .gap-what {
