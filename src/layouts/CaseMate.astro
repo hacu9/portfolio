@@ -1,0 +1,654 @@
+---
+/**
+ * The Mate teardown.
+ *
+ * Fourth teardown, fourth palette. Mate's own: bone type on a warm dark
+ * ground with ember as the one accent, taken from its design system, where
+ * the tokens are named --bone, --dusk, --ember, --sand, --sage rather than
+ * --primary and --accent-2. Pushed redder than monia's amber and Luxura's
+ * gold so four warm pages stay distinguishable.
+ *
+ * Figures re-derived from the repository on 2026-08-15. Three had drifted:
+ * the commit count, the build window, and the line total. The claim I most
+ * expected to fail is the one that held exactly, that lib/matching/quick-filter.ts
+ * is referenced by a test, a barrel export and an admin action, and by nothing
+ * in inngest/.
+ */
+import Base from './Base.astro';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
+import type { Lang, L, LList } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import '../styles/reset.css';
+import '../styles/case.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const other = OTHER_LANG[lang];
+const altHref = langPath(base, other, 'work/mate');
+const indexHref = langPath(base, lang);
+const workHref = `${langPath(base, lang)}#work`;
+const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
+const REPO = 'https://github.com/hacu9/ai-dating';
+
+const copy = {
+  title: { en: 'Mate teardown · Henry Cabello', es: 'Mate, por dentro · Henry Cabello' } as L,
+  description: {
+    en: 'An AI matchmaker with no swiping. Seven months of build, one production incident that was 75% test fixtures, and a validation pass that killed the framing the product was named after.',
+    es: 'Un matchmaker con IA y sin swipe. Siete meses de construcción, un incidente en producción que era 75% datos de prueba, y una validación que mató el encuadre que le daba nombre al producto.',
+  } as L,
+  back: { en: 'back to ./work', es: 'volver a ./work' } as L,
+  status: { en: 'In development', es: 'En desarrollo' } as L,
+  lede: {
+    en: 'An AI matchmaker for romance, friendship and small groups. No swiping: a scheduled job reads what you told it about yourself, scores candidates on the dimensions the research says actually predict compatibility, and hands you a match with a written reason. One production incident, and a market validation pass that killed the framing the whole product was named after.',
+    es: 'Un matchmaker con IA para romance, amistad y grupos pequeños. Sin swipe: un job programado lee lo que le contaste sobre ti, puntúa candidatos en las dimensiones que la investigación dice que sí predicen compatibilidad, y te entrega un match con una razón escrita. Un incidente en producción, y una validación de mercado que mató el encuadre que le daba nombre al producto.',
+  } as L,
+
+  kRole: { en: 'Role', es: 'Rol' } as L,
+  vRole: { en: 'Solo: product, research, backend, front-end, design system', es: 'Solo: producto, investigación, backend, front-end, sistema de diseño' } as L,
+  kWindow: { en: 'Build window', es: 'Ventana de construcción' } as L,
+  vWindow: { en: '2025-10-28 → 2026-08-15, 291 commits', es: '2025-10-28 → 2026-08-15, 291 commits' } as L,
+  kRuns: { en: 'Runs on', es: 'Corre en' } as L,
+  vRuns: { en: 'Vercel, Supabase Postgres, Inngest, Ably', es: 'Vercel, Supabase Postgres, Inngest, Ably' } as L,
+  kModels: { en: 'Models', es: 'Modelos' } as L,
+  vModels: { en: 'Gemini Flash for chat, Llama 3.3 70B on Groq for analysis', es: 'Gemini Flash para chat, Llama 3.3 70B en Groq para análisis' } as L,
+
+  shotsCap: {
+    en: 'The front door, the matches the engine produced overnight, and a match conversation. Native builds ship from the same codebase through Capacitor.',
+    es: 'La puerta de entrada, los matches que el motor produjo de noche, y una conversación de match. Los builds nativos salen del mismo codebase con Capacitor.',
+  } as L,
+  altFront: { en: 'The Mate landing page', es: 'La landing de Mate' } as L,
+  altMatches: { en: 'The matches screen, each with a compatibility score', es: 'La pantalla de matches, cada uno con su puntaje de compatibilidad' } as L,
+  altConv: { en: 'A match conversation in the app', es: 'Una conversación de match en la app' } as L,
+
+  readmeH: {
+    en: 'The swipe optimises for photographs and volume. Users are done with it.',
+    es: 'El swipe optimiza por fotos y volumen. La gente ya se cansó.',
+  } as L,
+  readme: {
+    en: [
+      'Tinder shed paying subscribers for eleven consecutive quarters. Bumble\'s payers fell 21% year on year, and 78% of users report burnout. The exodus is not toward a better card stack. It is toward products that produce an outcome.',
+      'My thesis in October 2025: if a model can learn who you are from an ordinary conversation, it can evaluate compatibility on values, life goals and communication style, and do it continuously in the background, without you rating strangers by photograph.',
+      'So onboarding is a conversation with a schema behind it. Ten topics, each carrying guide questions, the exact database fields it feeds, and extraction hints, all in a JSON config an admin can edit without a deploy. Topics branch on what you say: tell it you want something casual and it stops asking about marriage timelines. When the conversation ends, a second model pass reads the transcript and writes roughly thirty structured profile fields, turning "I am useless before 10am" into morningNight: 3.',
+      'You can also skip it. We hand you a prompt, you paste it into whichever assistant you already talk to every day, it summarises what it has learned about you across months of real conversation, and you paste the answer back. The profile gets built from evidence you generated without performing for a dating app, which is exactly the evidence a dating app can never collect about you itself.',
+    ],
+    es: [
+      'Tinder perdió suscriptores pagos once trimestres seguidos. Los pagos de Bumble cayeron 21% interanual, y el 78% de los usuarios reporta hartazgo. El éxodo no va hacia un mazo de cartas mejor. Va hacia productos que producen un resultado.',
+      'Mi tesis en octubre de 2025: si un modelo puede aprender quién eres a partir de una conversación normal, puede evaluar compatibilidad en valores, metas de vida y estilo de comunicación, y hacerlo de forma continua en segundo plano, sin que califiques desconocidos por foto.',
+      'Así que el onboarding es una conversación con un esquema detrás. Diez temas, cada uno con preguntas guía, los campos exactos de base de datos que alimenta, y pistas de extracción, todo en un JSON que un admin edita sin desplegar. Los temas se ramifican según lo que dices: dile que quieres algo casual y deja de preguntar por plazos de matrimonio. Cuando termina la conversación, una segunda pasada del modelo lee la transcripción y escribe unos treinta campos estructurados, convirtiendo "no sirvo antes de las 10am" en morningNight: 3.',
+      'También puedes saltártelo. Te damos un prompt, lo pegas en el asistente con el que ya hablas todos los días, resume lo que ha aprendido de ti en meses de conversación real, y pegas la respuesta de vuelta. El perfil se arma con evidencia que generaste sin actuar para una app de citas, que es exactamente la evidencia que una app de citas nunca puede recoger de ti por su cuenta.',
+    ],
+  } as LList,
+
+  totalsFoot: {
+    en: 'User and match counts queried from the production database on 15 August 2026. Repository counts read the same day. The match count is what the hourly job produced on its own; none of it was swiped.',
+    es: 'Conteos de usuarios y matches consultados de la base de datos de producción el 15 de agosto de 2026. Los conteos del repositorio se leyeron el mismo día. Los matches son los que produjo el job por hora solo; ninguno salió de un swipe.',
+  } as L,
+
+  weightsH: {
+    en: 'Compatibility is three algorithms, not one',
+    es: 'La compatibilidad son tres algoritmos, no uno',
+  } as L,
+  weightsB: {
+    en: 'The drivers of a good romance are not the drivers of a good friendship, and the literature says so plainly. The weights are split by connection type, and each carries its source in the comment above it: a PNAS meta-analysis of 11,000 couples, Campbell\'s friendship-chemistry work, the 2025 community-formation research. One community weight is multiplied by zero, with a comment explaining that the 2025 evidence stopped supporting it. I left the function in and zeroed the weight rather than deleting the reasoning.',
+    es: 'Lo que hace bueno un romance no es lo que hace buena una amistad, y la literatura lo dice sin rodeos. Los pesos están separados por tipo de conexión, y cada uno lleva su fuente en el comentario de arriba: un meta-análisis de PNAS con 11.000 parejas, el trabajo de Campbell sobre química en la amistad, la investigación de 2025 sobre formación de comunidades. Un peso de comunidades está multiplicado por cero, con un comentario que explica que la evidencia de 2025 dejó de sostenerlo. Dejé la función y puse el peso en cero en vez de borrar el razonamiento.',
+  } as L,
+
+  costH: { en: 'The cost problem, and the fix I am proudest of', es: 'El problema de costo, y el arreglo del que estoy más orgulloso' } as L,
+  costB: {
+    en: 'Comparing two people means putting both of them in front of a model. The obvious way is to send everything they have ever told the assistant, about 10,000 tokens for the pair. Pairs grow quadratically, so that build is insolvent somewhere around a hundred users. So the conversations never reach the matching model at all. A nightly job reads each user\'s recent messages and writes a small structured summary, kept in three buckets that age out. The matcher only ever sees the summaries. Same decision, a fiftieth of the input, because the summarisation runs once per user per day rather than once per pair per analysis, and users grow linearly where pairs do not.',
+    es: 'Comparar dos personas significa poner a las dos frente a un modelo. Lo obvio es mandar todo lo que le han dicho al asistente, unos 10.000 tokens por par. Los pares crecen de forma cuadrática, así que ese diseño es insolvente cerca de los cien usuarios. Así que las conversaciones nunca llegan al modelo de matching. Un job nocturno lee los mensajes recientes de cada usuario y escribe un resumen estructurado pequeño, guardado en tres cubetas que envejecen. El matcher solo ve los resúmenes. La misma decisión con la cincuentava parte de la entrada, porque el resumen corre una vez por usuario por día en vez de una vez por par por análisis, y los usuarios crecen de forma lineal donde los pares no.',
+  } as L,
+  costCaveat: {
+    en: 'Two of the three buckets are write-only today. The monthly and quarterly folds run on schedule and store their output, but the hourly matcher still injects only the weekly bucket. The compression is real and so is the saving; the long-memory half is built and not yet wired to the thing that would use it.',
+    es: 'Dos de las tres cubetas hoy solo se escriben. Los plegados mensual y trimestral corren en horario y guardan su salida, pero el matcher por hora sigue inyectando solo la cubeta semanal. La compresión es real y el ahorro también; la mitad de memoria larga está construida y todavía no conectada a lo que la usaría.',
+  } as L,
+
+  vendorH: { en: 'Never hostage to one vendor', es: 'Nunca rehén de un proveedor' } as L,
+  vendorB: {
+    en: 'The AI layer is abstracted by purpose, not by vendor: a cheap fast model for conversation, a strong one for analysis, each chosen by environment variable. Today that is Gemini Flash and Llama 3.3 70B on Groq, picked because Groq\'s free tier allows 30 requests a minute against Gemini\'s two. The retry handler reads the provider\'s own hint back out of the error string, and it exists because I hit both 429 and 503 repeatedly in production.',
+    es: 'La capa de IA está abstraída por propósito, no por proveedor: un modelo barato y rápido para conversación, uno fuerte para análisis, cada uno elegido por variable de entorno. Hoy son Gemini Flash y Llama 3.3 70B en Groq, elegidos porque el tier gratis de Groq permite 30 requests por minuto contra los dos de Gemini. El manejador de reintentos lee la pista del propio proveedor desde el string del error, y existe porque me topé con 429 y 503 repetidamente en producción.',
+  } as L,
+
+  verifyH: { en: 'Identity verification that costs nothing', es: 'Verificación de identidad que no cuesta nada' } as L,
+  verifyB: {
+    en: 'Every verification vendor charges per check, so verification runs entirely in the browser. face-api.js loads its models as WebAssembly, pulls a 128-dimension descriptor from the live camera, does the same for the profile photo, and compares them by Euclidean distance. Liveness is a gesture prompt: you smile. The video never leaves the device, and nothing but a boolean and a timestamp is stored.',
+    es: 'Todo proveedor de verificación cobra por chequeo, así que la verificación corre entera en el navegador. face-api.js carga sus modelos como WebAssembly, saca un descriptor de 128 dimensiones de la cámara en vivo, hace lo mismo con la foto de perfil, y los compara por distancia euclidiana. La prueba de vida es un gesto: sonríes. El video nunca sale del dispositivo, y no se guarda más que un booleano y una marca de tiempo.',
+  } as L,
+
+  cronH: { en: 'Most of this product runs while nobody is looking at it.', es: 'Casi todo este producto corre mientras nadie lo mira.' } as L,
+  cronB: {
+    en: 'None of the work below has a screen. Nine scheduled jobs read conversations, compress them, find candidates, score pairs, write the artifacts a match needs before either person opens it, and clean up after themselves. Two of the nine serve the retired agent-to-agent subsystem and now run against an empty queue. They are scheduled, harmless and pointless, and they should have been deleted when the architecture changed.',
+    es: 'Nada de lo de abajo tiene pantalla. Nueve jobs programados leen conversaciones, las comprimen, buscan candidatos, puntúan pares, escriben los artefactos que un match necesita antes de que alguno lo abra, y limpian detrás de ellos. Dos de los nueve sirven al subsistema agente-a-agente retirado y hoy corren contra una cola vacía. Están programados, son inofensivos e inútiles, y debieron borrarse cuando cambió la arquitectura.',
+  } as L,
+
+  govH: { en: 'The hourly loop has cost governors, not just logic', es: 'El bucle por hora tiene gobernadores de costo, no solo lógica' } as L,
+  govB: {
+    en: 'For each active user the job pulls 20 candidates with a SQL filter (age range, gender, connection type, and an existing-match exclusion) then applies the rules that cannot be expressed as a preference. Mutual interest is enforced both ways, so a match can never be one-directional. Verification acts as a privacy filter: ask for verified matches only and you see only verified people, and if you are unverified yourself you are shown only to people who opted in. Then a hard ceiling of three model calls per user per hour, with a second of spacing between them. That number is a budget, not a performance limit. It is what keeps a runaway loop from becoming a runaway invoice.',
+    es: 'Para cada usuario activo el job saca 20 candidatos con un filtro SQL (rango de edad, género, tipo de conexión, y exclusión de matches existentes) y después aplica las reglas que no se pueden expresar como preferencia. El interés mutuo se exige en ambas direcciones, así que un match nunca puede ser unidireccional. La verificación funciona como filtro de privacidad: si pides solo matches verificados ves solo gente verificada, y si tú no estás verificado solo te muestran a quienes aceptaron verte. Después, un techo duro de tres llamadas al modelo por usuario por hora, con un segundo de espacio entre ellas. Ese número es un presupuesto, no un límite de rendimiento. Es lo que evita que un bucle desbocado se vuelva una factura desbocada.',
+  } as L,
+
+  detH: { en: 'The comparison engine is 522 lines of deterministic maths', es: 'El motor de comparación son 522 líneas de matemática determinista' } as L,
+  detB: {
+    en: 'The language model handles nuance. It does not handle the parts where the research already gives an answer: those are code, and each carries the study it came from in the comment above it. Values and interests by Jaccard similarity, boosted when both sides mark the same item important. Life goals on a penalty model, where a children mismatch costs 60 points when either side calls it a dealbreaker. Emotional stability asymmetrically, where both above 7 scores 97 to 100 and either below 3 is capped at 30. Communication through a love-language complementarity graph. Availability as overlap across six named time slots, with a floor so zero overlap is not fatal.',
+    es: 'El modelo de lenguaje maneja el matiz. No maneja las partes donde la investigación ya da una respuesta: esas son código, y cada una lleva el estudio del que salió en el comentario de arriba. Valores e intereses por similitud de Jaccard, con impulso cuando ambos marcan lo mismo como importante. Metas de vida en un modelo de penalización, donde una discrepancia sobre hijos cuesta 60 puntos si alguno la declara dealbreaker. Estabilidad emocional de forma asimétrica: ambos por encima de 7 puntúa entre 97 y 100, y cualquiera por debajo de 3 se topa en 30. Comunicación por un grafo de complementariedad de lenguajes del amor. Disponibilidad como traslape en seis franjas horarias, con un piso para que cero traslape no sea fatal.',
+  } as L,
+
+  egressH: { en: 'The database blew its egress limit, and three quarters of the bill was fixtures.', es: 'La base de datos reventó su límite de egress, y tres cuartas partes de la cuenta eran datos de prueba.' } as L,
+  egress: {
+    en: [
+      'The hourly matchmaking job loaded every active agent with a full relational include, then queried twenty candidates each, with full includes again. Eight hundred profile loads an hour. Nineteen thousand a day. Roughly 94 MB of egress daily, against a plan allowing 5.5 GB a month.',
+      'I wrote diagnostic scripts rather than guessing, and the numbers said something I did not expect: 44 of 59 users were test users. That is not a data-hygiene problem. It is an architecture problem, and it presented as a billing alert.',
+      'The remediation had four parts, ordered by impact: delete the test users, replace every include with an explicit select naming only the fields the analysis reads, cut the candidate batch, and reduce the cron frequency.',
+    ],
+    es: [
+      'El job de matchmaking por hora cargaba cada agente activo con un include relacional completo, y después consultaba veinte candidatos por cada uno, otra vez con includes completos. Ochocientas cargas de perfil por hora. Diecinueve mil al día. Unos 94 MB de egress diarios, contra un plan que permite 5,5 GB al mes.',
+      'Escribí scripts de diagnóstico en vez de adivinar, y los números dijeron algo que no esperaba: 44 de 59 usuarios eran de prueba. Eso no es un problema de higiene de datos. Es un problema de arquitectura, y se presentó como una alerta de facturación.',
+      'La remediación tenía cuatro partes, ordenadas por impacto: borrar los usuarios de prueba, reemplazar cada include por un select explícito que nombre solo los campos que el análisis lee, recortar el lote de candidatos, y bajar la frecuencia del cron.',
+    ],
+  } as LList,
+  egressFoot: {
+    en: 'Only the query-shaping half is in the code today. The job still runs hourly and still takes twenty candidates. I fixed the expensive part, left the cheap part, and the analysis document still sits in docs/ describing work I did not finish. The second lesson was about rate limits: free-tier AI is not free of constraints, only of cost. A ceiling of two requests per minute shaped the whole background architecture, the three-analyses-per-hour cap, the deliberate sleep between calls, the exponential backoff. The architecture followed from a quota.',
+    es: 'Hoy solo está en el código la mitad de la forma de las consultas. El job sigue corriendo cada hora y sigue tomando veinte candidatos. Arreglé la parte cara, dejé la barata, y el documento de análisis sigue en docs/ describiendo trabajo que no terminé. La segunda lección fue sobre límites de tasa: la IA de tier gratis no está libre de restricciones, solo de costo. Un techo de dos requests por minuto le dio forma a toda la arquitectura de fondo: el tope de tres análisis por hora, la espera deliberada entre llamadas, el backoff exponencial. La arquitectura salió de una cuota.',
+  } as L,
+
+  valH: { en: 'I ran the research, and it killed my framing.', es: 'Hice la investigación, y mató mi encuadre.' } as L,
+  val: {
+    en: [
+      'By June 2026 the product worked, so I stopped building and ran a structured validation instead: three parallel deep-research passes across competitive landscape, pricing economics and low-budget go-to-market, with adversarial verification of anything load-bearing.',
+      'It confirmed the mechanic and killed the framing. Conversational onboarding into an AI matchmaker with no swiping is now the industry\'s consensus bet: Bumble announced it would remove the swipe entirely, Hinge\'s founder left to build an AI-first dating app, and four funded startups converged on the same shape. But "AI agents represent users" is the most backlash-prone framing in the category. Every agent-as-proxy product is dead. 58% of daters call AI-written messages catfishing, and 68% of Americans will not let AI act unreviewed on their behalf.',
+      'The uncomfortable part: my architecture was already on the right side of that line and my copy was not. There is no agent-to-agent conversation anywhere in the product. The matching model reads two profiles and two insight summaries and scores them. The AI never speaks as the user, to anyone. I had built a matchmaker and marketed a proxy.',
+    ],
+    es: [
+      'Para junio de 2026 el producto funcionaba, así que dejé de construir y corrí una validación estructurada: tres pasadas paralelas de investigación profunda sobre panorama competitivo, economía de precios y salida al mercado de bajo presupuesto, con verificación adversarial de todo lo que cargaba peso.',
+      'Confirmó la mecánica y mató el encuadre. El onboarding conversacional hacia un matchmaker con IA y sin swipe es hoy la apuesta de consenso de la industria: Bumble anunció que quitaría el swipe del todo, el fundador de Hinge se fue a construir una app de citas con IA primero, y cuatro startups financiadas convergieron en la misma forma. Pero "agentes de IA representan a los usuarios" es el encuadre con más rechazo de la categoría. Todo producto de agente-como-proxy está muerto. El 58% de quienes usan apps de citas llama catfishing a los mensajes escritos por IA, y el 68% de los estadounidenses no deja que una IA actúe sin revisión en su nombre.',
+      'La parte incómoda: mi arquitectura ya estaba del lado correcto de esa línea y mi copy no. No hay conversación agente-a-agente en ninguna parte del producto. El modelo de matching lee dos perfiles y dos resúmenes y los puntúa. La IA nunca habla como el usuario, con nadie. Había construido un matchmaker y comercializado un proxy.',
+    ],
+  } as LList,
+  valFoot: {
+    en: 'Two more findings I took on the chin. My revenue projections were about 2.5 times industry medians: I had modelled 5% premium conversion against a 2.0% benchmark for the worst-retaining category, and a $162K ARR projection was closer to $4K. And three connection types in one app runs against the best evidence available, because Bumble ran that experiment for eight years and unwound it. The rename to Mate came out of this. The product now says the AI filters the noise and sends you to high-affinity connections. A scout, not a stand-in.',
+    es: 'Dos hallazgos más que me tocó encajar. Mis proyecciones de ingresos estaban unas 2,5 veces por encima de las medianas de la industria: modelé 5% de conversión premium contra un benchmark de 2,0% en la categoría con peor retención, y una proyección de $162K de ARR estaba más cerca de $4K. Y tres tipos de conexión en una sola app va contra la mejor evidencia disponible, porque Bumble corrió ese experimento ocho años y lo deshizo. El cambio de nombre a Mate salió de acá. El producto ahora dice que la IA filtra el ruido y te manda a conexiones de alta afinidad. Un explorador, no un suplente.',
+  } as L,
+
+  designH: { en: 'One system for the marketing site and the product.', es: 'Un solo sistema para el sitio y el producto.' } as L,
+  design: {
+    en: [
+      'The landing page was built to a Figma direction with a specific palette: bone type on a warm dark ground, three quiet signal hues. I took those exact values and made them the app\'s tokens too, so the front door and the signed-in product are the same object rather than two things that resemble each other. The tokens are named for the world they came from, --bone, --dusk, --panel, --ember, --sand, --sage, not --primary and --accent-2. Someone reading only the variables can tell what the product is.',
+      'Colour is information, never decoration. The three hues appear in exactly three places: the rule above a stat, the icon tile beside a section heading, and the affinity meter. If something is coloured, it is telling you which kind of connection this is. Everything else is bone. A score is a measurement, so compatibility renders as a hairline filled to the value with the figure in tabular numerals, an instrument reading rather than a badge. Depth is hairline borders and a single surface step, because shadows do not read on a dark ground.',
+    ],
+    es: [
+      'La landing se construyó sobre una dirección de Figma con una paleta específica: tipografía hueso sobre un fondo oscuro cálido, tres tonos de señal discretos. Tomé esos valores exactos y los volví también los tokens de la app, para que la puerta de entrada y el producto con sesión sean el mismo objeto y no dos cosas que se parecen. Los tokens llevan el nombre del mundo del que salieron, --bone, --dusk, --panel, --ember, --sand, --sage, no --primary y --accent-2. Alguien que lea solo las variables puede decir qué es el producto.',
+      'El color es información, nunca decoración. Los tres tonos aparecen en exactamente tres lugares: la regla sobre una cifra, la baldosa de ícono junto a un encabezado, y el medidor de afinidad. Si algo tiene color, te está diciendo de qué tipo de conexión se trata. Todo lo demás es hueso. Un puntaje es una medición, así que la compatibilidad se dibuja como una línea fina llena hasta el valor con la cifra en numerales tabulares, una lectura de instrumento y no una insignia. La profundidad son bordes finos y un solo escalón de superficie, porque las sombras no se leen sobre fondo oscuro.',
+    ],
+  } as LList,
+
+  methodH: {
+    en: '155 of the first 283 commits were written by an AI agent. 127 were mine.',
+    es: '155 de los primeros 283 commits los escribió un agente de IA. 127 fueron míos.',
+  } as L,
+  method: {
+    en: [
+      'I am saying that up front, because the interesting question is not whether you used AI. It is what you did with the parts it cannot do.',
+      'What the agent did well was mechanical breadth. In January 2026 I audited the whole feature surface against the codebase, wrote the gaps into a prioritised task file, and ran an autonomous loop against it. In two iterations it closed block and report, password reset, GDPR deletion and export, typing indicators, read receipts, unmatch, community creation, a moderation queue, verification appeals and profile preview, each with tests and both translation files updated.',
+      'What it could not do is where my time went. Deciding what the weights should be: no agent reads a meta-analysis of 11,000 couples and concludes that emotional stability deserves 5% in romance and zero in communities. Root-causing the egress incident, which took the instinct to measure before optimising and to suspect the fixtures. Running the validation that invalidated my own premise, then acting on it instead of defending it. And going looking for what was missing, because absences never show up in a diff.',
+      'An agent will happily write a correct module and never wire it in. This codebase contains an example. lib/matching/quick-filter.ts is a complete, tested, zero-cost pre-filter, documented as Stage 1 of a two-stage engine, and the production job does not import it. One unit test, one barrel export, one admin action. The documented two-stage pipeline is one and a half stages in production. I found it while writing this page, which is the correct amount of humbling.',
+    ],
+    es: [
+      'Lo digo de entrada, porque la pregunta interesante no es si usaste IA. Es qué hiciste con las partes que no puede hacer.',
+      'Lo que el agente hizo bien fue amplitud mecánica. En enero de 2026 audité toda la superficie de funciones contra el codebase, escribí los huecos en un archivo de tareas priorizado, y corrí un loop autónomo contra él. En dos iteraciones cerró bloquear y reportar, recuperar contraseña, borrado y exportación GDPR, indicadores de escritura, confirmaciones de lectura, deshacer match, creación de comunidades, una cola de moderación, apelaciones de verificación y vista previa de perfil, cada una con tests y los dos archivos de traducción actualizados.',
+      'Lo que no pudo hacer es donde se fue mi tiempo. Decidir cuáles debían ser los pesos: ningún agente lee un meta-análisis de 11.000 parejas y concluye que la estabilidad emocional merece 5% en romance y cero en comunidades. Encontrar la causa raíz del incidente de egress, que exigió el instinto de medir antes de optimizar y de sospechar de los datos de prueba. Correr la validación que invalidó mi propia premisa, y después actuar en consecuencia en vez de defenderla. E ir a buscar lo que faltaba, porque las ausencias nunca aparecen en un diff.',
+      'Un agente escribe con gusto un módulo correcto y nunca lo conecta. Este codebase tiene un ejemplo. lib/matching/quick-filter.ts es un pre-filtro completo, testeado y de costo cero, documentado como Etapa 1 de un motor de dos etapas, y el job de producción no lo importa. Un test unitario, una exportación de barril, una acción de admin. El pipeline de dos etapas documentado es de etapa y media en producción. Lo encontré escribiendo esta página, que es la cantidad correcta de humildad.',
+    ],
+  } as LList,
+
+  endH: { en: 'The mechanic is validated. The scope is not.', es: 'La mecánica está validada. El alcance no.' } as L,
+  end: {
+    en: [
+      'What works: the matching produces real, explained matches on a schedule, at a cost that survives a free tier, in two languages, on web and native. What the research says will not work is the shape I gave it, three connection types, no city, no launch gate, and a name that described the one framing the category rejects.',
+      'The evidence on cold start is unambiguous and I am not arguing with it: one city, one community, roughly 150 people, open only when the threshold is met. That is the next build, and it is mostly deletion again.',
+    ],
+    es: [
+      'Lo que funciona: el matching produce matches reales y explicados en horario, a un costo que sobrevive un tier gratis, en dos idiomas, en web y nativo. Lo que la investigación dice que no va a funcionar es la forma que le di, tres tipos de conexión, sin ciudad, sin compuerta de lanzamiento, y un nombre que describía el único encuadre que la categoría rechaza.',
+      'La evidencia sobre arranque en frío no es ambigua y no voy a discutirla: una ciudad, una comunidad, unas 150 personas, abierto solo cuando se alcanza el umbral. Ese es el siguiente build, y otra vez es sobre todo borrar.',
+    ],
+  } as LList,
+
+  lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
+  lessons: {
+    en: [
+      'Validate the framing before writing 68,000 lines. Three deep-research passes cost me one day in June. They would have cost the same day in October and changed the product\'s name, its copy, and probably its scope.',
+      'Never let test fixtures share a code path with real users. Forty-four of fifty-nine users being fixtures presented as a billing alert.',
+      'Finish the remediation or delete the document. A doc describing a fix I only half-applied makes the codebase look better than it is, to everyone including me.',
+      'Ship narrow. One city, one community, a launch gate. I built for three connection types and two languages and zero cities.',
+      'Wire the composition root first. Build the pipeline end to end with stub stages, then fill them in, and a correct-but-orphaned module becomes impossible by construction.',
+      'Write the design system down on day one. Tokens and rules in a file are cheap at the start and expensive to retrofit across thirty-five screens.',
+    ],
+    es: [
+      'Validar el encuadre antes de escribir 68.000 líneas. Tres pasadas de investigación profunda me costaron un día en junio. Habrían costado el mismo día en octubre y habrían cambiado el nombre del producto, su copy, y probablemente su alcance.',
+      'Nunca dejar que los datos de prueba compartan ruta de código con usuarios reales. Que 44 de 59 usuarios fueran de prueba se presentó como una alerta de facturación.',
+      'Terminar la remediación o borrar el documento. Un doc que describe un arreglo que apliqué a medias hace ver el codebase mejor de lo que está, para todos incluido yo.',
+      'Salir angosto. Una ciudad, una comunidad, una compuerta de lanzamiento. Construí para tres tipos de conexión y dos idiomas y cero ciudades.',
+      'Conectar la raíz de composición primero. Construir el pipeline de punta a punta con etapas de relleno y después llenarlas, y un módulo correcto pero huérfano se vuelve imposible por construcción.',
+      'Escribir el sistema de diseño el día uno. Tokens y reglas en un archivo son baratos al principio y caros de retrofitear en treinta y cinco pantallas.',
+    ],
+  } as LList,
+
+  matchCap: {
+    en: 'The match view. On the left, the model\'s own explanation of the 94% score with the conversation under it. On the right, an assistant that knows why these two matched. Both panes are live in the running app.',
+    es: 'La vista de match. A la izquierda, la explicación del propio modelo sobre el 94% con la conversación debajo. A la derecha, un asistente que sabe por qué hicieron match. Los dos paneles están vivos en la app.',
+  } as L,
+  matchAlt: { en: 'The Mate match view with the compatibility explanation and the match assistant', es: 'La vista de match de Mate con la explicación de compatibilidad y el asistente' } as L,
+  landCap: {
+    en: 'Landing page, English and Spanish. Both maintained at parity rather than translated at request time.',
+    es: 'Landing en inglés y español. Las dos mantenidas a la par en vez de traducidas al vuelo.',
+  } as L,
+  landAltEn: { en: 'The Mate landing page in English', es: 'La landing de Mate en inglés' } as L,
+  landAltEs: { en: 'The Mate landing page in Spanish', es: 'La landing de Mate en español' } as L,
+
+  builtH: { en: 'What is built, and what is not', es: 'Qué está construido, y qué no' } as L,
+} as const;
+
+const jobs = [
+  ['0 * * * *', 'agent-matchmaking', { en: 'find candidates, score, create matches', es: 'buscar candidatos, puntuar, crear matches' } as L],
+  ['0 3 * * *', 'process-alter-conversations', { en: 'compress the last 7 days per user', es: 'comprimir los últimos 7 días por usuario' } as L],
+  ['0 4 1 * *', 'aggregate-monthly-insights', { en: 'fold weekly into monthly patterns', es: 'plegar semanal en patrones mensuales' } as L],
+  ['0 5 1 1,4,7,10 *', 'aggregate-quarterly-insights', { en: 'fold monthly into stable personality', es: 'plegar mensual en personalidad estable' } as L],
+  ['0 9 * * *', 'verification-expiry-check', { en: 'expire, warn, 7-day re-notify cooldown', es: 'vencer, avisar, enfriamiento de 7 días' } as L],
+  ['0 */6 * * *', 'conversation-analysis', { en: 'legacy queue, now empty', es: 'cola heredada, hoy vacía' } as L],
+  ['0 2 * * *', 'daily-test-seeder', { en: 'gated behind ENABLE_TEST_SEEDER', es: 'detrás de ENABLE_TEST_SEEDER' } as L],
+  ['0 1 * * 0', 'cleanup-test-data', { en: 'delete fixtures older than 7 days', es: 'borrar fixtures de más de 7 días' } as L],
+  ['on-demand', 'resume-conversation', { en: 'repair tool, concurrency 1', es: 'herramienta de reparación, concurrencia 1' } as L],
+];
+
+const built = {
+  en: [
+    'email and Google auth, 18+ gated',
+    'conversational onboarding and AI-history import',
+    'three connection types: romance, friendship, communities',
+    'scheduled matchmaking with written explanations',
+    'real-time chat, typing indicators, read receipts',
+    'per-match AI assistant and ice-breakers',
+    'browser-side identity verification with an appeals queue',
+    'block, report, moderation queue',
+    'GDPR export and account deletion',
+    'admin dashboard with impersonation and seeding',
+    'push notifications, EN/ES localisation, native iOS and Android',
+  ],
+  es: [
+    'auth por correo y Google, con puerta de 18+',
+    'onboarding conversacional e importación de historial de IA',
+    'tres tipos de conexión: romance, amistad, comunidades',
+    'matchmaking programado con explicaciones escritas',
+    'chat en tiempo real, indicadores de escritura, confirmaciones de lectura',
+    'asistente de IA por match y rompehielos',
+    'verificación de identidad en el navegador con cola de apelaciones',
+    'bloquear, reportar, cola de moderación',
+    'exportación y borrado de cuenta GDPR',
+    'panel de admin con impersonación y siembra',
+    'notificaciones push, localización EN/ES, iOS y Android nativos',
+  ],
+} as LList;
+
+const notBuilt = {
+  en: [
+    'Payments. The pricing model is researched, not implemented',
+    'Transactional email. Password reset writes the token to the console',
+    'Geolocation distance matching. The fields exist, unpopulated',
+    'The community approval flow. A TODO sits where the record should be created',
+    'Stage 1 of the matching pipeline, wired in',
+    'A production deployment currently serving traffic',
+  ],
+  es: [
+    'Pagos. El modelo de precios está investigado, no implementado',
+    'Correo transaccional. Recuperar contraseña escribe el token en la consola',
+    'Matching por distancia geográfica. Los campos existen, sin poblar',
+    'El flujo de aprobación de comunidades. Un TODO está donde debería crearse el registro',
+    'La Etapa 1 del pipeline de matching, conectada',
+    'Un despliegue de producción sirviendo tráfico hoy',
+  ],
+} as LList;
+
+const stack = ['Next.js','TypeScript','React','Prisma','Postgres','Supabase','Inngest','Ably','Capacitor','Gemini Flash','Groq','face-api.js','Playwright','Jest','Vercel'];
+---
+
+<Base
+  lang={lang}
+  title={t(copy.title, lang)}
+  description={t(copy.description, lang)}
+  slug="work/mate"
+  themeColor="#14100e"
+  grain={false}
+>
+  <div class="case">
+  <a class="skip" href="#main">{t(ui.skipToContent, lang)}</a>
+
+  <header class="bar">
+    <a class="mark" href={indexHref}>~/henry-cabello</a>
+    <div class="tools">
+      <a class="cv-link" href={cvHref}>CV</a>
+      <a href={altHref} hreflang={other} lang={other}>{LANG_LABEL[other]}</a>
+      <button data-theme-toggle type="button">
+        <span class="visually-hidden">{t(ui.toggleTheme, lang)}</span>
+        <span aria-hidden="true">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <a class="back" href={workHref}>← {t(copy.back, lang)}</a>
+
+    <section class="hero">
+      <span class="pill">{t(copy.status, lang)}</span>
+      <h1 style="view-transition-name: proj-mate">Mate</h1>
+      <p class="lede">{t(copy.lede, lang)}</p>
+
+      <dl class="kv">
+        <div><dt>{t(copy.kRole, lang)}</dt><dd>{t(copy.vRole, lang)}</dd></div>
+        <div><dt>{t(copy.kWindow, lang)}</dt><dd>{t(copy.vWindow, lang)}</dd></div>
+        <div><dt>{t(copy.kRuns, lang)}</dt><dd>{t(copy.vRuns, lang)}</dd></div>
+        <div><dt>{t(copy.kModels, lang)}</dt><dd>{t(copy.vModels, lang)}</dd></div>
+      </dl>
+
+      <p class="ext"><a href={REPO} target="_blank" rel="noopener">github.com/hacu9/ai-dating ↗</a></p>
+    </section>
+
+    <figure class="shots">
+      <div class="shot-row">
+        <img data-zoom src={asset(base, 'images/mate-front.jpg')} alt={t(copy.altFront, lang)} loading="eager" decoding="async" />
+        <img data-zoom src={asset(base, 'images/mate-matches.jpg')} alt={t(copy.altMatches, lang)} loading="lazy" decoding="async" />
+        <img data-zoom src={asset(base, 'images/mate-conversation.jpg')} alt={t(copy.altConv, lang)} loading="lazy" decoding="async" />
+      </div>
+      <figcaption>{t(copy.shotsCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat README.md</h2>
+      <div class="out">
+        <h3>{t(copy.readmeH, lang)}</h3>
+        {tl(copy.readme, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ./bin/report --totals</h2>
+      <div class="out">
+        <div class="grid">
+          <div><b>304</b><span>{lang === 'es' ? 'Usuarios' : 'Registered users'}</span></div>
+          <div><b>661</b><span>{lang === 'es' ? 'Matches por IA' : 'AI-made matches'}</span></div>
+          <div><b>993</b><span>{lang === 'es' ? 'Mensajes' : 'Assistant messages'}</span></div>
+          <div><b>291</b><span>Commits</span></div>
+          <div><b>68k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
+          <div><b>9</b><span>{lang === 'es' ? 'Jobs' : 'Scheduled jobs'}</span></div>
+          <div><b>25</b><span>{lang === 'es' ? 'Modelos' : 'DB models'}</span></div>
+          <div class="hot"><b>−95%</b><span>{lang === 'es' ? 'Tokens por análisis' : 'Tokens per analysis'}</span></div>
+        </div>
+        <p class="foot">{t(copy.totalsFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls -la ./engineering</h2>
+      <div class="out">
+        <div class="call"><b>{t(copy.weightsH, lang)}</b><p>{t(copy.weightsB, lang)}</p></div>
+
+        <div class="call">
+          <b>{t(copy.costH, lang)}</b>
+          <p>{t(copy.costB, lang)}</p>
+        </div>
+        <pre class="term"><span class="c">// what the matching model reads, per pair</span>
+before  ████████████████████████████████████████  <span class="b">~10,000 tokens</span>   every message both people ever sent
+after   █                                         <span class="g">~200 tokens</span>      last week, rewritten nightly at 03:00
+        <span class="c">~150   last month, folded monthly at 04:00      computed, not yet read</span>
+        <span class="c">~100   long-term, folded quarterly at 05:00     computed, not yet read</span></pre>
+        <p class="foot">{t(copy.costCaveat, lang)}</p>
+
+        <div class="call"><b>{t(copy.vendorH, lang)}</b><p>{t(copy.vendorB, lang)}</p></div>
+        <div class="call"><b>{t(copy.verifyH, lang)}</b><p>{t(copy.verifyB, lang)}</p></div>
+        <div class="call"><b>{t(copy.detH, lang)}</b><p>{t(copy.detB, lang)}</p></div>
+        <div class="chips">{stack.map((s) => <span class="chip">{s}</span>)}</div>
+      </div>
+    </section>
+
+    <figure class="wide">
+      <img data-zoom src={asset(base, 'images/mate-matchview.jpg')} alt={t(copy.matchAlt, lang)} loading="lazy" decoding="async" />
+      <figcaption>{t(copy.matchCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ crontab -l</h2>
+      <div class="out">
+        <h3>{t(copy.cronH, lang)}</h3>
+        <p>{t(copy.cronB, lang)}</p>
+        <div class="commits">
+          {jobs.map(([sched, name, what]) => (
+            <div><span class="sha">{sched}</span><span class="msg"><span class="kind">{name}</span> {t(what as L, lang)}</span></div>
+          ))}
+        </div>
+        <div class="call"><b>{t(copy.govH, lang)}</b><p>{t(copy.govB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat docs/EGRESS_ANALYSIS_2025-11-14.md</h2>
+      <div class="out">
+        <h3>{t(copy.egressH, lang)}</h3>
+        {tl(copy.egress, lang).map((p) => <p>{p}</p>)}
+        <pre class="term"><span class="k">$</span> npx tsx scripts/check-db-stats.ts
+
+total users ..........  <span class="s">59</span>
+test users ...........  <span class="b">44</span>   <span class="c">← 75% of the database</span>
+active agents ........  <span class="s">40</span>   <span class="c">all matched hourly</span>
+matches ..............  <span class="s">35</span>
+est. daily egress ....  <span class="b">94 MB</span>  <span class="c">→ ~2.8 GB/month from this job alone</span></pre>
+        <p class="foot">{t(copy.egressFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat docs/MARKET_VALIDATION_2026-06.md</h2>
+      <div class="out">
+        <h3>{t(copy.valH, lang)}</h3>
+        {tl(copy.val, lang).map((p) => <p>{p}</p>)}
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>{lang === 'es' ? 'Supuesto' : 'Assumption'}</th>
+                <th class="n">{lang === 'es' ? 'Mi modelo' : 'My model'}</th>
+                <th class="n">{lang === 'es' ? 'Referencia' : 'Benchmark'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="hi">{lang === 'es' ? 'Descarga → pago' : 'Download to paid'}</td><td class="n">5.0%</td><td class="n">2.0%</td></tr>
+              <tr><td class="hi">{lang === 'es' ? 'Renovación anual' : 'Annual renewal'}</td><td class="n">{lang === 'es' ? 'supuesta alta' : 'assumed strong'}</td><td class="n">25%</td></tr>
+              <tr><td class="hi">{lang === 'es' ? 'ARR con 10k usuarios' : 'ARR at 10k users'}</td><td class="n">$162,000</td><td class="n">~$4,000</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="foot">{t(copy.valFoot, lang)}</p>
+      </div>
+    </section>
+
+    <figure class="wide">
+      <div class="pair-shots">
+        <img data-zoom src={asset(base, 'images/mate-landing-en.jpg')} alt={t(copy.landAltEn, lang)} loading="lazy" decoding="async" />
+        <img data-zoom src={asset(base, 'images/mate-landing-es.jpg')} alt={t(copy.landAltEs, lang)} loading="lazy" decoding="async" />
+      </div>
+      <figcaption>{t(copy.landCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat docs/DESIGN_SYSTEM.md</h2>
+      <div class="out">
+        <h3>{t(copy.designH, lang)}</h3>
+        {tl(copy.design, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls ./built</h2>
+      <div class="out">
+        <h3>{t(copy.builtH, lang)}</h3>
+        <ul class="tree">{tl(built, lang).map((b) => <li>{b}</li>)}</ul>
+        <p class="lbl"># {lang === 'es' ? 'No construido' : 'Not built'}</p>
+        <ul class="tree">{tl(notBuilt, lang).map((b) => <li>{b}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat method.md</h2>
+      <div class="out">
+        <h3>{t(copy.methodH, lang)}</h3>
+        {tl(copy.method, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat POSTMORTEM.md</h2>
+      <div class="out">
+        <h3>{t(copy.endH, lang)}</h3>
+        {tl(copy.end, lang).map((p) => <p>{p}</p>)}
+        <p class="lbl"># {t(copy.lessonsH, lang)}</p>
+        <ol class="lessons">{tl(copy.lessons, lang).map((l) => <li>{l}</li>)}</ol>
+      </div>
+    </section>
+
+    <p class="cursor-line" aria-hidden="true">
+      <span class="prompt">henry@bogota:~/mate$</span> <span class="caret"></span>
+    </p>
+
+    <p class="back-foot"><a href={workHref}>← {t(copy.back, lang)}</a></p>
+  </main>
+  </div>
+</Base>
+
+<style>
+  /* ── Ember on a warm dark ground. Mate's own system: bone type, three quiet
+     signal hues, tokens named --bone, --dusk, --ember rather than --primary.
+     Pushed redder than monia's amber and Luxura's gold, because four warm
+     teardowns have to stay tellable apart. ─────────────────────────────── */
+  @property --accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3ddc84;
+  }
+
+  :root {
+    --ground: #14100e;
+    --raise: #1d1815;
+    --ink: #ece5da;
+    --ink-2: #a89c8c;
+    --dim: #6f6558;
+    --line: #2b241f;
+    --accent: #cf6042;
+    --warn: #d9a86a;
+    --good: #7d9b72;
+    --bad: #c4553f;
+    --focus: #cf6042;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --shell: 74rem;
+    --read: 40rem;
+    --pad: clamp(1rem, 3vw, 2.25rem);
+    animation: enter-mate 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(:root[data-theme='light']) {
+    --ground: #f7f3ee;
+    --raise: #ffffff;
+    --ink: #1a1512;
+    --ink-2: #4a4038;
+    --dim: #7a6f63;
+    --line: #e2dad0;
+    --accent: #a8452a;
+    --warn: #8a6410;
+    --good: #4a6b42;
+    --bad: #96382a;
+    --focus: #a8452a;
+    animation-name: enter-mate-light;
+  }
+
+  @keyframes enter-mate {
+    from { --accent: #3ddc84; }
+    to { --accent: #cf6042; }
+  }
+  @keyframes enter-mate-light {
+    from { --accent: #0f7b4a; }
+    to { --accent: #a8452a; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+  }
+
+  :global(body) {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.68;
+  }
+
+  .commits {
+    margin: 1.2rem 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .commits > div {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 0.9rem;
+    padding: 0.4rem 0.9rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .commits > div:last-child { border-bottom: 0; }
+  .sha { color: var(--dim); }
+  .msg { color: var(--ink-2); }
+  .msg .kind { color: var(--accent); }
+  @media (max-width: 640px) {
+    .commits > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0; max-width: 56rem; }
+  .chip {
+    padding: 0.18rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--dim);
+    font-size: 0.72rem;
+  }
+
+  figure.wide { margin: clamp(2rem, 5vw, 3.2rem) 0 0; }
+  figure.wide > img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  .pair-shots {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+  .pair-shots img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  @media (max-width: 640px) {
+    .pair-shots { grid-template-columns: 1fr; }
+  }
+  figure.wide figcaption {
+    max-width: var(--read);
+    margin: 0.9rem 0 0;
+    color: var(--dim);
+    font-size: 0.75rem;
+  }
+</style>

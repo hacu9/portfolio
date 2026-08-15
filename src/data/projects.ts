@@ -335,11 +335,21 @@ const rawProjects: Project[] = [
     tagline: { en: 'Agent-to-agent AI dating', es: 'Citas con IA de agente a agente' },
     status: 'building',
     statusNote: {
-      en: 'Orchestration layer in development',
-      es: 'Capa de orquestación en desarrollo',
+      en: 'Built and running, not launched',
+      es: 'Construido y corriendo, sin lanzar',
     },
     role: { en: 'Architecture and implementation', es: 'Arquitectura e implementación' },
     period: '2026',
+    caseSlug: 'work/mate',
+    summary: {
+      en: 'An AI matchmaker with no swiping: a scheduled job scores candidates on the dimensions the research says predict compatibility, and writes you the reason. Seven months, one production incident that turned out to be 75% test fixtures, and a validation pass that killed the framing the product was named after.',
+      es: 'Un matchmaker con IA y sin swipe: un job programado puntúa candidatos en las dimensiones que la investigación dice que predicen compatibilidad, y te escribe la razón. Siete meses, un incidente en producción que resultó ser 75% datos de prueba, y una validación que mató el encuadre que le daba nombre al producto.',
+    },
+    shots: [
+      { src: 'images/mate-front.jpg', alt: { en: 'The Mate landing page', es: 'La landing de Mate' } },
+      { src: 'images/mate-matches.jpg', alt: { en: 'Scored matches in Mate', es: 'Matches puntuados en Mate' } },
+      { src: 'images/mate-conversation.jpg', alt: { en: 'A Mate match conversation', es: 'Una conversación de match en Mate' } },
+    ],
     lead: true,
     problem: {
       en: 'Swiping asks you to judge a person from one photo and one sentence. Mate tests the opposite: every user gets an agent that represents them, the agents talk first, and the humans only meet once that conversation says it is worth their evening.',
