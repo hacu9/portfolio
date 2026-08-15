@@ -41,33 +41,76 @@ export const profile = {
    *      than describing him, but it is a stance rather than a voice. Kept as
    *      the alternate.
    *
-   * The current line is Henry's own, lifted from the copy he identified as
-   * sounding like him. It works because it is imperative, technical, and
-   * invites interrogation instead of asking to be believed. The supporting
-   * line then names three specific failures, which is the move: a reader who
-   * wants any of those three has a reason to write.
+   *   6. "Ask me what broke." Henry's own line, and it did open a loop the
+   *      reader wanted closed. Two things killed it. It promised plural
+   *      breakages and the lede paid one. And the lede that carried it spent
+   *      the entire hero on Luxura, which told a hiring manager that the
+   *      enterprise and AI work below it was not worth talking about. That
+   *      work is what qualifies him for everything in `fitFor`.
    *
-   * This one states the through-line that is true of every project on the
-   * page: enterprise, mobile and agentic alike, and lands on the word that
-   * separates him from people who hand work over at the merge.
+   * The current line attacks the format instead of describing him, which is
+   * why an earlier note filed it as "a stance rather than a voice" and set it
+   * aside. That note was wrong on the evidence. Every other portfolio in the
+   * pile is demos; this one is four real products, and saying so out loud is
+   * the only claim on the page that its competitors cannot copy.
+   *
+   * It is also literally true, which was checked rather than assumed:
+   * Luxura is `live`, Level60 and the infrastructure work are `ongoing`,
+   * HairBackNow is `delivered`, and Mate, Femi and Storia are `building`
+   * real products for real users. None of the seven was built to be shown.
+   *
+   * Do NOT strengthen this into "everything here runs in production". Three
+   * projects carry status 'building', so that version is false.
    *
    * ALTERNATES, if this ever needs swapping. Each is one line:
-   *   'I don't hand things off.'
+   *   'I don't hand things off.'      // true of all four domains, but it is
+   *                                   // a negative, and an assertion until
+   *                                   // the lede pays it off one line later
+   *   'Ask me what it cost.'          // the interrogative hook, pointed at
+   *                                   // the rarest claim he has
    *   'Eight years, four domains, nothing built twice.'
    *   'The stack is not the skill.'   // currently the approach heading
+   *
+   * REJECTED, and they should stay rejected. Anything built on the money
+   * angle ("I pay for my own users", "I shipped it, I run it, I pay for it")
+   * repeats history item 3 above: it reads growth marketer to the exact
+   * person who is screening for an engineer.
    */
   positioning: {
-    en: 'Ask me what broke.',
-    es: 'Pregúntame qué se rompió.',
+    en: 'Nothing here is a demo.',
+    es: 'Nada de esto es un demo.',
   } as L,
 
-  /** Carries the evidence the headline no longer has room for. */
+  /**
+   * Proves the headline in one breath: the breadth first, then the one
+   * artifact a reader can open on their phone right now.
+   *
+   * The previous version listed three talking points ("the OTP failure,
+   * running production on one box, and what happens when you let two models
+   * argue about your code"). Three problems with it, all fixed here:
+   *
+   *   - "The parts worth talking about are..." ranked the enterprise and AI
+   *     work below it as not worth talking about, in the hero, above the
+   *     cards carrying it. It volunteered a deficit against his own work.
+   *   - The OTP item was a configuration he enabled. It read as a war story
+   *     and it was not one, and an interviewer who asked would find that out.
+   *   - The list broke parallel three ways: a noun, then a gerund phrase,
+   *     then a clause. Three re-parses inside a six-second read.
+   *
+   * It does NOT claim every project reached production. Four are named and
+   * only Luxura is `live`, so the sentence stops at naming the domains and
+   * lets the status badge on each card carry the truth per project. An
+   * earlier draft ended "every one went to production", which was false.
+   *
+   * The three-verb close is the strongest sentence on the page and predates
+   * all of this. Do not rewrite it.
+   */
   lede: {
-    en: 'Luxura is live on Google Play: I built it, I run its infrastructure, and I buy its users. The parts worth talking about are the OTP failure, running production on one box, and what happens when you let two models argue about your code.',
+    en: 'Four domains that share nothing: Microsoft enterprise systems, a multi-agent AI platform, a safety product with real-time alerts, and Luxura, live on Google Play. I built it, I run its server, and I buy every user who installs it.',
     // "I buy its users" works in English; in Spanish "comprar usuarios" reads
     // as buying fake followers, so the Spanish buys the traffic instead, which
     // is also the wording the Luxura outcome uses.
-    es: 'Luxura está publicada en Google Play: la construí, opero su infraestructura y le compro el tráfico. Lo que vale la pena conversar es la falla de OTP, operar producción en una sola máquina, y qué pasa cuando dejas que dos modelos discutan tu código.',
+    es: 'Cuatro dominios que no comparten nada: sistemas empresariales de Microsoft, una plataforma de IA multiagente, un producto de seguridad con alertas en tiempo real, y Luxura, publicada en Google Play. La construí, opero su servidor, y le compro el tráfico.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */
