@@ -77,8 +77,8 @@ export const profile = {
    * person who is screening for an engineer.
    */
   positioning: {
-    en: 'I built the dating app, ran the server, and bought the ads.',
-    es: 'Construí la app de citas, corro el servidor, y pagué la pauta.',
+    en: 'I built the app, ran the server, bought the ads.',
+    es: 'Construí la app, operé el servidor, pagué la pauta.',
   } as L,
 
   /**
@@ -104,7 +104,12 @@ export const profile = {
    *
    * The three-verb close WAS the strongest sentence on the page, so as of
    * Aug 2026 it IS the page: built / ran / bought is now the headline, and the
-   * lede below carries the evidence it used to carry. The old headline,
+   * lede below carries the evidence it used to carry. Henry tightened it
+   * again in Aug 2026 and was right twice: "the app" over "the dating app"
+   * makes all three objects the same shape, and dropping the "and" restores
+   * the asyndeton this very comment asked for and the first draft broke. The
+   * product category now arrives one line down, in the lede, next to the store
+   * link that proves it. The old headline,
    * "Nothing here is a demo", was a negation, and the site's own status labels
    * contested it: two of four products say In development, Storia says no shop
    * has run it, Mate says no public launch. On a site whose whole brand is
