@@ -1,0 +1,1079 @@
+---
+/**
+ * The Luxura teardown.
+ *
+ * The home page is phosphor. This page is gold, because gold is Luxura's own
+ * signature and this is the one route where you are standing inside the
+ * product rather than in the shell that lists it. The accent is a registered
+ * custom property, so navigating here animates the whole page from one
+ * identity to the other instead of snapping.
+ *
+ * Everything numeric on this page came out of the production database in
+ * August 2026. The SQL is printed next to its own result on purpose: it is the
+ * only claim on the site a reader can check the working of.
+ *
+ * Bilingual like every other page. Copy lives inline as `L` pairs rather than
+ * in ui.ts, because none of it is reused anywhere else.
+ */
+import Base from './Base.astro';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
+import type { Lang, L, LList } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import '../styles/reset.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const other = OTHER_LANG[lang];
+const altHref = langPath(base, other, 'work/luxura');
+const indexHref = langPath(base, lang);
+const workHref = `${langPath(base, lang)}#work`;
+const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
+
+const PLAY = 'https://play.google.com/store/apps/details?id=app.luxura.dating';
+const SITE = 'https://luxura.vip';
+const VICTOR = 'https://hacu9.github.io/victor-portafolio';
+
+const copy = {
+  title: {
+    en: 'Luxura teardown — Henry Cabello',
+    es: 'Luxura, por dentro — Henry Cabello',
+  } as L,
+  description: {
+    en: 'Eleven weeks from empty repo to Google Play. The funnel that leaked, the day I turned the ads off, and the query that proves the fix.',
+    es: 'Once semanas de un repo vacío a Google Play. El embudo que goteaba, el día que apagué la pauta, y la consulta que prueba el arreglo.',
+  } as L,
+  back: { en: 'back to ./work', es: 'volver a ./work' } as L,
+  lede: {
+    en: 'Invitation-based dating app, Bogotá and Medellín. Eleven weeks from an empty repo to Google Play. I built it, I run its server, I bought its users — and every number below came out of the database it is still running on.',
+    es: 'App de citas por invitación, Bogotá y Medellín. Once semanas de un repo vacío a Google Play. La construí, corro su servidor, compré sus usuarios — y cada número de abajo salió de la base de datos que sigue en producción.',
+  } as L,
+
+  roleK: { en: 'Role', es: 'Rol' } as L,
+  roleV: {
+    en: 'Founder, technical lead — product, backend, infrastructure, growth',
+    es: 'Fundador y líder técnico — producto, backend, infraestructura, crecimiento',
+  } as L,
+  designK: { en: 'Design & front-end', es: 'Diseño y front-end' } as L,
+  windowK: { en: 'Build window', es: 'Ventana de construcción' } as L,
+  runsK: { en: 'Runs on', es: 'Corre en' } as L,
+  runsV: { en: 'One Hetzner box, Coolify, Docker', es: 'Una máquina Hetzner, Coolify, Docker' } as L,
+
+  readmeH: {
+    en: 'Open dating apps drown in low-effort volume.',
+    es: 'Las apps de citas abiertas se ahogan en volumen sin esfuerzo.',
+  } as L,
+  readme: {
+    en: [
+      'Everyone sends, nobody chooses, and the people receiving leave first. Luxura inverts it. One side browses and spends a strictly limited number of invitations. The other side receives them and chooses. Scarcity on the sending side is the product — an invitation costs the sender something, so it means something to the receiver.',
+      'The model was already validated elsewhere. The execution was not, and that is the part I wanted. It started as a project with a friend and turned into a product with an ad account attached to it.',
+    ],
+    es: [
+      'Todos envían, nadie elige, y quienes reciben se van primero. Luxura lo invierte. Un lado navega y gasta un número estrictamente limitado de invitaciones. El otro lado las recibe y elige. La escasez del lado que envía es el producto — una invitación le cuesta algo a quien la manda, así que significa algo para quien la recibe.',
+      'El modelo ya estaba validado en otro lado. La ejecución no, y esa era la parte que me interesaba. Empezó como un proyecto con un amigo y terminó siendo un producto con una cuenta de pauta encima.',
+    ],
+  } as LList,
+  constraintsH: { en: 'Constraints', es: 'Restricciones' } as L,
+  constraints: {
+    en: [
+      'Colombian market. Price ceiling around $5/month, not $15.',
+      'Android-first, mid-range phones, mobile data. Bundle size is a product decision.',
+      'Solo budget. No vendor above tens of dollars a month.',
+      'Spanish and English at parity from day one — 1,911 keys each.',
+    ],
+    es: [
+      'Mercado colombiano. Techo de precio cerca de $5/mes, no $15.',
+      'Android primero, gamas medias, datos móviles. El peso del bundle es una decisión de producto.',
+      'Presupuesto de una persona. Ningún proveedor por encima de decenas de dólares al mes.',
+      'Español e inglés a la par desde el día uno — 1.911 llaves cada uno.',
+    ],
+  } as LList,
+
+  shotsCap: {
+    en: 'Store listing, Spanish. Onboarding, the browse grid with the daily invite counter, and the connections screen.',
+    es: 'Ficha de la tienda, en español. Onboarding, la grilla de perfiles con el contador diario, y la pantalla de conexiones.',
+  } as L,
+
+  adsH: {
+    en: 'I paused paid acquisition for one day to find out what I had actually built.',
+    es: 'Apagué la pauta un día entero para saber qué había construido de verdad.',
+  } as L,
+  ads: {
+    en: [
+      'Everything looks healthy while the ads run, which is exactly the condition under which you cannot tell a product from a purchase order. So I turned the tap off for a day. The more product-like the metric, the less it moved.',
+    ],
+    es: [
+      'Todo se ve sano mientras la pauta corre, que es justo la condición en la que no puedes distinguir un producto de una orden de compra. Así que cerré la llave por un día. Entre más se parecía la métrica al producto, menos se movió.',
+    ],
+  } as LList,
+  adsFoot: {
+    en: 'Top-of-funnel was 100% bought; organic discovery was effectively zero. But the people already inside kept talking. Chat was three days old and was already the stickiest thing in the product. That table set the roadmap for the next two weeks.',
+    es: 'La parte alta del embudo era 100% comprada; el descubrimiento orgánico era prácticamente cero. Pero la gente que ya estaba adentro siguió hablando. El chat tenía tres días y ya era lo más pegajoso del producto. Esa tabla definió el roadmap de las dos semanas siguientes.',
+  } as L,
+  cohortH: {
+    en: 'Retention named the week the product started working',
+    es: 'La retención señaló la semana en que el producto empezó a funcionar',
+  } as L,
+  cohortFoot: {
+    en: 'Two-day retention barely separated them — 13.9% against 14.6%. The seven-day window is where the difference lives, and the difference is one feature that shipped in week seven.',
+    es: 'La retención a dos días casi no los separaba — 13,9% contra 14,6%. La ventana de siete días es donde vive la diferencia, y la diferencia es una función que salió en la semana siete.',
+  } as L,
+
+  fixH: {
+    en: 'Half the traffic I was paying for died before it saw another human being.',
+    es: 'La mitad del tráfico que estaba pagando moría antes de ver a otro ser humano.',
+  } as L,
+  fix: {
+    en: [
+      'Production was sound and everything was tested. Then the ad account opened and the money started evaporating at the door. Registration ran phone, then profile, then photos, then a live face check — and only then did you see a single profile.',
+      'I did not patch it on instinct. I measured, wrote the diagnosis down, and shipped the diagnosis.',
+    ],
+    es: [
+      'Producción estaba sólida y todo estaba probado. Entonces abrí la cuenta de pauta y la plata empezó a evaporarse en la puerta. El registro pedía teléfono, luego perfil, luego fotos, luego una verificación facial en vivo — y solo entonces veías un perfil.',
+      'No lo parché por instinto. Medí, escribí el diagnóstico, y lo que salió a producción fue el diagnóstico.',
+    ],
+  } as LList,
+  fixFoot: {
+    en: 'Verbatim from the proposal, dated 2026-03-09. It shipped two days later as one change: register, pick a role, pick an orientation, and you are in. Inviters get the full browse feed immediately. Invitees get a labelled demo inbox populated with real profiles. The three-step wall still exists — it just does not rise until you try to invite or accept. Gate the interaction, not the entrance.',
+    es: 'Textual de la propuesta, fechada 2026-03-09. Salió dos días después como un solo cambio: te registras, eliges un rol, eliges una orientación, y estás adentro. Quien invita ve el feed completo de una. Quien recibe ve una bandeja demo, etiquetada como tal, con perfiles reales. El muro de tres pasos sigue existiendo — solo que no se levanta hasta que intentas invitar o aceptar. Cobra la interacción, no la entrada.',
+  } as L,
+  sqlFoot: {
+    en: 'Run against the live database in August 2026. Across all signups the lift is smaller — 44.3% to 48.7% — because the change also let in a large group who never started a profile at all. Week by week: the worst ad-driven week verified 40.4%; by 23 March that reached 56.8%.',
+    es: 'Ejecutado contra la base de datos en producción en agosto de 2026. Sobre todos los registros la mejora es menor — de 44,3% a 48,7% — porque el cambio también dejó entrar a un grupo grande que nunca empezó un perfil. Semana a semana: la peor semana de pauta verificó 40,4%; para el 23 de marzo llegó a 56,8%.',
+  } as L,
+  moveT: {
+    en: 'The wall did not disappear. It moved, and I would say so in the interview.',
+    es: 'El muro no desapareció. Se movió, y lo diría en la entrevista.',
+  } as L,
+  moveB: {
+    en: '1,239 users now sit at the first step — inside the app, never having built a profile. That is a real leak and it is the one I would have attacked next. It is still the better leak to have: those people saw the product before they decided, which was the entire point.',
+    es: '1.239 usuarios están hoy en el primer paso — dentro de la app, sin haber armado un perfil. Es una fuga real y es la que habría atacado después. Sigue siendo la mejor fuga posible: esa gente vio el producto antes de decidir, que era justamente el punto.',
+  } as L,
+
+  faceT: {
+    en: 'Traded a 10MB WASM bundle for a 1.4MB WebGL one, and kept both engines behind a flag',
+    es: 'Cambié un bundle WASM de 10MB por uno WebGL de 1,4MB, y dejé los dos motores detrás de un flag',
+  } as L,
+  faceB: {
+    en: 'face-api.js wanted roughly 10MB of models. On a mid-range Android phone over Colombian mobile data that is a dead product before it renders. Jeeliz WebGL does the gesture work at about 1.4MB. Human.js stayed as a second engine behind an environment flag with an auto mode that tries it first and falls back silently, because a verification path with one implementation is a verification path with one way to fail.',
+    es: 'face-api.js pedía unos 10MB de modelos. En un Android de gama media con datos móviles colombianos eso es un producto muerto antes de renderizar. Jeeliz WebGL hace el trabajo de gestos en cerca de 1,4MB. Human.js quedó como segundo motor detrás de una variable de entorno, con un modo auto que lo intenta primero y cae al otro en silencio, porque una ruta de verificación con una sola implementación es una ruta con una sola forma de fallar.',
+  } as L,
+  modT: {
+    en: 'Made the expensive services argue with a cheap one instead of trusting them',
+    es: 'Puse a los servicios caros a discutir con uno barato en vez de creerles',
+  } as L,
+  modB: {
+    en: 'The big vendors cry wolf, and a false rejection costs a real user who is already halfway out the door. So a flagged photo gets its specific flag re-judged by a small vision model, independently, and only an all-clear across every flag upgrades it. The cheapest piece is my favourite: every rejected photo is kept as a perceptual hash, so the same image re-uploaded — and it is, constantly — is caught instantly with no vendor call at all.',
+    es: 'Los proveedores grandes gritan lobo, y un rechazo falso cuesta un usuario real que ya tenía un pie afuera. Entonces una foto marcada recibe una segunda opinión sobre esa marca específica, de un modelo de visión pequeño, de forma independiente, y solo un visto bueno en todas las marcas la sube. La pieza más barata es mi favorita: cada foto rechazada se guarda como hash perceptual, así que la misma imagen resubida — y pasa, todo el tiempo — se atrapa al instante sin llamar a ningún proveedor.',
+  } as L,
+  vidT: {
+    en: 'Put FFmpeg in the Docker image instead of renting a transcoding service',
+    es: 'Metí FFmpeg en la imagen de Docker en vez de alquilar un servicio de transcodificación',
+  } as L,
+  vidB: {
+    en: 'Images compress in the browser at a 500KB / 1920px cap, so 80–90% of the bytes never leave the phone. Video compresses server-side in a background job — H.264, 720p, CRF 23 — with a processing flag on the row so the UI can show state while it runs. Roughly 87% storage reduction for no marginal cost beyond CPU I was already paying for. When you buy your own users, every recurring vendor line is a slice of your acquisition budget.',
+    es: 'Las imágenes se comprimen en el navegador con tope de 500KB / 1920px, así que el 80–90% de los bytes nunca sale del teléfono. El video se comprime en el servidor dentro de un job — H.264, 720p, CRF 23 — con una bandera de procesamiento en la fila para que la interfaz muestre el estado mientras corre. Cerca de 87% menos almacenamiento sin costo marginal más allá del CPU que ya pagaba. Cuando compras tus propios usuarios, cada línea recurrente de proveedor es una tajada de tu presupuesto de adquisición.',
+  } as L,
+  chatT: {
+    en: 'Took a custom Node server, and with it a permanent exit from serverless',
+    es: 'Acepté un servidor Node propio, y con él una salida permanente de serverless',
+  } as L,
+  chatB: {
+    en: 'Socket.IO attaches to an HTTP server that wraps the Next.js request handler, which is why this app starts with a custom entry point and not next start. That is a real door closing — no serverless host will run this again. It was the right trade because the alternative was polling, and because I already ran my own box. 424 messages by the next morning, 71.4% of connections chatting, and 15,480 messages today.',
+    es: 'Socket.IO se monta sobre un servidor HTTP que envuelve el handler de Next.js, y por eso esta app arranca con un punto de entrada propio y no con next start. Es una puerta que se cierra de verdad — ningún host serverless va a correr esto otra vez. Fue el intercambio correcto porque la alternativa era polling, y porque ya tenía mi propia máquina. 424 mensajes a la mañana siguiente, 71,4% de las conexiones chateando, y 15.480 mensajes hoy.',
+  } as L,
+  otpT: {
+    en: 'Stopped shopping for a vendor and built the seam instead',
+    es: 'Dejé de buscar proveedor y construí la costura',
+  } as L,
+  otpB: {
+    en: "Every move came from Colombian delivery rates, per-message cost, or an error surface I could not control — one Twilio code alone flooded Sentry with what were really user typos. Nothing in the app matters if the first screen leaks users, so I stopped treating it as a procurement problem. The code now owns the codes, the rate limiting and a circuit breaker, and the provider behind it is a config value. Once that seam existed, changing primary took a day instead of a sprint. It is where I should have started.",
+    es: 'Cada cambio salió de las tasas de entrega en Colombia, del costo por mensaje, o de una superficie de error que no controlaba — un solo código de Twilio inundó Sentry con lo que en realidad eran errores de tipeo de los usuarios. Nada en la app importa si la primera pantalla pierde usuarios, así que dejé de tratarlo como un problema de compras. El código ahora es dueño de los códigos, del rate limiting y de un circuit breaker, y el proveedor detrás es un valor de configuración. Con esa costura, cambiar de proveedor principal tomó un día en vez de un sprint. Ahí debí haber empezado.',
+  } as L,
+
+  ecoH: {
+    en: 'I bought the users myself, so every decision came back priced per head.',
+    es: 'Compré los usuarios yo mismo, así que cada decisión volvía con un precio por cabeza.',
+  } as L,
+  eco: {
+    en: [
+      'Eight hundred dollars is not a media budget, it is a tuition fee — and it bought a complete education in where a funnel leaks. The subscription launched at $15/month into a market that supports about $5. Weekly plans at roughly $2.50 shipped on 17 March, a month after the money was already committed.',
+    ],
+    es: [
+      'Ochocientos dólares no son un presupuesto de medios, son una matrícula — y compraron una educación completa sobre dónde gotea un embudo. La suscripción salió a $15/mes en un mercado que aguanta unos $5. Los planes semanales de unos $2,50 salieron el 17 de marzo, un mes después de que la plata ya estaba comprometida.',
+    ],
+  } as LList,
+  attrT: { en: 'Every user in the March report is tagged source: unknown', es: 'Cada usuario del reporte de marzo quedó marcado como source: unknown' } as L,
+  attrB: {
+    en: 'I specified attribution properly on the next project, before any spend, because of this exact line. Paid acquisition without attribution is a guess with an invoice attached: I can tell you what $800 bought in aggregate and I cannot tell you which campaign did it.',
+    es: 'En el proyecto siguiente especifiqué la atribución bien, antes de gastar un peso, por esta línea exacta. Pauta sin atribución es una adivinanza con factura: puedo decirte qué compraron $800 en agregado y no puedo decirte qué campaña lo hizo.',
+  } as L,
+
+  scopeFoot: {
+    en: 'Plus: CI running lint, typecheck and build on every push · Sentry across client, server and edge with a tracked bug log · deep links and store asset-link files · rewarded ads through AdMob · RevenueCat subscriptions with a nightly reconciliation job · a Playwright suite across onboarding, browse, invitations, verification and admin · and a growth stack that auto-publishes to X, Threads and Facebook with canvas-rendered quote images.',
+    es: 'Además: CI con lint, typecheck y build en cada push · Sentry en cliente, servidor y edge con un registro de bugs · deep links y archivos de asset-links para las tiendas · anuncios recompensados con AdMob · suscripciones con RevenueCat y un job nocturno de reconciliación · una suite de Playwright sobre onboarding, navegación, invitaciones, verificación y admin · y un stack de crecimiento que publica solo en X, Threads y Facebook con imágenes de cita renderizadas en canvas.',
+  } as L,
+
+  methodH: {
+    en: '1,326 commits in eleven weeks, alongside the ad account.',
+    es: '1.326 commits en once semanas, junto con la cuenta de pauta.',
+  } as L,
+  methodLede: {
+    en: 'That came from an agentic workflow, and more from the guardrails that make one survivable.',
+    es: 'Eso salió de un flujo agéntico, y más aún de las barandas que lo hacen sobrevivible.',
+  } as L,
+  method: {
+    en: [
+      'A pre-ship checklist where every item maps to a real incident. Item 4 exists because a function passed from a Server Component to a Client Component took the site down on 19 March.',
+      'Spec-driven development for anything crossing more than one subsystem: proposal, spec, numbered tasks, all committed. The funnel rebuild shipped that way.',
+      'A blind second-model review before every push, run by a non-Anthropic model. A reviewer handed your reasoning gives you agreement instead of review.',
+      'CI that will not let a type error reach the server — because one did.',
+    ],
+    es: [
+      'Una lista previa al envío donde cada punto corresponde a un incidente real. El punto 4 existe porque una función pasada de un Server Component a un Client Component tumbó el sitio el 19 de marzo.',
+      'Desarrollo guiado por especificación para todo lo que cruzaba más de un subsistema: propuesta, spec, tareas numeradas, todo versionado. La reconstrucción del embudo salió así.',
+      'Una revisión ciega de un segundo modelo antes de cada push, con un modelo que no es de Anthropic. A un revisor al que le entregas tu razonamiento le sacas acuerdo, no revisión.',
+      'CI que no deja llegar un error de tipos al servidor — porque uno llegó.',
+    ],
+  } as LList,
+  methodFoot: {
+    en: 'The interesting part is not the volume. It is that the failure modes changed. Fewer typos and forgotten null checks; far more correct module, never wired up at the composition root. The checklist is aimed squarely at those.',
+    es: 'Lo interesante no es el volumen. Es que cambiaron los modos de falla. Menos typos y chequeos de null olvidados; muchos más módulo correcto, nunca conectado en la raíz de composición. La lista apunta justo a esos.',
+  } as L,
+
+  endH: {
+    en: 'It did not take off. It pointed at the next thing.',
+    es: 'No despegó. Señaló lo siguiente.',
+  } as L,
+  end: {
+    en: [
+      'Getting a new dating app into a market is rough. Luxura is live and people use it. The product side held — the day I paused ads, signups fell 83% and messages fell 11%. What I could not sustain was the spend that keeps the top of the funnel alive, at two paying subscribers against $800.',
+      'Making those ads is what changed the direction. I was generating video with Kling and motion control, swapping voices through Cartesia and ElevenLabs, and running several social accounts by hand every day, until the obvious question arrived: why am I doing this manually? That question, plus friends running small retail shops who could not keep up with their own customer messages, is where Storía came from. It is what I am building now.',
+    ],
+    es: [
+      'Meter una app de citas nueva en un mercado es duro. Luxura está viva y la gente la usa. El lado producto aguantó — el día que apagué la pauta, los registros cayeron 83% y los mensajes 11%. Lo que no pude sostener fue el gasto que mantiene viva la parte alta del embudo, con dos suscriptores pagos contra $800.',
+      'Hacer esos anuncios fue lo que cambió la dirección. Estaba generando video con Kling y control de movimiento, cambiando voces con Cartesia y ElevenLabs, y manejando varias cuentas sociales a mano todos los días, hasta que llegó la pregunta obvia: ¿por qué estoy haciendo esto manualmente? Esa pregunta, más unos amigos con tiendas pequeñas que no daban abasto con sus propios mensajes, es de donde salió Storía. Es lo que estoy construyendo ahora.',
+    ],
+  } as LList,
+
+  lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
+  lessons: {
+    en: [
+      'Let people in before asking them to prove anything. I learned this by buying it. Fixing it moved profile-starters from 51.5% to 64.1% — after the ad spend, not before.',
+      'Ship the conversation on day one. Chat was the only feature retention responded to, and it arrived in week seven. Everything before it was a matching engine that handed people to WhatsApp.',
+      'Own the commodity vendors from the start. Six SMS providers and four moderation providers taught me the same lesson twice: keep the state in my database, make the vendor a config value.',
+      'Price for the market before buying traffic. $15/month into a $5/month market wasted most of the $800. The weekly plan that fits Colombia shipped a month late.',
+      'Never encode a demographic assumption in the schema. Gender sat in the routes, the copy and the tables at once, so replacing it with a role cost a week instead of a day.',
+      'Buy attribution before buying ads. source: unknown, 2,026 rows.',
+    ],
+    es: [
+      'Deja entrar a la gente antes de pedirle que pruebe nada. Lo aprendí comprándolo. Arreglarlo movió a quienes empiezan un perfil de 51,5% a 64,1% — después del gasto en pauta, no antes.',
+      'Saca la conversación el día uno. El chat fue la única función a la que la retención respondió, y llegó en la semana siete. Todo lo anterior era un motor de emparejamiento que entregaba la gente a WhatsApp.',
+      'Sé dueño de los proveedores commodity desde el principio. Seis proveedores de SMS y cuatro de moderación me enseñaron la misma lección dos veces: guarda el estado en mi base de datos, haz del proveedor un valor de configuración.',
+      'Pon precio para el mercado antes de comprar tráfico. $15/mes en un mercado de $5/mes desperdició casi todos los $800. El plan semanal que sí encaja en Colombia salió un mes tarde.',
+      'Nunca metas un supuesto demográfico en el esquema. El género estaba en las rutas, los textos y las tablas a la vez, así que reemplazarlo por un rol costó una semana en vez de un día.',
+      'Compra atribución antes de comprar pauta. source: unknown, 2.026 filas.',
+    ],
+  } as LList,
+} as const;
+
+const shots = [
+  {
+    src: 'images/luxura-shot-profile.png',
+    alt: {
+      en: 'Luxura profile creation form, step one of onboarding',
+      es: 'Formulario de creación de perfil de Luxura, paso uno del onboarding',
+    } as L,
+  },
+  {
+    src: 'images/luxura-shot-browse.png',
+    alt: {
+      en: 'Luxura browse grid showing verified profiles and the daily invite counter',
+      es: 'Grilla de Luxura con perfiles verificados y el contador diario de invitaciones',
+    } as L,
+  },
+  {
+    src: 'images/luxura-shot-connections.png',
+    alt: {
+      en: 'Luxura connections screen listing accepted matches',
+      es: 'Pantalla de conexiones de Luxura con los matches aceptados',
+    } as L,
+  },
+];
+---
+
+<Base
+  lang={lang}
+  title={t(copy.title, lang)}
+  description={t(copy.description, lang)}
+  slug="work/luxura"
+  themeColor="#050706"
+  grain={false}
+>
+  <a class="skip" href="#main">{t(ui.skipToContent, lang)}</a>
+
+  <header class="bar">
+    <a class="mark" href={indexHref}>~/henry-cabello</a>
+    <div class="tools">
+      <a class="cv-link" href={cvHref}>CV</a>
+      <a href={altHref} hreflang={other} lang={other}>{LANG_LABEL[other]}</a>
+      <button data-theme-toggle type="button">
+        <span class="visually-hidden">{t(ui.toggleTheme, lang)}</span>
+        <span aria-hidden="true">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <a class="back" href={workHref}>← {t(copy.back, lang)}</a>
+
+    <section class="hero">
+      <span class="pill">{lang === 'es' ? 'En producción' : 'Live in production'}</span>
+      <h1>Luxura</h1>
+      <p class="lede">{t(copy.lede, lang)}</p>
+
+      <dl class="kv">
+        <div><dt>{t(copy.roleK, lang)}</dt><dd>{t(copy.roleV, lang)}</dd></div>
+        <div>
+          <dt>{t(copy.designK, lang)}</dt>
+          <dd><a href={VICTOR} target="_blank" rel="noopener">Victor ↗</a></dd>
+        </div>
+        <div><dt>{t(copy.windowK, lang)}</dt><dd>2026-01-21 → 2026-04-06</dd></div>
+        <div><dt>{t(copy.runsK, lang)}</dt><dd>{t(copy.runsV, lang)}</dd></div>
+      </dl>
+
+      <p class="ext">
+        <a href={PLAY} target="_blank" rel="noopener">Google Play — 5,000+ {lang === 'es' ? 'descargas' : 'downloads'} ↗</a>
+        <a href={SITE} target="_blank" rel="noopener">luxura.vip ↗</a>
+      </p>
+    </section>
+
+    <figure class="shots">
+      <div class="shot-row">
+        {shots.map((s) => (
+          <img src={asset(base, s.src)} alt={t(s.alt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+        ))}
+      </div>
+      <figcaption>{t(copy.shotsCap, lang)}</figcaption>
+    </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat README.md</h2>
+      <div class="out">
+        <h3>{t(copy.readmeH, lang)}</h3>
+        {tl(copy.readme, lang).map((p) => <p>{p}</p>)}
+        <p class="lbl"># {t(copy.constraintsH, lang)}</p>
+        <ul>{tl(copy.constraints, lang).map((c) => <li>{c}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ./bin/report --totals</h2>
+      <div class="grid">
+        <div><b>3,709</b><span>{lang === 'es' ? 'Registros' : 'Signups'}</span></div>
+        <div><b>1,724</b><span>{lang === 'es' ? 'Aprobados' : 'Approved'}</span></div>
+        <div><b>3,983</b><span>{lang === 'es' ? 'Invitaciones' : 'Invitations'}</span></div>
+        <div><b>888</b><span>{lang === 'es' ? 'Conexiones' : 'Connections'}</span></div>
+        <div><b>15,480</b><span>{lang === 'es' ? 'Mensajes' : 'Messages'}</span></div>
+        <div class="hot"><b>2</b><span>{lang === 'es' ? 'Pagando' : 'Paying'}</span></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ./bin/report --ads-off 2026-03-08</h2>
+      <div class="out">
+        <h3>{t(copy.adsH, lang)}</h3>
+        {tl(copy.ads, lang).map((p) => <p>{p}</p>)}
+
+        <div class="meter" role="img" aria-label={lang === 'es' ? 'Registros −83%, activos diarios −36%, mensajes −11%' : 'Signups down 83 percent, daily actives down 36 percent, messages down 11 percent'}>
+          <div class="m"><span class="lab">{lang === 'es' ? 'registros' : 'signups'}</span><span class="track"><i class="bad" style="width:17%"></i></span><span class="val down">−83%</span></div>
+          <div class="m"><span class="lab">{lang === 'es' ? 'activos' : 'daily actives'}</span><span class="track"><i class="mid" style="width:64%"></i></span><span class="val mid">−36%</span></div>
+          <div class="m"><span class="lab">{lang === 'es' ? 'mensajes' : 'messages'}</span><span class="track"><i style="width:89%"></i></span><span class="val up">−11%</span></div>
+        </div>
+
+        <p class="foot">{t(copy.adsFoot, lang)}</p>
+
+        <p class="lbl"># {t(copy.cohortH, lang)}</p>
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>{lang === 'es' ? 'Cohorte' : 'Signup cohort'}</th>
+                <th class="n">{lang === 'es' ? 'Aprobados' : 'Approved'}</th>
+                <th class="n">{lang === 'es' ? 'Activos al día 7' : 'Active at day 7'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>{lang === 'es' ? 'Semana 1 · 20–26 feb' : 'Week 1 · 20–26 Feb'}</td><td class="n">415</td><td class="n down">14.2%</td></tr>
+              <tr><td>{lang === 'es' ? 'Semana 2 · 27 feb–5 mar' : 'Week 2 · 27 Feb–5 Mar'}</td><td class="n">487</td><td class="n up">80.3%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="foot">{t(copy.cohortFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat sdd/proposals/role-based-app-overhaul.proposal.md</h2>
+      <div class="out">
+        <h3>{t(copy.fixH, lang)}</h3>
+        {tl(copy.fix, lang).map((p) => <p>{p}</p>)}
+
+        <pre class="term"><span class="c">## Motivation (Why)</span>
+
+The current onboarding has a 47% completion rate (846 users stuck at
+verification). Gender is hardcoded to role (MALE=inviter, FEMALE=invitee),
+which blocks same-sex dynamics.
+
+<span class="k">**Core insight**: Let users see the candy shop immediately, but gate
+interaction behind profile completion and payment.</span></pre>
+
+        <p class="foot">{t(copy.fixFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ psql -c "verification completion, before vs after"</h2>
+      <div class="out">
+        <pre class="term"><span class="k">SELECT</span> <span class="k">CASE WHEN</span> u.<span class="s">"createdAt"</span> &lt; <span class="s">'2026-03-11'</span> <span class="k">THEN</span> <span class="s">'before'</span> <span class="k">ELSE</span> <span class="s">'after'</span> <span class="k">END</span> <span class="k">AS</span> era,
+       count(*) <span class="k">AS</span> with_profile,
+       count(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> u.<span class="s">"onboardingStep"</span> <span class="k">IN</span> (<span class="s">'VERIFIED'</span>,<span class="s">'ACTIVE'</span>)) <span class="k">AS</span> verified
+<span class="k">FROM</span> users u <span class="k">JOIN</span> profiles p <span class="k">ON</span> p.<span class="s">"userId"</span> = u.id <span class="k">GROUP BY</span> 1;
+
+  era    | with_profile | verified |  pct
+---------+--------------+----------+-------
+ before  |         1994 |     1027 |  <span class="b">51.5</span>
+ after   |         1057 |      678 |  <span class="k">64.1</span>
+(2 rows)</pre>
+        <p class="foot">{t(copy.sqlFoot, lang)}</p>
+
+        <div class="call">
+          <b>{t(copy.moveT, lang)}</b>
+          <p>{t(copy.moveB, lang)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls -la ./engineering</h2>
+      <div class="out">
+        <div class="call"><b>{t(copy.faceT, lang)}</b><p>{t(copy.faceB, lang)}</p></div>
+
+        <pre class="term"><span class="c">// content moderation — resolve in order, first success wins</span>
+<span class="k">1.</span> self-hosted    NudeNet + InsightFace + OpenCV   <span class="c">// safety AND quality</span>
+<span class="k">2.</span> Azure          Content Safety ‖ Computer Vision <span class="c">// in parallel</span>
+<span class="k">3.</span> Google         Cloud Vision                     <span class="c">// one call, both</span>
+<span class="k">4.</span> Sightengine    nudity · offensive · type · face
+
+<span class="c">// flagged no_face | screenshot → a small vision model re-judges THAT flag
+// video → frames pulled and judged one at a time
+// rejected → stored as a perceptual dHash, re-upload caught for free</span></pre>
+
+        <div class="call"><b>{t(copy.modT, lang)}</b><p>{t(copy.modB, lang)}</p></div>
+        <div class="call"><b>{t(copy.vidT, lang)}</b><p>{t(copy.vidB, lang)}</p></div>
+        <div class="call"><b>{t(copy.chatT, lang)}</b><p>{t(copy.chatB, lang)}</p></div>
+
+        <pre class="term"><span class="c">// phone OTP, eight weeks</span>
+raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> raw Twilio Messaging <span class="k">→</span> Firebase Phone Auth
+  <span class="k">→</span> Plivo Verify <span class="k">→</span> Twilio + own <span class="s">otp_codes</span> table <span class="k">→</span> <span class="k">Infobip + Twilio fallback</span>
+
+<span class="c">// three of those swaps happened on a single day: 2026-03-14</span></pre>
+
+        <div class="call"><b>{t(copy.otpT, lang)}</b><p>{t(copy.otpB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat economics.md</h2>
+      <div class="out">
+        <h3>{t(copy.ecoH, lang)}</h3>
+        <div class="grid">
+          <div><b>$800</b><span>{lang === 'es' ? 'Gasto en pauta' : 'Total ad spend'}</span></div>
+          <div><b>$0.33</b><span>{lang === 'es' ? 'Por registro' : 'Per signup'}</span></div>
+          <div><b>$0.70</b><span>{lang === 'es' ? 'Por aprobado' : 'Per approved user'}</span></div>
+          <div class="hot"><b>0.08%</b><span>{lang === 'es' ? 'Conversión a pago' : 'Paid conversion'}</span></div>
+        </div>
+        {tl(copy.eco, lang).map((p) => <p>{p}</p>)}
+        <div class="call"><b>{t(copy.attrT, lang)}</b><p>{t(copy.attrB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat scope.json</h2>
+      <div class="out">
+        <div class="grid">
+          <div><b>1,326</b><span>Commits</span></div>
+          <div><b>143k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
+          <div><b>177</b><span>{lang === 'es' ? 'Rutas API' : 'API routes'}</span></div>
+          <div><b>77</b><span>{lang === 'es' ? 'Páginas' : 'Pages'}</span></div>
+          <div><b>44</b><span>{lang === 'es' ? 'Modelos Prisma' : 'Prisma models'}</span></div>
+          <div><b>75</b><span>{lang === 'es' ? 'Migraciones' : 'Migrations'}</span></div>
+          <div><b>37</b><span>{lang === 'es' ? 'Jobs' : 'Cron/event jobs'}</span></div>
+          <div><b>26</b><span>{lang === 'es' ? 'Secciones admin' : 'Admin sections'}</span></div>
+        </div>
+        <p class="foot">{t(copy.scopeFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat method.md</h2>
+      <div class="out">
+        <h3>{t(copy.methodH, lang)}</h3>
+        <p>{t(copy.methodLede, lang)}</p>
+        <ul>{tl(copy.method, lang).map((m) => <li>{m}</li>)}</ul>
+        <p class="foot">{t(copy.methodFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat POSTMORTEM.md</h2>
+      <div class="out">
+        <h3>{t(copy.endH, lang)}</h3>
+        {tl(copy.end, lang).map((p) => <p>{p}</p>)}
+
+        <p class="lbl"># {t(copy.lessonsH, lang)}</p>
+        <ol class="lessons">{tl(copy.lessons, lang).map((l) => <li>{l}</li>)}</ol>
+      </div>
+    </section>
+
+    <p class="cursor-line" aria-hidden="true">
+      <span class="prompt">henry@bogota:~/luxura$</span> <span class="caret"></span>
+    </p>
+
+    <p class="back-foot"><a href={workHref}>← {t(copy.back, lang)}</a></p>
+  </main>
+</Base>
+
+<style>
+  /* ── Gold. The whole reason this route looks different. ────────────────
+     --accent is a registered property so it interpolates: arriving here
+     animates the page out of the site's phosphor and into Luxura's own
+     signature, rather than swapping it between frames.                    */
+  @property --accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3ddc84;
+  }
+
+  :root {
+    --ground: #050706;
+    --raise: #0d0f0b;
+    --ink: #e6e2d6;
+    --ink-2: #a89f89;
+    --dim: #6f684f;
+    --line: #211e14;
+    --accent: #d4af37;
+    --warn: #e0b341;
+    --good: #7ba98c;
+    --bad: #e8705a;
+    --focus: #d4af37;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --shell: 74rem;
+    --read: 40rem;
+    --pad: clamp(1rem, 3vw, 2.25rem);
+    animation: enter-luxura 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(:root[data-theme='light']) {
+    --ground: #f6f4ee;
+    --raise: #ffffff;
+    --ink: #1c1810;
+    --ink-2: #4d4531;
+    --dim: #7d7458;
+    --line: #ddd6c4;
+    --accent: #8a6e10;
+    --warn: #8a6410;
+    --good: #3e7a5c;
+    --bad: #a6462f;
+    --focus: #8a6e10;
+  }
+
+  @keyframes enter-luxura {
+    from { --accent: #3ddc84; }
+    to { --accent: #d4af37; }
+  }
+  :global(:root[data-theme='light']) {
+    animation-name: enter-luxura-light;
+  }
+  @keyframes enter-luxura-light {
+    from { --accent: #0f7b4a; }
+    to { --accent: #8a6e10; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+  }
+
+  :global(body) {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.68;
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+  }
+  .skip:focus {
+    left: var(--pad);
+    top: 0.5rem;
+    z-index: 40;
+    background: var(--raise);
+    color: var(--accent);
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--accent);
+  }
+
+  .bar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem var(--pad);
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .mark {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .tools {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  .tools a,
+  .tools button {
+    color: var(--dim);
+    text-decoration: none;
+    background: none;
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+  .tools a:hover,
+  .tools button:hover {
+    color: var(--accent);
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  main {
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 var(--pad) clamp(3rem, 8vw, 6rem);
+  }
+
+  .back,
+  .back-foot a {
+    display: inline-block;
+    margin-top: 1.6rem;
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 0.8125rem;
+  }
+  .back:hover,
+  .back-foot a:hover {
+    color: var(--accent);
+  }
+  .back-foot {
+    margin-top: 2.5rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+  }
+
+  .hero {
+    padding: clamp(1.6rem, 5vw, 3.4rem) 0 0;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    padding: 0.15rem 0.7rem;
+  }
+  .pill::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  h1 {
+    margin: 1.1rem 0 0.9rem;
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .lede {
+    max-width: 52rem;
+    font-size: clamp(0.9375rem, 2vw, 1.0625rem);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  .kv {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1.8rem 0 0;
+  }
+  .kv > div {
+    background: var(--ground);
+    padding: 0.7rem 0.9rem;
+  }
+  .kv dt {
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .kv dd {
+    margin: 0.15rem 0 0;
+    color: var(--ink);
+  }
+  .kv a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .ext {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.1rem 0 0;
+  }
+  .ext a {
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0.35rem 0.75rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .ext a:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .shots {
+    margin: clamp(2rem, 5vw, 3.2rem) 0 0;
+  }
+  .shot-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.5rem, 2vw, 1rem);
+  }
+  .shot-row img {
+    width: 100%;
+    height: auto;
+    max-height: 26rem;
+    object-fit: cover;
+    object-position: top center;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+  }
+  .shots figcaption {
+    margin-top: 0.7rem;
+    color: var(--dim);
+    font-size: 0.75rem;
+    max-width: var(--read);
+  }
+  @media (max-width: 40rem) {
+    .shot-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .shot-row img:last-child {
+      display: none;
+    }
+  }
+
+  .blk {
+    margin-top: clamp(2.4rem, 6vw, 4rem);
+  }
+  .cmd {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+    overflow-wrap: anywhere;
+  }
+  .out {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(0.9rem, 3vw, 1.6rem);
+  }
+  .out h3 {
+    margin: 0 0 0.8rem;
+    font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 44rem;
+  }
+  .out p {
+    margin: 0 0 0.9rem;
+    max-width: var(--read);
+    color: var(--ink-2);
+  }
+  .out ul,
+  .out ol {
+    margin: 0 0 0.9rem;
+    padding-left: 1.2rem;
+    max-width: var(--read);
+    color: var(--ink-2);
+  }
+  .out li {
+    margin-bottom: 0.35rem;
+  }
+  .out li::marker {
+    color: var(--accent);
+  }
+  .lbl {
+    color: var(--dim) !important;
+    margin-top: 1.6rem !important;
+  }
+  .foot {
+    color: var(--dim) !important;
+    font-size: 0.78rem;
+    border-top: 1px solid var(--line);
+    padding-top: 0.7rem;
+    max-width: 56rem !important;
+  }
+
+  .term {
+    margin: 1.1rem 0;
+    padding: 0.9rem 1rem;
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow-x: auto;
+    font-size: 0.75rem;
+    line-height: 1.7;
+    color: var(--ink-2);
+    white-space: pre;
+  }
+  .term .k {
+    color: var(--accent);
+  }
+  .term .c {
+    color: var(--dim);
+  }
+  .term .s {
+    color: var(--ink);
+  }
+  .term .b {
+    color: var(--bad);
+  }
+
+  .call {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1.4rem 0;
+  }
+  .call b {
+    display: block;
+    color: var(--ink);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .call b::before {
+    content: '> ';
+    color: var(--accent);
+  }
+  .call p {
+    margin: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 0 0 1.2rem;
+  }
+  .grid > div {
+    background: var(--ground);
+    padding: 0.85rem 0.9rem;
+  }
+  .grid b {
+    display: block;
+    color: var(--ink);
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .grid span {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.6563rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .grid > div.hot b {
+    color: var(--warn);
+  }
+
+  .meter {
+    display: grid;
+    gap: 0.6rem;
+    margin: 1.2rem 0;
+    max-width: 40rem;
+  }
+  .m {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) 4rem;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  .lab {
+    color: var(--dim);
+  }
+  .track {
+    height: 10px;
+    background: color-mix(in srgb, var(--ink) 10%, transparent);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .track i {
+    display: block;
+    height: 100%;
+    background: var(--good);
+    border-radius: 2px;
+  }
+  .track i.mid {
+    background: var(--warn);
+  }
+  .track i.bad {
+    background: var(--bad);
+  }
+  .val {
+    text-align: right;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+  }
+  .up {
+    color: var(--good);
+  }
+  .mid {
+    color: var(--warn);
+  }
+  .down {
+    color: var(--bad);
+  }
+  @media (max-width: 34rem) {
+    .m {
+      grid-template-columns: 1fr 4rem;
+      grid-template-areas: 'lab val' 'bar bar';
+    }
+    .lab { grid-area: lab; }
+    .val { grid-area: val; }
+    .track { grid-area: bar; }
+  }
+
+  .scroll {
+    overflow-x: auto;
+    margin: 0 0 0.9rem;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 0.4rem 0.8rem;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink-2);
+  }
+  th {
+    color: var(--dim);
+    font-weight: 400;
+    font-size: 0.6875rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+  td.n,
+  th.n {
+    text-align: right;
+  }
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .lessons {
+    counter-reset: l;
+    list-style: none;
+    padding-left: 0;
+  }
+  .lessons li {
+    counter-increment: l;
+    position: relative;
+    padding-left: 2.6rem;
+    margin-bottom: 0.8rem;
+  }
+  .lessons li::before {
+    content: '[' counter(l) ']';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .cursor-line {
+    margin: 2.4rem 0 0;
+    color: var(--dim);
+  }
+  .prompt {
+    color: var(--accent);
+  }
+  .caret {
+    display: inline-block;
+    width: 0.6em;
+    height: 1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1.2s steps(2, end) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .caret {
+      animation: none;
+    }
+  }
+</style>
