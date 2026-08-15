@@ -139,7 +139,12 @@ const when = (e: (typeof timeline)[number]): string => {
                     <span class={`st st-${p.status}`}>{t(STATUS_LABEL[p.status], lang)}</span>
                     {p.statusNote && <span class="stnote">{t(p.statusNote, lang)}</span>}
                   </p>
-                  <h3 class="card-name">{projectName(p, lang)}</h3>
+                  {/* Paired with the h1 on the project's own page, so the
+                      name morphs across the navigation. Scoped by id, because
+                      two elements sharing a name cancel the transition. */}
+                  <h3 class="card-name" style={`view-transition-name: proj-${p.id}`}>
+                    {projectName(p, lang)}
+                  </h3>
                   <p class="card-tag">{t(p.tagline, lang)}</p>
                   {p.summary && <p class="card-sum">{t(p.summary, lang)}</p>}
                   <TechRow items={p.stack} size="sm" />

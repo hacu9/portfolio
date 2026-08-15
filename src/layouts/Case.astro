@@ -332,7 +332,8 @@ const shots = [
 
     <section class="hero">
       <span class="pill">{lang === 'es' ? 'En producción' : 'Live in production'}</span>
-      <h1>Luxura</h1>
+      {/* Matches the card's name on the work list — see motion.css. */}
+      <h1 style="view-transition-name: proj-luxura">Luxura</h1>
       <p class="lede">{t(copy.lede, lang)}</p>
 
       <dl class="kv">
