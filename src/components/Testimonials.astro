@@ -13,7 +13,7 @@
  */
 import { t } from '../i18n/types';
 import type { Lang } from '../i18n/types';
-import { visibleTestimonials as testimonials } from '../data/testimonials';
+import { visibleTestimonials as testimonials, showingSamples } from '../data/testimonials';
 
 interface Props {
   lang: Lang;
@@ -23,12 +23,21 @@ interface Props {
 const { lang, label } = Astro.props;
 
 const heading = label ?? (lang === 'es' ? 'Lo que dicen' : 'What people say');
+
+/* showingSamples was exported and never read, which meant one config flip
+   could publish placeholder quotes with nothing marking them as placeholders.
+   The section now labels itself, so filler cannot pass as an endorsement. */
+const sampleNote =
+  lang === 'es'
+    ? 'Contenido de ejemplo para revisar el diseño. No son citas reales y no se publican.'
+    : 'Sample content for design review. These are not real quotes and do not ship.';
 ---
 
 {
   testimonials.length > 0 && (
     <section class="quotes" id="testimonials">
       <h2 class="quotes-label">{heading}</h2>
+      {showingSamples && <p class="samples-warn">{sampleNote}</p>}
       <div class="quotes-grid">
         {testimonials.map((r) => (
           <figure class="quote">
@@ -112,6 +121,16 @@ const heading = label ?? (lang === 'es' ? 'Lo que dicen' : 'What people say');
     color: inherit;
     text-underline-offset: 3px;
   }
+  .samples-warn {
+    margin: 0 0 1rem;
+    padding: 0.4rem 0.7rem;
+    border: 1px dashed var(--warn, #e0b341);
+    border-radius: 4px;
+    color: var(--warn, #e0b341);
+    font-size: 0.75rem;
+    max-width: 44rem;
+  }
+
   .quote-role {
     color: var(--dim, currentColor);
   }
