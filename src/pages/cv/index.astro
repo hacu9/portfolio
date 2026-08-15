@@ -86,14 +86,19 @@ const study = timeline.filter((e) => e.kind === 'education');
                 </span>
               </div>
               <p class="sub">{t(p.tagline, lang)}</p>
-              <p>{t(p.problem, lang)}</p>
+              <p>{t(p.summary ?? p.problem, lang)}</p>
               <ul>
-                <li>
-                  <strong>{t(p.decisions[0].title, lang)}.</strong> {t(p.decisions[0].body, lang)}
-                </li>
+                <li><strong>{t(p.decisions[0].title, lang)}.</strong></li>
                 <li>{t(p.outcome, lang)}</li>
               </ul>
-              <p class="stack">{p.stack.join(' · ')}</p>
+              <p class="stack">{p.stack.slice(0, 8).join(' · ')}</p>
+              {p.caseSlug && (
+                <p class="more">
+                  <a href={`https://hacu9.github.io/portfolio/${p.caseSlug}/`}>
+                    Full teardown: how it was built, what it cost, what I got wrong ↗
+                  </a>
+                </p>
+              )}
             </article>
           ))
         }
@@ -172,21 +177,8 @@ const study = timeline.filter((e) => e.kind === 'education');
         </ul>
       </section>
 
-      {
-        testimonials.length > 0 && (
-          <section>
-            <h2>References</h2>
-            {testimonials.map((r) => (
-              <blockquote>
-                <p>{t(r.quote, lang)}</p>
-                <cite>
-                  {r.name}, {t(r.role, lang)}
-                </cite>
-              </blockquote>
-            ))}
-          </section>
-        )
-      }
+      {/* No References block: first-name-only quotes carry less on a CV
+          than they do on the site, where the surrounding evidence backs them. */}
 
       <footer class="foot">
         <span>{profile.name}</span>

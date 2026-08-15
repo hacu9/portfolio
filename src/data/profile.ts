@@ -77,8 +77,8 @@ export const profile = {
    * person who is screening for an engineer.
    */
   positioning: {
-    en: 'Nothing here is a demo.',
-    es: 'Nada de esto es un demo.',
+    en: 'I built the dating app, ran the server, and bought the ads.',
+    es: 'Construí la app de citas, corro el servidor, y pagué la pauta.',
   } as L,
 
   /**
@@ -102,8 +102,14 @@ export const profile = {
    * lets the status badge on each card carry the truth per project. An
    * earlier draft ended "every one went to production", which was false.
    *
-   * The three-verb close is the strongest sentence on the page and predates
-   * all of this. Do not rewrite it.
+   * The three-verb close WAS the strongest sentence on the page, so as of
+   * Aug 2026 it IS the page: built / ran / bought is now the headline, and the
+   * lede below carries the evidence it used to carry. The old headline,
+   * "Nothing here is a demo", was a negation, and the site's own status labels
+   * contested it: two of four products say In development, Storia says no shop
+   * has run it, Mate says no public launch. On a site whose whole brand is
+   * claims that survive checking, that was the one that did not. Keep the beat
+   * if you touch it: three clauses, no conjunction between the first two.
    *
    * It was once stretched to "I buy every user who installs it". That broke
    * the beat, 3 words then 4 then 8, so the clause that should snap was the
@@ -132,11 +138,11 @@ export const profile = {
    * commercial product in Meta Tech Provider onboarding.
    */
   lede: {
-    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I paid for its ads.',
+    en: 'Luxura went from an empty repo to Google Play in eleven weeks, 5,000+ downloads across Bogotá and Medellín, and it still runs on a box I operate. Three more products below, each with a full teardown, plus five unbroken years inside corporate Microsoft estates.',
     // Spanish never said "comprar usuarios", which reads as buying fake
     // followers. It said "le compro el tráfico" and now says "pago su pauta",
     // which is the wording the Luxura pages use throughout.
-    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, pagué su pauta.',
+    es: 'Luxura pasó de un repositorio vacío a Google Play en once semanas, 5.000+ descargas entre Bogotá y Medellín, y sigue corriendo en una máquina que yo opero. Abajo hay tres productos más, cada uno con su desglose completo, más cinco años ininterrumpidos dentro de entornos corporativos de Microsoft.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */
@@ -211,7 +217,7 @@ export const profile = {
       'A model told me TikTok has no account-level budget cap. It does, and the campaign would have run uncapped if I had believed it.',
       'A report came back with zero conversions on a campaign I could see was installing. The zero was a field-mapping bug, and it only surfaced because I refused the number.',
       'TikTok attribution was silently broken for weeks. An AI research pass missed the cause completely; it was one ad-network permissions toggle.',
-      'Two false lines nearly went out on my own CV, both written by an assistant that sounded certain. I caught them before they shipped.',
+
     ],
     es: [
       'Un modelo me dijo que TikTok no tiene tope de presupuesto por cuenta. Sí lo tiene, y la campaña habría corrido sin tope si le hubiera creído.',
