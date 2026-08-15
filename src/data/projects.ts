@@ -77,8 +77,8 @@ const rawProjects: Project[] = [
       es: 'Producción en Google Play, tras pruebas cerradas',
     },
     role: {
-      en: 'Sole engineer, plus infrastructure, monetization and paid acquisition',
-      es: 'Único ingeniero, más infraestructura, monetización y pauta',
+      en: 'Founder and technical lead — backend, infrastructure, monetization and paid acquisition, with Victor on design and front-end',
+      es: 'Fundador y líder técnico — backend, infraestructura, monetización y pauta, con Victor en diseño y front-end',
     },
     period: '2025-2026',
     lead: true,
@@ -104,25 +104,29 @@ const rawProjects: Project[] = [
       },
     ],
     problem: {
-      en: 'Open dating apps drown in low-effort volume. The women leave first, then the men follow them out. Luxura inverts the funnel: men pay to send an invitation, women join free. That only works if the product owns its own economics, so payments, moderation, and the cost of every user had to be mine.',
-      es: 'Las apps de citas abiertas se ahogan en volumen de bajo esfuerzo. Primero se van las mujeres, y después los hombres las siguen. Luxura invierte el embudo: los hombres pagan por invitar, las mujeres entran gratis. Eso solo funciona si el producto es dueño de su propia economía, así que los pagos, la moderación y el costo de cada usuario tenían que ser míos.',
+      en: 'Open dating apps drown in low-effort volume. The people receiving leave first, and the rest follow them out. Luxura inverts the funnel: one role browses and pays to spend a strictly limited number of invitations, the other receives them free and chooses. Scarcity on the sending side is the product. That only works if the product owns its own economics, so payments, moderation, and the cost of every user had to be mine.',
+      es: 'Las apps de citas abiertas se ahogan en volumen de bajo esfuerzo. Primero se va quien recibe, y el resto la sigue. Luxura invierte el embudo: un rol navega y paga por gastar un número estrictamente limitado de invitaciones, el otro las recibe gratis y elige. La escasez del lado que envía es el producto. Eso solo funciona si el producto es dueño de su propia economía, así que los pagos, la moderación y el costo de cada usuario tenían que ser míos.',
     },
     built: {
       en: [
         'Next.js web app wrapped with Capacitor for the Android release',
-        'Firebase Phone Auth for SMS one-time passcodes',
+        'Phone OTP I own end to end: my own codes table, rate limiting and an SMS circuit breaker, with Infobip primary and Twilio as fallback',
         'RevenueCat paywall and subscription handling',
         'AppsFlyer and RevenueCat attribution, wired to Meta Pixel and the Conversions API',
-        'Automated content moderation on Azure Content Safety',
+        'Photo and video moderation as a four-provider cascade — self-hosted, Azure, Google Cloud Vision, Sightengine — with a perceptual-hash memory of every rejection',
+        'Live face verification in the browser: gesture liveness check matched against profile photos with AWS Rekognition',
+        'Real-time chat over Socket.IO on a custom Node server, with 37 scheduled and event-driven background jobs behind it',
         'Full Google Play release pipeline, 12 testers for 14 days in closed testing, then production',
         'Brand identity, logo, and Play Store assets in a dark-and-gold direction',
       ],
       es: [
         'App web en Next.js empaquetada con Capacitor para el release de Android',
-        'Firebase Phone Auth para los códigos OTP por SMS',
+        'OTP por SMS de punta a punta: tabla de códigos propia, rate limiting y circuit breaker, con Infobip como principal y Twilio de respaldo',
         'Paywall y suscripciones con RevenueCat',
         'Atribución con AppsFlyer y RevenueCat, conectada a Meta Pixel y la Conversions API',
-        'Moderación automática de contenido con Azure Content Safety',
+        'Moderación de fotos y video en cascada de cuatro proveedores — self-hosted, Azure, Google Cloud Vision, Sightengine — con memoria de cada rechazo por hash perceptual',
+        'Verificación facial en vivo en el navegador: prueba de gestos contrastada contra las fotos del perfil con AWS Rekognition',
+        'Chat en tiempo real sobre Socket.IO en un servidor Node propio, con 37 jobs programados y por evento detrás',
         'Pipeline completo de release en Google Play, 12 testers por 14 días en prueba cerrada, luego producción',
         'Identidad de marca, logo y assets de Play Store en una dirección oscura con dorado',
       ],
@@ -140,12 +144,12 @@ const rawProjects: Project[] = [
       },
       {
         title: {
-          en: 'Dropped AWS SNS for Firebase Phone Auth on the OTP path',
-          es: 'Cambié AWS SNS por Firebase Phone Auth en el flujo de OTP',
+          en: 'Stopped shopping for an SMS provider and owned the OTP path myself',
+          es: 'Dejé de buscar proveedor de SMS y me hice dueño del flujo de OTP',
         },
         body: {
-          en: 'SNS was too slow reaching Colombian carriers, and signups were dying on the verification screen. Nothing else in the app matters if the first screen leaks users. Firebase delivered in-country, so I took the lock-in on that one path and kept the funnel.',
-          es: 'SNS llegaba demasiado lento a las operadoras colombianas y los registros se morían en la pantalla de verificación. Nada más en la app importa si la primera pantalla pierde usuarios. Firebase entregaba dentro del país, así que acepté el amarre en ese punto y me quedé con el embudo.',
+          en: 'The OTP screen went through six provider configurations in eight weeks — SNS, then Twilio Verify, raw Twilio, Firebase Phone Auth, Plivo — each swap driven by Colombian carrier delivery, per-message cost, or an error surface I could not control. Nothing else in the app matters if the first screen leaks users, and I was treating that as a procurement problem. The fix was structural: my own codes table, my own rate limiting, a circuit breaker, and the provider reduced to a config value. Infobip is primary today with Twilio behind it, and swapping primary now takes a day instead of a sprint.',
+          es: 'La pantalla de OTP pasó por seis configuraciones de proveedor en ocho semanas — SNS, luego Twilio Verify, Twilio directo, Firebase Phone Auth, Plivo — y cada cambio salió de la entrega de las operadoras colombianas, del costo por mensaje, o de una superficie de error que no controlaba. Nada más en la app importa si la primera pantalla pierde usuarios, y yo lo estaba tratando como un problema de compras. El arreglo fue estructural: tabla de códigos propia, rate limiting propio, un circuit breaker, y el proveedor reducido a un valor de configuración. Hoy Infobip es el principal con Twilio detrás, y cambiar de principal toma un día en vez de un sprint.',
         },
       },
       {
@@ -154,8 +158,8 @@ const rawProjects: Project[] = [
           es: 'Cambié el género por un rol de invitación, para que un hombre pudiera invitar a otro',
         },
         body: {
-          en: 'The funnel was keyed to gender, which quietly made a man inviting a man impossible. I replaced it with an INVITER and INVITEE role chosen at signup. Onboarding got simpler, and the paid tier now hangs off a role instead of a gender: fairer, and far easier to reason about in code.',
-          es: 'El embudo estaba atado al género, lo que en la práctica hacía imposible que un hombre invitara a otro. Lo reemplacé por un rol INVITER e INVITEE que se elige al registrarse. El onboarding quedó más simple, y el plan pago ahora cuelga de un rol y no de un género: más justo, y mucho más fácil de razonar en el código.',
+          en: 'The funnel was keyed to gender, which quietly made a man inviting a man impossible, and it shipped in the same change that moved the verification wall. Paid traffic was dying at a three-step check before it saw a single profile, so I let people in first and gated the invite instead of the entrance. Among users who started a profile, verification completion went from 51.5% to 64.1%. The paid tier now hangs off an INVITER or INVITEE role rather than a gender: fairer, and far easier to reason about in code.',
+          es: 'El embudo estaba atado al género, lo que en la práctica hacía imposible que un hombre invitara a otro, y salió en el mismo cambio que movió el muro de verificación. El tráfico pago se moría en una revisión de tres pasos antes de ver un solo perfil, así que dejé entrar a la gente primero y puse el cobro en la invitación, no en la entrada. Entre quienes empezaron un perfil, la verificación completada pasó de 51,5% a 64,1%. El plan pago ahora cuelga de un rol INVITER o INVITEE y no de un género: más justo, y mucho más fácil de razonar en el código.',
         },
       },
     ],
@@ -164,8 +168,10 @@ const rawProjects: Project[] = [
       es: 'Publicada en Google Play. Yo compro el tráfico, así que cada decisión de arquitectura me vuelve con un precio por usuario. Esto no es una pieza de portafolio, es un producto que opero.',
     },
     stack: [
-      'Next.js', 'TypeScript', 'Capacitor', 'PostgreSQL', 'Hetzner', 'Coolify',
-      'Docker', 'Firebase Auth', 'RevenueCat', 'AppsFlyer', 'Azure Content Safety',
+      'Next.js', 'TypeScript', 'Capacitor', 'PostgreSQL', 'Prisma', 'Hetzner',
+      'Coolify', 'Docker', 'Socket.IO', 'RevenueCat', 'AppsFlyer', 'Twilio',
+      'Infobip', 'Firebase FCM', 'AWS Rekognition', 'Azure Content Safety',
+      'Cloudflare R2',
     ],
   },
 
