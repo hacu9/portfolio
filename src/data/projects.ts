@@ -500,9 +500,9 @@ const rawProjects: Project[] = [
     ],
     shotLayout: 'phones',
     shots: [
-      { src: 'images/femi-1.png', alt: { en: 'The Femi dashboard, with the SOS button and its thirty second countdown.', es: 'El tablero de Femi, con el botón SOS y su cuenta regresiva de treinta segundos.' } },
+      { src: 'images/femi-1.png', alt: { en: 'The Femi dashboard, with the SOS button ringed by the helpers who would answer it.', es: 'El tablero de Femi, con el botón SOS rodeado por los ayudantes que responderían.' } },
       { src: 'images/femi-2.png', alt: { en: 'The safety map, showing active alerts by severity.', es: 'El mapa de seguridad, con alertas activas por severidad.' } },
-      { src: 'images/femi-3.png', alt: { en: 'The profile screen, with help radius and responder toggles.', es: 'La pantalla de perfil, con radio de ayuda e interruptores de respondiente.' } },
+      { src: 'images/femi-3.png', alt: { en: 'The profile screen, with help radius, responder toggles and the appearance switcher.', es: 'La pantalla de perfil, con radio de ayuda, interruptores de respondiente y el selector de apariencia.' } },
     ],
   },
 
