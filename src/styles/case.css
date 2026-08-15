@@ -590,3 +590,29 @@
     animation: none;
   }
 }
+
+/* Ad creative. Sits inside .out, so it indents with the prose rather than
+   breaking the command-output column. */
+.case .ads {
+  margin: 1.4rem 0 0;
+}
+.case .ad-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.4rem, 1.6vw, 0.8rem);
+  max-width: 34rem;
+}
+.case .ad-row img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--raise);
+}
+.case .ads figcaption {
+  margin-top: 0.7rem;
+  color: var(--dim);
+  font-size: 0.75rem;
+  max-width: var(--read);
+}

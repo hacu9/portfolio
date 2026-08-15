@@ -105,6 +105,23 @@ const copy = {
     ],
   } as LList,
 
+  adsCap: {
+    en: 'Three of the sets that ran. One per audience, same template, each in light and dark, static and video, across fullscreen, banner, story and inbox formats. The filenames carry the segment, which is how I could tell later which cut was doing the work.',
+    es: 'Tres de los sets que corrieron. Uno por audiencia, misma plantilla, cada uno en claro y oscuro, estático y video, en formato pantalla completa, banner, historia y bandeja. Los nombres de archivo llevan el segmento, que es como después podía saber qué corte estaba funcionando.',
+  } as L,
+  adsAlt: {
+    en: 'Luxura ad for the men audience: a woman on a Bogotá street at dusk under the app\'s online badge',
+    es: 'Anuncio de Luxura para la audiencia de hombres: una mujer en una calle de Bogotá al atardecer bajo la insignia de en línea de la app',
+  } as L,
+  adsAlt2: {
+    en: 'Luxura ad for the women audience: the invitation inbox showing three pending invitations and their expiry countdown',
+    es: 'Anuncio de Luxura para la audiencia de mujeres: la bandeja de invitaciones con tres pendientes y su cuenta regresiva',
+  } as L,
+  adsAlt3: {
+    en: 'Luxura ad for the LGBT audience: two men laughing together in a bar',
+    es: 'Anuncio de Luxura para la audiencia LGBT: dos hombres riendo juntos en un bar',
+  } as L,
+
   adsMakeH: {
     en: 'I made the ads too, and that is where the next product came from.',
     es: 'También hice los anuncios, y de ahí salió el siguiente producto.',
@@ -655,6 +672,15 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
       <div class="out">
         <h3>{t(copy.adsMakeH, lang)}</h3>
         {tl(copy.adsMake, lang).map((p) => <p>{p}</p>)}
+
+        <figure class="ads">
+          <div class="ad-row">
+            <img src={asset(base, 'images/luxura-ad-men.jpg')} alt={t(copy.adsAlt, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+            <img src={asset(base, 'images/luxura-ad-women.jpg')} alt={t(copy.adsAlt2, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+            <img src={asset(base, 'images/luxura-ad-lgbt.jpg')} alt={t(copy.adsAlt3, lang)} loading="lazy" decoding="async" width="720" height="1280" />
+          </div>
+          <figcaption>{t(copy.adsCap, lang)}</figcaption>
+        </figure>
       </div>
     </section>
 
