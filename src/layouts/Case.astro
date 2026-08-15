@@ -19,6 +19,7 @@ import Base from './Base.astro';
 import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
 import type { Lang, L, LList } from '../i18n/types';
 import { ui } from '../i18n/ui';
+import { projects } from '../data/projects';
 import '../styles/reset.css';
 
 interface Props {
@@ -26,6 +27,15 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+/* The inventory and the infrastructure call are read from the project data
+   rather than retyped here, so the card, the CV and this page can never drift
+   apart again. Everything else on this page is written for this page.
+   Declared after Astro.props: a statement above `interface Props` stops Astro
+   associating it, and `lang` silently degrades to any. */
+const luxura = projects.find((p) => p.id === 'luxura')!;
+const infraCall = luxura.decisions[0];
+
 const base = import.meta.env.BASE_URL;
 const other = OTHER_LANG[lang];
 const altHref = langPath(base, other, 'work/luxura');
@@ -484,6 +494,14 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
 <span class="c">// three of those swaps happened on a single day: 2026-03-14</span></pre>
 
         <div class="call"><b>{t(copy.otpT, lang)}</b><p>{t(copy.otpB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls ./built</h2>
+      <div class="out">
+        <ul class="tree">{tl(luxura.built, lang).map((b) => <li>{b}</li>)}</ul>
+        <div class="call"><b>{t(infraCall.title, lang)}</b><p>{t(infraCall.body, lang)}</p></div>
       </div>
     </section>
 
@@ -1032,6 +1050,28 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
   }
   tr:last-child td {
     border-bottom: 0;
+  }
+
+  /* The inventory reads as a file tree, matching the work list on the home
+     page. It is a list of things that exist, so it should look like one. */
+  .tree {
+    list-style: none;
+    padding-left: 0 !important;
+    display: grid;
+    gap: 0.2rem;
+  }
+  .tree li {
+    margin-bottom: 0;
+    padding-left: 3.2rem;
+    text-indent: -3.2rem;
+  }
+  .tree li::before {
+    content: '  ├─ ';
+    color: var(--dim);
+    white-space: pre;
+  }
+  .tree li:last-child::before {
+    content: '  └─ ';
   }
 
   .lessons {

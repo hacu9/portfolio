@@ -80,7 +80,7 @@ const rawProjects: Project[] = [
       en: 'Founder and technical lead — backend, infrastructure, monetization and paid acquisition, with Victor on design and front-end',
       es: 'Fundador y líder técnico — backend, infraestructura, monetización y pauta, con Victor en diseño y front-end',
     },
-    period: '2025-2026',
+    period: '2026',
     lead: true,
     url: 'https://play.google.com/store/apps/details?id=app.luxura.dating',
     urlLabel: { en: 'See it on Google Play', es: 'Verla en Google Play' },
