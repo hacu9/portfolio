@@ -77,8 +77,8 @@ const rawProjects: Project[] = [
       es: 'Producción en Google Play, tras pruebas cerradas',
     },
     role: {
-      en: 'Founder and technical lead: backend, infrastructure, monetization and paid acquisition, with Victor on design and front-end',
-      es: 'Fundador y líder técnico: backend, infraestructura, monetización y pauta, con Victor en diseño y front-end',
+      en: 'Founder and technical lead: backend, infrastructure, monetization and paid acquisition, with Victor on design',
+      es: 'Fundador y líder técnico: backend, infraestructura, monetización y pauta, con Victor en diseño',
     },
     period: '2026',
     lead: true,
@@ -117,7 +117,7 @@ const rawProjects: Project[] = [
         'Live face verification in the browser: gesture liveness check matched against profile photos with AWS Rekognition',
         'Real-time chat over Socket.IO on a custom Node server, with 37 scheduled and event-driven background jobs behind it',
         'Full Google Play release pipeline, 12 testers for 14 days in closed testing, then production',
-        'Brand identity, logo, and Play Store assets in a dark-and-gold direction',
+        'Play Store listing, store assets and the release itself, to Victor\'s dark-and-gold design direction',
       ],
       es: [
         'App web en Next.js empaquetada con Capacitor para el release de Android',
@@ -128,7 +128,7 @@ const rawProjects: Project[] = [
         'Verificación facial en vivo en el navegador: prueba de gestos contrastada contra las fotos del perfil con AWS Rekognition',
         'Chat en tiempo real sobre Socket.IO en un servidor Node propio, con 37 jobs programados y por evento detrás',
         'Pipeline completo de release en Google Play, 12 testers por 14 días en prueba cerrada, luego producción',
-        'Identidad de marca, logo y assets de Play Store en una dirección oscura con dorado',
+        'Ficha y assets de Play Store y el release, sobre la dirección de diseño oscura con dorado de Victor',
       ],
     },
     decisions: [

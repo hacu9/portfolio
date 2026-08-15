@@ -68,10 +68,57 @@ const copy = {
     en: 'Founder, technical lead: product, backend, infrastructure, growth',
     es: 'Fundador y líder técnico: producto, backend, infraestructura, crecimiento',
   } as L,
-  designK: { en: 'Design & front-end', es: 'Diseño y front-end' } as L,
+  designK: { en: 'Design', es: 'Diseño' } as L,
   windowK: { en: 'Build window', es: 'Ventana de construcción' } as L,
   runsK: { en: 'Runs on', es: 'Corre en' } as L,
   runsV: { en: 'One Hetzner box, Coolify, Docker', es: 'Una máquina Hetzner, Coolify, Docker' } as L,
+
+  originH: {
+    en: 'It started as an observation, and a friend who cared how it looked.',
+    es: 'Empezó como una observación, y un amigo al que le importaba cómo se veía.',
+  } as L,
+  origin: {
+    en: [
+      'Dating apps were missing a lot. The experience felt cheap and the incentives were wrong. But a few apps had already validated the better model, where one side invites and the other side chooses, so the idea was not the risk. The execution was.',
+      'I asked myself why I could not build a better one. It began as a small project and turned into something I could not put down. Victor designed it with me, screen by screen: the login, the profile cards, the landing pages, the dark and gold direction the whole thing still runs on. We went slowly on purpose. The goal was never the most features. It was something that felt good to use and looked like somebody had cared.',
+    ],
+    es: [
+      'A las apps de citas les faltaba mucho. La experiencia se sentía barata y los incentivos estaban mal. Pero unas cuantas ya habían validado el modelo mejor, donde un lado invita y el otro elige, así que la idea no era el riesgo. La ejecución sí.',
+      'Me pregunté por qué no podía construir una mejor. Empezó como un proyecto chico y se volvió algo que no pude soltar. Victor lo diseñó conmigo, pantalla por pantalla: el login, las tarjetas de perfil, las landing, la dirección oscura con dorado sobre la que todavía corre todo. Fuimos despacio a propósito. El objetivo nunca fue tener más funciones. Era algo que se sintiera bien de usar y que se viera cuidado.',
+    ],
+  } as LList,
+
+  appH: {
+    en: 'A website was fine. Most users wanted an app.',
+    es: 'Una web estaba bien. La mayoría quería una app.',
+  } as L,
+  app: {
+    en: [
+      'That was the first fork and I did not know the answer. React Native? Something else? Then I found Capacitor and it changed how I build. The web app and the Android app became one artifact, one codebase, one deploy, as long as I stayed disciplined about responsive layout and wired up the native plugins for push, GPS and the camera myself.',
+      'Then came the questions nobody warns you about. Publishing to Google Play is not a button. It is two weeks of mandatory closed testing with fourteen testers before you are allowed near production. Payments were another: RevenueCat for store subscriptions, and no web payments at all in the first release, because one billing surface was enough to get wrong. iOS I deferred and never shipped. The Capacitor target is in the repo. Android is where this market is.',
+      'One consequence is still my favourite thing about the build. The shell loads the web app live from my server, so a JavaScript change reaches every installed phone on the next deploy. A store release is only needed when native code changes.',
+    ],
+    es: [
+      'Ese fue el primer bifurcación y no sabía la respuesta. ¿React Native? ¿Otra cosa? Entonces encontré Capacitor y cambió mi forma de construir. La web y la app de Android pasaron a ser un solo artefacto, un repo, un deploy, siempre que fuera disciplinado con el layout responsive y conectara yo mismo los plugins nativos de push, GPS y cámara.',
+      'Después llegaron las preguntas de las que nadie te avisa. Publicar en Google Play no es un botón. Son dos semanas de pruebas cerradas obligatorias con catorce testers antes de que te dejen acercarte a producción. Los pagos fueron otra: RevenueCat para las suscripciones de tienda, y cero pagos web en el primer release, porque una sola superficie de cobro ya era suficiente para equivocarse. iOS lo dejé para después y nunca salió. El target de Capacitor está en el repo. Android es donde está este mercado.',
+      'Una consecuencia sigue siendo lo que más me gusta del build. El shell carga la web en vivo desde mi servidor, así que un cambio de JavaScript llega a todos los teléfonos instalados en el siguiente deploy. Solo se necesita un release de tienda cuando cambia código nativo.',
+    ],
+  } as LList,
+
+  adsMakeH: {
+    en: 'I made the ads too, and that is where the next product came from.',
+    es: 'También hice los anuncios, y de ahí salió el siguiente producto.',
+  } as L,
+  adsMake: {
+    en: [
+      'Nobody was going to hand me creative. Video came out of Kling with motion control. Voiceovers were recorded and then swapped through Cartesia and ElevenLabs until the register sounded like Bogotá rather than a translation. Several social accounts got posted to and answered by hand, every day, on top of the build.',
+      'That is the work that produced Storía, and it is covered on its own page.',
+    ],
+    es: [
+      'Nadie me iba a entregar creativos. El video salía de Kling con control de movimiento. Las locuciones se grababan y luego se cambiaban con Cartesia y ElevenLabs hasta que el registro sonara a Bogotá y no a traducción. Varias cuentas sociales se publicaban y se respondían a mano, todos los días, encima del build.',
+      'Ese es el trabajo del que salió Storía, y tiene su propia página.',
+    ],
+  } as LList,
 
   readmeH: {
     en: 'Open dating apps drown in low-effort volume.',
@@ -262,11 +309,11 @@ const copy = {
   end: {
     en: [
       'Luxura is live and people use it. The product side held. The day I paused ads, signups fell 83% and messages fell 11%. What I could not sustain was the spend that keeps the top of the funnel alive, at two paying subscribers against $800.',
-      'Making those ads is what changed the direction. I was generating video with Kling and motion control, swapping voices through Cartesia and ElevenLabs, and running several social accounts by hand every day, until the obvious question arrived: why am I doing this manually? That question, plus friends running small retail shops who could not keep up with their own customer messages, is where Storía came from. I built it in four days that February, in the middle of this.',
+      'The ad work above is what changed the direction. Somewhere in the daily tending of those accounts I asked why I was doing it by hand, and friends running small shops turned out to have the same problem from the other side, drowning in messages they could not answer. That is where Storía came from. I built it in four days that February, in the middle of this.',
     ],
     es: [
       'Luxura está viva y la gente la usa. El lado producto aguantó. El día que apagué la pauta, los registros cayeron 83% y los mensajes 11%. Lo que no pude sostener fue el gasto que mantiene viva la parte alta del embudo, con dos suscriptores pagos contra $800.',
-      'Hacer esos anuncios fue lo que cambió la dirección. Estaba generando video con Kling y control de movimiento, cambiando voces con Cartesia y ElevenLabs, y manejando varias cuentas sociales a mano todos los días, hasta que llegó la pregunta obvia: ¿por qué estoy haciendo esto manualmente? Esa pregunta, más unos amigos con tiendas pequeñas que no daban abasto con sus propios mensajes, es de donde salió Storía. La construí en cuatro días de ese febrero, en medio de todo esto.',
+      'El trabajo de anuncios de arriba es lo que cambió la dirección. En algún punto de atender esas cuentas a diario me pregunté por qué lo hacía a mano, y unos amigos con tiendas pequeñas resultaron tener el mismo problema del otro lado, ahogados en mensajes que no alcanzaban a contestar. De ahí salió Storía. La construí en cuatro días de ese febrero, en medio de todo esto.',
     ],
   } as LList,
 
@@ -372,6 +419,22 @@ const shots = [
       </div>
       <figcaption>{t(copy.shotsCap, lang)}</figcaption>
     </figure>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat ORIGIN.md</h2>
+      <div class="out">
+        <h3>{t(copy.originH, lang)}</h3>
+        {tl(copy.origin, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat platform.md</h2>
+      <div class="out">
+        <h3>{t(copy.appH, lang)}</h3>
+        {tl(copy.app, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
 
     <section class="blk">
       <h2 class="cmd">$ cat README.md</h2>
@@ -584,6 +647,14 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
         <p>{t(copy.methodLede, lang)}</p>
         <ul>{tl(copy.method, lang).map((m) => <li>{m}</li>)}</ul>
         <p class="foot">{t(copy.methodFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls ./ad-creative</h2>
+      <div class="out">
+        <h3>{t(copy.adsMakeH, lang)}</h3>
+        {tl(copy.adsMake, lang).map((p) => <p>{p}</p>)}
       </div>
     </section>
 

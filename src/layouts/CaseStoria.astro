@@ -76,14 +76,27 @@ const copy = {
   } as L,
   origin: {
     en: [
-      'While I was paying for ads on a dating app, I was also generating its ad creative, swapping voices for the voiceovers, and answering several social accounts by hand every day. That last part was the one nobody would ever pay me for and the one that took the most hours.',
-      'A few friends run small retail shops in Bogotá. They had the same problem with the other end of the funnel: the messages arrive and somebody has to answer them, in the evening, on Sundays, faster than the shop down the street. Storía is that observation with a schema under it.',
-      'The four days below sit inside the same February that Luxura launched in, not after it, and nothing has been committed since. What this needs next is one shop using it, not more surface area. The gaps at the bottom of this page are what four days bought.',
+      'In February I was running paid ads for Luxura, the dating app I had just launched, and I was also making the ads myself. I generated the video in Kling, using motion control to get the camera moves I wanted. For the voiceovers I recorded a take and then swapped the voice with Cartesia or ElevenLabs until it fit the ad. Then I posted. Instagram, Facebook, several profiles, every day, by hand. I uploaded the creative, wrote the captions, and answered whatever came back in the inboxes. The generation took minutes. The tending ate the day.',
+      'Somewhere in that grind I asked myself why I was doing all of this by hand. Around the same time some friends of mine, small retail shop owners here in Bogotá, told me they could not keep up with their WhatsApp. Customers wrote at all hours asking for prices and photos, and the messages sat unanswered until the customer bought somewhere else. I was drowning in outbound social work and they were drowning in inbound customer messages, and it was the same drowning. One person, several channels, no time. So Storía started with their half of it: an agent that reads the real catalogue, sends the photos, answers in Spanish, and hands the conversation to a human when it should.',
     ],
     es: [
-      'Mientras pagaba pauta para una app de citas, también estaba generando sus creativos, cambiando voces para las locuciones, y respondiendo varias cuentas sociales a mano todos los días. Esa última parte era la que nadie me iba a pagar y la que más horas se llevaba.',
-      'Unos amigos tienen tiendas pequeñas en Bogotá. Tenían el mismo problema en el otro extremo del embudo: los mensajes llegan y alguien tiene que contestarlos, de noche, los domingos, más rápido que la tienda de al lado. Storía es esa observación con un esquema debajo.',
-      'Los cuatro días de abajo caen dentro del mismo febrero en que salió Luxura, no después, y no se ha commiteado nada desde entonces. Lo que esto necesita ahora es una tienda usándolo, no más superficie. Las brechas al final de esta página son lo que compraron cuatro días.',
+      'En febrero estaba pautando para Luxura, la app de citas que acababa de lanzar, y también hacía los anuncios yo mismo. El video lo generaba en Kling, con control de movimiento para sacar los movimientos de cámara que quería. Para las locuciones grababa una toma y después cambiaba la voz con Cartesia o ElevenLabs hasta que encajara con el anuncio. Después publicaba. Instagram, Facebook, varios perfiles, todos los días, a mano. Subía el creativo, escribía los textos, y contestaba lo que llegara a las bandejas. Generar tomaba minutos. Atender se comía el día.',
+      'En algún punto de esa rutina me pregunté por qué estaba haciendo todo esto a mano. Por esos mismos días unos amigos míos, dueños de tiendas pequeñas acá en Bogotá, me dijeron que no daban abasto con su WhatsApp. Los clientes escribían a toda hora pidiendo precios y fotos, y los mensajes se quedaban sin respuesta hasta que el cliente compraba en otro lado. Yo me estaba ahogando en trabajo social de salida y ellos se estaban ahogando en mensajes de entrada, y era el mismo ahogo. Una persona, varios canales, cero tiempo. Así que Storía arrancó por la mitad de ellos: un agente que lee el catálogo real, manda las fotos, contesta en español, y le pasa la conversación a una persona cuando debe.',
+    ],
+  } as LList,
+
+  positionH: {
+    en: 'Storía is a prototype.',
+    es: 'Storía es un prototipo.',
+  } as L,
+  position: {
+    en: [
+      'I built it in four days in mid February, in the same month Luxura launched, and I have not committed to it since. There are 54 commits, 25 Prisma models, 10 agent tools, and one test file. No shop has run it. Nobody has paid for it. The code can score a lead and book an appointment, and none of that has faced a real customer yet.',
+      'What the project needs next is one shop in Bogotá running it on their actual WhatsApp line for a month, so I can find out which of the 49,000 lines matter and which were guesses. Until that happens, more features would just be more guesses.',
+    ],
+    es: [
+      'La construí en cuatro días a mediados de febrero, el mismo mes en que salió Luxura, y no he commiteado desde entonces. Hay 54 commits, 25 modelos de Prisma, 10 herramientas de agente, y un archivo de test. Ninguna tienda la ha corrido. Nadie ha pagado por ella. El código puede puntuar un lead y agendar una cita, y nada de eso se ha enfrentado a un cliente real todavía.',
+      'Lo que el proyecto necesita ahora es una tienda en Bogotá corriéndolo en su línea real de WhatsApp durante un mes, para averiguar cuáles de las 49.000 líneas importan y cuáles eran suposiciones. Hasta que eso pase, más funciones serían solo más suposiciones.',
     ],
   } as LList,
 
@@ -475,6 +488,14 @@ const thread = [
         <h3>{t(copy.methodH, lang)}</h3>
         <ul>{tl(copy.method, lang).map((m) => <li>{m}</li>)}</ul>
         <p class="foot">{t(copy.methodFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat STATUS.md</h2>
+      <div class="out">
+        <h3>{t(copy.positionH, lang)}</h3>
+        {tl(copy.position, lang).map((p) => <p>{p}</p>)}
       </div>
     </section>
 

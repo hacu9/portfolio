@@ -64,7 +64,7 @@ export const timeline: TimelineEntry[] = [
     },
     highlights: {
       en: [
-        'Shipped Luxura to Google Play production alone: build, infrastructure, payments, moderation, store release, and the ad campaigns.',
+        'Shipped Luxura to Google Play production as the only engineer: build, infrastructure, payments, moderation, store release, and the ad campaigns. Victor designed it.',
         'Moved off managed platforms onto a single VPS I operate, taking back the database, the workers, and the hosting bill.',
         'Ran paid acquisition personally across Meta, TikTok, and Google: campaign structure, creative, attribution, and the cost per acquired user.',
         'Delivered growth and measurement strategy as a contract engagement for a medical marketplace.',
@@ -73,7 +73,7 @@ export const timeline: TimelineEntry[] = [
       // only claims ownership of the bill. Aligned to the English, nothing here
       // may assert more than the record does.
       es: [
-        'Publiqué Luxura en producción en Google Play yo solo: build, infraestructura, pagos, moderación, release y campañas.',
+        'Publiqué Luxura en producción en Google Play como único ingeniero: build, infraestructura, pagos, moderación, release y campañas. Victor lo diseñó.',
         'Salí de las plataformas administradas hacia un único VPS que opero yo, recuperando la base de datos, los workers y la factura del hosting.',
         'Manejé la pauta personalmente en Meta, TikTok y Google: estructura de campañas, creativos, atribución y costo por usuario adquirido.',
         'Entregué estrategia de crecimiento y medición como contrato para un marketplace médico.',
