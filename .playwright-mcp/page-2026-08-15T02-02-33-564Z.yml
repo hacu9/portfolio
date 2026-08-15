@@ -1,0 +1,52 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]: ~/hero-bakeoff
+    - generic [ref=e4]:
+      - button "EN" [ref=e5] [cursor=pointer]
+      - button "ES" [ref=e6] [cursor=pointer]
+      - button "◐" [ref=e7] [cursor=pointer]
+  - paragraph [ref=e8]: "Four complete heroes, each a different bet. Read only the black area: that is what a recruiter sees in the first six seconds. The notes under each one are for you, not for the page."
+  - article [ref=e9]:
+    - paragraph [ref=e10]: A · scars
+    - generic [ref=e11]:
+      - generic [ref=e12]: henry@bogota:~$ whoami Senior Full-Stack Engineer · 8+ years henry@bogota:~$ cat positioning.txt
+      - heading "Ask me what broke." [level=1] [ref=e13]
+      - paragraph [ref=e14]: Luxura is live on Google Play. I wrote it, I own the box it runs on, and I buy every user who installs it.
+      - paragraph [ref=e15]: henry@bogota:~$
+      - paragraph [ref=e17]: Bogotá, Colombia · Remote-first · US clients · UTC−5
+    - generic [ref=e18]:
+      - paragraph [ref=e19]: The bet. The headline opens a loop and nothing closes it. The reader has to write to you to find out. Your current line, with the menu deleted rather than rewritten.
+      - paragraph [ref=e20]: What it costs. The hero is still one hundred percent Luxura. The enterprise and AI work stays below the fold.
+  - article [ref=e21]:
+    - paragraph [ref=e22]: B · stay
+    - generic [ref=e23]:
+      - generic [ref=e24]: henry@bogota:~$ whoami Senior Full-Stack Engineer · 8+ years henry@bogota:~$ cat positioning.txt
+      - heading "I don't hand things off." [level=1] [ref=e25]
+      - paragraph [ref=e26]: "Luxura is live on Google Play: my code, my server, my ad budget. Microsoft enterprise systems, a multi-agent AI platform, a safety product with real-time alerts. Four domains that share nothing, and I stayed to run every one."
+      - paragraph [ref=e27]: henry@bogota:~$
+      - paragraph [ref=e29]: Bogotá, Colombia · Remote-first · US clients · UTC−5
+    - generic [ref=e30]:
+      - paragraph [ref=e31]: The bet. States how you work instead of what you shipped. It is true of all four domains, and "stays to operate it" is the thing a hiring manager is actually screening for. Listed in profile.ts as an alternate already.
+      - paragraph [ref=e32]: What it costs. A negative construction, and it is an assertion until the lede pays it off one line later.
+  - article [ref=e33]:
+    - paragraph [ref=e34]: C · cost
+    - generic [ref=e35]:
+      - generic [ref=e36]: henry@bogota:~$ whoami Senior Full-Stack Engineer · 8+ years henry@bogota:~$ cat positioning.txt
+      - heading "Ask me what it cost." [level=1] [ref=e37]
+      - paragraph [ref=e38]: Luxura is live on Google Play. I wrote it, I own the server it runs on, and I buy every user who installs it, so every architecture decision comes back to me with a price on it.
+      - paragraph [ref=e39]: henry@bogota:~$
+      - paragraph [ref=e41]: Bogotá, Colombia · Remote-first · US clients · UTC−5
+    - generic [ref=e42]:
+      - paragraph [ref=e43]: The bet. Keeps the interrogative hook, points it at the one claim almost no other candidate can make. "Broke" is a familiar move now that every engineer writes postmortems. "Cost" is not.
+      - paragraph [ref=e44]: What it costs. A reader who stops at the headline may file it as budget talk before the lede resolves it into architecture.
+  - article [ref=e45]:
+    - paragraph [ref=e46]: D · genre
+    - generic [ref=e47]:
+      - generic [ref=e48]: henry@bogota:~$ whoami Senior Full-Stack Engineer · 8+ years henry@bogota:~$ cat positioning.txt
+      - heading "Nothing here is a demo." [level=1] [ref=e49]
+      - paragraph [ref=e50]: Microsoft enterprise systems, a multi-agent AI platform, a dating app I run on Google Play, a safety product with real-time alerts. Four domains that share nothing. Every one went to production, and I stayed to operate it.
+      - paragraph [ref=e51]: henry@bogota:~$
+      - paragraph [ref=e53]: Bogotá, Colombia · Remote-first · US clients · UTC−5
+    - generic [ref=e54]:
+      - paragraph [ref=e55]: The bet. Attacks the format instead of describing you. Every other portfolio on the pile is demos. This is the only option where the hero is not an ad for one app, which is the structural problem under all of this.
+      - paragraph [ref=e56]: What it costs. Three projects carry status "building". A hostile reader can argue with the word "nothing", and you lose the concrete shipped artifact from the first line.
