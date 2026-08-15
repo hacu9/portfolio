@@ -18,7 +18,7 @@ export interface TimelineEntry {
  * Employment, not projects. A portfolio that shows only products reads as a
  * side-project page; the roles are what make it a career.
  *
- * Feb–Jul 2021 is unaccounted for and stays that way. A five-month gap five
+ * Feb to Jul 2021 is unaccounted for and stays that way. A five-month gap five
  * years ago needs no story, and filler would be worse than the gap. If Henry
  * would rather not show it, config.COARSE_TIMELINE_DATES collapses the column
  * to years without asserting anything untrue.

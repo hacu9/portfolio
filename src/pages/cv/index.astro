@@ -165,7 +165,7 @@ const study = timeline.filter((e) => e.kind === 'education');
           {
             study.map((e) => (
               <li>
-                <strong>{t(e.role, lang)}</strong>, {e.org} ({e.from}–{e.to})
+                <strong>{t(e.role, lang)}</strong>, {e.org} ({e.from} to {e.to})
               </li>
             ))
           }

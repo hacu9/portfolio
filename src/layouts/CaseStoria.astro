@@ -4,7 +4,7 @@
  *
  * Same terminal, one directory over, in violet. Structure comes from
  * src/styles/case.css; this file is the palette, the content, and the one
- * component that only exists here — the conversation thread.
+ * component that only exists here: the conversation thread.
  *
  * That thread is the argument. Six lines of Spanish a customer would never
  * think twice about, and underneath them the retrieval, the de-duplication
@@ -37,8 +37,8 @@ const luxuraHref = langPath(base, lang, 'work/luxura');
 
 const copy = {
   title: {
-    en: 'Storía teardown — Henry Cabello',
-    es: 'Storía, por dentro — Henry Cabello',
+    en: 'Storía teardown · Henry Cabello',
+    es: 'Storía, por dentro · Henry Cabello',
   } as L,
   description: {
     en: 'A multi-tenant AI sales agent on WhatsApp, Messenger, Instagram and the phone line. Four days of build, and an honest list of what it still does not have.',
@@ -47,14 +47,14 @@ const copy = {
   back: { en: 'back to ./work', es: 'volver a ./work' } as L,
   status: { en: 'In development', es: 'En desarrollo' } as L,
   lede: {
-    en: 'A multi-tenant platform that gives a Colombian business an AI sales agent on WhatsApp, Messenger, Instagram and the phone line — one that reads the real catalogue, sends the photos, books the visit, and hands off to a human the moment it should. Spanish first. Built solo, end to end.',
-    es: 'Una plataforma multi-tenant que le da a un negocio colombiano un agente de ventas con IA en WhatsApp, Messenger, Instagram y la línea telefónica — uno que lee el catálogo real, manda las fotos, agenda la visita, y le pasa la conversación a una persona en el momento en que debe. Español primero. Construido solo, de punta a punta.',
+    en: 'A multi-tenant platform that gives a Colombian business an AI sales agent on WhatsApp, Messenger, Instagram and the phone line. One that reads the real catalogue, sends the photos, books the visit, and hands off to a human the moment it should. Spanish first. Built solo, end to end.',
+    es: 'Una plataforma multi-tenant que le da a un negocio colombiano un agente de ventas con IA en WhatsApp, Messenger, Instagram y la línea telefónica. Uno que lee el catálogo real, manda las fotos, agenda la visita, y le pasa la conversación a una persona en el momento en que debe. Español primero. Construido solo, de punta a punta.',
   } as L,
 
   roleK: { en: 'Role', es: 'Rol' } as L,
   roleV: {
-    en: 'Sole engineer — product, schema, AI, front-end, mobile',
-    es: 'Único ingeniero — producto, esquema, IA, front-end, móvil',
+    en: 'Sole engineer: product, schema, AI, front-end, mobile',
+    es: 'Único ingeniero: producto, esquema, IA, front-end, móvil',
   } as L,
   builtK: { en: 'Build window', es: 'Ventana de construcción' } as L,
   builtV: { en: '2026-02-12 → 2026-02-15', es: '2026-02-12 → 2026-02-15' } as L,
@@ -76,11 +76,11 @@ const copy = {
   } as L,
   origin: {
     en: [
-      'While I was buying traffic for a dating app, I was also generating its ad creative, swapping voices for the voiceovers, and answering several social accounts by hand every day. That last part was the one nobody would ever pay me for and the one that took the most hours.',
+      'While I was paying for ads on a dating app, I was also generating its ad creative, swapping voices for the voiceovers, and answering several social accounts by hand every day. That last part was the one nobody would ever pay me for and the one that took the most hours.',
       'A few friends run small retail shops in Bogotá. They had the same problem with the other end of the funnel: the messages arrive and somebody has to answer them, in the evening, on Sundays, faster than the shop down the street. Storía is that observation with a schema under it.',
     ],
     es: [
-      'Mientras compraba tráfico para una app de citas, también estaba generando sus creativos, cambiando voces para las locuciones, y respondiendo varias cuentas sociales a mano todos los días. Esa última parte era la que nadie me iba a pagar y la que más horas se llevaba.',
+      'Mientras pagaba pauta para una app de citas, también estaba generando sus creativos, cambiando voces para las locuciones, y respondiendo varias cuentas sociales a mano todos los días. Esa última parte era la que nadie me iba a pagar y la que más horas se llevaba.',
       'Unos amigos tienen tiendas pequeñas en Bogotá. Tenían el mismo problema en el otro extremo del embudo: los mensajes llegan y alguien tiene que contestarlos, de noche, los domingos, más rápido que la tienda de al lado. Storía es esa observación con un esquema debajo.',
     ],
   } as LList,
@@ -91,14 +91,14 @@ const copy = {
   } as L,
   problem: {
     en: [
-      'Small and mid-size businesses here do not sell through a website checkout. They sell through a phone. A Facebook Marketplace listing, an Instagram story, a printed sign — every one of them funnels into the same WhatsApp inbox, and someone has to answer "¿todavía lo tienen?" forty times a day.',
+      'Small and mid-size businesses here do not sell through a website checkout. They sell through a phone. A Facebook Marketplace listing, an Instagram story, a printed sign. Every one of them funnels into the same WhatsApp inbox, and someone has to answer "¿todavía lo tienen?" forty times a day.',
       'Off-the-shelf chatbots fail here for three specific reasons. They are decision trees, so they collapse the moment a customer deviates. They are translated from English, so they sound like a call centre reading a script, and a Colombian buyer reads that instantly as a scam. And they are blind to the actual inventory: they cannot tell you whether the blue one in size M is left.',
-      'The bet: give the model real tools instead of a flowchart. Let it search a real catalogue, send real photos, write to a real CRM, and escalate to a real person — and spend the prompt budget on sounding like somebody from Bogotá rather than on rules.',
+      'The bet: give the model real tools instead of a flowchart. Let it search a real catalogue, send real photos, write to a real CRM, and escalate to a real person, and spend the prompt budget on sounding like somebody from Bogotá rather than on rules.',
     ],
     es: [
-      'Las pymes de acá no venden por un checkout web. Venden por un teléfono. Un anuncio de Facebook Marketplace, una historia de Instagram, un aviso impreso — todos desembocan en la misma bandeja de WhatsApp, y alguien tiene que contestar "¿todavía lo tienen?" cuarenta veces al día.',
+      'Las pymes de acá no venden por un checkout web. Venden por un teléfono. Un anuncio de Facebook Marketplace, una historia de Instagram, un aviso impreso. Todos desembocan en la misma bandeja de WhatsApp, y alguien tiene que contestar "¿todavía lo tienen?" cuarenta veces al día.',
       'Los chatbots de caja fallan acá por tres razones concretas. Son árboles de decisión, así que se caen apenas el cliente se sale del guion. Están traducidos del inglés, así que suenan a call center leyendo un libreto, y un comprador colombiano lee eso al instante como una estafa. Y son ciegos al inventario real: no pueden decirte si queda el azul en talla M.',
-      'La apuesta: darle al modelo herramientas reales en vez de un diagrama de flujo. Que busque en un catálogo real, mande fotos reales, escriba en un CRM real, y escale a una persona real — y gastar el presupuesto del prompt en sonar como alguien de Bogotá, no en reglas.',
+      'La apuesta: darle al modelo herramientas reales en vez de un diagrama de flujo. Que busque en un catálogo real, mande fotos reales, escriba en un CRM real, y escale a una persona real, y gastar el presupuesto del prompt en sonar como alguien de Bogotá, no en reglas.',
     ],
   } as LList,
 
@@ -116,8 +116,8 @@ const copy = {
     es: 'Hice del multi-tenant una regla del esquema y no una convención',
   } as L,
   tenantB: {
-    en: 'Every one of the 25 models carries an organizationId, every query goes through one tenant helper, and every foreign key is indexed. The pgvector similarity searches are the only place raw SQL is allowed, and those filter on organizationId in the WHERE clause before the distance operator ever runs — so one tenant\'s embeddings can never rank against another\'s. A convention would have been a leak waiting for the first tired afternoon.',
-    es: 'Cada uno de los 25 modelos lleva un organizationId, cada consulta pasa por un solo helper de tenant, y cada llave foránea está indexada. Las búsquedas por similitud con pgvector son el único lugar donde se permite SQL crudo, y esas filtran por organizationId en el WHERE antes de que corra el operador de distancia — así los embeddings de un tenant nunca pueden rankear contra los de otro. Una convención habría sido una fuga esperando la primera tarde de cansancio.',
+    en: 'Every one of the 25 models carries an organizationId, every query goes through one tenant helper, and every foreign key is indexed. The pgvector similarity searches are the only place raw SQL is allowed, and those filter on organizationId in the WHERE clause before the distance operator ever runs, so one tenant\'s embeddings can never rank against another\'s. A convention would have been a leak waiting for the first tired afternoon.',
+    es: 'Cada uno de los 25 modelos lleva un organizationId, cada consulta pasa por un solo helper de tenant, y cada llave foránea está indexada. Las búsquedas por similitud con pgvector son el único lugar donde se permite SQL crudo, y esas filtran por organizationId en el WHERE antes de que corra el operador de distancia, así los embeddings de un tenant nunca pueden rankear contra los de otro. Una convención habría sido una fuga esperando la primera tarde de cansancio.',
   } as L,
 
   learnT: {
@@ -125,8 +125,8 @@ const copy = {
     es: 'Dejé que el agente aprenda solo de conversaciones que terminaron en venta',
   } as L,
   learnB: {
-    en: 'When a conversation ends, a cheap model extracts a structured insight — intent, what worked, what failed, an outcome type and a score — validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter is the whole idea: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures.',
-    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado — intención, qué funcionó, qué falló, un tipo de resultado y un puntaje — validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es toda la idea: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos.',
+    en: 'When a conversation ends, a cheap model extracts a structured insight (intent, what worked, what failed, an outcome type and a score), validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter is the whole idea: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures.',
+    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado (intención, qué funcionó, qué falló, un tipo de resultado y un puntaje), validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es toda la idea: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos.',
   } as L,
 
   searchT: {
@@ -143,8 +143,8 @@ const copy = {
     es: 'Escribí el modelo de amenazas antes del código de seguridad, porque la superficie de ataque es un número público',
   } as L,
   secB: {
-    en: 'Anyone can message the bot and every message costs money. Twelve modules sit in front of and behind the model: prompt-injection detection, content filtering, sliding-window rate limits with adaptive tightening, a per-tenant token budget, a circuit breaker on the AI provider, webhook de-duplication and freshness, PII redaction on the way out. Images get scanned too — instructions embedded in a photo bypass every text-based filter, which is a current attack class rather than a hypothetical.',
-    es: 'Cualquiera puede escribirle al bot y cada mensaje cuesta plata. Doce módulos se sientan delante y detrás del modelo: detección de inyección de prompts, filtrado de contenido, rate limits de ventana deslizante con endurecimiento adaptativo, presupuesto de tokens por tenant, circuit breaker sobre el proveedor de IA, de-duplicación y frescura de webhooks, redacción de datos personales a la salida. Las imágenes también se escanean — instrucciones incrustadas en una foto esquivan todo filtro de texto, y eso es una clase de ataque actual, no una hipótesis.',
+    en: 'Anyone can message the bot and every message costs money. Twelve modules sit in front of and behind the model: prompt-injection detection, content filtering, sliding-window rate limits with adaptive tightening, a per-tenant token budget, a circuit breaker on the AI provider, webhook de-duplication and freshness, PII redaction on the way out. Images get scanned too. Instructions embedded in a photo bypass every text-based filter, which is a current attack class rather than a hypothetical.',
+    es: 'Cualquiera puede escribirle al bot y cada mensaje cuesta plata. Doce módulos se sientan delante y detrás del modelo: detección de inyección de prompts, filtrado de contenido, rate limits de ventana deslizante con endurecimiento adaptativo, presupuesto de tokens por tenant, circuit breaker sobre el proveedor de IA, de-duplicación y frescura de webhooks, redacción de datos personales a la salida. Las imágenes también se escanean. Instrucciones incrustadas en una foto esquivan todo filtro de texto, y eso es una clase de ataque actual, no una hipótesis.',
   } as L,
 
   fmtT: {
@@ -152,8 +152,8 @@ const copy = {
     es: 'Le di los únicos tests al módulo aburrido',
   } as L,
   fmtB: {
-    en: 'The model writes standard markdown. WhatsApp wants single asterisks. Messenger renders nothing through the API. Instagram renders nothing and truncates at 1,000 characters. Voice needs the punctuation stripped before text-to-speech. So there is a formatter per channel, and it is the only module in the repo with unit tests — because regex that rewrites nested emphasis without eating code blocks is exactly the code that breaks silently and takes a week to notice.',
-    es: 'El modelo escribe markdown estándar. WhatsApp quiere un solo asterisco. Messenger no renderiza nada por la API. Instagram no renderiza nada y corta a los 1.000 caracteres. La voz necesita la puntuación limpia antes del text-to-speech. Así que hay un formateador por canal, y es el único módulo del repo con tests unitarios — porque un regex que reescribe énfasis anidado sin comerse los bloques de código es justo el código que se rompe en silencio y toma una semana en notarse.',
+    en: 'The model writes standard markdown. WhatsApp wants single asterisks. Messenger renders nothing through the API. Instagram renders nothing and truncates at 1,000 characters. Voice needs the punctuation stripped before text-to-speech. So there is a formatter per channel, and it is the only module in the repo with unit tests, because regex that rewrites nested emphasis without eating code blocks is exactly the code that breaks silently and takes a week to notice.',
+    es: 'El modelo escribe markdown estándar. WhatsApp quiere un solo asterisco. Messenger no renderiza nada por la API. Instagram no renderiza nada y corta a los 1.000 caracteres. La voz necesita la puntuación limpia antes del text-to-speech. Así que hay un formateador por canal, y es el único módulo del repo con tests unitarios, porque un regex que reescribe énfasis anidado sin comerse los bloques de código es justo el código que se rompe en silencio y toma una semana en notarse.',
   } as L,
 
   imgT: {
@@ -196,12 +196,12 @@ const copy = {
   } as L,
   method: {
     en: [
-      'A 1,045-line specification, written first. Data model, phases, API contracts, open questions — settled before the first line of application code.',
+      'A 1,045-line specification, written first. Data model, phases, API contracts, open questions, all settled before the first line of application code.',
       'Standing constraints in the repo. Server components by default, every query tenant-scoped, schema validation on every external input, webhooks return 200 then queue, the cheap model for classification and the expensive one only for customers.',
       'A decision log written to be argued with: provider comparisons, the threat model, a speech-synthesis bake-off.',
     ],
     es: [
-      'Una especificación de 1.045 líneas, escrita primero. Modelo de datos, fases, contratos de API, preguntas abiertas — resueltas antes de la primera línea de código de aplicación.',
+      'Una especificación de 1.045 líneas, escrita primero. Modelo de datos, fases, contratos de API, preguntas abiertas, todas resueltas antes de la primera línea de código de aplicación.',
       'Restricciones permanentes en el repo. Server components por defecto, cada consulta acotada al tenant, validación de esquema en cada entrada externa, los webhooks responden 200 y luego encolan, el modelo barato para clasificar y el caro solo para clientes.',
       'Un registro de decisiones escrito para que se le discuta: comparaciones de proveedores, el modelo de amenazas, una prueba comparativa de síntesis de voz.',
     ],
@@ -223,13 +223,13 @@ const copy = {
   lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
   lessons: {
     en: [
-      'Test the orchestrator from the first hour. Not the UI — the tool-calling loop. It has the most branches, the most money attached and the least determinism, and it is exactly the code an agent will confidently break during a refactor. The formatter got tests because I got burned once; the orchestrator should have had them first.',
+      'Test the orchestrator from the first hour. Not the UI. The tool-calling loop. It has the most branches, the most money attached and the least determinism, and it is exactly the code an agent will confidently break during a refactor. The formatter got tests because I got burned once; the orchestrator should have had them first.',
       'Verify the payment rails before the schema. Stripe survived six hours and cost a migration to unwind, because it does not onboard Colombian merchants. A fifteen-minute check would have caught it before a single model was named after it.',
       'Write the threat model on day one, not day three. Day three worked and the implementation followed it faithfully, but it meant retrofitting a security guard into an orchestrator that had already grown past a thousand lines, and the seams show.',
       'Ship one channel to one real business before building five. The breadth is genuinely useful and it is also the reason there are no pilot numbers on this page. A single Bogotá shop on WhatsApp alone would have taught me more than Instagram and voice combined.',
     ],
     es: [
-      'Testear el orquestador desde la primera hora. No la interfaz — el ciclo de llamado a herramientas. Tiene la mayor cantidad de ramas, la mayor cantidad de plata encima y la menor determinación, y es justo el código que un agente va a romper con toda confianza durante un refactor. El formateador tiene tests porque me quemé una vez; el orquestador debió tenerlos primero.',
+      'Testear el orquestador desde la primera hora. No la interfaz. El ciclo de llamado a herramientas. Tiene la mayor cantidad de ramas, la mayor cantidad de plata encima y la menor determinación, y es justo el código que un agente va a romper con toda confianza durante un refactor. El formateador tiene tests porque me quemé una vez; el orquestador debió tenerlos primero.',
       'Verificar los rieles de pago antes del esquema. Stripe sobrevivió seis horas y costó una migración deshacerlo, porque no da de alta comercios colombianos. Un chequeo de quince minutos lo habría atrapado antes de que un solo modelo llevara su nombre.',
       'Escribir el modelo de amenazas el día uno, no el día tres. El día tres funcionó y la implementación lo siguió con fidelidad, pero significó meterle un guardia de seguridad a un orquestador que ya había pasado las mil líneas, y las costuras se notan.',
       'Sacar un canal a un negocio real antes de construir cinco. La amplitud sirve de verdad y también es la razón por la que no hay números de piloto en esta página. Una sola tienda de Bogotá en WhatsApp me habría enseñado más que Instagram y voz juntos.',
@@ -440,7 +440,7 @@ const thread = [
               <tr>
                 <td class="hi">Wompi</td>
                 <td>Stripe</td>
-                <td>{lang === 'es' ? 'Stripe no da de alta comercios colombianos. Esto se construyó sobre Stripe primero y se arrancó el mismo día — el commit es el recibo.' : 'Stripe does not onboard Colombian merchants. This was built on Stripe first and ripped out the same day — the commit is the receipt.'}</td>
+                <td>{lang === 'es' ? 'Stripe no da de alta comercios colombianos. Esto se construyó sobre Stripe primero y se arrancó el mismo día, y el commit es el recibo.' : 'Stripe does not onboard Colombian merchants. This was built on Stripe first and ripped out the same day, and the commit is the receipt.'}</td>
               </tr>
               <tr>
                 <td class="hi">Capacitor</td>

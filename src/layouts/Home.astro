@@ -59,13 +59,13 @@ const boot =
         'henry@bogota:~$ cat positioning.txt',
       ];
 
-/** "Jul 2021 to Present" / "jul 2021 – actualidad", per the page language. */
+/** "Jul 2021 to Present" / "jul 2021 a actualidad", per the page language. */
 const when = (e: (typeof timeline)[number]): string => {
   if (COARSE_TIMELINE_DATES) return e.yearsOnly;
   const from = lang === 'es' ? esDate(e.from) : e.from;
   const to =
     e.to === 'Present' ? t(presentLabel, lang) : lang === 'es' ? esDate(e.to) : e.to;
-  return lang === 'es' ? `${from} – ${to}` : `${from} to ${to}`;
+  return lang === 'es' ? `${from} a ${to}` : `${from} to ${to}`;
 };
 ---
 

@@ -15,7 +15,7 @@
 export const REVEAL_CLIENT_NAMES = false;
 
 /**
- * The career table has an unexplained five-month gap (Feb–Jul 2021). Leaving it
+ * The career table has an unexplained five-month gap (Feb to Jul 2021). Leaving it
  * visible is the honest default: a short gap five years ago needs no story, and
  * inventing filler is worse than the gap. Set this to true to collapse the
  * timeline to years only, which hides it without stating anything false.

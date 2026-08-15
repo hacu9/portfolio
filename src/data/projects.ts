@@ -77,8 +77,8 @@ const rawProjects: Project[] = [
       es: 'Producción en Google Play, tras pruebas cerradas',
     },
     role: {
-      en: 'Founder and technical lead — backend, infrastructure, monetization and paid acquisition, with Victor on design and front-end',
-      es: 'Fundador y líder técnico — backend, infraestructura, monetización y pauta, con Victor en diseño y front-end',
+      en: 'Founder and technical lead: backend, infrastructure, monetization and paid acquisition, with Victor on design and front-end',
+      es: 'Fundador y líder técnico: backend, infraestructura, monetización y pauta, con Victor en diseño y front-end',
     },
     period: '2026',
     lead: true,
@@ -113,7 +113,7 @@ const rawProjects: Project[] = [
         'Phone OTP I own end to end: my own codes table, rate limiting and an SMS circuit breaker, with Infobip primary and Twilio as fallback',
         'RevenueCat paywall and subscription handling',
         'AppsFlyer and RevenueCat attribution, wired to Meta Pixel and the Conversions API',
-        'Photo and video moderation as a four-provider cascade — self-hosted, Azure, Google Cloud Vision, Sightengine — with a perceptual-hash memory of every rejection',
+        'Photo and video moderation as a four-provider cascade (self-hosted, Azure, Google Cloud Vision, Sightengine) with a perceptual-hash memory of every rejection',
         'Live face verification in the browser: gesture liveness check matched against profile photos with AWS Rekognition',
         'Real-time chat over Socket.IO on a custom Node server, with 37 scheduled and event-driven background jobs behind it',
         'Full Google Play release pipeline, 12 testers for 14 days in closed testing, then production',
@@ -124,7 +124,7 @@ const rawProjects: Project[] = [
         'OTP por SMS de punta a punta: tabla de códigos propia, rate limiting y circuit breaker, con Infobip como principal y Twilio de respaldo',
         'Paywall y suscripciones con RevenueCat',
         'Atribución con AppsFlyer y RevenueCat, conectada a Meta Pixel y la Conversions API',
-        'Moderación de fotos y video en cascada de cuatro proveedores — self-hosted, Azure, Google Cloud Vision, Sightengine — con memoria de cada rechazo por hash perceptual',
+        'Moderación de fotos y video en cascada de cuatro proveedores (self-hosted, Azure, Google Cloud Vision, Sightengine) con memoria de cada rechazo por hash perceptual',
         'Verificación facial en vivo en el navegador: prueba de gestos contrastada contra las fotos del perfil con AWS Rekognition',
         'Chat en tiempo real sobre Socket.IO en un servidor Node propio, con 37 jobs programados y por evento detrás',
         'Pipeline completo de release en Google Play, 12 testers por 14 días en prueba cerrada, luego producción',
@@ -148,8 +148,8 @@ const rawProjects: Project[] = [
           es: 'Dejé de buscar proveedor de SMS y me hice dueño del flujo de OTP',
         },
         body: {
-          en: 'The OTP screen went through six provider configurations in eight weeks — SNS, then Twilio Verify, raw Twilio, Firebase Phone Auth, Plivo — each swap driven by Colombian carrier delivery, per-message cost, or an error surface I could not control. Nothing else in the app matters if the first screen leaks users, and I was treating that as a procurement problem. The fix was structural: my own codes table, my own rate limiting, a circuit breaker, and the provider reduced to a config value. Infobip is primary today with Twilio behind it, and swapping primary now takes a day instead of a sprint.',
-          es: 'La pantalla de OTP pasó por seis configuraciones de proveedor en ocho semanas — SNS, luego Twilio Verify, Twilio directo, Firebase Phone Auth, Plivo — y cada cambio salió de la entrega de las operadoras colombianas, del costo por mensaje, o de una superficie de error que no controlaba. Nada más en la app importa si la primera pantalla pierde usuarios, y yo lo estaba tratando como un problema de compras. El arreglo fue estructural: tabla de códigos propia, rate limiting propio, un circuit breaker, y el proveedor reducido a un valor de configuración. Hoy Infobip es el principal con Twilio detrás, y cambiar de principal toma un día en vez de un sprint.',
+          en: 'The OTP screen went through six provider configurations in eight weeks (SNS, then Twilio Verify, raw Twilio, Firebase Phone Auth, Plivo), each swap driven by Colombian carrier delivery, per-message cost, or an error surface I could not control. Nothing else in the app matters if the first screen leaks users, and I was treating that as a procurement problem. The fix was structural: my own codes table, my own rate limiting, a circuit breaker, and the provider reduced to a config value. Infobip is primary today with Twilio behind it, and swapping primary now takes a day instead of a sprint.',
+          es: 'La pantalla de OTP pasó por seis configuraciones de proveedor en ocho semanas (SNS, luego Twilio Verify, Twilio directo, Firebase Phone Auth, Plivo), y cada cambio salió de la entrega de las operadoras colombianas, del costo por mensaje, o de una superficie de error que no controlaba. Nada más en la app importa si la primera pantalla pierde usuarios, y yo lo estaba tratando como un problema de compras. El arreglo fue estructural: tabla de códigos propia, rate limiting propio, un circuit breaker, y el proveedor reducido a un valor de configuración. Hoy Infobip es el principal con Twilio detrás, y cambiar de principal toma un día en vez de un sprint.',
         },
       },
       {
@@ -164,8 +164,8 @@ const rawProjects: Project[] = [
       },
     ],
     outcome: {
-      en: 'Live on Google Play. I buy the traffic myself, so every architecture decision comes back to me priced per user. This is not a portfolio piece, it is a product I operate.',
-      es: 'Publicada en Google Play. Yo compro el tráfico, así que cada decisión de arquitectura me vuelve con un precio por usuario. Esto no es una pieza de portafolio, es un producto que opero.',
+      en: 'Live on Google Play. I pay for the ads myself, so every architecture decision comes back to me with a price per signup attached. This is not a portfolio piece, it is a product I operate.',
+      es: 'Publicada en Google Play. Yo pago la pauta, así que cada decisión de arquitectura me vuelve con un precio por registro encima. Esto no es una pieza de portafolio, es un producto que opero.',
     },
     stack: [
       'Next.js', 'TypeScript', 'Capacitor', 'PostgreSQL', 'Prisma', 'Hetzner',
@@ -187,8 +187,8 @@ const rawProjects: Project[] = [
     lead: true,
     caseSlug: 'work/storia',
     summary: {
-      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit — across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
-      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita — en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
+      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
+      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
     },
     problem: {
       en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',

@@ -3,7 +3,7 @@
  * A project that has a teardown page.
  *
  * The work list is a directory listing you unfold. A project with somewhere to
- * go should not be a drawer — it should be one target you click. The `ls` row
+ * go should not be a drawer, it should be one target you click. The `ls` row
  * survives as the card's own header so the metaphor holds, and the summary
  * does the inviting that `problem` is too argumentative to do.
  *
@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL;
 
 <article class="card">
   <a class="card-hit" href={langPath(base, lang, p.caseSlug!)}>
-    <span class="visually-hidden">{projectName(p, lang)} — {t(ui.readCase, lang)}</span>
+    <span class="visually-hidden">{projectName(p, lang)}: {t(ui.readCase, lang)}</span>
   </a>
 
   {
