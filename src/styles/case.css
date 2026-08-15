@@ -628,35 +628,77 @@
   cursor: zoom-in;
 }
 .case-zoom {
+  /* Full viewport, transparent, and the figure is centred inside it. The
+     image is capped on BOTH axes so it always fits on one screen, and it
+     carries no width:100%, so a small asset renders at its own size instead
+     of being upscaled into blur. */
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
   padding: 0;
   border: 0;
   background: transparent;
-  max-width: 100vw;
-  max-height: 100vh;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
 }
+.case-zoom[open] {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  justify-items: center;
+  gap: clamp(0.25rem, 2vw, 1rem);
+  padding: 0 clamp(0.25rem, 2vw, 1rem);
+}
 .case-zoom::backdrop {
-  background: rgb(0 0 0 / 0.82);
-  backdrop-filter: blur(3px);
+  background: rgb(0 0 0 / 0.86);
+  backdrop-filter: blur(4px);
+}
+.case-zoom figure {
+  grid-column: 2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
 }
 .case-zoom img {
   display: block;
-  margin: auto;
-  max-width: min(1600px, 96vw);
-  width: 100%;
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
   height: auto;
-  border-radius: 8px;
+  object-fit: contain;
+  border-radius: 10px;
   cursor: zoom-out;
 }
-.case-zoom .close {
+.case-zoom figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  max-width: min(46rem, 92vw);
+  color: rgb(255 255 255 / 0.72);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: left;
+}
+.zoom-count {
+  flex: none;
+  color: rgb(255 255 255 / 0.5);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+}
+.zoom-cap:empty,
+.zoom-count:empty {
+  display: none;
+}
+.case-zoom .zoom-close {
   position: fixed;
   top: 0.8rem;
   right: 1rem;
   z-index: 2;
-  font: inherit;
   font-family: var(--mono);
   font-size: 0.75rem;
   letter-spacing: 0.1em;
@@ -668,17 +710,48 @@
   padding: 0.3rem 0.8rem;
   cursor: pointer;
 }
-.case-zoom .close:hover {
-  background: rgb(0 0 0 / 0.8);
+.case-zoom .zoom-close:hover {
+  background: rgb(0 0 0 / 0.85);
 }
-.case-zoom .close:focus-visible {
+.case-zoom .zoom-nav {
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: #fff;
+  background: rgb(0 0 0 / 0.45);
+  border: 1px solid rgb(255 255 255 / 0.28);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.case-zoom .zoom-nav:hover {
+  background: rgb(0 0 0 / 0.85);
+}
+.case-zoom .zoom-nav.prev { grid-column: 1; }
+.case-zoom .zoom-nav.next { grid-column: 3; }
+.case-zoom .zoom-nav[hidden] { display: none; }
+.case-zoom .zoom-close:focus-visible,
+.case-zoom .zoom-nav:focus-visible {
   outline: 2px solid #fff;
   outline-offset: 2px;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .case-zoom[open] img {
-    animation: zoom-in 0.22s cubic-bezier(0.2, 0.8, 0.3, 1) both;
-  }
+@media (max-width: 640px) {
+  /* No room for side rails on a phone: the arrows sit over the bottom of
+     the image rather than stealing width from it. */
+  .case-zoom[open] { grid-template-columns: 1fr; }
+  .case-zoom figure { grid-column: 1; }
+  .case-zoom .zoom-nav { position: fixed; bottom: 1.1rem; }
+  .case-zoom .zoom-nav.prev { left: 1.1rem; }
+  .case-zoom .zoom-nav.next { right: 1.1rem; }
+}
+.case-zoom[open] img {
+  animation: zoom-in 0.22s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-zoom[open] img { animation: none; }
 }
 @keyframes zoom-in {
   from { opacity: 0; transform: scale(0.97); }
