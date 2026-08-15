@@ -1,0 +1,677 @@
+---
+/**
+ * The Storía teardown.
+ *
+ * Same terminal, one directory over, in violet. Structure comes from
+ * src/styles/case.css; this file is the palette, the content, and the one
+ * component that only exists here — the conversation thread.
+ *
+ * That thread is the argument. Six lines of Spanish a customer would never
+ * think twice about, and underneath them the retrieval, the de-duplication
+ * and the CRM write that had to happen for those six lines to be unremarkable.
+ * A screenshot of a dashboard would say far less.
+ *
+ * Figures verified against the repo in August 2026, not copied from the
+ * earlier write-up, which had drifted low on line count.
+ */
+import Base from './Base.astro';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath } from '../i18n/types';
+import type { Lang, L, LList } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import '../styles/reset.css';
+import '../styles/case.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const other = OTHER_LANG[lang];
+const altHref = langPath(base, other, 'work/storia');
+const indexHref = langPath(base, lang);
+const workHref = `${langPath(base, lang)}#work`;
+const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
+const luxuraHref = langPath(base, lang, 'work/luxura');
+
+const copy = {
+  title: {
+    en: 'Storía teardown — Henry Cabello',
+    es: 'Storía, por dentro — Henry Cabello',
+  } as L,
+  description: {
+    en: 'A multi-tenant AI sales agent on WhatsApp, Messenger, Instagram and the phone line. Four days of build, and an honest list of what it still does not have.',
+    es: 'Un agente de ventas con IA multi-tenant en WhatsApp, Messenger, Instagram y la línea telefónica. Cuatro días de construcción, y una lista honesta de lo que todavía le falta.',
+  } as L,
+  back: { en: 'back to ./work', es: 'volver a ./work' } as L,
+  status: { en: 'In development', es: 'En desarrollo' } as L,
+  lede: {
+    en: 'A multi-tenant platform that gives a Colombian business an AI sales agent on WhatsApp, Messenger, Instagram and the phone line — one that reads the real catalogue, sends the photos, books the visit, and hands off to a human the moment it should. Spanish first. Built solo, end to end.',
+    es: 'Una plataforma multi-tenant que le da a un negocio colombiano un agente de ventas con IA en WhatsApp, Messenger, Instagram y la línea telefónica — uno que lee el catálogo real, manda las fotos, agenda la visita, y le pasa la conversación a una persona en el momento en que debe. Español primero. Construido solo, de punta a punta.',
+  } as L,
+
+  roleK: { en: 'Role', es: 'Rol' } as L,
+  roleV: {
+    en: 'Sole engineer — product, schema, AI, front-end, mobile',
+    es: 'Único ingeniero — producto, esquema, IA, front-end, móvil',
+  } as L,
+  builtK: { en: 'Build window', es: 'Ventana de construcción' } as L,
+  builtV: { en: '2026-02-12 → 2026-02-15', es: '2026-02-12 → 2026-02-15' } as L,
+  fromK: { en: 'Came out of', es: 'Salió de' } as L,
+  stageK: { en: 'Stage', es: 'Etapa' } as L,
+  stageV: {
+    en: 'Working system, no pilot yet',
+    es: 'Sistema funcionando, sin piloto todavía',
+  } as L,
+
+  threadNote: {
+    en: 'Behind those six lines: referral context from the Marketplace listing · hybrid product search (SQL filters + tsvector + pgvector) · three images sent and de-duplicated · lead scored and written to the CRM · appointment flagged for the human inbox.',
+    es: 'Detrás de esas seis líneas: contexto de referencia del anuncio de Marketplace · búsqueda híbrida de productos (filtros SQL + tsvector + pgvector) · tres imágenes enviadas y de-duplicadas · lead puntuado y escrito en el CRM · cita marcada para la bandeja humana.',
+  } as L,
+
+  originH: {
+    en: 'It started as the chore at the bottom of another product.',
+    es: 'Empezó como la tarea de más abajo de otro producto.',
+  } as L,
+  origin: {
+    en: [
+      'While I was buying traffic for a dating app, I was also generating its ad creative, swapping voices for the voiceovers, and answering several social accounts by hand every day. That last part was the one nobody would ever pay me for and the one that took the most hours.',
+      'A few friends run small retail shops in Bogotá. They had the same problem with the other end of the funnel: the messages arrive and somebody has to answer them, in the evening, on Sundays, faster than the shop down the street. Storía is that observation with a schema under it.',
+    ],
+    es: [
+      'Mientras compraba tráfico para una app de citas, también estaba generando sus creativos, cambiando voces para las locuciones, y respondiendo varias cuentas sociales a mano todos los días. Esa última parte era la que nadie me iba a pagar y la que más horas se llevaba.',
+      'Unos amigos tienen tiendas pequeñas en Bogotá. Tenían el mismo problema en el otro extremo del embudo: los mensajes llegan y alguien tiene que contestarlos, de noche, los domingos, más rápido que la tienda de al lado. Storía es esa observación con un esquema debajo.',
+    ],
+  } as LList,
+
+  problemH: {
+    en: 'In Colombia, the storefront is a WhatsApp number.',
+    es: 'En Colombia, la vitrina es un número de WhatsApp.',
+  } as L,
+  problem: {
+    en: [
+      'Small and mid-size businesses here do not sell through a website checkout. They sell through a phone. A Facebook Marketplace listing, an Instagram story, a printed sign — every one of them funnels into the same WhatsApp inbox, and someone has to answer "¿todavía lo tienen?" forty times a day.',
+      'Off-the-shelf chatbots fail here for three specific reasons. They are decision trees, so they collapse the moment a customer deviates. They are translated from English, so they sound like a call centre reading a script, and a Colombian buyer reads that instantly as a scam. And they are blind to the actual inventory: they cannot tell you whether the blue one in size M is left.',
+      'The bet: give the model real tools instead of a flowchart. Let it search a real catalogue, send real photos, write to a real CRM, and escalate to a real person — and spend the prompt budget on sounding like somebody from Bogotá rather than on rules.',
+    ],
+    es: [
+      'Las pymes de acá no venden por un checkout web. Venden por un teléfono. Un anuncio de Facebook Marketplace, una historia de Instagram, un aviso impreso — todos desembocan en la misma bandeja de WhatsApp, y alguien tiene que contestar "¿todavía lo tienen?" cuarenta veces al día.',
+      'Los chatbots de caja fallan acá por tres razones concretas. Son árboles de decisión, así que se caen apenas el cliente se sale del guion. Están traducidos del inglés, así que suenan a call center leyendo un libreto, y un comprador colombiano lee eso al instante como una estafa. Y son ciegos al inventario real: no pueden decirte si queda el azul en talla M.',
+      'La apuesta: darle al modelo herramientas reales en vez de un diagrama de flujo. Que busque en un catálogo real, mande fotos reales, escriba en un CRM real, y escale a una persona real — y gastar el presupuesto del prompt en sonar como alguien de Bogotá, no en reglas.',
+    ],
+  } as LList,
+
+  pathH: {
+    en: 'One inbound message, end to end.',
+    es: 'Un mensaje entrante, de punta a punta.',
+  } as L,
+  pathLede: {
+    en: 'One Next.js codebase plus a separate worker process. Webhooks acknowledge in milliseconds and do nothing else; everything expensive happens in a queued job, which is what keeps Meta from de-registering the webhook under load.',
+    es: 'Un solo repo de Next.js más un proceso worker aparte. Los webhooks confirman en milisegundos y no hacen nada más; todo lo caro ocurre en un job encolado, que es lo que evita que Meta dé de baja el webhook bajo carga.',
+  } as L,
+
+  tenantT: {
+    en: 'Made multi-tenancy a schema rule instead of a convention',
+    es: 'Hice del multi-tenant una regla del esquema y no una convención',
+  } as L,
+  tenantB: {
+    en: 'Every one of the 25 models carries an organizationId, every query goes through one tenant helper, and every foreign key is indexed. The pgvector similarity searches are the only place raw SQL is allowed, and those filter on organizationId in the WHERE clause before the distance operator ever runs — so one tenant\'s embeddings can never rank against another\'s. A convention would have been a leak waiting for the first tired afternoon.',
+    es: 'Cada uno de los 25 modelos lleva un organizationId, cada consulta pasa por un solo helper de tenant, y cada llave foránea está indexada. Las búsquedas por similitud con pgvector son el único lugar donde se permite SQL crudo, y esas filtran por organizationId en el WHERE antes de que corra el operador de distancia — así los embeddings de un tenant nunca pueden rankear contra los de otro. Una convención habría sido una fuga esperando la primera tarde de cansancio.',
+  } as L,
+
+  learnT: {
+    en: 'Let the agent learn only from conversations that ended in a sale',
+    es: 'Dejé que el agente aprenda solo de conversaciones que terminaron en venta',
+  } as L,
+  learnB: {
+    en: 'When a conversation ends, a cheap model extracts a structured insight — intent, what worked, what failed, an outcome type and a score — validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter is the whole idea: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures.',
+    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado — intención, qué funcionó, qué falló, un tipo de resultado y un puntaje — validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es toda la idea: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos.',
+  } as L,
+
+  searchT: {
+    en: 'Built one search endpoint that survives both kinds of question',
+    es: 'Construí un solo endpoint de búsqueda que aguanta los dos tipos de pregunta',
+  } as L,
+  searchB: {
+    en: '"Algo elegante para una fiesta" and "zapatos Nike talla 42 menos de 300 mil" hit the same code. One query combines typed-column filters, JSONB custom attributes, tag arrays, Postgres full-text and vector cosine similarity. It degrades rather than breaks: a product with no embedding yet silently falls back to text search instead of returning nothing, because returning nothing to a buyer is how you lose them.',
+    es: '"Algo elegante para una fiesta" y "zapatos Nike talla 42 menos de 300 mil" llegan al mismo código. Una consulta combina filtros por columna tipada, atributos JSONB personalizados, arreglos de tags, full-text de Postgres y similitud coseno por vectores. Degrada en vez de romperse: un producto sin embedding cae en silencio a búsqueda por texto en vez de devolver nada, porque devolverle nada a un comprador es como lo pierdes.',
+  } as L,
+
+  secT: {
+    en: 'Wrote the threat model before the security code, because the attack surface is a public phone number',
+    es: 'Escribí el modelo de amenazas antes del código de seguridad, porque la superficie de ataque es un número público',
+  } as L,
+  secB: {
+    en: 'Anyone can message the bot and every message costs money. Twelve modules sit in front of and behind the model: prompt-injection detection, content filtering, sliding-window rate limits with adaptive tightening, a per-tenant token budget, a circuit breaker on the AI provider, webhook de-duplication and freshness, PII redaction on the way out. Images get scanned too — instructions embedded in a photo bypass every text-based filter, which is a current attack class rather than a hypothetical.',
+    es: 'Cualquiera puede escribirle al bot y cada mensaje cuesta plata. Doce módulos se sientan delante y detrás del modelo: detección de inyección de prompts, filtrado de contenido, rate limits de ventana deslizante con endurecimiento adaptativo, presupuesto de tokens por tenant, circuit breaker sobre el proveedor de IA, de-duplicación y frescura de webhooks, redacción de datos personales a la salida. Las imágenes también se escanean — instrucciones incrustadas en una foto esquivan todo filtro de texto, y eso es una clase de ataque actual, no una hipótesis.',
+  } as L,
+
+  fmtT: {
+    en: 'Gave the one module with tests to the boring one',
+    es: 'Le di los únicos tests al módulo aburrido',
+  } as L,
+  fmtB: {
+    en: 'The model writes standard markdown. WhatsApp wants single asterisks. Messenger renders nothing through the API. Instagram renders nothing and truncates at 1,000 characters. Voice needs the punctuation stripped before text-to-speech. So there is a formatter per channel, and it is the only module in the repo with unit tests — because regex that rewrites nested emphasis without eating code blocks is exactly the code that breaks silently and takes a week to notice.',
+    es: 'El modelo escribe markdown estándar. WhatsApp quiere un solo asterisco. Messenger no renderiza nada por la API. Instagram no renderiza nada y corta a los 1.000 caracteres. La voz necesita la puntuación limpia antes del text-to-speech. Así que hay un formateador por canal, y es el único módulo del repo con tests unitarios — porque un regex que reescribe énfasis anidado sin comerse los bloques de código es justo el código que se rompe en silencio y toma una semana en notarse.',
+  } as L,
+
+  imgT: {
+    en: 'Spent longer teaching the model to describe reality than fixing the bug',
+    es: 'Gasté más tiempo enseñándole al modelo a describir la realidad que arreglando el bug',
+  } as L,
+  imgB: {
+    en: 'The agent can send product images. Naively that means re-sending the same three photos every time the customer mentions the product again, which reads as broken and costs money on every send. The fix is a set of already-sent URLs assembled from the conversation history. The hard part was the sentence after it: when images are filtered out, the tool result has to tell the model explicitly that none will go out, or it cheerfully promises photos that never arrive.',
+    es: 'El agente puede mandar imágenes de producto. Ingenuamente eso significa reenviar las mismas tres fotos cada vez que el cliente vuelve a mencionar el producto, lo que se lee como algo roto y cuesta plata en cada envío. El arreglo es un conjunto de URLs ya enviadas, armado desde el historial de la conversación. Lo difícil fue la frase siguiente: cuando las imágenes se filtran, el resultado de la herramienta tiene que decirle al modelo explícitamente que no va a salir ninguna, o promete alegremente fotos que nunca llegan.',
+  } as L,
+
+  voiceH: {
+    en: 'The prompt is the product.',
+    es: 'El prompt es el producto.',
+  } as L,
+  voice: {
+    en: [
+      'The highest-leverage file in this repo is not code. It is the research on why chatbots sound like chatbots, and the prompt builder that acts on it. A Colombian buyer abandons the conversation the second it smells automated, so "sounds human" is a functional requirement with revenue attached.',
+    ],
+    es: [
+      'El archivo de mayor apalancamiento en este repo no es código. Es la investigación sobre por qué los chatbots suenan a chatbot, y el constructor de prompts que actúa sobre ella. Un comprador colombiano abandona la conversación en el segundo en que huele a automatizado, así que "suena humano" es un requisito funcional con ingresos encima.',
+    ],
+  } as LList,
+  voiceList: {
+    en: [
+      'Persona before rules. The system prompt opens with who the agent is and closes with constraints, not the other way round. A character stays consistent; a rule-follower is merely compliant.',
+      'An explicit list of what never to do. No introducing itself as a virtual assistant. No repeating the question back. No bullet points, because nobody sends a bulleted list on WhatsApp. No hedging: if the price is in the knowledge base, say it like a salesperson would.',
+      'Tone presets carry worked examples, not adjectives. "Friendly" as a keyword produces nothing. A short sample exchange in the right register produces the register.',
+    ],
+    es: [
+      'Persona antes que reglas. El system prompt abre con quién es el agente y cierra con las restricciones, no al revés. Un personaje se mantiene consistente; alguien que sigue reglas apenas cumple.',
+      'Una lista explícita de lo que nunca se hace. No presentarse como asistente virtual. No repetir la pregunta. Nada de viñetas, porque nadie manda una lista con viñetas por WhatsApp. Nada de titubeos: si el precio está en la base de conocimiento, se dice como lo diría un vendedor.',
+      'Los presets de tono llevan ejemplos trabajados, no adjetivos. "Amigable" como palabra clave no produce nada. Un intercambio corto de muestra en el registro correcto produce el registro.',
+    ],
+  } as LList,
+
+  methodH: {
+    en: 'Four days is only possible with three artefacts.',
+    es: 'Cuatro días solo son posibles con tres artefactos.',
+  } as L,
+  method: {
+    en: [
+      'A 1,045-line specification, written first. Data model, phases, API contracts, open questions — settled before the first line of application code.',
+      'Standing constraints in the repo. Server components by default, every query tenant-scoped, schema validation on every external input, webhooks return 200 then queue, the cheap model for classification and the expensive one only for customers.',
+      'A decision log written to be argued with: provider comparisons, the threat model, a speech-synthesis bake-off.',
+    ],
+    es: [
+      'Una especificación de 1.045 líneas, escrita primero. Modelo de datos, fases, contratos de API, preguntas abiertas — resueltas antes de la primera línea de código de aplicación.',
+      'Restricciones permanentes en el repo. Server components por defecto, cada consulta acotada al tenant, validación de esquema en cada entrada externa, los webhooks responden 200 y luego encolan, el modelo barato para clasificar y el caro solo para clientes.',
+      'Un registro de decisiones escrito para que se le discuta: comparaciones de proveedores, el modelo de amenazas, una prueba comparativa de síntesis de voz.',
+    ],
+  } as LList,
+  methodFoot: {
+    en: 'What that buys is not typing speed. It is that 54 commits and 49,000 lines still read like one person with one opinion.',
+    es: 'Lo que eso compra no es velocidad de tecleo. Es que 54 commits y 49.000 líneas todavía se lean como una sola persona con una sola opinión.',
+  } as L,
+
+  gapsH: {
+    en: 'What this does not have.',
+    es: 'Lo que esto no tiene.',
+  } as L,
+  gapsLede: {
+    en: 'Storía is a working system with real integrations, not a finished company. Leaving this section out would be the least credible thing on the page.',
+    es: 'Storía es un sistema funcionando con integraciones reales, no una empresa terminada. Omitir esta sección sería lo menos creíble de la página.',
+  } as L,
+
+  lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
+  lessons: {
+    en: [
+      'Test the orchestrator from the first hour. Not the UI — the tool-calling loop. It has the most branches, the most money attached and the least determinism, and it is exactly the code an agent will confidently break during a refactor. The formatter got tests because I got burned once; the orchestrator should have had them first.',
+      'Verify the payment rails before the schema. Stripe survived six hours and cost a migration to unwind, because it does not onboard Colombian merchants. A fifteen-minute check would have caught it before a single model was named after it.',
+      'Write the threat model on day one, not day three. Day three worked and the implementation followed it faithfully, but it meant retrofitting a security guard into an orchestrator that had already grown past a thousand lines, and the seams show.',
+      'Ship one channel to one real business before building five. The breadth is genuinely useful and it is also the reason there are no pilot numbers on this page. A single Bogotá shop on WhatsApp alone would have taught me more than Instagram and voice combined.',
+    ],
+    es: [
+      'Testear el orquestador desde la primera hora. No la interfaz — el ciclo de llamado a herramientas. Tiene la mayor cantidad de ramas, la mayor cantidad de plata encima y la menor determinación, y es justo el código que un agente va a romper con toda confianza durante un refactor. El formateador tiene tests porque me quemé una vez; el orquestador debió tenerlos primero.',
+      'Verificar los rieles de pago antes del esquema. Stripe sobrevivió seis horas y costó una migración deshacerlo, porque no da de alta comercios colombianos. Un chequeo de quince minutos lo habría atrapado antes de que un solo modelo llevara su nombre.',
+      'Escribir el modelo de amenazas el día uno, no el día tres. El día tres funcionó y la implementación lo siguió con fidelidad, pero significó meterle un guardia de seguridad a un orquestador que ya había pasado las mil líneas, y las costuras se notan.',
+      'Sacar un canal a un negocio real antes de construir cinco. La amplitud sirve de verdad y también es la razón por la que no hay números de piloto en esta página. Una sola tienda de Bogotá en WhatsApp me habría enseñado más que Instagram y voz juntos.',
+    ],
+  } as LList,
+} as const;
+
+const gaps: { what: L; why: L }[] = [
+  {
+    what: { en: 'A test suite', es: 'Una suite de tests' },
+    why: {
+      en: 'One test file, the channel formatter. The runner is installed and otherwise unused. This is the single biggest gap, and the honest reason is that four days went to surface area instead of confidence.',
+      es: 'Un archivo de test, el formateador de canales. El runner está instalado y por lo demás sin usar. Es la brecha más grande, y la razón honesta es que cuatro días se fueron en superficie en vez de en confianza.',
+    },
+  },
+  {
+    what: { en: 'CI/CD', es: 'CI/CD' },
+    why: {
+      en: 'No pipeline. No automated build, lint or deploy gate. Deployment is manual, to a single box.',
+      es: 'Sin pipeline. Sin build, lint ni compuerta de despliegue automatizados. El despliegue es manual, a una sola máquina.',
+    },
+  },
+  {
+    what: { en: 'Error monitoring', es: 'Monitoreo de errores' },
+    why: {
+      en: 'In the plan and not in the code. Production errors currently surface as console output.',
+      es: 'Está en el plan y no en el código. Los errores de producción hoy salen como output de consola.',
+    },
+  },
+  {
+    what: { en: 'Paying customers', es: 'Clientes que paguen' },
+    why: {
+      en: 'No pilot has run yet. Every number on this page is about the system, not about revenue or retention, and I would rather say so than imply otherwise.',
+      es: 'Todavía no ha corrido ningún piloto. Cada número de esta página es sobre el sistema, no sobre ingresos ni retención, y prefiero decirlo que insinuar lo contrario.',
+    },
+  },
+  {
+    what: { en: 'Load evidence', es: 'Evidencia de carga' },
+    why: {
+      en: 'The queue architecture is designed for concurrency and has never been proven under it. No load test exists.',
+      es: 'La arquitectura de colas está diseñada para concurrencia y nunca se ha probado bajo ella. No existe prueba de carga.',
+    },
+  },
+  {
+    what: { en: 'iOS', es: 'iOS' },
+    why: {
+      en: 'Android only. Capacitor makes iOS mostly a build-config problem, but "mostly" is doing work in that sentence.',
+      es: 'Solo Android. Capacitor hace de iOS sobre todo un problema de configuración de build, pero "sobre todo" está trabajando mucho en esa frase.',
+    },
+  },
+];
+
+const thread = [
+  { side: 'in', es: 'Hola, vi el iPhone en Marketplace. ¿Todavía lo tienen?' },
+  { side: 'out', es: 'Sí señor, todavía está. El 13 Pro de 256, en $2.850.000.' },
+  { side: 'in', es: '¿Tiene garantía? ¿Y me mandas fotos?' },
+  { side: 'out', es: 'Garantía de 6 meses por la tienda. Ya te mando las fotos 📸' },
+  { side: 'in', es: 'Listo. ¿Puedo pasar mañana a verlo?' },
+  { side: 'out', es: 'Claro, mañana estamos de 9 a 6. ¿A qué hora te queda bien?' },
+];
+---
+
+<Base
+  lang={lang}
+  title={t(copy.title, lang)}
+  description={t(copy.description, lang)}
+  slug="work/storia"
+  themeColor="#0a0812"
+  grain={false}
+>
+  <div class="case">
+  <a class="skip" href="#main">{t(ui.skipToContent, lang)}</a>
+
+  <header class="bar">
+    <a class="mark" href={indexHref}>~/henry-cabello</a>
+    <div class="tools">
+      <a class="cv-link" href={cvHref}>CV</a>
+      <a href={altHref} hreflang={other} lang={other}>{LANG_LABEL[other]}</a>
+      <button data-theme-toggle type="button">
+        <span class="visually-hidden">{t(ui.toggleTheme, lang)}</span>
+        <span aria-hidden="true">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <a class="back" href={workHref}>← {t(copy.back, lang)}</a>
+
+    <section class="hero">
+      <span class="pill">{t(copy.status, lang)}</span>
+      <h1 style="view-transition-name: proj-storia">Storía</h1>
+      <p class="lede">{t(copy.lede, lang)}</p>
+
+      <dl class="kv">
+        <div><dt>{t(copy.roleK, lang)}</dt><dd>{t(copy.roleV, lang)}</dd></div>
+        <div><dt>{t(copy.builtK, lang)}</dt><dd>{t(copy.builtV, lang)}</dd></div>
+        <div>
+          <dt>{t(copy.fromK, lang)}</dt>
+          <dd><a href={luxuraHref}>Luxura →</a></dd>
+        </div>
+        <div><dt>{t(copy.stageK, lang)}</dt><dd>{t(copy.stageV, lang)}</dd></div>
+      </dl>
+    </section>
+
+    {/* The thesis, as a thing that happened rather than a claim about it. */}
+    <section class="blk">
+      <h2 class="cmd">$ tail -f ./inbox/whatsapp</h2>
+      <div class="thread">
+        <div class="thread-hd">
+          <span class="avatar">V</span>
+          <span class="who">Valentina · TechStore</span>
+          <span class="when">en línea</span>
+        </div>
+        {thread.map((m) => <p class={`bub ${m.side}`}>{m.es}</p>)}
+        <p class="thread-ft">{t(copy.threadNote, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat ORIGIN.md</h2>
+      <div class="out">
+        <h3>{t(copy.originH, lang)}</h3>
+        {tl(copy.origin, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat README.md</h2>
+      <div class="out">
+        <h3>{t(copy.problemH, lang)}</h3>
+        {tl(copy.problem, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ./bin/stat</h2>
+      <div class="grid">
+        <div><b>49k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
+        <div><b>54</b><span>Commits</span></div>
+        <div><b>4</b><span>{lang === 'es' ? 'Días' : 'Days'}</span></div>
+        <div><b>25</b><span>{lang === 'es' ? 'Modelos' : 'Models'}</span></div>
+        <div><b>5</b><span>{lang === 'es' ? 'Canales' : 'Channels'}</span></div>
+        <div><b>10</b><span>{lang === 'es' ? 'Herramientas' : 'Agent tools'}</span></div>
+        <div><b>12</b><span>{lang === 'es' ? 'Módulos de seguridad' : 'Security modules'}</span></div>
+        <div class="hot"><b>1</b><span>{lang === 'es' ? 'Archivo de test' : 'Test file'}</span></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat architecture.md</h2>
+      <div class="out">
+        <h3>{t(copy.pathH, lang)}</h3>
+        <p>{t(copy.pathLede, lang)}</p>
+        <pre class="term"><span class="k">receive</span>  webhook       verify HMAC · drop replays via Redis · enqueue · <span class="g">200</span>
+   <span class="c">│</span>                    <span class="c">// no AI call on this thread</span>
+   <span class="c">▼</span>
+<span class="k">queue</span>    BullMQ        5 priority queues · payloads carry IDs only
+   <span class="c">│</span>                    <span class="c">// messages · knowledge · analytics · broadcasts · notifications</span>
+   <span class="c">▼</span>
+<span class="k">think</span>    orchestrator  security guard → RAG over pgvector → memory of past wins
+   <span class="c">│</span>                  → model with <span class="s">10 tools</span> → second pass to phrase the results
+   <span class="c">▼</span>
+<span class="k">reply</span>    adapter       rewrite markdown per platform · text then images
+                          · mirror into the live inbox</pre>
+        <div class="call"><b>{t(copy.tenantT, lang)}</b><p>{t(copy.tenantB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ ls -la ./hard-parts</h2>
+      <div class="out">
+        <div class="call"><b>{t(copy.learnT, lang)}</b><p>{t(copy.learnB, lang)}</p></div>
+        <div class="call"><b>{t(copy.searchT, lang)}</b><p>{t(copy.searchB, lang)}</p></div>
+        <div class="call"><b>{t(copy.secT, lang)}</b><p>{t(copy.secB, lang)}</p></div>
+        <div class="call"><b>{t(copy.fmtT, lang)}</b><p>{t(copy.fmtB, lang)}</p></div>
+        <div class="call"><b>{t(copy.imgT, lang)}</b><p>{t(copy.imgB, lang)}</p></div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ diff --chosen --rejected</h2>
+      <div class="out">
+        <div class="scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>{lang === 'es' ? 'Elegí' : 'Chose'}</th>
+                <th>{lang === 'es' ? 'En vez de' : 'Instead of'}</th>
+                <th>{lang === 'es' ? 'La razón' : 'The one reason'}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="hi">Meta Cloud API</td>
+                <td>360dialog · Twilio</td>
+                <td>{lang === 'es' ? 'Cero comisión de plataforma y cero recargo por mensaje. Un BSP es comodidad que estaría alquilando para siempre en un producto cuyo margen entero es volumen de mensajes.' : 'Zero platform fee and zero per-message markup. A BSP is convenience I would be renting forever on a product whose whole margin is message volume.'}</td>
+              </tr>
+              <tr>
+                <td class="hi">Postgres + pgvector</td>
+                <td>Pinecone · Weaviate</td>
+                <td>{lang === 'es' ? 'El corpus es chico y siempre está filtrado por tenant. Una base vectorial dedicada agrega una segunda frontera de consistencia para resolver un problema que no tengo.' : 'The corpus is small and always tenant-filtered. A dedicated vector DB adds a second consistency boundary to solve a problem I do not have.'}</td>
+              </tr>
+              <tr>
+                <td class="hi">BullMQ + Redis</td>
+                <td>{lang === 'es' ? 'Colas gestionadas' : 'Managed queues'}</td>
+                <td>{lang === 'es' ? 'Todo esto tiene que poder correr en una sola máquina. Redis ya estaba ahí para caché, rate limits y pub/sub.' : 'The whole thing has to be able to run on one box. Redis was already there for caching, rate limits and pub/sub.'}</td>
+              </tr>
+              <tr>
+                <td class="hi">Wompi</td>
+                <td>Stripe</td>
+                <td>{lang === 'es' ? 'Stripe no da de alta comercios colombianos. Esto se construyó sobre Stripe primero y se arrancó el mismo día — el commit es el recibo.' : 'Stripe does not onboard Colombian merchants. This was built on Stripe first and ripped out the same day — the commit is the receipt.'}</td>
+              </tr>
+              <tr>
+                <td class="hi">Capacitor</td>
+                <td>React Native</td>
+                <td>{lang === 'es' ? 'El panel ya era una web app responsive. Capacitor compró un APK real, push y login nativo sin un segundo codebase.' : 'The dashboard was already a responsive web app. Capacitor bought a real APK, push and native sign-in without a second codebase.'}</td>
+              </tr>
+              <tr>
+                <td class="hi">{lang === 'es' ? 'Dos modelos, uno caro y uno barato' : 'A cheap model and an expensive one'}</td>
+                <td>{lang === 'es' ? 'Un solo modelo' : 'One model everywhere'}</td>
+                <td>{lang === 'es' ? 'El caro habla con clientes. El barato hace sentimiento, clasificación y extracción de insights. Mismo resultado, una fracción de la cuenta.' : 'The expensive one talks to customers. The cheap one does sentiment, classification and insight extraction. Same result, a fraction of the bill.'}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat voice.md</h2>
+      <div class="out">
+        <h3>{t(copy.voiceH, lang)}</h3>
+        {tl(copy.voice, lang).map((p) => <p>{p}</p>)}
+        <ul>{tl(copy.voiceList, lang).map((v) => <li>{v}</li>)}</ul>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat method.md</h2>
+      <div class="out">
+        <h3>{t(copy.methodH, lang)}</h3>
+        <ul>{tl(copy.method, lang).map((m) => <li>{m}</li>)}</ul>
+        <p class="foot">{t(copy.methodFoot, lang)}</p>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat GAPS.md</h2>
+      <div class="out">
+        <h3>{t(copy.gapsH, lang)}</h3>
+        <p>{t(copy.gapsLede, lang)}</p>
+        <div class="scroll">
+          <table>
+            <tbody>
+              {gaps.map((g) => (
+                <tr>
+                  <td class="hi gap-what">{t(g.what, lang)}</td>
+                  <td>{t(g.why, lang)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="blk">
+      <h2 class="cmd">$ cat RETRO.md</h2>
+      <div class="out">
+        <h3>{t(copy.lessonsH, lang)}</h3>
+        <ol class="lessons">{tl(copy.lessons, lang).map((l) => <li>{l}</li>)}</ol>
+      </div>
+    </section>
+
+    <p class="cursor-line" aria-hidden="true">
+      <span class="prompt">henry@bogota:~/storia$</span> <span class="caret"></span>
+    </p>
+
+    <p class="back-foot"><a href={workHref}>← {t(copy.back, lang)}</a></p>
+  </main>
+  </div>
+</Base>
+
+<style>
+  /* ── Violet. Same terminal, different product. ────────────────────────
+     --accent is registered so arriving from the work list animates the
+     page out of the site's phosphor rather than cutting to it. Structure
+     lives in src/styles/case.css; this block is only the palette and the
+     conversation thread, which exists on no other page.               */
+  @property --accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3ddc84;
+  }
+
+  :root {
+    --ground: #0a0812;
+    --raise: #12101c;
+    --ink: #e4e0ee;
+    --ink-2: #a79fbd;
+    --dim: #6b6382;
+    --line: #221d33;
+    --accent: #a98bff;
+    --warn: #e0b341;
+    --good: #6fc0a8;
+    --bad: #e8705a;
+    --focus: #a98bff;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --shell: 74rem;
+    --read: 40rem;
+    --pad: clamp(1rem, 3vw, 2.25rem);
+    animation: enter-storia 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(:root[data-theme='light']) {
+    --ground: #f8f6fc;
+    --raise: #ffffff;
+    --ink: #17141f;
+    --ink-2: #453e56;
+    --dim: #6b6478;
+    --line: #ddd8e8;
+    --accent: #6d3bea;
+    --warn: #8a6410;
+    --good: #0e7c8c;
+    --bad: #a6462f;
+    --focus: #6d3bea;
+    animation-name: enter-storia-light;
+  }
+
+  @keyframes enter-storia {
+    from { --accent: #3ddc84; }
+    to { --accent: #a98bff; }
+  }
+  @keyframes enter-storia-light {
+    from { --accent: #0f7b4a; }
+    to { --accent: #6d3bea; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+  }
+
+  :global(body) {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.68;
+  }
+
+  /* ── The conversation ─────────────────────────────────────────────────
+     Deliberately not monospace. Everything else on this site is a terminal;
+     this is the one place the reader should be looking at what a customer
+     sees, and a customer does not see a terminal.                       */
+  .thread {
+    background: var(--raise);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 1rem 1rem 1.2rem;
+    max-width: 32rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  .thread-hd {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: 0.3rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    flex: none;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ground);
+    background: var(--accent);
+  }
+  .who {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .when {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    color: var(--good);
+  }
+  .bub {
+    max-width: 85%;
+    margin: 0;
+    padding: 0.45rem 0.75rem;
+    border-radius: 14px;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+  .bub.in {
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    background: color-mix(in srgb, var(--ink) 9%, transparent);
+    color: var(--ink);
+  }
+  .bub.out {
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    background: color-mix(in srgb, var(--accent) 22%, transparent);
+    color: var(--ink);
+  }
+  .thread-ft {
+    font-family: var(--mono);
+    font-size: 0.6875rem;
+    line-height: 1.65;
+    color: var(--dim);
+    margin: 0.6rem 0 0;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--line);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bub {
+      animation: bub-rise 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+    }
+    .bub:nth-of-type(1) { animation-delay: 0.05s; }
+    .bub:nth-of-type(2) { animation-delay: 0.3s; }
+    .bub:nth-of-type(3) { animation-delay: 0.55s; }
+    .bub:nth-of-type(4) { animation-delay: 0.8s; }
+    .bub:nth-of-type(5) { animation-delay: 1.05s; }
+    .bub:nth-of-type(6) { animation-delay: 1.3s; }
+  }
+  @keyframes bub-rise {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  .gap-what {
+    white-space: nowrap;
+    width: 1%;
+  }
+</style>

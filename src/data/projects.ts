@@ -361,7 +361,7 @@ const rawProjects: Project[] = [
 
   {
     id: 'storia',
-    name: 'Storia',
+    name: 'Storía',
     tagline: {
       en: 'AI customer service for LATAM small business',
       es: 'Atención al cliente con IA para pymes de LATAM',
@@ -370,19 +370,32 @@ const rawProjects: Project[] = [
     role: { en: 'Architecture and implementation', es: 'Arquitectura e implementación' },
     period: '2026',
     lead: false,
+    caseSlug: 'work/storia',
+    summary: {
+      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit — across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
+      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita — en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
+    },
     problem: {
       en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',
       es: 'A una pyme en Latinoamérica la contactan por WhatsApp, Messenger, Instagram y teléfono al mismo tiempo, y responde los cuatro desde el celular de una persona. Storia pone esos canales detrás de agentes de IA capaces de sostener la conversación.',
     },
     built: {
       en: [
-        'Unified inbox across WhatsApp, Messenger and Instagram',
+        'Unified inbox across WhatsApp, Messenger, Instagram and the phone line',
         'WhatsApp Cloud API integration under Meta Tech Provider onboarding',
+        'Agent orchestrator with 10 tools: catalogue search, images, quoting, lead scoring, appointments, human handoff',
+        'Hybrid product search over typed columns, JSONB attributes, full-text and pgvector in one query',
+        'Multi-tenant schema, 25 models, every query scoped and every vector search filtered before the distance operator',
+        'Twelve security modules: prompt-injection detection, per-tenant token budgets, rate limits, circuit breaker, PII redaction',
         'Voice agents for the telephone channel',
       ],
       es: [
-        'Bandeja unificada para WhatsApp, Messenger e Instagram',
+        'Bandeja unificada para WhatsApp, Messenger, Instagram y la línea telefónica',
         'Integración con WhatsApp Cloud API bajo el onboarding de Meta Tech Provider',
+        'Orquestador de agente con 10 herramientas: búsqueda en catálogo, imágenes, cotización, puntaje de leads, citas, traspaso a humano',
+        'Búsqueda híbrida de productos sobre columnas tipadas, atributos JSONB, full-text y pgvector en una sola consulta',
+        'Esquema multi-tenant, 25 modelos, cada consulta acotada y cada búsqueda vectorial filtrada antes del operador de distancia',
+        'Doce módulos de seguridad: detección de inyección de prompts, presupuesto de tokens por tenant, rate limits, circuit breaker, redacción de datos personales',
         'Agentes de voz para el canal telefónico',
       ],
     },
@@ -404,7 +417,11 @@ const rawProjects: Project[] = [
       en: 'In development, on Meta\'s own rails from day one.',
       es: 'En desarrollo, sobre los rieles de Meta desde el primer día.',
     },
-    stack: ['Next.js', 'TypeScript', 'WhatsApp Cloud API', 'Voice agents', 'PostgreSQL'],
+    stack: [
+      'Next.js', 'TypeScript', 'React', 'Prisma', 'PostgreSQL', 'pgvector',
+      'Redis', 'BullMQ', 'WhatsApp Cloud API', 'Meta Graph API', 'Voice agents',
+      'Capacitor', 'Tailwind',
+    ],
   },
 
   {

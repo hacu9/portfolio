@@ -1,0 +1,223 @@
+---
+/**
+ * A project that has a teardown page.
+ *
+ * The work list is a directory listing you unfold. A project with somewhere to
+ * go should not be a drawer — it should be one target you click. The `ls` row
+ * survives as the card's own header so the metaphor holds, and the summary
+ * does the inviting that `problem` is too argumentative to do.
+ *
+ * Rendered for any project carrying a `caseSlug`, lead or supporting alike.
+ */
+import TechRow from './TechRow.astro';
+import { t, langPath, asset } from '../i18n/types';
+import type { Lang } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import { STATUS_LABEL, projectName } from '../data/projects';
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+  /** Directory bit for a lead project, file bit for a supporting one. */
+  perm: string;
+}
+
+const { project: p, lang, perm } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<article class="card">
+  <a class="card-hit" href={langPath(base, lang, p.caseSlug!)}>
+    <span class="visually-hidden">{projectName(p, lang)} — {t(ui.readCase, lang)}</span>
+  </a>
+
+  {
+    p.shots && (
+      <div class="card-shots" aria-hidden="true">
+        {p.shots.slice(0, 3).map((sh) => (
+          <img src={asset(base, sh.src)} alt="" loading="lazy" decoding="async" />
+        ))}
+      </div>
+    )
+  }
+
+  <div class="card-body">
+    <p class="card-top">
+      <span class="perm">{perm}</span>
+      <span class={`st st-${p.status}`}>{t(STATUS_LABEL[p.status], lang)}</span>
+      {p.statusNote && <span class="stnote">{t(p.statusNote, lang)}</span>}
+    </p>
+    {/* Paired with the h1 on the project's own page, so the name morphs
+        across the navigation. Scoped by id: two elements sharing one
+        view-transition-name cancel the transition. */}
+    <h3 class="card-name" style={`view-transition-name: proj-${p.id}`}>
+      {projectName(p, lang)}
+    </h3>
+    <p class="card-tag">{t(p.tagline, lang)}</p>
+    {p.summary && <p class="card-sum">{t(p.summary, lang)}</p>}
+    <TechRow items={p.stack} size="sm" />
+    <p class="card-cta">
+      <span class="card-go">{t(ui.readCase, lang)} →</span>
+      <span class="card-hint">{t(ui.caseHint, lang)}</span>
+    </p>
+    {
+      p.url && (
+        <p class="card-ext">
+          <a href={p.url} target="_blank" rel="noopener">
+            {p.urlLabel ? t(p.urlLabel, lang) : t(ui.verify, lang)} ↗
+          </a>
+        </p>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  /* One stretched link covers the card, so the whole surface is the target
+     while the accessible name stays on a single anchor. Nested links (the
+     store one) sit above it on z-index and keep working. */
+  .card {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--raise);
+    overflow: hidden;
+    transition:
+      border-color 0.2s ease,
+      transform 0.2s ease;
+  }
+  .card:hover,
+  .card:focus-within {
+    border-color: var(--accent);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .card:hover {
+      transform: translateY(-2px);
+    }
+  }
+  .card-hit {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .card-hit:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -3px;
+    border-radius: 12px;
+  }
+
+  .card-shots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .card-shots img {
+    width: 100%;
+    aspect-ratio: 9 / 13;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    background: var(--ground);
+  }
+  @media (max-width: 34rem) {
+    .card-shots {
+      grid-template-columns: 1fr 1fr;
+    }
+    .card-shots img:last-child {
+      display: none;
+    }
+  }
+
+  .card-body {
+    display: grid;
+    gap: 0.5rem;
+    padding: clamp(0.9rem, 3vw, 1.3rem);
+  }
+  .card-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: baseline;
+    margin: 0;
+  }
+  .perm {
+    color: var(--dim);
+    font-size: 0.6875rem;
+  }
+  .st {
+    font-size: 0.5625rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid currentColor;
+    padding: 0.02rem 0.32rem;
+  }
+  .st-live {
+    color: var(--accent);
+  }
+  .st-building {
+    color: var(--warn);
+  }
+  .st-ongoing,
+  .st-delivered {
+    color: var(--dim);
+  }
+  .stnote {
+    color: var(--dim);
+    font-size: 0.6875rem;
+  }
+  .card-name {
+    margin: 0;
+    font-size: clamp(1.1rem, 3vw, 1.45rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .card-tag {
+    margin: 0;
+    color: var(--dim);
+    font-size: 0.75rem;
+  }
+  .card-sum {
+    margin: 0.25rem 0 0;
+    color: var(--ink-2);
+    max-width: 52ch;
+    line-height: 1.6;
+  }
+  .card-cta {
+    margin: 0.35rem 0 0;
+    display: grid;
+    gap: 0.15rem;
+  }
+  .card-go {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .card:hover .card-go {
+    text-decoration: underline;
+  }
+  .card-hint {
+    color: var(--dim);
+    font-size: 0.6875rem;
+  }
+  .card-ext {
+    margin: 0;
+    position: relative;
+    z-index: 2;
+  }
+  .card-ext a {
+    color: var(--ink-2);
+    font-size: 0.75rem;
+  }
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>

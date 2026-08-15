@@ -20,8 +20,8 @@ export const ui = {
   // ---- case study structure, Henry's own four-beat shape
   readCase: { en: 'Read the teardown', es: 'Ver el desglose' } as L,
   caseHint: {
-    en: 'Full write-up — the numbers, the queries, the calls I got wrong',
-    es: 'Desglose completo — los números, las consultas, y en qué me equivoqué',
+    en: 'Full write-up — how it was built, what it cost, what I got wrong',
+    es: 'Desglose completo — cómo se construyó, qué costó, en qué me equivoqué',
   } as L,
 
   theProblem: { en: 'The problem', es: 'El problema' } as L,
