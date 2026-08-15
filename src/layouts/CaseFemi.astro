@@ -1,0 +1,481 @@
+---
+/**
+ * The Femi teardown.
+ *
+ * Fifth teardown, fifth palette. Rose on a cool near-black, the only cool
+ * ground of the five, because Luxura's gold, monia's amber, Mate's ember and
+ * Storia's violet had used up the warm end.
+ *
+ * Figures re-derived from ~/code/femi on 2026-08-15. The v1 totals hold
+ * exactly: 46,118 lines in mobile/src plus 30,926 in backend/src, 70 screens,
+ * verification_old.js at 1,903 lines and AlertDemo11_NightGuardian.tsx at
+ * 1,996. The v2 total is 8,586 by my count, not the 8,577 the first draft
+ * claimed; the repo's number wins.
+ *
+ * On the framing, which Henry set: this page is NOT a confession that a build
+ * was broken. The transferable finding is that a process which counts finished
+ * parts cannot see whether they are connected, and the audit is what caught
+ * it. The build failure appears once, inside that argument, rather than as a
+ * red badge at the top. An absence earns a place on this page only when it
+ * changes how the reader should read a claim made on it.
+ */
+import Base from './Base.astro';
+import { t, tl, OTHER_LANG, LANG_LABEL, langPath, asset } from '../i18n/types';
+import type { Lang, L, LList } from '../i18n/types';
+import { ui } from '../i18n/ui';
+import '../styles/reset.css';
+import '../styles/case.css';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const other = OTHER_LANG[lang];
+const altHref = langPath(base, other, 'work/femi');
+const indexHref = langPath(base, lang);
+const workHref = `${langPath(base, lang)}#work`;
+const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
+
+const copy = {
+  title: { en: 'Femi teardown · Henry Cabello', es: 'Femi, por dentro · Henry Cabello' } as L,
+  description: {
+    en: "A women's safety platform rewritten from 77,044 lines to 8,586, and the audit that found four of its core components built, tested, and mounted nowhere.",
+    es: 'Una plataforma de seguridad para mujeres reescrita de 77.044 líneas a 8.586, y la auditoría que encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
+  } as L,
+  back: { en: 'back to ./work', es: 'volver a ./work' } as L,
+  status: { en: 'In development', es: 'En desarrollo' } as L,
+  statusNote: { en: 'Substantially built, not released', es: 'En gran parte construida, sin lanzar' } as L,
+
+  lede: {
+    en: 'One tap raises an alert, the people nearby who opted in get told, and the emergency contacts get an SMS. Between emergencies it is a local forum, because an app you only open in the worst moment of your life is an app you will not have installed. It is not shipped: no users, not deployed. What follows is a rewrite that cut the codebase to a ninth, and an audit that found the gap a green dashboard could not.',
+    es: 'Un toque levanta una alerta, las personas cercanas que aceptaron reciben aviso, y los contactos de emergencia reciben un SMS. Entre emergencias es un foro local, porque una app que solo abres en el peor momento de tu vida es una app que no vas a tener instalada. No está lanzada: sin usuarios, sin desplegar. Lo que sigue es una reescritura que dejó el código en un noveno, y una auditoría que encontró lo que un tablero en verde no podía.',
+  } as L,
+
+  kRole: { en: 'Role', es: 'Rol' } as L,
+  vRole: { en: 'Solo: product, backend, front-end, native shell', es: 'Solo: producto, backend, front-end, capa nativa' } as L,
+  kStage: { en: 'Stage', es: 'Etapa' } as L,
+  vStage: { en: 'Substantially built, never released', es: 'En gran parte construida, nunca lanzada' } as L,
+  kRuns: { en: 'Runs on', es: 'Corre en' } as L,
+  vRuns: { en: 'PostgreSQL, Capacitor for Android, Firebase for push', es: 'PostgreSQL, Capacitor para Android, Firebase para push' } as L,
+  kRepo: { en: 'Repository', es: 'Repositorio' } as L,
+  vRepo: { en: 'Private', es: 'Privado' } as L,
+
+  shotsCap: {
+    en: 'Dashboard, safety map and profile, from the running application against Postgres.',
+    es: 'Tablero, mapa de seguridad y perfil, desde la aplicación corriendo contra Postgres.',
+  } as L,
+  altHome: {
+    en: 'The Femi dashboard. A large SOS button that starts a thirty second countdown, contact and alert counters, and four quick actions above a five-tab bar.',
+    es: 'El tablero de Femi. Un botón SOS grande que inicia una cuenta regresiva de treinta segundos, contadores de contactos y alertas, y cuatro acciones rápidas sobre una barra de cinco pestañas.',
+  } as L,
+  altMap: {
+    en: 'The safety map, showing active alerts graded by severity inside the help radius.',
+    es: 'El mapa de seguridad, con alertas activas clasificadas por severidad dentro del radio de ayuda.',
+  } as L,
+  altProfile: {
+    en: 'The profile screen, with the help radius and the responder toggles that write through to Postgres.',
+    es: 'La pantalla de perfil, con el radio de ayuda y los interruptores de respondiente que escriben a Postgres.',
+  } as L,
+
+  // ---- the rewrite
+  rwH: { en: 'Three codebases pretending to be one product', es: 'Tres bases de código que fingían ser un producto' } as L,
+  rw: {
+    en: [
+      'v1 was a React Native app, an Express backend, and the hand-rolled contract between them. The tree told its own story. A legacy route folder inside the live app, and a matching legacy folder inside the alert screens. A file named verification_old.js at 1,903 lines. A screen called AlertDemo11_NightGuardian, demo eleven, at 1,996 lines. Three loose HTML files at the repository root for debugging face verification by hand. Nobody plans this. It accretes, one deadline at a time.',
+      'The reduction is not that Next.js beats Express. It is that v1 paid for everything three times: a React Native screen, an Express route, and a serialization contract that both had to honour and neither enforced. v2 collapses the boundary. Server components call service modules directly, and Capacitor wraps the same web build for Android. The mobile app is not a second implementation, so there is nothing to drift.',
+    ],
+    es: [
+      'v1 era una app en React Native, un backend en Express, y el contrato hecho a mano entre los dos. El árbol contaba su propia historia. Una carpeta de rutas legacy dentro de la app viva, y otra carpeta legacy igual dentro de las pantallas de alertas. Un archivo llamado verification_old.js con 1.903 líneas. Una pantalla llamada AlertDemo11_NightGuardian, demo once, con 1.996 líneas. Tres archivos HTML sueltos en la raíz del repositorio para depurar verificación facial a mano. Nadie planea esto. Se acumula, una fecha de entrega a la vez.',
+      'La reducción no es que Next.js le gane a Express. Es que v1 pagaba todo tres veces: una pantalla de React Native, una ruta de Express, y un contrato de serialización que ambos debían respetar y ninguno hacía cumplir. v2 colapsa la frontera. Los server components llaman a los módulos de servicio directo, y Capacitor envuelve el mismo build web para Android. La app móvil no es una segunda implementación, así que no hay nada que se desincronice.',
+    ],
+  } as LList,
+  massFoot: {
+    en: 'Hand-written application code, excluding dependencies and build output. Same product surface, roughly one ninth of the code.',
+    es: 'Código de aplicación escrito a mano, sin dependencias ni salida de build. La misma superficie de producto, aproximadamente un noveno del código.',
+  } as L,
+
+  // ---- decisions
+  capH: { en: 'Capacitor instead of React Native', es: 'Capacitor en vez de React Native' } as L,
+  capB: {
+    en: 'The product is mostly forms, lists and text. The genuinely native needs are two: background geolocation and push. Capacitor buys both with plugins and costs one web build instead of two codebases. The cost is real. A WebView will never match React Native on animation-heavy screens, and I am betting the product never needs one. If the map ever demands sixty-frame gesture work, this gets revisited.',
+    es: 'El producto es sobre todo formularios, listas y texto. Las necesidades realmente nativas son dos: geolocalización en segundo plano y push. Capacitor compra ambas con plugins y cuesta un build web en vez de dos bases de código. El costo es real. Un WebView nunca va a igualar a React Native en pantallas con mucha animación, y estoy apostando a que el producto nunca necesita una. Si el mapa alguna vez exige gestos a sesenta cuadros, esto se revisa.',
+  } as L,
+  sqlH: { en: 'Raw SQL instead of an ORM', es: 'SQL crudo en vez de un ORM' } as L,
+  sqlB: {
+    en: 'PostgreSQL through the pg driver, hand-written SQL, numbered migration files. The nearby-alerts query is a haversine calculation and it reads more clearly as SQL than as any ORM expression I could write. The cost is no type safety between the database and the application, and that cost came due during this audit, in the coordinate bug below. I would make the same call at this size and not at three times it.',
+    es: 'PostgreSQL con el driver pg, SQL escrito a mano, migraciones numeradas. La consulta de alertas cercanas es un cálculo de haversine y se lee más claro como SQL que como cualquier expresión de ORM que yo pudiera escribir. El costo es que no hay seguridad de tipos entre la base de datos y la aplicación, y ese costo se cobró durante esta auditoría, en el bug de coordenadas de abajo. Tomaría la misma decisión a este tamaño y no al triple.',
+  } as L,
+  faceH: { en: 'Face matching in the browser', es: 'Comparación facial en el navegador' } as L,
+  faceB: {
+    en: 'v1 sent the selfie to AWS Rekognition. v2 runs the comparison client-side, so the photo never has to leave the device and every match costs nothing. It also creates the most serious open item in the project, which belongs in the backlog rather than in this column.',
+    es: 'v1 mandaba la selfie a AWS Rekognition. v2 corre la comparación en el cliente, así que la foto nunca tiene que salir del dispositivo y cada comparación no cuesta nada. También crea el punto abierto más serio del proyecto, que pertenece al backlog y no a esta columna.',
+  } as L,
+
+  // ---- the audit
+  auditH: { en: 'A process that counts parts cannot see connections', es: 'Un proceso que cuenta partes no puede ver conexiones' } as L,
+  audit: {
+    en: [
+      'Before writing this up I audited the repository against its own dashboard. Every green check on the left was true. Every question on the right had never been asked by anything.',
+    ],
+    es: [
+      'Antes de escribir esto audité el repositorio contra su propio tablero. Cada visto verde de la izquierda era cierto. Cada pregunta de la derecha nunca la había hecho nada.',
+    ],
+  } as LList,
+
+  f1H: { en: 'Four core components were mounted nowhere', es: 'Cuatro componentes centrales no estaban montados en ninguna parte' } as L,
+  f1B: {
+    en: 'The app-group layout was a single div. The tab bar, the header, the location provider and the notification provider were all built, styled and unit tested. A grep for all four found zero references outside their own files. Every one had passing tests, because every test mounted it directly.',
+    es: 'El layout del grupo de la app era un solo div. La barra de pestañas, el encabezado, el proveedor de ubicación y el de notificaciones estaban construidos, con estilos y con tests unitarios. Un grep de los cuatro encontró cero referencias fuera de sus propios archivos. Todos pasaban sus tests, porque cada test los montaba directamente.',
+  } as L,
+  f2H: { en: 'The alert detail page crashed on every render', es: 'La página de detalle de alerta fallaba en cada render' } as L,
+  f2B: {
+    en: 'Calling toFixed on a latitude threw, and the page fell to the error boundary. The pg driver returns numeric columns as strings, but the Alert interface declared them as numbers, so TypeScript could not see it, and the service tests mocked rows with no coordinates at all. This is the screen a responder opens from a push notification.',
+    es: 'Llamar toFixed sobre una latitud lanzaba error, y la página caía al error boundary. El driver pg devuelve las columnas numeric como texto, pero la interfaz Alert las declaraba como números, así que TypeScript no podía verlo, y los tests del servicio simulaban filas sin coordenadas. Esta es la pantalla que abre quien responde desde una notificación push.',
+  } as L,
+  f3H: { en: 'Home was a placeholder and two tabs led nowhere', es: 'El inicio era un placeholder y dos pestañas no llevaban a nada' } as L,
+  f3B: {
+    en: 'The home screen read "coming soon". The tab bar linked to a map route and a profile route; neither existed, and there was no mapping library in the dependency list at all. The production build also failed, on a package whose export map resolves to its Node build first. The dev server resolved it. The test runner resolved it. Nothing in the process ever ran the production build.',
+    es: 'La pantalla de inicio decía "muy pronto". La barra de pestañas apuntaba a una ruta de mapa y una de perfil; ninguna existía, y no había librería de mapas en las dependencias. El build de producción también fallaba, por un paquete cuyo mapa de exports resuelve primero a su build de Node. El servidor de desarrollo lo resolvía. El runner de tests lo resolvía. Nada en el proceso corría nunca el build de producción.',
+  } as L,
+
+  auditClose: {
+    en: 'Unit tests verify that a part works. Nothing asserted the parts were connected. The correct module, never wired in, is invisible to every test that imports it and to every type checker, and it survives any process that measures progress by counting finished parts.',
+    es: 'Los tests unitarios verifican que una parte funciona. Nada afirmaba que las partes estuvieran conectadas. El módulo correcto, nunca conectado, es invisible para todo test que lo importa y para todo verificador de tipos, y sobrevive a cualquier proceso que mida el avance contando partes terminadas.',
+  } as L,
+
+  // ---- repair
+  repairH: { en: 'The repair, and how I know it holds', es: 'La reparación, y cómo sé que se sostiene' } as L,
+  repair: {
+    en: [
+      'Pinned the browser build of the face-matching package. Wrote the app shell. Rebuilt the location provider from a pass-through into a real context, which fixed a live bug on the way: its callback setter replaced rather than appended, so two subscribers would fight and the last to mount would silently win. Coerced the coordinate columns at the service boundary, so the interface stops lying.',
+      'Built the dashboard, the profile page and the map. Fixed an SOS bug where a missing GPS fix sent the alert to zero, zero, which is a point in the Gulf of Guinea and invisible to every proximity query; it now takes a one-shot fix and refuses rather than send a lie. Added a seed script and a migration runner, because a fresh clone could not previously reach a working database.',
+      'Then tests for the composition root and the coordinate bug, verified by mutation: I reverted each fix, confirmed the test went red, and restored it. One of the five shell tests passes either way by design, because it asserts only that children render, which the bare div also did. That one is the control.',
+    ],
+    es: [
+      'Fijé el build de navegador del paquete de comparación facial. Escribí el shell de la app. Reconstruí el proveedor de ubicación, de un pass-through a un contexto real, lo que arregló un bug vivo de paso: su setter de callbacks reemplazaba en vez de agregar, así que dos suscriptores peleaban y ganaba en silencio el último en montarse. Convertí las columnas de coordenadas en la frontera del servicio, para que la interfaz deje de mentir.',
+      'Construí el tablero, la página de perfil y el mapa. Arreglé un bug de SOS donde la falta de señal GPS mandaba la alerta a cero, cero, que es un punto en el Golfo de Guinea e invisible para toda consulta de proximidad; ahora toma una lectura única y se niega en vez de mandar una mentira. Agregué un script de datos de prueba y un corredor de migraciones, porque antes un clon nuevo no podía llegar a una base de datos funcionando.',
+      'Después, tests para la raíz de composición y para el bug de coordenadas, verificados por mutación: revertí cada arreglo, confirmé que el test se ponía en rojo, y lo restauré. Uno de los cinco tests del shell pasa igual en ambos casos por diseño, porque solo afirma que los hijos se renderizan, cosa que el div pelado también hacía. Ese es el control.',
+    ],
+  } as LList,
+
+  standsH: { en: 'Where it stands', es: 'En qué quedó' } as L,
+  stands: {
+    en: 'Sign-in, dashboard, map and a settings write all confirmed against Postgres. It is not deployed and it has no users, and the next thing it needs is not more code. It is one real neighbourhood willing to install it, because a safety network with nobody in it protects nobody.',
+    es: 'Inicio de sesión, tablero, mapa y una escritura de ajustes, todos confirmados contra Postgres. No está desplegada y no tiene usuarios, y lo próximo que necesita no es más código. Es un barrio real dispuesto a instalarla, porque una red de seguridad sin nadie adentro no protege a nadie.',
+  } as L,
+} as const;
+
+const stack = [
+  'Next.js 16', 'React 19', 'TypeScript', 'Capacitor 8', 'PostgreSQL', 'pg',
+  'Better Auth', 'Leaflet', 'Firebase FCM', 'UploadThing', 'Tailwind 4', 'Vitest',
+];
+
+const measured = [
+  { k: { en: 'Tasks completed', es: 'Tareas completadas' } as L, v: '54 / 54' },
+  { k: { en: 'Features shipped', es: 'Funciones entregadas' } as L, v: '8 / 8' },
+  { k: { en: 'Tests passing', es: 'Tests en verde' } as L, v: '91 / 91' },
+  { k: { en: 'Typecheck', es: 'Chequeo de tipos' } as L, v: { en: 'clean', es: 'limpio' } as L },
+];
+
+const unmeasured = [
+  { en: 'Was any of it mounted?', es: '¿Algo de eso estaba montado?' } as L,
+  { en: 'Did the production build run?', es: '¿Corría el build de producción?' } as L,
+  { en: 'Was the home screen real?', es: '¿La pantalla de inicio era real?' } as L,
+  { en: 'Did the tab bar lead anywhere?', es: '¿La barra de pestañas llevaba a algún lado?' } as L,
+];
+---
+
+<Base
+  lang={lang}
+  title={t(copy.title, lang)}
+  description={t(copy.description, lang)}
+  slug="work/femi"
+  themeColor="#0d0a0c"
+  grain={false}
+>
+  <div class="case">
+    <a class="skip" href="#main">{t(ui.skipToContent, lang)}</a>
+
+    <header class="bar">
+      <a class="mark" href={indexHref}>~/henry-cabello</a>
+      <div class="tools">
+        <a class="cv-link" href={cvHref}>CV</a>
+        <a href={altHref} hreflang={other} lang={other}>{LANG_LABEL[other]}</a>
+        <button data-theme-toggle type="button">
+          <span class="visually-hidden">{t(ui.toggleTheme, lang)}</span>
+          <span aria-hidden="true">◐</span>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <a class="back" href={workHref}>← {t(copy.back, lang)}</a>
+
+      <section class="hero">
+        <span class="pill">{t(copy.status, lang)}</span>
+        <h1 style="view-transition-name: proj-femi">Femi</h1>
+        <p class="lede">{t(copy.lede, lang)}</p>
+
+        <dl class="kv">
+          <div><dt>{t(copy.kRole, lang)}</dt><dd>{t(copy.vRole, lang)}</dd></div>
+          <div><dt>{t(copy.kStage, lang)}</dt><dd>{t(copy.vStage, lang)}</dd></div>
+          <div><dt>{t(copy.kRuns, lang)}</dt><dd>{t(copy.vRuns, lang)}</dd></div>
+          <div><dt>{t(copy.kRepo, lang)}</dt><dd>{t(copy.vRepo, lang)}</dd></div>
+        </dl>
+      </section>
+
+      <figure class="shots">
+        <div class="shot-row">
+          <img data-zoom src={asset(base, 'images/femi-1.png')} alt={t(copy.altHome, lang)} loading="eager" decoding="async" />
+          <img data-zoom src={asset(base, 'images/femi-2.png')} alt={t(copy.altMap, lang)} loading="lazy" decoding="async" />
+          <img data-zoom src={asset(base, 'images/femi-3.png')} alt={t(copy.altProfile, lang)} loading="lazy" decoding="async" />
+        </div>
+        <figcaption>{t(copy.shotsCap, lang)}</figcaption>
+      </figure>
+
+      <section class="blk">
+        <h2 class="cmd">$ cloc --diff v1 v2</h2>
+        <div class="out">
+          <h3>{t(copy.rwH, lang)}</h3>
+
+          <div class="mass">
+            <div>
+              <div class="mass-top">
+                <span>v1 · React Native + Express</span>
+                <span class="mass-n">77,044</span>
+              </div>
+              <div class="track"><i style="width:100%;background:var(--line-2)"></i></div>
+              <div class="mass-note">46,118 mobile/src · 30,926 backend/src · 70 {lang === 'es' ? 'pantallas' : 'screens'}</div>
+            </div>
+            <div>
+              <div class="mass-top">
+                <span>v2 · {lang === 'es' ? 'una sola app Next.js' : 'one Next.js app'}</span>
+                <span class="mass-n">8,586</span>
+              </div>
+              <div class="track"><i style="width:11.1%;background:var(--accent)"></i></div>
+              <div class="mass-note">17 {lang === 'es' ? 'páginas' : 'pages'} · 19 API routes · 53 {lang === 'es' ? 'componentes' : 'components'} · 8 {lang === 'es' ? 'servicios' : 'services'}</div>
+            </div>
+          </div>
+
+          <p class="foot">{t(copy.massFoot, lang)}</p>
+          {tl(copy.rw, lang).map((p) => <p>{p}</p>)}
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2 class="cmd">$ cat decisions.md</h2>
+        <div class="out">
+          <div class="call"><b>{t(copy.capH, lang)}</b><p>{t(copy.capB, lang)}</p></div>
+          <div class="call"><b>{t(copy.sqlH, lang)}</b><p>{t(copy.sqlB, lang)}</p></div>
+          <div class="call"><b>{t(copy.faceH, lang)}</b><p>{t(copy.faceB, lang)}</p></div>
+          <div class="chips">{stack.map((s) => <span class="chip">{s}</span>)}</div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2 class="cmd">$ ./bin/audit --against-its-own-dashboard</h2>
+        <div class="out">
+          <h3>{t(copy.auditH, lang)}</h3>
+          {tl(copy.audit, lang).map((p) => <p>{p}</p>)}
+
+          <div class="ledger">
+            <div class="col">
+              <span class="col-h">{lang === 'es' ? 'Lo que el proceso medía' : 'What the process measured'}</span>
+              {measured.map((m) => (
+                <div class="lrow">
+                  <span class="k">{t(m.k, lang)}</span>
+                  <span class="v ok">{typeof m.v === 'string' ? m.v : t(m.v, lang)}</span>
+                </div>
+              ))}
+            </div>
+            <div class="col">
+              <span class="col-h">{lang === 'es' ? 'Lo que nada medía' : 'What nothing measured'}</span>
+              {unmeasured.map((u) => (
+                <div class="lrow"><span class="q">{t(u, lang)}</span></div>
+              ))}
+            </div>
+          </div>
+
+          <div class="call"><b>{t(copy.f1H, lang)}</b><p>{t(copy.f1B, lang)}</p></div>
+          <div class="call"><b>{t(copy.f2H, lang)}</b><p>{t(copy.f2B, lang)}</p></div>
+          <div class="call"><b>{t(copy.f3H, lang)}</b><p>{t(copy.f3B, lang)}</p></div>
+
+          <p class="close">{t(copy.auditClose, lang)}</p>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2 class="cmd">$ git log --oneline develop</h2>
+        <div class="out">
+          <h3>{t(copy.repairH, lang)}</h3>
+          {tl(copy.repair, lang).map((p) => <p>{p}</p>)}
+
+          <div class="after">
+            <div><b>99 / 99</b><span>{lang === 'es' ? 'Tests en verde' : 'Tests passing'}</span></div>
+            <div><b>39</b><span>{lang === 'es' ? 'Rutas que compilan' : 'Routes building'}</span></div>
+            <div><b>0</b><span>{lang === 'es' ? 'Avisos de eslint' : 'eslint warnings'}</span></div>
+            <div><b>4</b><span>{lang === 'es' ? 'De 5 tests, rojos al revertir' : 'Of 5 tests, red on revert'}</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="blk">
+        <h2 class="cmd">$ cat STATUS</h2>
+        <div class="out">
+          <h3>{t(copy.standsH, lang)}</h3>
+          <p>{t(copy.stands, lang)}</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</Base>
+
+<style>
+  /* ── Rose on a cool near-black. The only cool ground of the five teardowns:
+     Luxura took gold, monia amber, Mate ember and Storia violet, so the warm
+     end was spent. Neutrals carry a rose bias so the accent belongs. ───── */
+  @property --accent {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #3ddc84;
+  }
+
+  :root {
+    --ground: #0d0a0c;
+    --raise: #161114;
+    --raise-2: #1e171b;
+    --ink: #ecdde1;
+    --ink-2: #b697a0;
+    --dim: #7d626c;
+    --line: #241b1f;
+    --line-2: #35272d;
+    --accent: #fb7185;
+    --warn: #e0b341;
+    --good: #4ade80;
+    --bad: #f87171;
+    --focus: #fb7185;
+    --mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --shell: 74rem;
+    --read: 40rem;
+    --pad: clamp(1rem, 3vw, 2.25rem);
+    animation: enter-femi 1.1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+  :global(:root[data-theme='light']) {
+    --ground: #f7f4f5;
+    --raise: #ffffff;
+    --raise-2: #f0e9eb;
+    --ink: #1c1013;
+    --ink-2: #4d3740;
+    --dim: #866973;
+    --line: #e2d6da;
+    --line-2: #cfbdc4;
+    --accent: #c81e4a;
+    --warn: #8a6410;
+    --good: #15803d;
+    --bad: #b91c1c;
+    --focus: #c81e4a;
+    animation-name: enter-femi-light;
+  }
+
+  @keyframes enter-femi {
+    from { --accent: #3ddc84; }
+    to { --accent: #fb7185; }
+  }
+  @keyframes enter-femi-light {
+    from { --accent: #0f7b4a; }
+    to { --accent: #c81e4a; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root { animation: none; }
+  }
+
+  :global(body) {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 0.8125rem;
+    line-height: 1.68;
+  }
+
+  /* ---- the two code masses ---- */
+  .mass { display: flex; flex-direction: column; gap: 1.3rem; margin: 1.4rem 0 0; max-width: var(--read); }
+  .mass-top { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; color: var(--dim); }
+  .mass-n { font-size: clamp(1.2rem, 3.4vw, 1.7rem); font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  /* Named .track, not .bar: the sticky header already owns .bar, and a meter
+     that inherits its rules renders as an empty outline. */
+  .track { height: 0.5rem; background: var(--raise-2); border: 1px solid var(--line); overflow: hidden; }
+  .track i { display: block; height: 100%; }
+  .mass-note { font-size: 0.75rem; color: var(--dim); margin-top: 0.35rem; }
+
+  /* ---- measured against unmeasured ---- */
+  .ledger {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.5rem 0;
+    max-width: 46rem;
+  }
+  .col { background: var(--raise); padding: 0.9rem 1rem; }
+  .col-h {
+    display: block;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-bottom: 0.7rem;
+  }
+  .lrow { display: flex; justify-content: space-between; gap: 0.8rem; padding: 0.3rem 0; }
+  .lrow .k { color: var(--ink-2); }
+  .lrow .v { font-variant-numeric: tabular-nums; }
+  .lrow .v.ok { color: var(--good); }
+  .lrow .q { color: var(--accent); }
+  @media (max-width: 640px) {
+    .ledger { grid-template-columns: 1fr; }
+  }
+
+  .close {
+    max-width: var(--read);
+    margin: 1.4rem 0 0;
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--accent);
+    color: var(--ink);
+  }
+
+  /* ---- the after totals ---- */
+  .after {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1.5rem 0 0;
+    max-width: 46rem;
+  }
+  .after > div { background: var(--raise); padding: 0.85rem 1rem; }
+  .after b {
+    display: block;
+    font-size: clamp(1.1rem, 3vw, 1.45rem);
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .after span { display: block; font-size: 0.72rem; color: var(--dim); margin-top: 0.15rem; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1.4rem 0 0; max-width: 56rem; }
+  .chip {
+    padding: 0.18rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--dim);
+    font-size: 0.72rem;
+  }
+</style>

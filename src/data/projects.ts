@@ -434,35 +434,51 @@ const rawProjects: Project[] = [
       en: 'Substantially built, not released',
       es: 'En gran parte construida, sin lanzar',
     },
-
-    role: { en: 'Mobile and real-time systems', es: 'Móvil y sistemas en tiempo real' },
+    role: { en: 'Solo: product, backend, front-end, native shell', es: 'Solo: producto, backend, front-end, capa nativa' },
     period: '2025-2026',
     lead: true,
+    caseSlug: 'work/femi',
+    proves: {
+      en: 'Cutting a codebase to a ninth, then auditing my own done',
+      es: 'Reducir el código a un noveno, y luego auditar mi propio terminado',
+    },
+    summary: {
+      en: 'One tap raises an alert, the neighbours who opted in get told, and the emergency contacts get an SMS. A rewrite cut it from 77,044 lines to 8,586. Then an audit found four of its core components built, tested, and mounted nowhere.',
+      es: 'Un toque levanta una alerta, los vecinos que aceptaron reciben aviso, y los contactos de emergencia reciben un SMS. Una reescritura lo bajó de 77.044 líneas a 8.586. Después una auditoría encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
+    },
     problem: {
-      en: 'A panic button has one setting. Real situations run from walking home uneasy to an emergency in progress, and the response should not be identical. Femi grades an alert across five levels of urgency and routes each one differently.',
-        es: 'Un botón de pánico tiene un solo ajuste. Las situaciones reales van desde caminar a casa incómoda hasta una emergencia en curso, y la respuesta no debería ser idéntica. Femi clasifica cada alerta en cinco niveles de urgencia y enruta cada una de forma distinta.',
+      en: 'A panic button has one setting. Real situations run from walking home uneasy to an emergency in progress, and the response should not be identical. Femi grades an alert across four levels of severity and routes each one differently. Between emergencies it is a local forum, because an app you open only in the worst moment of your life is an app you will not have installed.',
+      es: 'Un botón de pánico tiene un solo ajuste. Las situaciones reales van desde caminar a casa incómoda hasta una emergencia en curso, y la respuesta no debería ser idéntica. Femi clasifica cada alerta en cuatro niveles de severidad y enruta cada una distinto. Entre emergencias es un foro local, porque una app que abres solo en el peor momento de tu vida es una app que no vas a tener instalada.',
     },
     built: {
       en: [
-        'React Native and Expo application',
-        'Five-level emergency alert system carrying GPS location',
-        'Dual response model, trusted personal contacts plus nearby verified helpers',
-        'Identity verification combining face recognition with document checks',
-        'Live chat over WebSocket inside the alert itself, so responders coordinate in context',
-        'Community forum and a hearts-based reputation system',
-        'Google Sign-In through Expo auth with custom scheme redirects',
+        'One Next.js application that Capacitor wraps for Android, rather than a separate mobile codebase',
+        'Alerts graded across four levels of severity, carrying a GPS fix, with a thirty second countdown the sender can cancel',
+        'Dual response model, trusted personal contacts plus nearby helpers who opted in, matched by a haversine query',
+        'Identity verification that compares the selfie on the device, so the photo never leaves it',
+        'A Leaflet safety map showing active alerts by severity inside the help radius',
+        'Community forum with posts, replies and a reputation system',
       ],
       es: [
-        'Aplicación en React Native y Expo',
-        'Sistema de alertas de emergencia en cinco niveles, con ubicación GPS',
-        'Modelo de respuesta doble, contactos de confianza más ayudantes verificados cercanos',
-        'Verificación de identidad que combina reconocimiento facial con validación de documento',
-        'Chat en vivo por WebSocket dentro de la alerta, para que quien responde coordine en contexto',
-        'Foro comunitario y sistema de reputación por corazones',
-        'Inicio de sesión con Google vía Expo auth y redirecciones con esquema propio',
+        'Una sola aplicación Next.js que Capacitor envuelve para Android, en vez de una base de código móvil aparte',
+        'Alertas clasificadas en cuatro niveles de severidad, con lectura de GPS y una cuenta regresiva de treinta segundos que quien la envía puede cancelar',
+        'Modelo de respuesta doble, contactos de confianza más ayudantes cercanos que aceptaron, emparejados con una consulta de haversine',
+        'Verificación de identidad que compara la selfie en el dispositivo, para que la foto nunca salga de ahí',
+        'Un mapa de seguridad en Leaflet que muestra alertas activas por severidad dentro del radio de ayuda',
+        'Foro comunitario con publicaciones, respuestas y sistema de reputación',
       ],
     },
     decisions: [
+      {
+        title: {
+          en: 'Rewrote three codebases into one, and cut 77,044 lines to 8,586',
+          es: 'Reescribí tres bases de código en una, y bajé de 77.044 líneas a 8.586',
+        },
+        body: {
+          en: 'v1 paid for every feature three times: a React Native screen, an Express route, and a serialization contract that both had to honour and neither enforced. Collapsing it onto one Next.js application removed the boundary rather than the features. The cost is a WebView, which will never match React Native on animation-heavy screens, and I am betting this product never needs one.',
+          es: 'v1 pagaba cada funcionalidad tres veces: una pantalla de React Native, una ruta de Express, y un contrato de serialización que ambos debían respetar y ninguno hacía cumplir. Colapsarlo en una sola aplicación Next.js eliminó la frontera, no las funcionalidades. El costo es un WebView, que nunca va a igualar a React Native en pantallas con mucha animación, y estoy apostando a que este producto nunca necesita una.',
+        },
+      },
       {
         title: {
           en: 'Required face and document verification before letting anyone answer an alert',
@@ -473,26 +489,23 @@ const rawProjects: Project[] = [
           es: 'Avisar a desconocidos cerca de una mujer en problemas solo ayuda si esos desconocidos responden por lo que hacen. La verificación facial y de documento frena el registro y la red de ayudantes crece más lento. En un producto de seguridad esa es la forma correcta de equivocarse: una red sin verificar es un riesgo, no una funcionalidad.',
         },
       },
-      {
-        title: {
-          en: 'Put live chat inside the alert rather than in a separate inbox',
-          es: 'Puse el chat en vivo dentro de la alerta y no en una bandeja aparte',
-        },
-        body: {
-          en: 'Nobody navigates during an incident. Keeping the WebSocket channel inside the alert puts the location, the urgency, and the conversation on one screen, so a responder never leaves it to ask where someone is.',
-          es: 'Durante un incidente nadie navega. Mantener el canal WebSocket dentro del detalle de la alerta deja la ubicación, el nivel de urgencia y la conversación en una sola pantalla, para que quien responde nunca cambie de contexto solo para preguntar dónde está la persona.',
-        },
-      },
     ],
     outcome: {
-      en: 'Real-time alerting, identity verification, and trust modeling working as one system: the parts of a safety product you cannot bolt on later.',
-      es: 'Alertas en tiempo real, verificación de identidad y modelado de confianza funcionando como un solo sistema: las partes de un producto de seguridad que no se pueden agregar después.',
+      en: 'Sign-in, dashboard, map and a settings write all confirmed against Postgres, on 39 routes that build. It is not deployed and it has no users. What it needs next is not more code, but one neighbourhood willing to install it.',
+      es: 'Inicio de sesión, tablero, mapa y una escritura de ajustes, todos confirmados contra Postgres, en 39 rutas que compilan. No está desplegada y no tiene usuarios. Lo que necesita no es más código, sino un barrio dispuesto a instalarla.',
     },
     stack: [
-      'React Native', 'Expo', 'TypeScript', 'WebSockets', 'PostgreSQL',
-      'Face recognition', 'Google OAuth',
+      'Next.js 16', 'React 19', 'TypeScript', 'Capacitor 8', 'PostgreSQL', 'pg',
+      'Better Auth', 'Leaflet', 'Firebase FCM', 'Tailwind 4', 'Vitest',
+    ],
+    shotLayout: 'phones',
+    shots: [
+      { src: 'images/femi-1.png', alt: { en: 'The Femi dashboard, with the SOS button and its thirty second countdown.', es: 'El tablero de Femi, con el botón SOS y su cuenta regresiva de treinta segundos.' } },
+      { src: 'images/femi-2.png', alt: { en: 'The safety map, showing active alerts by severity.', es: 'El mapa de seguridad, con alertas activas por severidad.' } },
+      { src: 'images/femi-3.png', alt: { en: 'The profile screen, with help radius and responder toggles.', es: 'La pantalla de perfil, con radio de ayuda e interruptores de respondiente.' } },
     ],
   },
+
 
   /* ---------------------------------------------------------- SUPPORTING -- */
   {

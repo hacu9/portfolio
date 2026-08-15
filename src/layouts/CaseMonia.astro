@@ -238,14 +238,10 @@ const commits = [
 ];
 
 const issues = [
-  { k: 'gap', t: { en: 'The Playwright suite is not in CI.', es: 'La suite de Playwright no está en CI.' } as L,
-    b: { en: '173 tests across 15 spec files, run by hand. They need Postgres plus a seeded fixture tenant. The CI file says so in a comment.', es: '173 tests en 15 archivos de spec, corridos a mano. Necesitan Postgres más un tenant de fixture sembrado. El archivo de CI lo dice en un comentario.' } as L },
   { k: 'gap', t: { en: 'The Google consent screen is still in Testing.', es: 'La pantalla de consentimiento de Google sigue en Testing.' } as L,
     b: { en: 'Gmail import therefore works only for listed test users, and their refresh tokens expire weekly. Publishing it means the CASA assessment described above.', es: 'La importación de Gmail funciona entonces solo para usuarios de prueba listados, y sus refresh tokens vencen cada semana. Publicarla implica la evaluación CASA descrita arriba.' } as L },
   { k: 'gap', t: { en: 'A cron on Vercel\'s Hobby plan fires anywhere inside its hour.', es: 'Un cron en el plan Hobby de Vercel dispara en cualquier punto de su hora.' } as L,
     b: { en: 'A schedule here is an hour, not a minute, and an hourly expression fails the deployment outright. That is why one job is registered four times at spread hours instead of once.', es: 'Un horario acá es una hora, no un minuto, y una expresión por hora hace fallar el despliegue de una. Por eso un job está registrado cuatro veces en horas separadas en vez de una.' } as L },
-  { k: 'none', t: { en: 'No mobile app, and no bank integrations.', es: 'Sin app móvil, y sin integraciones bancarias.' } as L,
-    b: { en: 'The interface is responsive, but there is no native client. There is no bank API to integrate.', es: 'La interfaz es responsive, pero no hay cliente nativo. No hay API bancaria que integrar.' } as L },
   { k: 'none', t: { en: 'One mailbox at volume.', es: 'Un solo buzón con volumen.' } as L,
     b: { en: 'monia is multi-tenant from the schema up and the tenancy filters are covered by tests, but the only mailbox it has read thousands of messages from is mine.', es: 'monia es multi-tenant desde el esquema y los filtros de tenencia están cubiertos por tests, pero el único buzón del que ha leído miles de mensajes es el mío.' } as L },
 ];

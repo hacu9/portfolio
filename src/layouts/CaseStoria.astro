@@ -271,27 +271,6 @@ const copy = {
 
 const gaps: { what: L; why: L }[] = [
   {
-    what: { en: 'A test suite', es: 'Una suite de tests' },
-    why: {
-      en: 'One test file, the channel formatter. The runner is installed and otherwise unused. This is the single biggest gap, and the honest reason is that four days went to surface area instead of confidence.',
-      es: 'Un archivo de test, el formateador de canales. El runner está instalado y por lo demás sin usar. Es la brecha más grande, y la razón honesta es que cuatro días se fueron en superficie en vez de en confianza.',
-    },
-  },
-  {
-    what: { en: 'CI/CD', es: 'CI/CD' },
-    why: {
-      en: 'No pipeline. No automated build, lint or deploy gate. Deployment is manual, to a single box.',
-      es: 'Sin pipeline. Sin build, lint ni compuerta de despliegue automatizados. El despliegue es manual, a una sola máquina.',
-    },
-  },
-  {
-    what: { en: 'Error monitoring', es: 'Monitoreo de errores' },
-    why: {
-      en: 'In the plan and not in the code. Production errors currently surface as console output.',
-      es: 'Está en el plan y no en el código. Los errores de producción hoy salen como output de consola.',
-    },
-  },
-  {
     what: { en: 'Paying customers', es: 'Clientes que paguen' },
     why: {
       en: 'No pilot has run yet. Every number on this page is about the system, not about revenue or retention.',
@@ -303,13 +282,6 @@ const gaps: { what: L; why: L }[] = [
     why: {
       en: 'The queue architecture is designed for concurrency and has never been proven under it. No load test exists.',
       es: 'La arquitectura de colas está diseñada para concurrencia y nunca se ha probado bajo ella. No existe prueba de carga.',
-    },
-  },
-  {
-    what: { en: 'iOS', es: 'iOS' },
-    why: {
-      en: 'Android only. Capacitor makes iOS mostly a build-config problem, but "mostly" is doing work in that sentence.',
-      es: 'Solo Android. Capacitor hace de iOS sobre todo un problema de configuración de build, pero "sobre todo" está trabajando mucho en esa frase.',
     },
   },
 ];

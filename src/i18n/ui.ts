@@ -19,8 +19,8 @@ export const ui = {
 
   // ---- case study structure, Henry's own four-beat shape
   readingOrder: {
-    en: 'Four of these have a full teardown. If you read one, read Luxura. If you read two, add monia.',
-    es: 'Cuatro tienen desglose completo. Si lees uno, lee Luxura. Si lees dos, suma monia.',
+    en: 'Five of these have a full teardown. If you read one, read Luxura. If you read two, add monia.',
+    es: 'Cinco tienen desglose completo. Si lees uno, lee Luxura. Si lees dos, suma monia.',
   } as L,
   provesLabel: { en: 'Evidence of', es: 'Evidencia de' } as L,
 
