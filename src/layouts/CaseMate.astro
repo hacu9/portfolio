@@ -71,13 +71,13 @@ const copy = {
   } as L,
   readme: {
     en: [
-      'Tinder shed paying subscribers for eleven consecutive quarters. Bumble\'s payers fell 21% year on year, and 78% of users report burnout. The exodus is not toward a better card stack. It is toward products that produce an outcome.',
+      'Tinder shed paying subscribers for eleven consecutive quarters. Bumble\'s payers fell 21% year on year, and 78% of users report burnout. The exodus runs toward products that produce an outcome rather than a better card stack.',
       'My thesis in October 2025: if a model can learn who you are from an ordinary conversation, it can evaluate compatibility on values, life goals and communication style, and do it continuously in the background, without you rating strangers by photograph.',
       'So onboarding is a conversation with a schema behind it. Ten topics, each carrying guide questions, the exact database fields it feeds, and extraction hints, all in a JSON config an admin can edit without a deploy. Topics branch on what you say: tell it you want something casual and it stops asking about marriage timelines. When the conversation ends, a second model pass reads the transcript and writes roughly thirty structured profile fields, turning "I am useless before 10am" into morningNight: 3.',
       'You can also skip it. I hand you a prompt, you paste it into whichever assistant you already talk to every day, it summarizes what it has learned about you across months of real conversation, and you paste the answer back. The profile gets built from evidence you generated without performing for a dating app, which is exactly the evidence a dating app can never collect about you itself.',
     ],
     es: [
-      'Tinder perdió suscriptores pagos once trimestres seguidos. Los pagos de Bumble cayeron 21% interanual, y el 78% de los usuarios reporta hartazgo. El éxodo no va hacia un mazo de cartas mejor. Va hacia productos que producen un resultado.',
+      'Tinder perdió suscriptores pagos once trimestres seguidos. Los pagos de Bumble cayeron 21% interanual, y el 78% de los usuarios reporta hartazgo. El éxodo va hacia productos que producen un resultado, no hacia un mazo de cartas mejor.',
       'Mi tesis en octubre de 2025: si un modelo puede aprender quién eres a partir de una conversación normal, puede evaluar compatibilidad en valores, metas de vida y estilo de comunicación, y hacerlo de forma continua en segundo plano, sin que califiques desconocidos por foto.',
       'Así que el onboarding es una conversación con un esquema detrás. Diez temas, cada uno con preguntas guía, los campos exactos de base de datos que alimenta, y pistas de extracción, todo en un JSON que un admin edita sin desplegar. Los temas se ramifican según lo que dices: dile que quieres algo casual y deja de preguntar por plazos de matrimonio. Cuando termina la conversación, una segunda pasada del modelo lee la transcripción y escribe unos treinta campos estructurados, convirtiendo "no sirvo antes de las 10am" en morningNight: 3.',
       'También puedes saltártelo. Te doy un prompt, lo pegas en el asistente con el que ya hablas todos los días, resume lo que ha aprendido de ti en meses de conversación real, y pegas la respuesta de vuelta. El perfil se arma con evidencia que generaste sin actuar para una app de citas, que es exactamente la evidencia que una app de citas nunca puede recoger de ti por su cuenta.',
@@ -128,8 +128,8 @@ const copy = {
 
   govH: { en: 'The hourly loop has cost governors, not just logic', es: 'El bucle por hora tiene gobernadores de costo, no solo lógica' } as L,
   govB: {
-    en: 'For each active user the job pulls 20 candidates with a SQL filter (age range, gender, connection type, and an existing-match exclusion) then applies the rules that cannot be expressed as a preference. Mutual interest is enforced both ways, so a match can never be one-directional. Verification acts as a privacy filter: ask for verified matches only and you see only verified people, and if you are unverified yourself you are shown only to people who opted in. Then a hard ceiling of three model calls per user per hour, with a second of spacing between them. That number is a budget, not a performance limit.',
-    es: 'Para cada usuario activo el job saca 20 candidatos con un filtro SQL (rango de edad, género, tipo de conexión, y exclusión de matches existentes) y después aplica las reglas que no se pueden expresar como preferencia. El interés mutuo se exige en ambas direcciones, así que un match nunca puede ser unidireccional. La verificación funciona como filtro de privacidad: si pides solo matches verificados ves solo gente verificada, y si tú no estás verificado solo te muestran a quienes aceptaron verte. Después, un techo duro de tres llamadas al modelo por usuario por hora, con un segundo de espacio entre ellas. Ese número es un presupuesto, no un límite de rendimiento.',
+    en: 'For each active user the job pulls 20 candidates with a SQL filter (age range, gender, connection type, and an existing-match exclusion) then applies the rules that cannot be expressed as a preference. Mutual interest is enforced both ways, so a match can never be one-directional. Verification acts as a privacy filter: ask for verified matches only and you see only verified people, and if you are unverified yourself you are shown only to people who opted in. Then a hard ceiling of three model calls per user per hour, with a second of spacing between them. That number is a budget.',
+    es: 'Para cada usuario activo el job saca 20 candidatos con un filtro SQL (rango de edad, género, tipo de conexión, y exclusión de matches existentes) y después aplica las reglas que no se pueden expresar como preferencia. El interés mutuo se exige en ambas direcciones, así que un match nunca puede ser unidireccional. La verificación funciona como filtro de privacidad: si pides solo matches verificados ves solo gente verificada, y si tú no estás verificado solo te muestran a quienes aceptaron verte. Después, un techo duro de tres llamadas al modelo por usuario por hora, con un segundo de espacio entre ellas. Ese número es un presupuesto.',
   } as L,
 
   detH: { en: 'The comparison engine is 522 lines of deterministic math', es: 'El motor de comparación son 522 líneas de matemática determinista' } as L,
@@ -142,17 +142,17 @@ const copy = {
   egress: {
     en: [
       'The hourly matchmaking job loaded every active agent with a full relational include, then queried twenty candidates each, with full includes again. Eight hundred profile loads an hour. Nineteen thousand a day. Roughly 94 MB of egress daily from this job alone, about 2.8 GB a month against a plan allowing 5.5 GB. The job was not the whole bill, it was the half of it I could delete.',
-      'I wrote diagnostic scripts rather than guessing, and the numbers said something I did not expect: 44 of 59 users were test users. That is not a data-hygiene problem. It is an architecture problem, and it presented as a billing alert.',
+      'I wrote diagnostic scripts rather than guessing, and the numbers said something I did not expect: 44 of 59 users were test users. That is an architecture problem, and it presented as a billing alert.',
       'The remediation had four parts, ordered by impact: delete the test users, replace every include with an explicit select naming only the fields the analysis reads, cut the candidate batch, and reduce the cron frequency.',
     ],
     es: [
       'El job de matchmaking por hora cargaba cada agente activo con un include relacional completo, y después consultaba veinte candidatos por cada uno, otra vez con includes completos. Ochocientas cargas de perfil por hora. Diecinueve mil al día. Unos 94 MB de egress diarios solo de este job, unos 2,8 GB al mes contra un plan que permite 5,5 GB. El job no era la cuenta entera, era la mitad que yo podía borrar.',
-      'Escribí scripts de diagnóstico en vez de adivinar, y los números dijeron algo que no esperaba: 44 de 59 usuarios eran de prueba. Eso no es un problema de higiene de datos. Es un problema de arquitectura, y se presentó como una alerta de facturación.',
+      'Escribí scripts de diagnóstico en vez de adivinar, y los números dijeron algo que no esperaba: 44 de 59 usuarios eran de prueba. Eso es un problema de arquitectura, y se presentó como una alerta de facturación.',
       'La remediación tenía cuatro partes, ordenadas por impacto: borrar los usuarios de prueba, reemplazar cada include por un select explícito que nombre solo los campos que el análisis lee, recortar el lote de candidatos, y bajar la frecuencia del cron.',
     ],
   } as LList,
   egressFoot: {
-    en: 'Only the query-shaping half is in the code today. The job still runs hourly and still takes twenty candidates. I fixed the expensive part, left the cheap part, and the analysis document still sits in docs/ describing work I did not finish. The second lesson was about rate limits: free-tier AI is not free of constraints, only of cost. A ceiling of two requests per minute shaped the whole background architecture, the three-analyses-per-hour cap, the deliberate sleep between calls, the exponential backoff. The architecture followed from a quota.',
+    en: 'Only the query-shaping half is in the code today. The job still runs hourly and still takes twenty candidates. I fixed the expensive part, left the cheap part, and the analysis document still sits in docs/ describing work I did not finish. The second lesson was about rate limits: a free tier removes the cost and none of the constraints. A ceiling of two requests per minute shaped the whole background architecture, the three-analyses-per-hour cap, the deliberate sleep between calls, the exponential backoff. The architecture followed from a quota.',
     es: 'Hoy solo está en el código la mitad de la forma de las consultas. El job sigue corriendo cada hora y sigue tomando veinte candidatos. Arreglé la parte cara, dejé la barata, y el documento de análisis sigue en docs/ describiendo trabajo que no terminé. La segunda lección fue sobre límites de tasa: la IA de tier gratis no está libre de restricciones, solo de costo. Un techo de dos requests por minuto le dio forma a toda la arquitectura de fondo: el tope de tres análisis por hora, la espera deliberada entre llamadas, el backoff exponencial. La arquitectura salió de una cuota.',
   } as L,
 
@@ -178,11 +178,11 @@ const copy = {
   design: {
     en: [
       'The landing page was built to a Figma direction with a specific palette: bone type on a warm dark ground, three quiet signal hues. I took those exact values and made them the app\'s tokens too, so the front door and the signed-in product are the same object rather than two things that resemble each other. The tokens are named for the world they came from, --bone, --dusk, --panel, --ember, --sand, --sage, not --primary and --accent-2.',
-      'Color is information, never decoration. The three hues appear in exactly three places: the rule above a stat, the icon tile beside a section heading, and the affinity meter. If something is colored, it is telling you which kind of connection this is. Everything else is bone. A score is a measurement, so compatibility renders as a hairline filled to the value with the figure in tabular numerals, an instrument reading rather than a badge. Depth is hairline borders and a single surface step, because shadows do not read on a dark ground.',
+      'The three hues only ever encode connection type. The three hues appear in exactly three places: the rule above a stat, the icon tile beside a section heading, and the affinity meter. If something is colored, it is telling you which kind of connection this is. Everything else is bone. A score is a measurement, so compatibility renders as a hairline filled to the value with the figure in tabular numerals, an instrument reading rather than a badge. Depth is hairline borders and a single surface step, because shadows do not read on a dark ground.',
     ],
     es: [
       'La landing se construyó sobre una dirección de Figma con una paleta específica: tipografía hueso sobre un fondo oscuro cálido, tres tonos de señal discretos. Tomé esos valores exactos y los volví también los tokens de la app, para que la puerta de entrada y el producto con sesión sean el mismo objeto y no dos cosas que se parecen. Los tokens llevan el nombre del mundo del que salieron, --bone, --dusk, --panel, --ember, --sand, --sage, no --primary y --accent-2.',
-      'El color es información, nunca decoración. Los tres tonos aparecen en exactamente tres lugares: la regla sobre una cifra, la baldosa de ícono junto a un encabezado, y el medidor de afinidad. Si algo tiene color, te está diciendo de qué tipo de conexión se trata. Todo lo demás es hueso. Un puntaje es una medición, así que la compatibilidad se dibuja como una línea fina llena hasta el valor con la cifra en numerales tabulares, una lectura de instrumento y no una insignia. La profundidad son bordes finos y un solo escalón de superficie, porque las sombras no se leen sobre fondo oscuro.',
+      'Los tres tonos solo codifican el tipo de conexión. Los tres tonos aparecen en exactamente tres lugares: la regla sobre una cifra, la baldosa de ícono junto a un encabezado, y el medidor de afinidad. Si algo tiene color, te está diciendo de qué tipo de conexión se trata. Todo lo demás es hueso. Un puntaje es una medición, así que la compatibilidad se dibuja como una línea fina llena hasta el valor con la cifra en numerales tabulares, una lectura de instrumento y no una insignia. La profundidad son bordes finos y un solo escalón de superficie, porque las sombras no se leen sobre fondo oscuro.',
     ],
   } as LList,
 
@@ -205,7 +205,7 @@ const copy = {
     ],
   } as LList,
 
-  endH: { en: 'The mechanic is validated. The scope is not.', es: 'La mecánica está validada. El alcance no.' } as L,
+  endH: { en: 'The mechanic held up and the scope did not.', es: 'La mecánica está validada. El alcance no.' } as L,
   end: {
     en: [
       'What works: the matching produces real, explained matches on a schedule, at a cost that survives a free tier, in two languages, on web and native. What the research says will not work is the shape I gave it, three connection types, no city, no launch gate, and a name that described the one framing the category rejects.',
@@ -377,14 +377,11 @@ const stack = ['Next.js','TypeScript','React','Prisma','Postgres','Supabase','In
       <h2 class="cmd">$ ./bin/report --totals</h2>
       <div class="out">
         <div class="grid">
-          <div><b>304</b><span>{lang === 'es' ? 'Cuentas registradas' : 'Registered accounts'}</span></div>
-          <div><b>661</b><span>{lang === 'es' ? 'Matches por IA' : 'AI-made matches'}</span></div>
-          <div><b>993</b><span>{lang === 'es' ? 'Mensajes' : 'Assistant messages'}</span></div>
+          <div><b>661</b><span>{lang === 'es' ? 'Matches del job, casi todos entre cuentas sembradas' : 'Job-made matches, mostly between seeded accounts'}</span></div>
           <div><b>291</b><span>Commits</span></div>
-          <div><b>68k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
           <div><b>8</b><span>{lang === 'es' ? 'Jobs programados' : 'Scheduled jobs'}</span></div>
           <div><b>25</b><span>{lang === 'es' ? 'Modelos' : 'DB models'}</span></div>
-          <div class="hot"><b>−98%</b><span>{lang === 'es' ? 'Tokens que lee el matcher' : 'Tokens the matcher reads'}</span></div>
+          <div class="hot"><b>~200</b><span>{lang === 'es' ? 'Tokens por par que lee el matcher' : 'Tokens per pair the matcher reads'}</span></div>
         </div>
         <p class="foot">{t(copy.totalsFoot, lang)}</p>
       </div>
@@ -400,7 +397,7 @@ const stack = ['Next.js','TypeScript','React','Prisma','Postgres','Supabase','In
           <p>{t(copy.costB, lang)}</p>
         </div>
         <pre class="term"><span class="c">// what the matching model reads, per pair</span>
-before  ████████████████████████████████████████  <span class="b">~10,000 tokens</span>   every message both people ever sent
+naive   ████████████████████████████████████████  <span class="b">~10,000 tokens</span>   every message both people ever sent, never built
 after   █                                         <span class="g">~200 tokens</span>      last week, rewritten nightly at 03:00
         <span class="c">~150   last month, folded monthly at 04:00      computed, not yet read</span>
         <span class="c">~100   long-term, folded quarterly at 05:00     computed, not yet read</span></pre>

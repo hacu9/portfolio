@@ -83,7 +83,7 @@ const copy = {
       'I asked myself why I could not build a better one. It began as a small project and turned into something I could not put down. Victor designed it with me, screen by screen: the login, the profile cards, the landing pages, the dark and gold direction the whole thing still runs on. We went slowly on purpose. The goal was never the most features. It was something that felt good to use and looked like somebody had cared.',
     ],
     es: [
-      'A las apps de citas les faltaba mucho. La experiencia se sentía barata y los incentivos estaban mal. Pero unas cuantas ya habían validado el modelo mejor, donde un lado invita y el otro elige, así que la idea no era el riesgo. La ejecución sí.',
+      'A las apps de citas les faltaba mucho. La experiencia se sentía barata y los incentivos estaban mal. Pero unas cuantas ya habían validado el modelo mejor, donde un lado invita y el otro elige, así que el riesgo no era la idea sino la ejecución.',
       'Me pregunté por qué no podía construir una mejor. Empezó como un proyecto chico y se volvió algo que no pude soltar. Victor lo diseñó conmigo, pantalla por pantalla: el login, las tarjetas de perfil, las landing, la dirección oscura con dorado sobre la que todavía corre todo. Fuimos despacio a propósito. El objetivo nunca fue tener más funciones. Era algo que se sintiera bien de usar y que se viera cuidado.',
     ],
   } as LList,
@@ -95,12 +95,12 @@ const copy = {
   app: {
     en: [
       'That was the first fork and I did not know the answer. React Native? Something else? Then I found Capacitor and it changed how I build. The web app and the Android app became one artifact, one codebase, one deploy, as long as I stayed disciplined about responsive layout and wired up the native plugins for push, GPS and the camera myself.',
-      'Then came the questions nobody warns you about. Publishing to Google Play is not a button. It is two weeks of mandatory closed testing with fourteen testers before you are allowed near production. Payments were another: RevenueCat for store subscriptions, and no web payments at all in the first release, because one billing surface was enough to get wrong. iOS I deferred and never shipped. The Capacitor target is in the repo. Android is where this market is.',
+      'Then came the questions nobody warns you about. Publishing to Google Play takes weeks. It is two weeks of mandatory closed testing with twelve testers before you are allowed near production. Payments were another: RevenueCat for store subscriptions, and no web payments at all in the first release, because one billing surface was enough to get wrong. iOS I deferred and never shipped. The Capacitor target is in the repo. Android is where this market is.',
       'One consequence is still my favorite thing about the build. The shell loads the web app live from my server, so a JavaScript change reaches every installed phone on the next deploy. A store release is only needed when native code changes.',
     ],
     es: [
       'Ese fue el primer bifurcación y no sabía la respuesta. ¿React Native? ¿Otra cosa? Entonces encontré Capacitor y cambió mi forma de construir. La web y la app de Android pasaron a ser un solo artefacto, un repo, un deploy, siempre que fuera disciplinado con el layout responsive y conectara yo mismo los plugins nativos de push, GPS y cámara.',
-      'Después llegaron las preguntas de las que nadie te avisa. Publicar en Google Play no es un botón. Son dos semanas de pruebas cerradas obligatorias con catorce testers antes de que te dejen acercarte a producción. Los pagos fueron otra: RevenueCat para las suscripciones de tienda, y cero pagos web en el primer release, porque una sola superficie de cobro ya era suficiente para equivocarse. iOS lo dejé para después y nunca salió. El target de Capacitor está en el repo. Android es donde está este mercado.',
+      'Después llegaron las preguntas de las que nadie te avisa. Publicar en Google Play toma semanas. Son dos semanas de pruebas cerradas obligatorias con doce testers antes de que te dejen acercarte a producción. Los pagos fueron otra: RevenueCat para las suscripciones de tienda, y cero pagos web en el primer release, porque una sola superficie de cobro ya era suficiente para equivocarse. iOS lo dejé para después y nunca salió. El target de Capacitor está en el repo. Android es donde está este mercado.',
       'Una consecuencia sigue siendo lo que más me gusta del build. El shell carga la web en vivo desde mi servidor, así que un cambio de JavaScript llega a todos los teléfonos instalados en el siguiente deploy. Solo se necesita un release de tienda cuando cambia código nativo.',
     ],
   } as LList,
@@ -128,7 +128,7 @@ const copy = {
   } as L,
   adsMake: {
     en: [
-      'Nobody was going to hand me creative. I generated the video in Kling, using motion control to get the camera moves I wanted. For the voiceovers I recorded a take and then swapped the voice with Cartesia or ElevenLabs until the register sounded like Bogotá rather than a translation. Then I posted. Instagram, Facebook, several profiles, every day, by hand, on top of the build. The generation took minutes. The tending ate the day.',
+      'Nobody was going to hand me creative. I generated the video in Kling, using motion control to get the camera moves I wanted. For the voiceovers I recorded a take and then swapped the voice with Cartesia or ElevenLabs until the register sounded like Bogotá rather than a translation. Then I posted. Instagram, Facebook, several profiles, every day, by hand, on top of the build. Generating a clip took minutes, and tending the output took the rest of the day.',
       'That daily tending is what produced my next product, which has its own page.',
     ],
     es: [
@@ -144,24 +144,24 @@ const copy = {
   readme: {
     en: [
       'Everyone sends, nobody chooses, and the people receiving leave first. Luxura inverts it. One side browses and spends a strictly limited number of invitations. The other side receives them and chooses. Scarcity on the sending side is the product. An invitation costs the sender something, so it means something to the receiver.',
-      'The model was already validated elsewhere. The execution was not, and that is the part I wanted. It started as a project with a friend and turned into a product with an ad account attached to it.',
+      'Other apps had already validated the model, so the execution was the part I wanted. It started as a project with a friend and turned into a product with an ad account attached to it.',
     ],
     es: [
       'Todos envían, nadie elige, y quienes reciben se van primero. Luxura lo invierte. Un lado navega y gasta un número estrictamente limitado de invitaciones. El otro lado las recibe y elige. La escasez del lado que envía es el producto. Una invitación le cuesta algo a quien la manda, así que significa algo para quien la recibe.',
-      'El modelo ya estaba validado en otro lado. La ejecución no, y esa era la parte que me interesaba. Empezó como un proyecto con un amigo y terminó siendo un producto con una cuenta de pauta encima.',
+      'Otras apps ya habían validado el modelo, así que la ejecución era la parte que me interesaba. Empezó como un proyecto con un amigo y terminó siendo un producto con una cuenta de pauta encima.',
     ],
   } as LList,
   constraintsH: { en: 'Constraints', es: 'Restricciones' } as L,
   constraints: {
     en: [
       'Colombian market. Price ceiling around $5/month, not $15.',
-      'Android-first, mid-range phones, mobile data. Bundle size is a product decision.',
+      'Android-first, mid-range phones, mobile data. Bundle size decided what shipped.',
       'Solo budget. No vendor above tens of dollars a month.',
       'Spanish and English at parity from day one, 1,911 keys each.',
     ],
     es: [
       'Mercado colombiano. Techo de precio cerca de $5/mes, no $15.',
-      'Android primero, gamas medias, datos móviles. El peso del bundle es una decisión de producto.',
+      'Android primero, gamas medias, datos móviles. El peso del bundle decidió qué salía.',
       'Presupuesto de una persona. Ningún proveedor por encima de decenas de dólares al mes.',
       'Español e inglés a la par desde el día uno, 1.911 llaves cada uno.',
     ],
@@ -204,15 +204,15 @@ const copy = {
   fix: {
     en: [
       'Production was sound and everything was tested. Then the ad account opened and the money started evaporating at the door. Registration ran phone, then profile, then photos, then a live face check. Only then did you see a single profile.',
-      'I did not patch it on instinct. I measured, wrote the diagnosis down, and shipped the diagnosis.',
+      'I did not patch it on instinct. I measured, wrote the diagnosis down, and shipped the fix.',
     ],
     es: [
       'Producción estaba sólida y todo estaba probado. Entonces abrí la cuenta de pauta y la plata empezó a evaporarse en la puerta. El registro pedía teléfono, luego perfil, luego fotos, luego una verificación facial en vivo. Solo entonces veías un perfil.',
-      'No lo parché por instinto. Medí, escribí el diagnóstico, y lo que salió a producción fue el diagnóstico.',
+      'No lo parché por instinto. Medí, escribí el diagnóstico, y lo que salió a producción fue el arreglo.',
     ],
   } as LList,
   fixFoot: {
-    en: 'Verbatim from the proposal, dated 2026-03-09. It shipped two days later as one change: register, pick a role, pick an orientation, and you are in. Inviters get the full browse feed immediately. Invitees get a labelled demo inbox populated with real profiles. The three-step wall still exists. It just does not rise until you try to invite or accept. Gate the interaction, not the entrance.',
+    en: 'Verbatim from the proposal, dated 2026-03-09. It shipped two days later as one change: register, pick a role, pick an orientation, and you are in. Inviters get the full browse feed immediately. Invitees get a labelled demo inbox populated with real profiles. The three-step wall still exists. It just does not rise until you try to invite or accept. The gate moved from the entrance to the interaction.',
     es: 'Textual de la propuesta, fechada 2026-03-09. Salió dos días después como un solo cambio: te registras, eliges un rol, eliges una orientación, y estás adentro. Quien invita ve el feed completo de una. Quien recibe ve una bandeja demo, etiquetada como tal, con perfiles reales. El muro de tres pasos sigue existiendo. Solo que no se levanta hasta que intentas invitar o aceptar. Cobra la interacción, no la entrada.',
   } as L,
   sqlFoot: {
@@ -220,8 +220,8 @@ const copy = {
     es: 'Ejecutado contra la base de datos en producción en agosto de 2026. Sobre todos los registros la mejora es menor, de 44,3% a 48,7%, porque el cambio también dejó entrar a un grupo grande que nunca empezó un perfil. Semana a semana: la peor semana de pauta verificó 40,4%; para el 23 de marzo llegó a 56,8%.',
   } as L,
   moveT: {
-    en: 'The wall did not disappear. It moved.',
-    es: 'El muro no desapareció. Se movió.',
+    en: 'The wall moved rather than disappeared.',
+    es: 'El muro se movió en vez de desaparecer.',
   } as L,
   moveB: {
     en: '1,239 users now sit at the first step, inside the app, never having built a profile. That is a real leak and it is the one I would have attacked next. It is still the better leak to have: those people saw the product before they decided, which was the entire point.',
@@ -233,7 +233,7 @@ const copy = {
     es: 'Cambié un bundle WASM de 10MB por uno WebGL de 1,4MB, y dejé los dos motores detrás de un flag',
   } as L,
   faceB: {
-    en: 'face-api.js wanted roughly 10MB of models. On a mid-range Android phone over Colombian mobile data that is a dead product before it renders. Jeeliz WebGL does the gesture work at about 1.4MB. Human.js stayed as a second engine behind an environment flag, and in auto mode it loads first and drops back to face-api.js without a visible failure, because a verification path with one implementation is a verification path with one way to fail.',
+    en: 'face-api.js wanted roughly 10MB of models. On a mid-range Android phone over Colombian mobile data that is a dead product before it renders. Jeeliz WebGL does the gesture work at about 1.4MB. Human.js stayed as a second engine behind an environment flag, and in auto mode it loads first and drops back to face-api.js without a visible failure, because one implementation means one point of failure, and a user who cannot verify is a user who leaves.',
     es: 'face-api.js pedía unos 10MB de modelos. En un Android de gama media con datos móviles colombianos eso es un producto muerto antes de renderizar. Jeeliz WebGL hace el trabajo de gestos en cerca de 1,4MB. Human.js quedó como segundo motor detrás de una variable de entorno, y en modo auto carga primero y cae a face-api.js sin que se vea la falla, porque una ruta de verificación con una sola implementación es una ruta con una sola forma de fallar.',
   } as L,
   modT: {
@@ -257,8 +257,8 @@ const copy = {
     es: 'Acepté un servidor Node propio, y con él una salida permanente de serverless',
   } as L,
   chatB: {
-    en: 'Socket.IO attaches to an HTTP server that wraps the Next.js request handler, which is why this app starts with a custom entry point and not next start. That is a real door closing. No serverless host will run this again. It was the right trade because the alternative was polling, and because I already ran my own box. 424 messages by the next morning, 71.4% of connections chatting, and 15,480 messages today.',
-    es: 'Socket.IO se monta sobre un servidor HTTP que envuelve el handler de Next.js, y por eso esta app arranca con un punto de entrada propio y no con next start. Es una puerta que se cierra de verdad. Ningún host serverless va a correr esto otra vez. Fue el intercambio correcto porque la alternativa era polling, y porque ya tenía mi propia máquina. 424 mensajes a la mañana siguiente, 71,4% de las conexiones chateando, y 15.480 mensajes hoy.',
+    en: 'Socket.IO attaches to an HTTP server that wraps the Next.js request handler, which is why this app starts with a custom entry point and not next start. That closes a real door. No serverless host will run this again. It was the right trade because the alternative was polling, and because I already ran my own box. 424 messages by the next morning, 71.4% of connections chatting, and 15,480 messages today.',
+    es: 'Socket.IO se monta sobre un servidor HTTP que envuelve el handler de Next.js, y por eso esta app arranca con un punto de entrada propio y no con next start. Eso cierra una puerta de verdad. Ningún host serverless va a correr esto otra vez. Fue el intercambio correcto porque la alternativa era polling, y porque ya tenía mi propia máquina. 424 mensajes a la mañana siguiente, 71,4% de las conexiones chateando, y 15.480 mensajes hoy.',
   } as L,
   otpT: {
     en: 'Stopped shopping for a vendor and built the seam instead',
@@ -275,16 +275,16 @@ const copy = {
   } as L,
   eco: {
     en: [
-      'Eight hundred dollars bought a complete education in where a funnel leaks. The subscription launched at $15/month into a market that supports about $5. Weekly plans at roughly $2.50 shipped on 17 March, a month after the money was already committed.',
+      'Eight hundred dollars showed me where the funnel leaked. The subscription launched at $15/month into a market that supports about $5. Weekly plans at roughly $2.50 shipped on 17 March, a month after the money was already committed.',
     ],
     es: [
-      'Ochocientos dólares compraron una educación completa sobre dónde gotea un embudo. La suscripción salió a $15/mes en un mercado que aguanta unos $5. Los planes semanales de unos $2,50 salieron el 17 de marzo, un mes después de que la plata ya estaba comprometida.',
+      'Ochocientos dólares me mostraron dónde goteaba el embudo. La suscripción salió a $15/mes en un mercado que aguanta unos $5. Los planes semanales de unos $2,50 salieron el 17 de marzo, un mes después de que la plata ya estaba comprometida.',
     ],
   } as LList,
   attrT: { en: 'Every user in the March report is tagged source: unknown', es: 'Cada usuario del reporte de marzo quedó marcado como source: unknown' } as L,
   attrB: {
-    en: 'I specified attribution properly on the next project, before any spend, because of this exact line. Paid acquisition without attribution is a guess with an invoice attached: I can tell you what $800 bought in aggregate and I cannot tell you which campaign did it.',
-    es: 'En el proyecto siguiente especifiqué la atribución bien, antes de gastar un peso, por esta línea exacta. Pauta sin atribución es una adivinanza con factura: puedo decirte qué compraron $800 en agregado y no puedo decirte qué campaña lo hizo.',
+    en: 'I specified attribution properly on the next project, before any spend, because of this exact line. Paid acquisition without attribution left me guessing: I can tell you what $800 bought in aggregate and I cannot tell you which campaign did it.',
+    es: 'En el proyecto siguiente especifiqué la atribución bien, antes de gastar un peso, por esta línea exacta. La pauta sin atribución me dejó adivinando: puedo decirte qué compraron $800 en agregado y no puedo decirte qué campaña lo hizo.',
   } as L,
 
   scopeFoot: {
@@ -315,13 +315,13 @@ const copy = {
     ],
   } as LList,
   methodFoot: {
-    en: 'Volume is the least interesting thing about it. What changed were the failure modes. Fewer typos and forgotten null checks; far more correct module, never wired up at the composition root. The checklist is aimed squarely at those.',
-    es: 'El volumen es lo menos interesante. Lo que cambió fueron los modos de falla. Menos typos y chequeos de null olvidados; muchos más módulo correcto, nunca conectado en la raíz de composición. La lista apunta justo a esos.',
+    en: 'The volume matters less than what it was spent on. What changed were the failure modes. Fewer typos and forgotten null checks; far more correct module, never wired up at the composition root. The checklist is aimed squarely at those.',
+    es: 'El volumen importa menos que en qué se gastó. Lo que cambió fueron los modos de falla. Menos typos y chequeos de null olvidados; muchos más módulo correcto, nunca conectado en la raíz de composición. La lista apunta justo a esos.',
   } as L,
 
   endH: {
-    en: 'It did not take off. It pointed at the next thing.',
-    es: 'No despegó. Señaló lo siguiente.',
+    en: 'It did not take off, and it pointed at the next thing.',
+    es: 'No despegó, y señaló lo siguiente.',
   } as L,
   end: {
     en: [
@@ -645,7 +645,6 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
       <div class="out">
         <div class="grid">
           <div><b>1,326</b><span>Commits</span></div>
-          <div><b>143k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
           <div><b>177</b><span>{lang === 'es' ? 'Rutas API' : 'API routes'}</span></div>
           <div><b>77</b><span>{lang === 'es' ? 'Páginas' : 'Pages'}</span></div>
           <div><b>44</b><span>{lang === 'es' ? 'Modelos Prisma' : 'Prisma models'}</span></div>

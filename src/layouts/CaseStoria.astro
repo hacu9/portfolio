@@ -94,11 +94,11 @@ const copy = {
   origin: {
     en: [
       'The idea came out of a chore on a different product. Through February I was tending Luxura\'s social accounts by hand, every day: posting the creative I had made for it, writing the captions, answering whatever came back in the inboxes. Storía has never had an ad campaign of its own. It came from the work of running someone else\'s.',
-      'Somewhere in that grind I asked why I was doing it by hand. Around the same time some friends of mine, small retail shop owners here in Bogotá, told me they could not keep up with their WhatsApp. Customers wrote at all hours asking for prices and photos, and the messages sat unanswered until the customer bought somewhere else. I was drowning in outbound social work and they were drowning in inbound customer messages, and it was the same drowning. One person, several channels, no time. So Storía started with their half of it: an agent that reads the real catalogue, sends the photos, answers in Spanish, and hands the conversation to a human when it should.',
+      'Somewhere in that grind I asked why I was doing it by hand. Around the same time some friends of mine, small retail shop owners here in Bogotá, told me they could not keep up with their WhatsApp. Customers wrote at all hours asking for prices and photos, and the messages sat unanswered until the customer bought somewhere else. I was drowning in outbound social work and they were drowning in inbound customer messages, and it was the same problem. One person, several channels, no time. So Storía started with their half of it: an agent that reads the real catalogue, sends the photos, answers in Spanish, and hands the conversation to a human when it should.',
     ],
     es: [
       'La idea salió de una tarea de otro producto. Durante febrero atendía las cuentas sociales de Luxura a mano, todos los días: publicaba los creativos que le había hecho, escribía los textos, contestaba lo que llegara a las bandejas. Storía nunca ha tenido una campaña propia. Salió del trabajo de correr la de otro.',
-      'En algún punto de esa rutina me pregunté por qué lo hacía a mano. Por esos mismos días unos amigos míos, dueños de tiendas pequeñas acá en Bogotá, me dijeron que no daban abasto con su WhatsApp. Los clientes escribían a toda hora pidiendo precios y fotos, y los mensajes se quedaban sin respuesta hasta que el cliente compraba en otro lado. Yo me estaba ahogando en trabajo social de salida y ellos se estaban ahogando en mensajes de entrada, y era el mismo ahogo. Una persona, varios canales, cero tiempo. Así que Storía arrancó por la mitad de ellos: un agente que lee el catálogo real, manda las fotos, contesta en español, y le pasa la conversación a una persona cuando debe.',
+      'En algún punto de esa rutina me pregunté por qué lo hacía a mano. Por esos mismos días unos amigos míos, dueños de tiendas pequeñas acá en Bogotá, me dijeron que no daban abasto con su WhatsApp. Los clientes escribían a toda hora pidiendo precios y fotos, y los mensajes se quedaban sin respuesta hasta que el cliente compraba en otro lado. Yo me estaba ahogando en trabajo social de salida y ellos se estaban ahogando en mensajes de entrada, y era el mismo ahogo. Una persona sola atendiendo varios canales, sin tiempo. Así que Storía arrancó por la mitad de ellos: un agente que lee el catálogo real, manda las fotos, contesta en español, y le pasa la conversación a una persona cuando debe.',
     ],
   } as LList,
 
@@ -109,7 +109,7 @@ const copy = {
   position: {
     en: [
       'I built it in four days in mid February, in the same month Luxura launched, and I have not committed to it since. There are 54 commits, 25 Prisma models, 10 agent tools, and one test file. No shop has run it. Nobody has paid for it. The code can score a lead and book an appointment, and none of that has faced a real customer yet.',
-      'What the project needs next is one shop in Bogotá running it on their actual WhatsApp line for a month, so I can find out which of the 49,000 lines matter and which were guesses. Until that happens, more features would just be more guesses.',
+      'What the project needs next is one shop in Bogotá running it on their actual WhatsApp line for a month, so I can find out which of the 49,000 lines matter and which were guesses. Until that happens, more features would add more guesses.',
     ],
     es: [
       'La construí en cuatro días a mediados de febrero, el mismo mes en que salió Luxura, y no he commiteado desde entonces. Hay 54 commits, 25 modelos de Prisma, 10 herramientas de agente, y un archivo de test. Ninguna tienda la ha corrido. Nadie ha pagado por ella. El código puede puntuar un lead y agendar una cita, y nada de eso se ha enfrentado a un cliente real todavía.',
@@ -148,8 +148,8 @@ const copy = {
     es: 'Hice del multi-tenant una regla del esquema y no una convención',
   } as L,
   tenantB: {
-    en: 'Every one of the 25 models carries an organizationId, every query goes through one tenant helper, and every foreign key is indexed. The pgvector similarity searches are the only place raw SQL is allowed, and those filter on organizationId in the WHERE clause before the distance operator ever runs, so one tenant\'s embeddings can never rank against another\'s. A convention would have been a leak waiting for the first tired afternoon.',
-    es: 'Cada uno de los 25 modelos lleva un organizationId, cada consulta pasa por un solo helper de tenant, y cada llave foránea está indexada. Las búsquedas por similitud con pgvector son el único lugar donde se permite SQL crudo, y esas filtran por organizationId en el WHERE antes de que corra el operador de distancia, así los embeddings de un tenant nunca pueden rankear contra los de otro. Una convención habría sido una fuga esperando la primera tarde de cansancio.',
+    en: 'Every one of the 25 models carries an organizationId, every query goes through one tenant helper, and every foreign key is indexed. The pgvector similarity searches are the only place raw SQL is allowed, and those filter on organizationId in the WHERE clause before the distance operator ever runs, so one tenant\'s embeddings can never rank against another\'s. A convention would have leaked the first time somebody wrote a query while tired.',
+    es: 'Cada uno de los 25 modelos lleva un organizationId, cada consulta pasa por un solo helper de tenant, y cada llave foránea está indexada. Las búsquedas por similitud con pgvector son el único lugar donde se permite SQL crudo, y esas filtran por organizationId en el WHERE antes de que corra el operador de distancia, así los embeddings de un tenant nunca pueden rankear contra los de otro. Una convención se habría filtrado la primera vez que alguien escribiera una consulta cansado.',
   } as L,
 
   learnT: {
@@ -213,7 +213,7 @@ const copy = {
     en: [
       'Persona before rules. The system prompt opens with who the agent is and closes with constraints, not the other way round.',
       'An explicit list of what never to do. No introducing itself as a virtual assistant. No repeating the question back. No bullet points, because nobody sends a bulleted list on WhatsApp. No hedging: if the price is in the knowledge base, say it like a salesperson would.',
-      'Tone presets carry worked examples, not adjectives. "Friendly" as a keyword produces nothing. A short sample exchange in the right register produces the register.',
+      'Tone presets carry worked examples, not adjectives. "Friendly" as a keyword produces nothing. A short sample exchange in the right register works.',
     ],
     es: [
       'Persona antes que reglas. El system prompt abre con quién es el agente y cierra con las restricciones, no al revés.',
@@ -239,7 +239,7 @@ const copy = {
     ],
   } as LList,
   methodFoot: {
-    en: 'Four days of it produced 49,000 lines and one test file, which is the trade those artefacts bought and did not hide.',
+    en: 'Four days of it produced 49,000 lines and one test file, which is the trade those artefacts bought.',
     es: 'Cuatro días de eso produjeron 49.000 líneas y un archivo de test, que es el intercambio que esos artefactos compraron y no escondieron.',
   } as L,
 
@@ -257,7 +257,7 @@ const copy = {
     en: [
       'Test the orchestrator from the first hour. Not the UI. The tool-calling loop. It has the most branches, the most money attached and the least determinism, and it is exactly the code an agent will confidently break during a refactor. The formatter got tests because I got burned once; the orchestrator should have had them first.',
       'Verify the payment rails before the schema. Stripe survived six hours and cost a migration to unwind, because it does not onboard Colombian merchants. A fifteen-minute check would have caught it before a single model was named after it.',
-      'Write the threat model on day one, not day three. Day three worked and the implementation followed it faithfully, but it meant retrofitting a security guard into an orchestrator that had already grown past a thousand lines, and the seams show.',
+      'Write the threat model on day one, not day three. Day three worked and the implementation followed it faithfully, but it meant retrofitting a security guard into an orchestrator that had already grown past a thousand lines, and the seams are visible in the code.',
       'Ship one channel to one real business before building five. The breadth is genuinely useful and it is also the reason there are no pilot numbers on this page. A single Bogotá shop on WhatsApp alone would have taught me more than Instagram and voice combined.',
     ],
     es: [
@@ -380,7 +380,6 @@ const thread = [
     <section class="blk">
       <h2 class="cmd">$ ./bin/stat</h2>
       <div class="grid">
-        <div><b>49k</b><span>{lang === 'es' ? 'Líneas TS' : 'Lines TS'}</span></div>
         <div><b>54</b><span>Commits</span></div>
         <div><b>4</b><span>{lang === 'es' ? 'Días' : 'Days'}</span></div>
         <div><b>25</b><span>{lang === 'es' ? 'Modelos' : 'Models'}</span></div>

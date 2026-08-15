@@ -84,12 +84,12 @@ const copy = {
   rwH: { en: 'Three codebases pretending to be one product', es: 'Tres bases de código que fingían ser un producto' } as L,
   rw: {
     en: [
-      'v1 was a React Native app, an Express backend, and the hand-rolled contract between them. The tree told its own story. A legacy route folder inside the live app, and a matching legacy folder inside the alert screens. A file named verification_old.js at 1,903 lines. A screen called AlertDemo11_NightGuardian, demo eleven, at 1,996 lines. Three loose HTML files at the repository root for debugging face verification by hand. Nobody plans this. It accretes, one deadline at a time.',
-      'The reduction is not that Next.js beats Express. It is that v1 paid for everything three times: a React Native screen, an Express route, and a serialization contract that both had to honour and neither enforced. v2 collapses the boundary. Server components call service modules directly, and Capacitor wraps the same web build for Android. The mobile app is not a second implementation, so there is nothing to drift.',
+      'v1 was a React Native app, an Express backend, and the hand-rolled contract between them. The tree told its own story. A legacy route folder inside the live app, and a matching legacy folder inside the alert screens. A file named verification_old.js at 1,903 lines. A screen called AlertDemo11_NightGuardian, demo eleven, at 1,996 lines. Three loose HTML files at the repository root for debugging face verification by hand. Nobody plans this. It accretes, one working session at a time.',
+      'The reduction is not that Next.js beats Express. It is that v1 paid for everything three times: a React Native screen, an Express route, and a serialization contract that both had to honour and neither enforced. v2 collapses the boundary. Server components call service modules directly, and Capacitor wraps the same web build for Android. The mobile app is the same build, so there is nothing to drift.',
     ],
     es: [
-      'v1 era una app en React Native, un backend en Express, y el contrato hecho a mano entre los dos. El árbol contaba su propia historia. Una carpeta de rutas legacy dentro de la app viva, y otra carpeta legacy igual dentro de las pantallas de alertas. Un archivo llamado verification_old.js con 1.903 líneas. Una pantalla llamada AlertDemo11_NightGuardian, demo once, con 1.996 líneas. Tres archivos HTML sueltos en la raíz del repositorio para depurar verificación facial a mano. Nadie planea esto. Se acumula, una fecha de entrega a la vez.',
-      'La reducción no es que Next.js le gane a Express. Es que v1 pagaba todo tres veces: una pantalla de React Native, una ruta de Express, y un contrato de serialización que ambos debían respetar y ninguno hacía cumplir. v2 colapsa la frontera. Los server components llaman a los módulos de servicio directo, y Capacitor envuelve el mismo build web para Android. La app móvil no es una segunda implementación, así que no hay nada que se desincronice.',
+      'v1 era una app en React Native, un backend en Express, y el contrato hecho a mano entre los dos. El árbol contaba su propia historia. Una carpeta de rutas legacy dentro de la app viva, y otra carpeta legacy igual dentro de las pantallas de alertas. Un archivo llamado verification_old.js con 1.903 líneas. Una pantalla llamada AlertDemo11_NightGuardian, demo once, con 1.996 líneas. Tres archivos HTML sueltos en la raíz del repositorio para depurar verificación facial a mano. Nadie planea esto. Se acumula, una sesión de trabajo a la vez.',
+      'La reducción no es que Next.js le gane a Express. Es que v1 pagaba todo tres veces: una pantalla de React Native, una ruta de Express, y un contrato de serialización que ambos debían respetar y ninguno hacía cumplir. v2 colapsa la frontera. Los server components llaman a los módulos de servicio directo, y Capacitor envuelve el mismo build web para Android. La app móvil es el mismo build, así que no hay nada que se desincronice.',
     ],
   } as LList,
   massFoot: {
@@ -100,8 +100,8 @@ const copy = {
   // ---- decisions
   capH: { en: 'Capacitor instead of React Native', es: 'Capacitor en vez de React Native' } as L,
   capB: {
-    en: 'The product is mostly forms, lists and text. The genuinely native needs are two: background geolocation and push. Capacitor buys both with plugins and costs one web build instead of two codebases. The cost is real. A WebView will never match React Native on animation-heavy screens, and I am betting the product never needs one. If the map ever demands sixty-frame gesture work, this gets revisited.',
-    es: 'El producto es sobre todo formularios, listas y texto. Las necesidades realmente nativas son dos: geolocalización en segundo plano y push. Capacitor compra ambas con plugins y cuesta un build web en vez de dos bases de código. El costo es real. Un WebView nunca va a igualar a React Native en pantallas con mucha animación, y estoy apostando a que el producto nunca necesita una. Si el mapa alguna vez exige gestos a sesenta cuadros, esto se revisa.',
+    en: 'The product is mostly forms, lists and text. The genuinely native needs are two: background geolocation and push. Capacitor buys both with plugins and costs one web build instead of two codebases. A WebView will never match React Native on animation-heavy screens, and I am betting the product never needs one. If the map ever demands sixty-frame gesture work, this gets revisited.',
+    es: 'El producto es sobre todo formularios, listas y texto. Las necesidades realmente nativas son dos: geolocalización en segundo plano y push. Capacitor compra ambas con plugins y cuesta un build web en vez de dos bases de código. Un WebView nunca va a igualar a React Native en pantallas con mucha animación, y estoy apostando a que el producto nunca necesita una. Si el mapa alguna vez exige gestos a sesenta cuadros, esto se revisa.',
   } as L,
   sqlH: { en: 'Raw SQL instead of an ORM', es: 'SQL crudo en vez de un ORM' } as L,
   sqlB: {
@@ -118,10 +118,10 @@ const copy = {
   auditH: { en: 'A process that counts parts cannot see connections', es: 'Un proceso que cuenta partes no puede ver conexiones' } as L,
   audit: {
     en: [
-      'Before writing this up I audited the repository against its own dashboard. Every green check on the left was true. Every question on the right had never been asked by anything.',
+      'v2 was built as a queue of specified tasks. Each one carried its own acceptance criteria and closed when they passed, which is how eight features and fifty four tasks reached done. Before writing this up I audited the result against that dashboard. Every green check on the left was true, and every question on the right was one the loop had no step for.',
     ],
     es: [
-      'Antes de escribir esto audité el repositorio contra su propio tablero. Cada visto verde de la izquierda era cierto. Cada pregunta de la derecha nunca la había hecho nada.',
+      'v2 se construyó como una cola de tareas especificadas. Cada una llevaba sus propios criterios de aceptación y se cerraba cuando pasaban, y así ocho funciones y cincuenta y cuatro tareas llegaron a terminado. Antes de escribir esto audité el resultado contra ese tablero. Cada visto verde de la izquierda era cierto, y cada pregunta de la derecha no tenía paso en el ciclo.',
     ],
   } as LList,
 
@@ -150,7 +150,7 @@ const copy = {
   repairH: { en: 'The repair, and how I know it holds', es: 'La reparación, y cómo sé que se sostiene' } as L,
   repair: {
     en: [
-      'Pinned the browser build of the face-matching package. Wrote the app shell. Rebuilt the location provider from a pass-through into a real context, which fixed a live bug on the way: its callback setter replaced rather than appended, so two subscribers would fight and the last to mount would silently win. Coerced the coordinate columns at the service boundary, so the interface stops lying.',
+      'Pinned the browser build of the face-matching package. Wrote the app shell. Rebuilt the location provider from a pass-through into a real context, which fixed a live bug on the way: its callback setter replaced rather than appended, so two subscribers would fight and the last to mount would silently win. Coerced the coordinate columns at the service boundary, so the interface matches what the driver returns.',
       'Built the dashboard, the profile page and the map. Fixed an SOS bug where a missing GPS fix sent the alert to zero, zero, which is a point in the Gulf of Guinea and invisible to every proximity query; it now takes a one-shot fix and refuses rather than send a lie. Added a seed script and a migration runner, because a fresh clone could not previously reach a working database.',
       'Then tests for the composition root and the coordinate bug, verified by mutation: I reverted each fix, confirmed the test went red, and restored it. One of the five shell tests passes either way by design, because it asserts only that children render, which the bare div also did. That one is the control.',
     ],
