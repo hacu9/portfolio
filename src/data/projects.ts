@@ -50,6 +50,11 @@ export interface Project {
    */
   summary?: L;
   /**
+   * Five words naming what this project is evidence OF. Four teardowns of
+   * similar depth otherwise ask the reader to pick blind.
+   */
+  proves?: L;
+  /**
    * Path to a full teardown page, relative to the language root
    * ("work/luxura" → "/work/luxura/" and "/es/work/luxura/"). Its presence is
    * what turns the directory row into a card.
@@ -85,6 +90,7 @@ const rawProjects: Project[] = [
     url: 'https://play.google.com/store/apps/details?id=app.luxura.dating',
     urlLabel: { en: 'See it on Google Play', es: 'Verla en Google Play' },
     caseSlug: 'work/luxura',
+    proves: { en: 'Shipping, operating, and unit economics', es: 'Enviar, operar, y economía por usuario' },
     summary: {
       en: 'Eleven weeks from an empty repo to Google Play, 5,000+ downloads, and two paying subscribers. I paused the ads for one day to find out which half of the funnel was real, then rebuilt onboarding around the answer.',
       es: 'Once semanas de un repo vacío a Google Play, 5.000+ descargas y dos suscriptores pagos. Apagué la pauta un día para saber qué mitad del embudo era real, y reconstruí el onboarding alrededor de la respuesta.',
@@ -192,6 +198,7 @@ const rawProjects: Project[] = [
     url: 'https://monia-rho.vercel.app',
     urlLabel: { en: 'Open the demo', es: 'Abrir el demo' },
     caseSlug: 'work/monia',
+    proves: { en: 'Correctness discipline under an agentic workflow', es: 'Disciplina de correctitud en un flujo agéntico' },
     summary: {
       en: 'No aggregator reaches Colombian banks, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
       es: 'Ningún agregador llega a los bancos colombianos, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. Siete días, 271 commits, y una ronda de revisión que probó que 678 tests en verde no eran cobertura.',
@@ -276,6 +283,7 @@ const rawProjects: Project[] = [
     period: '2026',
     lead: true,
     caseSlug: 'work/storia',
+    proves: { en: 'Agent architecture, built fast', es: 'Arquitectura de agentes, construida rápido' },
     shots: [
       { src: 'images/storia-inbox.jpg', alt: { en: 'The Storia unified inbox with a live WhatsApp conversation', es: 'La bandeja unificada de Storia con una conversación de WhatsApp en vivo' } },
       { src: 'images/storia-dashboard.jpg', alt: { en: 'The Storia dashboard', es: 'El panel de Storia' } },
@@ -337,7 +345,7 @@ const rawProjects: Project[] = [
   {
     id: 'mate',
     name: 'Mate',
-    tagline: { en: 'Agent-to-agent AI dating', es: 'Citas con IA de agente a agente' },
+    tagline: { en: 'AI matchmaker, no swiping', es: 'Matchmaker con IA, sin swipe' },
     status: 'building',
     statusNote: {
       en: 'Built and running, not launched',
@@ -346,6 +354,7 @@ const rawProjects: Project[] = [
     role: { en: 'Architecture and implementation', es: 'Arquitectura e implementación' },
     period: '2026',
     caseSlug: 'work/mate',
+    proves: { en: 'Research honesty, including against myself', es: 'Honestidad en investigación, incluso contra mí' },
     summary: {
       en: 'An AI matchmaker with no swiping: a scheduled job scores candidates on the dimensions the research says predict compatibility, and writes you the reason. Seven months, one production incident that turned out to be 75% test fixtures, and a validation pass that killed the framing the product was named after.',
       es: 'Un matchmaker con IA y sin swipe: un job programado puntúa candidatos en las dimensiones que la investigación dice que predicen compatibilidad, y te escribe la razón. Siete meses, un incidente en producción que resultó ser 75% datos de prueba, y una validación que mató el encuadre que le daba nombre al producto.',
@@ -357,8 +366,8 @@ const rawProjects: Project[] = [
     ],
     lead: true,
     problem: {
-      en: 'Swiping asks you to judge a person from one photo and one sentence. Mate tests the opposite: every user gets an agent that represents them, the agents talk first, and the humans only meet once that conversation says it is worth their evening.',
-        es: 'Deslizar te obliga a juzgar a una persona con una foto y una frase. Mate prueba lo contrario: cada usuario tiene un agente que lo representa, los agentes hablan primero, y las personas se conocen solo cuando esa conversación dice que la noche vale la pena.',
+      en: 'Swiping asks you to judge a person from one photo and one sentence. Mate tests the opposite: a scheduled job reads what you told it about yourself, scores candidates on the dimensions the research says actually predict compatibility, and hands you a match with the reason written out. The model never speaks as the user, to anyone. I built the agent-to-agent version first and the market research killed that framing, which is the finding the teardown is really about.',
+        es: 'Deslizar te obliga a juzgar a una persona con una foto y una frase. Mate prueba lo contrario: un job programado lee lo que le contaste sobre ti, puntúa candidatos en las dimensiones que la investigación dice que sí predicen compatibilidad, y te entrega un match con la razón escrita. El modelo nunca habla como el usuario, con nadie. Construí primero la versión agente-a-agente y la investigación de mercado mató ese encuadre, que es de lo que trata de verdad el desglose.',
     },
     built: {
       en: [

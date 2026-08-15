@@ -18,6 +18,12 @@ export const ui = {
   yearsShipping: { en: 'Years shipping', es: 'Años construyendo' } as L,
 
   // ---- case study structure, Henry's own four-beat shape
+  readingOrder: {
+    en: 'Four of these have a full teardown. If you read one, read Luxura. If you read two, add monia.',
+    es: 'Cuatro tienen desglose completo. Si lees uno, lee Luxura. Si lees dos, suma monia.',
+  } as L,
+  provesLabel: { en: 'Evidence of', es: 'Evidencia de' } as L,
+
   readCase: { en: 'Read the teardown', es: 'Ver el desglose' } as L,
   caseHint: {
     en: 'Full write-up: how it was built, what it cost, what I got wrong',

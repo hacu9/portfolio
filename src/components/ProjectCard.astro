@@ -55,6 +55,11 @@ const base = import.meta.env.BASE_URL;
       {projectName(p, lang)}
     </h3>
     <p class="card-tag">{t(p.tagline, lang)}</p>
+    {p.proves && (
+      <p class="card-proves">
+        <span>{t(ui.provesLabel, lang)}</span> {t(p.proves, lang)}
+      </p>
+    )}
     {p.summary && <p class="card-sum">{t(p.summary, lang)}</p>}
     <TechRow items={p.stack} size="sm" />
     <p class="card-cta">
@@ -180,6 +185,18 @@ const base = import.meta.env.BASE_URL;
     margin: 0;
     color: var(--dim);
     font-size: 0.75rem;
+  }
+  .card-proves {
+    margin: 0.1rem 0 0;
+    font-size: 0.75rem;
+    color: var(--ink-2);
+  }
+  .card-proves span {
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.625rem;
+    margin-right: 0.4rem;
   }
   .card-sum {
     margin: 0.25rem 0 0;

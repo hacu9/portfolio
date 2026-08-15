@@ -104,17 +104,10 @@ const when = (e: (typeof timeline)[number]): string => {
       <p class="meta">{t(profile.location, lang)} · {t(profile.workingStyle, lang)} · UTC−5</p>
     </section>
 
-    <section id="approach" class="blk">
-      <h2 class="cmd">$ cat approach.md</h2>
-      <div class="out" data-camera>
-        <p class="hl">{t(profile.thesis.lead, lang)}</p>
-        {tl(profile.thesis.body, lang).map((p) => <p>{p}</p>)}
-      </div>
-    </section>
-
     <section id="work" class="blk">
       <h2 class="cmd">$ ls -la ./work</h2>
       <div class="out">
+        <p class="reading-order">{t(ui.readingOrder, lang)}</p>
         {
           leadProjects.map((p) =>
             p.caseSlug ? (
@@ -192,7 +185,31 @@ const when = (e: (typeof timeline)[number]): string => {
         }
       </div>
     </section>
-
+    <section class="blk">
+      <h2 class="cmd">$ git log</h2>
+      <div class="out">
+        <ol class="record">
+          {
+            timeline.map((e) => (
+              <li>
+                <span class="when">{when(e)}</span>
+                <span class="what">
+                  <strong>{t(e.role, lang)}</strong> <span class="org">{e.org}</span>
+                  {e.detail && <span class="det">{t(e.detail, lang)}</span>}{e.highlights && (<ul class="role-hl">{tl(e.highlights, lang).map((h) => <li>{h}</li>)}</ul>)}
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+    <section id="approach" class="blk">
+      <h2 class="cmd">$ cat approach.md</h2>
+      <div class="out" data-camera>
+        <p class="hl">{t(profile.thesis.lead, lang)}</p>
+        {tl(profile.thesis.body, lang).map((p) => <p>{p}</p>)}
+      </div>
+    </section>
     <section class="blk">
       <!-- TS, not JSON: the render has trailing commas and // comments, and a
            site whose premise is living in a terminal gets its commands right. -->
@@ -213,29 +230,6 @@ const when = (e: (typeof timeline)[number]): string => {
         <p class="lbl">{'}'}</p>
       </div>
     </section>
-
-    <section class="blk">
-      <h2 class="cmd">$ git log</h2>
-      <div class="out">
-        <ol class="record">
-          {
-            timeline.map((e) => (
-              <li>
-                <span class="when">{when(e)}</span>
-                <span class="what">
-                  <strong>{t(e.role, lang)}</strong> <span class="org">{e.org}</span>
-                  {e.detail && <span class="det">{t(e.detail, lang)}</span>}{e.highlights && (<ul class="role-hl">{tl(e.highlights, lang).map((h) => <li>{h}</li>)}</ul>)}
-                </span>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </section>
-
-    <Testimonials lang={lang} />
-
-
     <section id="contact" class="blk">
       <h2 class="cmd">$ contact --open</h2>
       <div class="contact-id"><img class="portrait" src={asset(base, profile.photo)} alt={t(profile.photoAlt, lang)} width="72" height="72" loading="lazy" /></div>
@@ -377,6 +371,8 @@ const when = (e: (typeof timeline)[number]): string => {
   .out > p, .out p { color: var(--ink-2); max-width: var(--read); }
   .hl { color: var(--ink) !important; font-size: 1rem; }
   .ok { color: var(--accent) !important; max-width: 46rem !important; }
+
+  .reading-order { color: var(--dim) !important; margin-bottom: 0.3rem; }
 
   .proj { border-left: 2px solid var(--line); padding-left: 0.9rem; }
   .proj[open] { border-left-color: var(--accent); }
