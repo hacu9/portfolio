@@ -149,7 +149,7 @@ const rawProjects: Project[] = [
         },
         body: {
           en: 'The OTP screen went through six provider configurations in eight weeks (SNS, then Twilio Verify, raw Twilio, Firebase Phone Auth, Plivo), each swap driven by Colombian carrier delivery, per-message cost, or an error surface I could not control. Nothing else in the app matters if the first screen leaks users, and I was treating that as a procurement problem. The fix was structural: my own codes table, my own rate limiting, a circuit breaker, and the provider reduced to a config value. Infobip is primary today with Twilio behind it, and swapping primary now takes a day instead of a sprint.',
-          es: 'La pantalla de OTP pasó por seis configuraciones de proveedor en ocho semanas (SNS, luego Twilio Verify, Twilio directo, Firebase Phone Auth, Plivo), y cada cambio salió de la entrega de las operadoras colombianas, del costo por mensaje, o de una superficie de error que no controlaba. Nada más en la app importa si la primera pantalla pierde usuarios, y yo lo estaba tratando como un problema de compras. El arreglo fue estructural: tabla de códigos propia, rate limiting propio, un circuit breaker, y el proveedor reducido a un valor de configuración. Hoy Infobip es el principal con Twilio detrás, y cambiar de principal toma un día en vez de un sprint.',
+          es: 'La pantalla de OTP pasó por siete configuraciones de proveedor en ocho semanas (SNS, luego Twilio Verify, Twilio directo, Firebase Phone Auth, Plivo), y cada cambio salió de la entrega de las operadoras colombianas, del costo por mensaje, o de una superficie de error que no controlaba. Nada más en la app importa si la primera pantalla pierde usuarios, y yo lo estaba tratando como un problema de compras. El arreglo fue estructural: tabla de códigos propia, rate limiting propio, un circuit breaker, y el proveedor reducido a un valor de configuración. Hoy Infobip es el principal con Twilio detrás, y cambiar de principal toma un día en vez de un sprint.',
         },
       },
       {
@@ -187,8 +187,8 @@ const rawProjects: Project[] = [
     lead: true,
     caseSlug: 'work/storia',
     summary: {
-      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet, and the page says so.',
-      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto, y la página lo dice.',
+      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet.',
+      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto.',
     },
     problem: {
       en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',
@@ -289,7 +289,7 @@ const rawProjects: Project[] = [
         },
         body: {
           en: 'An agent that forgets between conversations does not represent a person, it represents whatever fit in the last context window. Persisting memory as retrievable vectors keeps the agent consistent as conversations accumulate, and keeps token cost flat rather than growing with the relationship.',
-          es: 'Un agente que olvida entre conversaciones no representa a una persona, representa lo que cupo en la última ventana de contexto. Guardar la memoria como vectores recuperables mantiene al agente consistente a medida que se acumulan las conversaciones, y deja el costo de tokens plano en lugar de crecer con la relación.',
+          es: 'Un agente que olvida entre conversaciones no representa a una persona. Representa lo que cupo en la última ventana de contexto. Guardar la memoria como vectores recuperables mantiene al agente consistente a medida que se acumulan las conversaciones, y deja el costo de tokens plano en lugar de crecer con la relación.',
         },
       },
     ],

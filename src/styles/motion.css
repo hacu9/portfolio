@@ -131,7 +131,7 @@
 /**
  * Iventions' guided-walkthrough idea, reduced to one cheap layer: a radial
  * highlight that follows the pointer. --mx/--my are written by the shared
- * pointer script, and default to the centre so it looks deliberate before the
+ * pointer script, and default to the center so it looks deliberate before the
  * first move and on touch devices.
  */
 .spot {
@@ -198,7 +198,7 @@
 
 /* ── Cross-document view transitions ──────────────────────────────────────
    No router and no JavaScript: `navigation: auto` lets the browser animate a
-   real page load. Browsers without it just navigate, which is the behaviour
+   real page load. Browsers without it just navigate, which is the behavior
    this site had anyway.
 
    The vocabulary matches the scroll animations above: outgoing settles back

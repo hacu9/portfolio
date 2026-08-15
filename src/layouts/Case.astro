@@ -114,23 +114,23 @@ const copy = {
   } as L,
   ads: {
     en: [
-      'Everything looks healthy while the ads run, which is exactly the condition under which you cannot tell a product from a purchase order. So I turned the tap off for a day. The more product-like the metric, the less it moved.',
+      'Everything looks healthy while the ads run, which is exactly when you cannot tell demand from spend. So I turned the tap off for a day. The more product-like the metric, the less it moved.',
     ],
     es: [
-      'Todo se ve sano mientras la pauta corre, que es justo la condición en la que no puedes distinguir un producto de una orden de compra. Así que cerré la llave por un día. Entre más se parecía la métrica al producto, menos se movió.',
+      'Todo se ve sano mientras la pauta corre, que es justo cuando no puedes distinguir demanda de gasto. Así que cerré la llave por un día. Entre más se parecía la métrica al producto, menos se movió.',
     ],
   } as LList,
   adsFoot: {
-    en: 'Top-of-funnel was 100% bought; organic discovery was effectively zero. But the people already inside kept talking. Chat was three days old and was already the stickiest thing in the product. That comparison set the roadmap for the next two weeks.',
-    es: 'La parte alta del embudo era 100% comprada; el descubrimiento orgánico era prácticamente cero. Pero la gente que ya estaba adentro siguió hablando. El chat tenía tres días y ya era lo más pegajoso del producto. Esa comparación definió el roadmap de las dos semanas siguientes.',
+    en: 'Top-of-funnel was almost entirely bought. The 48 signups that still arrived with the ads off are what organic discovery looked like. But the people already inside kept talking. Chat was three days old and was already the stickiest thing in the product. That comparison set the roadmap for the next two weeks.',
+    es: 'La parte alta del embudo era casi toda comprada. Los 48 registros que igual llegaron sin pauta son lo que era el descubrimiento orgánico. Pero la gente que ya estaba adentro siguió hablando. El chat tenía tres días y ya era lo más pegajoso del producto. Esa comparación definió el roadmap de las dos semanas siguientes.',
   } as L,
   cohortH: {
-    en: 'Retention named the week the product started working',
-    es: 'La retención señaló la semana en que el producto empezó a funcionar',
+    en: 'A number I have to caveat before I use it',
+    es: 'Un número que tengo que matizar antes de usarlo',
   } as L,
   cohortFoot: {
-    en: 'Two-day retention barely separated them, 13.9% against 14.6%. The seven-day window is where the difference lives, and the difference is one feature that shipped in week seven.',
-    es: 'La retención a dos días casi no los separaba, 13,9% contra 14,6%. La ventana de siete días es donde vive la diferencia, y la diferencia es una función que salió en la semana siete.',
+    en: 'This is a recency window, not a retention curve, and it flatters whoever signed up last. Week 3 reads 99.5% because those users registered inside the window being measured. Cohort age explains part of the Week 1 to Week 2 gap too, so I do not treat this as proof that chat fixed retention. The ads-off day is the cleaner evidence, because both cohorts were measured on the same day under the same conditions.',
+    es: 'Esto es una ventana de actividad reciente, no una curva de retención, y favorece a quien se registró último. La semana 3 marca 99,5% porque esos usuarios se registraron dentro de la ventana que se está midiendo. La edad de la cohorte también explica parte de la diferencia entre la semana 1 y la 2, así que no tomo esto como prueba de que el chat arregló la retención. El día sin pauta es la evidencia más limpia, porque ambas cohortes se midieron el mismo día en las mismas condiciones.',
   } as L,
 
   fixH: {
@@ -156,8 +156,8 @@ const copy = {
     es: 'Ejecutado contra la base de datos en producción en agosto de 2026. Sobre todos los registros la mejora es menor, de 44,3% a 48,7%, porque el cambio también dejó entrar a un grupo grande que nunca empezó un perfil. Semana a semana: la peor semana de pauta verificó 40,4%; para el 23 de marzo llegó a 56,8%.',
   } as L,
   moveT: {
-    en: 'The wall did not disappear. It moved, and I would say so in the interview.',
-    es: 'El muro no desapareció. Se movió, y lo diría en la entrevista.',
+    en: 'The wall did not disappear. It moved.',
+    es: 'El muro no desapareció. Se movió.',
   } as L,
   moveB: {
     en: '1,239 users now sit at the first step, inside the app, never having built a profile. That is a real leak and it is the one I would have attacked next. It is still the better leak to have: those people saw the product before they decided, which was the entire point.',
@@ -169,16 +169,16 @@ const copy = {
     es: 'Cambié un bundle WASM de 10MB por uno WebGL de 1,4MB, y dejé los dos motores detrás de un flag',
   } as L,
   faceB: {
-    en: 'face-api.js wanted roughly 10MB of models. On a mid-range Android phone over Colombian mobile data that is a dead product before it renders. Jeeliz WebGL does the gesture work at about 1.4MB. Human.js stayed as a second engine behind an environment flag with an auto mode that tries it first and falls back silently, because a verification path with one implementation is a verification path with one way to fail.',
-    es: 'face-api.js pedía unos 10MB de modelos. En un Android de gama media con datos móviles colombianos eso es un producto muerto antes de renderizar. Jeeliz WebGL hace el trabajo de gestos en cerca de 1,4MB. Human.js quedó como segundo motor detrás de una variable de entorno, con un modo auto que lo intenta primero y cae al otro en silencio, porque una ruta de verificación con una sola implementación es una ruta con una sola forma de fallar.',
+    en: 'face-api.js wanted roughly 10MB of models. On a mid-range Android phone over Colombian mobile data that is a dead product before it renders. Jeeliz WebGL does the gesture work at about 1.4MB. Human.js stayed as a second engine behind an environment flag, and in auto mode it loads first and drops back to face-api.js without a visible failure, because a verification path with one implementation is a verification path with one way to fail.',
+    es: 'face-api.js pedía unos 10MB de modelos. En un Android de gama media con datos móviles colombianos eso es un producto muerto antes de renderizar. Jeeliz WebGL hace el trabajo de gestos en cerca de 1,4MB. Human.js quedó como segundo motor detrás de una variable de entorno, y en modo auto carga primero y cae a face-api.js sin que se vea la falla, porque una ruta de verificación con una sola implementación es una ruta con una sola forma de fallar.',
   } as L,
   modT: {
     en: 'Made the expensive services argue with a cheap one instead of trusting them',
     es: 'Puse a los servicios caros a discutir con uno barato en vez de creerles',
   } as L,
   modB: {
-    en: 'The big vendors cry wolf, and a false rejection costs a real user who is already halfway out the door. So a flagged photo gets its specific flag re-judged by a small vision model, independently, and only an all-clear across every flag upgrades it. The cheapest piece is my favourite: every rejected photo is kept as a perceptual hash, so the same image re-uploaded, and it is re-uploaded constantly, gets caught instantly with no vendor call at all.',
-    es: 'Los proveedores grandes gritan lobo, y un rechazo falso cuesta un usuario real que ya tenía un pie afuera. Entonces una foto marcada recibe una segunda opinión sobre esa marca específica, de un modelo de visión pequeño, de forma independiente, y solo un visto bueno en todas las marcas la sube. La pieza más barata es mi favorita: cada foto rechazada se guarda como hash perceptual, así que la misma imagen resubida, y se resube todo el tiempo, se atrapa al instante sin llamar a ningún proveedor.',
+    en: 'The big vendors cry wolf, and a false rejection costs a real user who is already halfway out the door. So a flagged photo gets its specific flag re-judged by a small vision model, independently, and only an all-clear across every flag upgrades it. The cheapest piece is my favorite: every rejected photo is kept as a perceptual hash, so a re-upload of the same image gets caught instantly, with no vendor call at all. People re-upload constantly.',
+    es: 'Los proveedores grandes gritan lobo, y un rechazo falso cuesta un usuario real que ya tenía un pie afuera. Entonces una foto marcada recibe una segunda opinión sobre esa marca específica, de un modelo de visión pequeño, de forma independiente, y solo un visto bueno en todas las marcas la sube. La pieza más barata es mi favorita: cada foto rechazada se guarda como hash perceptual, así que una resubida de la misma imagen se atrapa al instante, sin llamar a ningún proveedor. La gente resube todo el tiempo.',
   } as L,
   vidT: {
     en: 'Put FFmpeg in the Docker image instead of renting a transcoding service',
@@ -201,8 +201,8 @@ const copy = {
     es: 'Dejé de buscar proveedor y construí la costura',
   } as L,
   otpB: {
-    en: "Every move came from Colombian delivery rates, per-message cost, or an error surface I could not control. One Twilio code alone flooded Sentry with what were really user typos. Nothing in the app matters if the first screen leaks users, so I stopped treating it as a procurement problem. The code now owns the codes, the rate limiting and a circuit breaker, and the provider behind it is a config value. Once that seam existed, changing primary took a day instead of a sprint. It is where I should have started.",
-    es: 'Cada cambio salió de las tasas de entrega en Colombia, del costo por mensaje, o de una superficie de error que no controlaba. Un solo código de Twilio inundó Sentry con lo que en realidad eran errores de tipeo de los usuarios. Nada en la app importa si la primera pantalla pierde usuarios, así que dejé de tratarlo como un problema de compras. El código ahora es dueño de los códigos, del rate limiting y de un circuit breaker, y el proveedor detrás es un valor de configuración. Con esa costura, cambiar de proveedor principal tomó un día en vez de un sprint. Ahí debí haber empezado.',
+    en: "Every move came from Colombian delivery rates, per-message cost, or an error surface I could not control. One Twilio error code alone flooded Sentry with what were really user typos. Nothing in the app matters if the first screen leaks users, so I stopped treating it as a procurement problem. The code now owns the codes, the rate limiting and a circuit breaker, and the provider behind it is a config value. Once that seam existed, changing primary took a day instead of a sprint. It is where I should have started.",
+    es: 'Cada cambio salió de las tasas de entrega en Colombia, del costo por mensaje, o de una superficie de error que no controlaba. Un solo código de error de Twilio inundó Sentry con lo que en realidad eran errores de tipeo de los usuarios. Nada en la app importa si la primera pantalla pierde usuarios, así que dejé de tratarlo como un problema de compras. El código ahora es dueño de los códigos, del rate limiting y de un circuit breaker, y el proveedor detrás es un valor de configuración. Con esa costura, cambiar de proveedor principal tomó un día en vez de un sprint. Ahí debí haber empezado.',
   } as L,
 
   ecoH: {
@@ -211,10 +211,10 @@ const copy = {
   } as L,
   eco: {
     en: [
-      'Eight hundred dollars is not a media budget, it is a tuition fee, and it bought a complete education in where a funnel leaks. The subscription launched at $15/month into a market that supports about $5. Weekly plans at roughly $2.50 shipped on 17 March, a month after the money was already committed.',
+      'Eight hundred dollars bought a complete education in where a funnel leaks. The subscription launched at $15/month into a market that supports about $5. Weekly plans at roughly $2.50 shipped on 17 March, a month after the money was already committed.',
     ],
     es: [
-      'Ochocientos dólares no son un presupuesto de medios, son una matrícula, y compraron una educación completa sobre dónde gotea un embudo. La suscripción salió a $15/mes en un mercado que aguanta unos $5. Los planes semanales de unos $2,50 salieron el 17 de marzo, un mes después de que la plata ya estaba comprometida.',
+      'Ochocientos dólares compraron una educación completa sobre dónde gotea un embudo. La suscripción salió a $15/mes en un mercado que aguanta unos $5. Los planes semanales de unos $2,50 salieron el 17 de marzo, un mes después de que la plata ya estaba comprometida.',
     ],
   } as LList,
   attrT: { en: 'Every user in the March report is tagged source: unknown', es: 'Cada usuario del reporte de marzo quedó marcado como source: unknown' } as L,
@@ -240,19 +240,19 @@ const copy = {
     en: [
       'A pre-ship checklist where every item maps to a real incident. Item 4 exists because a function passed from a Server Component to a Client Component took the site down on 19 March.',
       'Spec-driven development for anything crossing more than one subsystem: proposal, spec, numbered tasks, all committed. The funnel rebuild shipped that way.',
-      'A blind second-model review before every push, run by a non-Anthropic model. A reviewer handed your reasoning gives you agreement instead of review.',
+      'A blind second-model review before every push, run by a non-Anthropic model.',
       'CI that will not let a type error reach the server, because one did.',
     ],
     es: [
       'Una lista previa al envío donde cada punto corresponde a un incidente real. El punto 4 existe porque una función pasada de un Server Component a un Client Component tumbó el sitio el 19 de marzo.',
       'Desarrollo guiado por especificación para todo lo que cruzaba más de un subsistema: propuesta, spec, tareas numeradas, todo versionado. La reconstrucción del embudo salió así.',
-      'Una revisión ciega de un segundo modelo antes de cada push, con un modelo que no es de Anthropic. A un revisor al que le entregas tu razonamiento le sacas acuerdo, no revisión.',
+      'Una revisión ciega de un segundo modelo antes de cada push, con un modelo que no es de Anthropic.',
       'CI que no deja llegar un error de tipos al servidor, porque uno llegó.',
     ],
   } as LList,
   methodFoot: {
-    en: 'The interesting part is not the volume. It is that the failure modes changed. Fewer typos and forgotten null checks; far more correct module, never wired up at the composition root. The checklist is aimed squarely at those.',
-    es: 'Lo interesante no es el volumen. Es que cambiaron los modos de falla. Menos typos y chequeos de null olvidados; muchos más módulo correcto, nunca conectado en la raíz de composición. La lista apunta justo a esos.',
+    en: 'Volume is the least interesting thing about it. What changed were the failure modes. Fewer typos and forgotten null checks; far more correct module, never wired up at the composition root. The checklist is aimed squarely at those.',
+    es: 'El volumen es lo menos interesante. Lo que cambió fueron los modos de falla. Menos typos y chequeos de null olvidados; muchos más módulo correcto, nunca conectado en la raíz de composición. La lista apunta justo a esos.',
   } as L,
 
   endH: {
@@ -261,29 +261,29 @@ const copy = {
   } as L,
   end: {
     en: [
-      'Getting a new dating app into a market is rough. Luxura is live and people use it. The product side held. The day I paused ads, signups fell 83% and messages fell 11%. What I could not sustain was the spend that keeps the top of the funnel alive, at two paying subscribers against $800.',
-      'Making those ads is what changed the direction. I was generating video with Kling and motion control, swapping voices through Cartesia and ElevenLabs, and running several social accounts by hand every day, until the obvious question arrived: why am I doing this manually? That question, plus friends running small retail shops who could not keep up with their own customer messages, is where Storía came from. It is what I am building now.',
+      'Luxura is live and people use it. The product side held. The day I paused ads, signups fell 83% and messages fell 11%. What I could not sustain was the spend that keeps the top of the funnel alive, at two paying subscribers against $800.',
+      'Making those ads is what changed the direction. I was generating video with Kling and motion control, swapping voices through Cartesia and ElevenLabs, and running several social accounts by hand every day, until the obvious question arrived: why am I doing this manually? That question, plus friends running small retail shops who could not keep up with their own customer messages, is where Storía came from. I built it in four days that February, in the middle of this.',
     ],
     es: [
-      'Meter una app de citas nueva en un mercado es duro. Luxura está viva y la gente la usa. El lado producto aguantó. El día que apagué la pauta, los registros cayeron 83% y los mensajes 11%. Lo que no pude sostener fue el gasto que mantiene viva la parte alta del embudo, con dos suscriptores pagos contra $800.',
-      'Hacer esos anuncios fue lo que cambió la dirección. Estaba generando video con Kling y control de movimiento, cambiando voces con Cartesia y ElevenLabs, y manejando varias cuentas sociales a mano todos los días, hasta que llegó la pregunta obvia: ¿por qué estoy haciendo esto manualmente? Esa pregunta, más unos amigos con tiendas pequeñas que no daban abasto con sus propios mensajes, es de donde salió Storía. Es lo que estoy construyendo ahora.',
+      'Luxura está viva y la gente la usa. El lado producto aguantó. El día que apagué la pauta, los registros cayeron 83% y los mensajes 11%. Lo que no pude sostener fue el gasto que mantiene viva la parte alta del embudo, con dos suscriptores pagos contra $800.',
+      'Hacer esos anuncios fue lo que cambió la dirección. Estaba generando video con Kling y control de movimiento, cambiando voces con Cartesia y ElevenLabs, y manejando varias cuentas sociales a mano todos los días, hasta que llegó la pregunta obvia: ¿por qué estoy haciendo esto manualmente? Esa pregunta, más unos amigos con tiendas pequeñas que no daban abasto con sus propios mensajes, es de donde salió Storía. La construí en cuatro días de ese febrero, en medio de todo esto.',
     ],
   } as LList,
 
   lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
   lessons: {
     en: [
-      'Let people in before asking them to prove anything. I learned this by buying it. Fixing it moved profile-starters from 51.5% to 64.1%, after the ad spend, not before.',
+      'Let people in before asking them to prove anything. I learned this by buying it. Fixing it moved verification completion among profile-starters from 51.5% to 64.1%, after the ad spend, not before.',
       'Ship the conversation on day one. Chat was the only feature retention responded to, and it arrived in week seven. Everything before it was a matching engine that handed people to WhatsApp.',
-      'Own the commodity vendors from the start. Six SMS providers and four moderation providers taught me the same lesson twice: keep the state in my database, make the vendor a config value.',
+      'Own the commodity vendors from the start. Four SMS providers across seven configurations, and four moderation providers, taught me the same lesson twice: keep the state in my database, make the vendor a config value.',
       'Price for the market before buying traffic. $15/month into a $5/month market wasted most of the $800. The weekly plan that fits Colombia shipped a month late.',
       'Never encode a demographic assumption in the schema. Gender sat in the routes, the copy and the tables at once, so replacing it with a role cost a week instead of a day.',
       'Buy attribution before buying ads. source: unknown, 2,026 rows.',
     ],
     es: [
-      'Deja entrar a la gente antes de pedirle que pruebe nada. Lo aprendí comprándolo. Arreglarlo movió a quienes empiezan un perfil de 51,5% a 64,1%, después del gasto en pauta, no antes.',
+      'Deja entrar a la gente antes de pedirle que pruebe nada. Lo aprendí comprándolo. Arreglarlo movió la verificación completada entre quienes empiezan un perfil de 51,5% a 64,1%, después del gasto en pauta, no antes.',
       'Saca la conversación el día uno. El chat fue la única función a la que la retención respondió, y llegó en la semana siete. Todo lo anterior era un motor de emparejamiento que entregaba la gente a WhatsApp.',
-      'Sé dueño de los proveedores commodity desde el principio. Seis proveedores de SMS y cuatro de moderación me enseñaron la misma lección dos veces: guarda el estado en mi base de datos, haz del proveedor un valor de configuración.',
+      'Sé dueño de los proveedores commodity desde el principio. Cuatro proveedores de SMS en siete configuraciones, y cuatro de moderación, me enseñaron la misma lección dos veces: guarda el estado en mi base de datos, haz del proveedor un valor de configuración.',
       'Pon precio para el mercado antes de comprar tráfico. $15/mes en un mercado de $5/mes desperdició casi todos los $800. El plan semanal que sí encaja en Colombia salió un mes tarde.',
       'Nunca metas un supuesto demográfico en el esquema. El género estaba en las rutas, los textos y las tablas a la vez, así que reemplazarlo por un rol costó una semana en vez de un día.',
       'Compra atribución antes de comprar pauta. source: unknown, 2.026 filas.',
@@ -412,7 +412,7 @@ const shots = [
           : 'Signups 284 to 48, down 83 percent. Daily actives 149 to 96, down 36 percent. Messages 353 to 313, down 11 percent.'}>
           <p class="pair-key">
             <span class="key-a"></span>{lang === 'es' ? '7 mar, con pauta' : '7 Mar, ads on'}
-            <span class="key-b"></span>{lang === 'es' ? '8 mar, sin pauta, en color según cuánto cayó' : '8 Mar, ads off, coloured by how far it fell'}
+            <span class="key-b"></span>{lang === 'es' ? '8 mar, sin pauta, en color según cuánto cayó' : '8 Mar, ads off, colored by how far it fell'}
           </p>
           <div class="row">
             <span class="lab">{lang === 'es' ? 'registros' : 'signups'}</span>
@@ -449,12 +449,13 @@ const shots = [
               <tr>
                 <th>{lang === 'es' ? 'Cohorte' : 'Signup cohort'}</th>
                 <th class="n">{lang === 'es' ? 'Aprobados' : 'Approved'}</th>
-                <th class="n">{lang === 'es' ? 'Activos al día 7' : 'Active at day 7'}</th>
+                <th class="n">{lang === 'es' ? 'Activos en los 7 días al 9 mar' : 'Active in the 7 days to 9 Mar'}</th>
               </tr>
             </thead>
             <tbody>
               <tr><td>{lang === 'es' ? 'Semana 1 · 20 a 26 feb' : 'Week 1 · 20 to 26 Feb'}</td><td class="n">415</td><td class="n down">14.2%</td></tr>
               <tr><td>{lang === 'es' ? 'Semana 2 · 27 feb a 5 mar' : 'Week 2 · 27 Feb to 5 Mar'}</td><td class="n">487</td><td class="n up">80.3%</td></tr>
+              <tr><td>{lang === 'es' ? 'Semana 3 · desde 6 mar' : 'Week 3 · 6 Mar on'}</td><td class="n">214</td><td class="n mid">99.5%</td></tr>
             </tbody>
           </table>
         </div>
@@ -486,7 +487,8 @@ interaction behind profile completion and payment.</span></pre>
       <div class="out">
         <pre class="term"><span class="k">SELECT</span> <span class="k">CASE WHEN</span> u.<span class="s">"createdAt"</span> &lt; <span class="s">'2026-03-11'</span> <span class="k">THEN</span> <span class="s">'before'</span> <span class="k">ELSE</span> <span class="s">'after'</span> <span class="k">END</span> <span class="k">AS</span> era,
        count(*) <span class="k">AS</span> with_profile,
-       count(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> u.<span class="s">"onboardingStep"</span> <span class="k">IN</span> (<span class="s">'VERIFIED'</span>,<span class="s">'ACTIVE'</span>)) <span class="k">AS</span> verified
+       count(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> u.<span class="s">"onboardingStep"</span> <span class="k">IN</span> (<span class="s">'VERIFIED'</span>,<span class="s">'ACTIVE'</span>)) <span class="k">AS</span> verified,
+       round(<span class="n">100.0</span> * count(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> u.<span class="s">"onboardingStep"</span> <span class="k">IN</span> (<span class="s">'VERIFIED'</span>,<span class="s">'ACTIVE'</span>)) / count(*), <span class="n">1</span>) <span class="k">AS</span> pct
 <span class="k">FROM</span> users u <span class="k">JOIN</span> profiles p <span class="k">ON</span> p.<span class="s">"userId"</span> = u.id <span class="k">GROUP BY</span> 1;
 
   era    | with_profile | verified |  pct
@@ -550,6 +552,9 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
           <div><b>$0.70</b><span>{lang === 'es' ? 'Por aprobado' : 'Per approved user'}</span></div>
           <div class="hot"><b>0.08%</b><span>{lang === 'es' ? 'Conversión a pago' : 'Paid conversion'}</span></div>
         </div>
+        <p class="foot">{lang === 'es'
+          ? 'El gasto y las cifras por unidad cubren el periodo de pauta hasta el 9 de marzo, cuando había 2.451 registros. Los totales del inicio de esta página son de por vida, hasta agosto.'
+          : 'The spend and the per-unit figures cover the paid-acquisition period to 9 March, when there were 2,451 signups. The totals at the top of this page are lifetime, to August.'}</p>
         {tl(copy.eco, lang).map((p) => <p>{p}</p>)}
         <div class="call"><b>{t(copy.attrT, lang)}</b><p>{t(copy.attrB, lang)}</p></div>
       </div>

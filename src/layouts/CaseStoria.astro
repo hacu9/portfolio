@@ -47,8 +47,8 @@ const copy = {
   back: { en: 'back to ./work', es: 'volver a ./work' } as L,
   status: { en: 'In development', es: 'En desarrollo' } as L,
   lede: {
-    en: 'A multi-tenant platform that gives a Colombian business an AI sales agent on WhatsApp, Messenger, Instagram and the phone line. One that reads the real catalogue, sends the photos, books the visit, and hands off to a human the moment it should. Spanish first. Built solo, end to end.',
-    es: 'Una plataforma multi-tenant que le da a un negocio colombiano un agente de ventas con IA en WhatsApp, Messenger, Instagram y la línea telefónica. Uno que lee el catálogo real, manda las fotos, agenda la visita, y le pasa la conversación a una persona en el momento en que debe. Español primero. Construido solo, de punta a punta.',
+    en: 'A multi-tenant platform that gives a Colombian business an AI sales agent on WhatsApp, Messenger, Instagram, Facebook Marketplace and the phone line. One that reads the real catalogue, sends the photos, books the visit, and hands off to a human the moment it should. Spanish first. Built solo, end to end.',
+    es: 'Una plataforma multi-tenant que le da a un negocio colombiano un agente de ventas con IA en WhatsApp, Messenger, Instagram, Facebook Marketplace y la línea telefónica. Uno que lee el catálogo real, manda las fotos, agenda la visita, y le pasa la conversación a una persona en el momento en que debe. Español primero. Construido solo, de punta a punta.',
   } as L,
 
   roleK: { en: 'Role', es: 'Rol' } as L,
@@ -61,13 +61,13 @@ const copy = {
   fromK: { en: 'Came out of', es: 'Salió de' } as L,
   stageK: { en: 'Stage', es: 'Etapa' } as L,
   stageV: {
-    en: 'Working system, no pilot yet',
-    es: 'Sistema funcionando, sin piloto todavía',
+    en: 'Built Feb 2026, untouched since, no pilot yet',
+    es: 'Construido en feb 2026, sin tocar desde entonces, sin piloto',
   } as L,
 
   threadNote: {
-    en: 'Behind those six lines: referral context from the Marketplace listing · hybrid product search (SQL filters + tsvector + pgvector) · three images sent and de-duplicated · lead scored and written to the CRM · appointment flagged for the human inbox.',
-    es: 'Detrás de esas seis líneas: contexto de referencia del anuncio de Marketplace · búsqueda híbrida de productos (filtros SQL + tsvector + pgvector) · tres imágenes enviadas y de-duplicadas · lead puntuado y escrito en el CRM · cita marcada para la bandeja humana.',
+    en: 'One worked example, not a transcript. Behind those six lines: referral context from the Marketplace listing · hybrid product search (SQL filters + tsvector + pgvector) · three images sent and de-duplicated · lead scored and written to the CRM · appointment flagged for the human inbox.',
+    es: 'Un ejemplo trabajado, no una transcripción. Detrás de esas seis líneas: contexto de referencia del anuncio de Marketplace · búsqueda híbrida de productos (filtros SQL + tsvector + pgvector) · tres imágenes enviadas y de-duplicadas · lead puntuado y escrito en el CRM · cita marcada para la bandeja humana.',
   } as L,
 
   originH: {
@@ -78,10 +78,12 @@ const copy = {
     en: [
       'While I was paying for ads on a dating app, I was also generating its ad creative, swapping voices for the voiceovers, and answering several social accounts by hand every day. That last part was the one nobody would ever pay me for and the one that took the most hours.',
       'A few friends run small retail shops in Bogotá. They had the same problem with the other end of the funnel: the messages arrive and somebody has to answer them, in the evening, on Sundays, faster than the shop down the street. Storía is that observation with a schema under it.',
+      'The four days below sit inside the same February that Luxura launched in, not after it, and nothing has been committed since. What this needs next is one shop using it, not more surface area. The gaps at the bottom of this page are what four days bought.',
     ],
     es: [
       'Mientras pagaba pauta para una app de citas, también estaba generando sus creativos, cambiando voces para las locuciones, y respondiendo varias cuentas sociales a mano todos los días. Esa última parte era la que nadie me iba a pagar y la que más horas se llevaba.',
       'Unos amigos tienen tiendas pequeñas en Bogotá. Tenían el mismo problema en el otro extremo del embudo: los mensajes llegan y alguien tiene que contestarlos, de noche, los domingos, más rápido que la tienda de al lado. Storía es esa observación con un esquema debajo.',
+      'Los cuatro días de abajo caen dentro del mismo febrero en que salió Luxura, no después, y no se ha commiteado nada desde entonces. Lo que esto necesita ahora es una tienda usándolo, no más superficie. Las brechas al final de esta página son lo que compraron cuatro días.',
     ],
   } as LList,
 
@@ -92,13 +94,13 @@ const copy = {
   problem: {
     en: [
       'Small and mid-size businesses here do not sell through a website checkout. They sell through a phone. A Facebook Marketplace listing, an Instagram story, a printed sign. Every one of them funnels into the same WhatsApp inbox, and someone has to answer "¿todavía lo tienen?" forty times a day.',
-      'Off-the-shelf chatbots fail here for three specific reasons. They are decision trees, so they collapse the moment a customer deviates. They are translated from English, so they sound like a call centre reading a script, and a Colombian buyer reads that instantly as a scam. And they are blind to the actual inventory: they cannot tell you whether the blue one in size M is left.',
-      'The bet: give the model real tools instead of a flowchart. Let it search a real catalogue, send real photos, write to a real CRM, and escalate to a real person, and spend the prompt budget on sounding like somebody from Bogotá rather than on rules.',
+      'Off-the-shelf chatbots fail here for three specific reasons. They are decision trees, so they collapse the moment a customer deviates. They are translated from English, so they sound like a call center reading a script, and a Colombian buyer reads that instantly as a scam. And they are blind to the actual inventory: they cannot tell you whether the blue one in size M is left.',
+      'The bet: give the model real tools instead of a flowchart. Let it search the catalogue, send the photos, write to the CRM, and escalate to a person, and spend the prompt budget on sounding like somebody from Bogotá rather than on rules.',
     ],
     es: [
       'Las pymes de acá no venden por un checkout web. Venden por un teléfono. Un anuncio de Facebook Marketplace, una historia de Instagram, un aviso impreso. Todos desembocan en la misma bandeja de WhatsApp, y alguien tiene que contestar "¿todavía lo tienen?" cuarenta veces al día.',
       'Los chatbots de caja fallan acá por tres razones concretas. Son árboles de decisión, así que se caen apenas el cliente se sale del guion. Están traducidos del inglés, así que suenan a call center leyendo un libreto, y un comprador colombiano lee eso al instante como una estafa. Y son ciegos al inventario real: no pueden decirte si queda el azul en talla M.',
-      'La apuesta: darle al modelo herramientas reales en vez de un diagrama de flujo. Que busque en un catálogo real, mande fotos reales, escriba en un CRM real, y escale a una persona real, y gastar el presupuesto del prompt en sonar como alguien de Bogotá, no en reglas.',
+      'La apuesta: darle al modelo herramientas reales en vez de un diagrama de flujo. Que busque en el catálogo, mande las fotos, escriba en el CRM, y escale a una persona, y gastar el presupuesto del prompt en sonar como alguien de Bogotá, no en reglas.',
     ],
   } as LList,
 
@@ -121,12 +123,12 @@ const copy = {
   } as L,
 
   learnT: {
-    en: 'Let the agent learn only from conversations that ended in a sale',
-    es: 'Dejé que el agente aprenda solo de conversaciones que terminaron en venta',
+    en: 'Let the agent remember only the conversations that went well',
+    es: 'Dejé que el agente recuerde solo las conversaciones que salieron bien',
   } as L,
   learnB: {
-    en: 'When a conversation ends, a cheap model extracts a structured insight (intent, what worked, what failed, an outcome type and a score), validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter is the whole idea: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures.',
-    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado (intención, qué funcionó, qué falló, un tipo de resultado y un puntaje), validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es toda la idea: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos.',
+    en: 'When a conversation ends, a cheap model extracts a structured insight (intent, what worked, what failed, an outcome type and a score), validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter matters: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures. With no pilot yet, the loop has run on test conversations only, which is the honest status of the mechanism I am proudest of.',
+    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado (intención, qué funcionó, qué falló, un tipo de resultado y un puntaje), validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es lo que importa: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos. Sin piloto todavía, el ciclo solo ha corrido sobre conversaciones de prueba, y ese es el estado honesto del mecanismo del que estoy más orgulloso.',
   } as L,
 
   searchT: {
@@ -148,8 +150,8 @@ const copy = {
   } as L,
 
   fmtT: {
-    en: 'Gave the one module with tests to the boring one',
-    es: 'Le di los únicos tests al módulo aburrido',
+    en: 'The only module with unit tests is the boring one',
+    es: 'El único módulo con tests unitarios es el aburrido',
   } as L,
   fmtB: {
     en: 'The model writes standard markdown. WhatsApp wants single asterisks. Messenger renders nothing through the API. Instagram renders nothing and truncates at 1,000 characters. Voice needs the punctuation stripped before text-to-speech. So there is a formatter per channel, and it is the only module in the repo with unit tests, because regex that rewrites nested emphasis without eating code blocks is exactly the code that breaks silently and takes a week to notice.',
@@ -171,44 +173,44 @@ const copy = {
   } as L,
   voice: {
     en: [
-      'The highest-leverage file in this repo is not code. It is the research on why chatbots sound like chatbots, and the prompt builder that acts on it. A Colombian buyer abandons the conversation the second it smells automated, so "sounds human" is a functional requirement with revenue attached.',
+      'The highest-leverage file in this repo is a research document: why chatbots sound like chatbots, and the prompt builder that acts on it. A Colombian buyer abandons the conversation the second it smells automated, so "sounds human" is a functional requirement, not a finish.',
     ],
     es: [
-      'El archivo de mayor apalancamiento en este repo no es código. Es la investigación sobre por qué los chatbots suenan a chatbot, y el constructor de prompts que actúa sobre ella. Un comprador colombiano abandona la conversación en el segundo en que huele a automatizado, así que "suena humano" es un requisito funcional con ingresos encima.',
+      'El archivo de mayor apalancamiento en este repo es un documento de investigación: por qué los chatbots suenan a chatbot, y el constructor de prompts que actúa sobre ella. Un comprador colombiano abandona la conversación en el segundo en que huele a automatizado, así que "suena humano" es un requisito funcional, no un acabado.',
     ],
   } as LList,
   voiceList: {
     en: [
-      'Persona before rules. The system prompt opens with who the agent is and closes with constraints, not the other way round. A character stays consistent; a rule-follower is merely compliant.',
+      'Persona before rules. The system prompt opens with who the agent is and closes with constraints, not the other way round.',
       'An explicit list of what never to do. No introducing itself as a virtual assistant. No repeating the question back. No bullet points, because nobody sends a bulleted list on WhatsApp. No hedging: if the price is in the knowledge base, say it like a salesperson would.',
       'Tone presets carry worked examples, not adjectives. "Friendly" as a keyword produces nothing. A short sample exchange in the right register produces the register.',
     ],
     es: [
-      'Persona antes que reglas. El system prompt abre con quién es el agente y cierra con las restricciones, no al revés. Un personaje se mantiene consistente; alguien que sigue reglas apenas cumple.',
+      'Persona antes que reglas. El system prompt abre con quién es el agente y cierra con las restricciones, no al revés.',
       'Una lista explícita de lo que nunca se hace. No presentarse como asistente virtual. No repetir la pregunta. Nada de viñetas, porque nadie manda una lista con viñetas por WhatsApp. Nada de titubeos: si el precio está en la base de conocimiento, se dice como lo diría un vendedor.',
       'Los presets de tono llevan ejemplos trabajados, no adjetivos. "Amigable" como palabra clave no produce nada. Un intercambio corto de muestra en el registro correcto produce el registro.',
     ],
   } as LList,
 
   methodH: {
-    en: 'Four days is only possible with three artefacts.',
+    en: 'Four days is only possible with three artifacts.',
     es: 'Cuatro días solo son posibles con tres artefactos.',
   } as L,
   method: {
     en: [
-      'A 1,045-line specification, written first. Data model, phases, API contracts, open questions, all settled before the first line of application code.',
+      'A 1,045-line specification, written first. Data model, phases, API contracts, open questions. Settled before the first line of application code, and wrong about the payment rail, which the retro below covers.',
       'Standing constraints in the repo. Server components by default, every query tenant-scoped, schema validation on every external input, webhooks return 200 then queue, the cheap model for classification and the expensive one only for customers.',
       'A decision log written to be argued with: provider comparisons, the threat model, a speech-synthesis bake-off.',
     ],
     es: [
-      'Una especificación de 1.045 líneas, escrita primero. Modelo de datos, fases, contratos de API, preguntas abiertas, todas resueltas antes de la primera línea de código de aplicación.',
+      'Una especificación de 1.045 líneas, escrita primero. Modelo de datos, fases, contratos de API, preguntas abiertas. Resueltas antes de la primera línea de código, y equivocadas sobre el rail de pagos, que el retro de abajo cubre.',
       'Restricciones permanentes en el repo. Server components por defecto, cada consulta acotada al tenant, validación de esquema en cada entrada externa, los webhooks responden 200 y luego encolan, el modelo barato para clasificar y el caro solo para clientes.',
       'Un registro de decisiones escrito para que se le discuta: comparaciones de proveedores, el modelo de amenazas, una prueba comparativa de síntesis de voz.',
     ],
   } as LList,
   methodFoot: {
-    en: 'What that buys is not typing speed. It is that 54 commits and 49,000 lines still read like one person with one opinion.',
-    es: 'Lo que eso compra no es velocidad de tecleo. Es que 54 commits y 49.000 líneas todavía se lean como una sola persona con una sola opinión.',
+    en: 'Four days of it produced 49,000 lines and one test file, which is the trade those artefacts bought and did not hide.',
+    es: 'Cuatro días de eso produjeron 49.000 líneas y un archivo de test, que es el intercambio que esos artefactos compraron y no escondieron.',
   } as L,
 
   gapsH: {
@@ -216,8 +218,8 @@ const copy = {
     es: 'Lo que esto no tiene.',
   } as L,
   gapsLede: {
-    en: 'Storía is a working system with real integrations, not a finished company. Leaving this section out would be the least credible thing on the page.',
-    es: 'Storía es un sistema funcionando con integraciones reales, no una empresa terminada. Omitir esta sección sería lo menos creíble de la página.',
+    en: 'Storía is a working system with real integrations, not a finished company.',
+    es: 'Storía es un sistema funcionando con integraciones reales, no una empresa terminada.',
   } as L,
 
   lessonsH: { en: 'What I would do differently', es: 'Qué haría distinto' } as L,
@@ -262,8 +264,8 @@ const gaps: { what: L; why: L }[] = [
   {
     what: { en: 'Paying customers', es: 'Clientes que paguen' },
     why: {
-      en: 'No pilot has run yet. Every number on this page is about the system, not about revenue or retention, and I would rather say so than imply otherwise.',
-      es: 'Todavía no ha corrido ningún piloto. Cada número de esta página es sobre el sistema, no sobre ingresos ni retención, y prefiero decirlo que insinuar lo contrario.',
+      en: 'No pilot has run yet. Every number on this page is about the system, not about revenue or retention.',
+      es: 'Todavía no ha corrido ningún piloto. Cada número de esta página es sobre el sistema, no sobre ingresos ni retención.',
     },
   },
   {
@@ -336,11 +338,11 @@ const thread = [
 
     {/* The thesis, as a thing that happened rather than a claim about it. */}
     <section class="blk">
-      <h2 class="cmd">$ tail -f ./inbox/whatsapp</h2>
+      <h2 class="cmd">$ cat ./examples/whatsapp-thread.txt</h2>
       <div class="thread">
         <div class="thread-hd">
-          <span class="avatar">V</span>
-          <span class="who">Valentina · TechStore</span>
+          <span class="avatar">M</span>
+          <span class="who">Marcela · TechStore</span>
           <span class="when">en línea</span>
         </div>
         {thread.map((m) => <p class={`bub ${m.side}`}>{m.es}</p>)}

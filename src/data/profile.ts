@@ -132,11 +132,11 @@ export const profile = {
    * commercial product in Meta Tech Provider onboarding.
    */
   lede: {
-    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I pay for its ads.',
+    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I paid for its ads.',
     // Spanish never said "comprar usuarios", which reads as buying fake
     // followers. It said "le compro el tráfico" and now says "pago su pauta",
     // which is the wording the Luxura pages use throughout.
-    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, pago su pauta.',
+    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, pagué su pauta.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */
@@ -173,7 +173,7 @@ export const profile = {
       en: [
         'The method is always the same. Find the number that is falling. Work out whether it belongs to the code or to the vendor underneath it. Change the piece that actually controls it, then stay and run what you changed.',
         'That is how a domain I have never touched turns into something in production. Microsoft enterprise systems, a multi-agent AI platform, a dating app on Google Play, a safety product with real-time alerts. Four domains, no shared ground, one way in.',
-        'It is also why I keep the work most engineers pass on: payments, attribution, release pipelines, the ad campaigns, and the infrastructure holding it all up. On a team, that turns into technical direction: the review gates and the specs other people build against.',
+        'It is also why I keep the work most engineers pass on: payments, attribution, release pipelines, ad campaigns, and the infrastructure holding it all up. On a team, that turns into technical direction: the review gates and the specs other people build against.',
       ],
       es: [
         'El método siempre es el mismo. Encontrar el número que se está cayendo. Averiguar si es del código o del proveedor que lo sostiene. Cambiar la pieza que de verdad lo controla y quedarse operando ese cambio.',

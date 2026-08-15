@@ -378,7 +378,7 @@
 .case .pair-key .key-a {
   background: color-mix(in srgb, var(--ink) 26%, transparent);
 }
-/* Three segments, because the after-bars are coloured by how far each fell.
+/* Three segments, because the after-bars are colored by how far each fell.
    A single swatch here would promise one colour and show three. */
 .case .pair-key .key-b {
   background: linear-gradient(
