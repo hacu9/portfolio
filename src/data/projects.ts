@@ -44,6 +44,18 @@ export interface Project {
   url?: string;
   urlLabel?: L;
   /**
+   * Two sentences that make someone want to open the thing. `problem` argues;
+   * this invites. Only projects with a `caseSlug` need one, because only those
+   * are rendered as a card the reader is meant to click.
+   */
+  summary?: L;
+  /**
+   * Path to a full teardown page, relative to the language root
+   * ("work/luxura" → "/work/luxura/" and "/es/work/luxura/"). Its presence is
+   * what turns the directory row into a card.
+   */
+  caseSlug?: string;
+  /**
    * Product screenshots, relative to BASE_URL. Taken from Henry's own
    * published marketing site (luxura.vip), so they are his to reuse.
    */
@@ -72,6 +84,11 @@ const rawProjects: Project[] = [
     lead: true,
     url: 'https://play.google.com/store/apps/details?id=app.luxura.dating',
     urlLabel: { en: 'See it on Google Play', es: 'Verla en Google Play' },
+    caseSlug: 'work/luxura',
+    summary: {
+      en: 'Eleven weeks from an empty repo to Google Play, 5,000+ downloads, and two paying subscribers. I paused the ads for one day to find out which half of the funnel was real, then rebuilt onboarding around the answer.',
+      es: 'Once semanas de un repo vacío a Google Play, 5.000+ descargas y dos suscriptores pagos. Apagué la pauta un día para saber qué mitad del embudo era real, y reconstruí el onboarding alrededor de la respuesta.',
+    },
     shots: [
       {
         src: 'images/luxura-step-one-en.png',

@@ -195,3 +195,64 @@
     clip-path: none;
   }
 }
+
+/* ── Cross-document view transitions ──────────────────────────────────────
+   No router and no JavaScript: `navigation: auto` lets the browser animate a
+   real page load. Browsers without it just navigate, which is the behaviour
+   this site had anyway.
+
+   The vocabulary matches the scroll animations above — outgoing settles back,
+   incoming rises — so a page change reads as the same motion language as a
+   section entering the viewport, rather than a slideshow effect bolted on.
+
+   The one flourish that carries meaning: a project's name is tagged with the
+   same `view-transition-name` on its card and on its own page, so clicking
+   through morphs the title from the list into the heading. It shows you which
+   thing you opened, which is the only job a page transition really has. */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: vt-leave 0.24s cubic-bezier(0.4, 0, 1, 1) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-arrive 0.42s cubic-bezier(0.16, 0.84, 0.28, 1) both;
+  }
+  /* The morphing title should lead, not lag behind the page under it. */
+  ::view-transition-group(*) {
+    animation-duration: 0.42s;
+    animation-timing-function: cubic-bezier(0.16, 0.84, 0.28, 1);
+  }
+}
+
+@keyframes vt-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-0.6rem) scale(0.995);
+  }
+}
+@keyframes vt-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* A reader who asked for less motion gets a plain cut, not a softer slide. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
