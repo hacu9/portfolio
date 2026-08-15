@@ -104,13 +104,19 @@ export const profile = {
    *
    * The three-verb close is the strongest sentence on the page and predates
    * all of this. Do not rewrite it.
+   *
+   * It was once stretched to "I buy every user who installs it". That broke
+   * the beat, 3 words then 4 then 8, so the clause that should snap was the
+   * one that sagged, and it was near-tautological besides: a user is someone
+   * who installed. It is back to "I buy its users", now with no conjunction,
+   * so the three clauses land flat and escalate on their own.
    */
   lede: {
-    en: 'Four domains that share nothing: Microsoft enterprise systems, a multi-agent AI platform, a safety product with real-time alerts, and Luxura, live on Google Play. I built it, I run its server, and I buy every user who installs it.',
+    en: 'Four domains that share nothing: Microsoft enterprise systems, a multi-agent AI platform, a safety product with real-time alerts, and Luxura, live on Google Play. I built it, I run its server, I buy its users.',
     // "I buy its users" works in English; in Spanish "comprar usuarios" reads
     // as buying fake followers, so the Spanish buys the traffic instead, which
     // is also the wording the Luxura outcome uses.
-    es: 'Cuatro dominios que no comparten nada: sistemas empresariales de Microsoft, una plataforma de IA multiagente, un producto de seguridad con alertas en tiempo real, y Luxura, publicada en Google Play. La construí, opero su servidor, y le compro el tráfico.',
+    es: 'Cuatro dominios que no comparten nada: sistemas empresariales de Microsoft, una plataforma de IA multiagente, un producto de seguridad con alertas en tiempo real, y Luxura, publicada en Google Play. La construí, opero su servidor, le compro el tráfico.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */
