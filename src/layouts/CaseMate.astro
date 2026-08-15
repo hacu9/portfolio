@@ -33,7 +33,6 @@ const altHref = langPath(base, other, 'work/mate');
 const indexHref = langPath(base, lang);
 const workHref = `${langPath(base, lang)}#work`;
 const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
-const REPO = 'https://github.com/hacu9/ai-dating';
 
 const copy = {
   title: { en: 'Mate teardown · Henry Cabello', es: 'Mate, por dentro · Henry Cabello' } as L,
@@ -71,13 +70,13 @@ const copy = {
   } as L,
   readme: {
     en: [
-      'Tinder shed paying subscribers for eleven consecutive quarters. Bumble\'s payers fell 21% year on year, and 78% of users report burnout. The exodus runs toward products that produce an outcome rather than a better card stack.',
+      'Tinder shed paying subscribers for eleven consecutive quarters, Bumble\'s payers fell year on year, and burnout surveys keep landing in the same place. The exodus runs toward products that produce an outcome rather than a better card stack.',
       'My thesis in October 2025: if a model can learn who you are from an ordinary conversation, it can evaluate compatibility on values, life goals and communication style, and do it continuously in the background, without you rating strangers by photograph.',
       'So onboarding is a conversation with a schema behind it. Ten topics, each carrying guide questions, the exact database fields it feeds, and extraction hints, all in a JSON config an admin can edit without a deploy. Topics branch on what you say: tell it you want something casual and it stops asking about marriage timelines. When the conversation ends, a second model pass reads the transcript and writes roughly thirty structured profile fields, turning "I am useless before 10am" into morningNight: 3.',
       'You can also skip it. I hand you a prompt, you paste it into whichever assistant you already talk to every day, it summarizes what it has learned about you across months of real conversation, and you paste the answer back. The profile gets built from evidence you generated without performing for a dating app, which is exactly the evidence a dating app can never collect about you itself.',
     ],
     es: [
-      'Tinder perdió suscriptores pagos once trimestres seguidos. Los pagos de Bumble cayeron 21% interanual, y el 78% de los usuarios reporta hartazgo. El éxodo va hacia productos que producen un resultado, no hacia un mazo de cartas mejor.',
+      'Tinder perdió suscriptores pagos once trimestres seguidos, los pagos de Bumble cayeron interanual, y las encuestas de hartazgo siguen dando lo mismo. El éxodo va hacia productos que producen un resultado, no hacia un mazo de cartas mejor.',
       'Mi tesis en octubre de 2025: si un modelo puede aprender quién eres a partir de una conversación normal, puede evaluar compatibilidad en valores, metas de vida y estilo de comunicación, y hacerlo de forma continua en segundo plano, sin que califiques desconocidos por foto.',
       'Así que el onboarding es una conversación con un esquema detrás. Diez temas, cada uno con preguntas guía, los campos exactos de base de datos que alimenta, y pistas de extracción, todo en un JSON que un admin edita sin desplegar. Los temas se ramifican según lo que dices: dile que quieres algo casual y deja de preguntar por plazos de matrimonio. Cuando termina la conversación, una segunda pasada del modelo lee la transcripción y escribe unos treinta campos estructurados, convirtiendo "no sirvo antes de las 10am" en morningNight: 3.',
       'También puedes saltártelo. Te doy un prompt, lo pegas en el asistente con el que ya hablas todos los días, resume lo que ha aprendido de ti en meses de conversación real, y pegas la respuesta de vuelta. El perfil se arma con evidencia que generaste sin actuar para una app de citas, que es exactamente la evidencia que una app de citas nunca puede recoger de ti por su cuenta.',
@@ -160,12 +159,12 @@ const copy = {
   val: {
     en: [
       'By June 2026 the product worked, so I stopped building and ran a structured validation instead: three parallel deep-research passes across competitive landscape, pricing economics and low-budget go-to-market, with adversarial verification of anything load-bearing.',
-      'It confirmed the mechanic and killed the framing. Conversational onboarding into an AI matchmaker with no swiping is now the industry\'s consensus bet: Bumble announced it would remove the swipe entirely, Hinge\'s founder left to build an AI-first dating app, and four funded startups converged on the same shape. But the research pass found that "AI agents represent users" is the most backlash-prone framing in the category, and the figures below come from it. The agent-as-proxy products I could find had all folded or pivoted. 58% of daters call AI-written messages catfishing, and 68% of Americans will not let AI act unreviewed on their behalf.',
+      'It confirmed the mechanic and killed the framing. Conversational onboarding into an AI matchmaker with no swiping is now the industry\'s consensus bet: Bumble announced it would remove the swipe entirely, Hinge\'s founder left to build an AI-first dating app, and four funded startups converged on the same shape. But the research pass found that "AI agents represent users" is the most backlash-prone framing in the category, and the two figures below come from that pass rather than from primary surveys I read myself. The agent-as-proxy products I could find had all folded or pivoted. 58% of daters call AI-written messages catfishing, and 68% of Americans will not let AI act unreviewed on their behalf.',
       'The uncomfortable part: my architecture was already on the right side of that line and my copy was not. There is no agent-to-agent conversation anywhere in the product. The matching model reads two profiles and two insight summaries and scores them. The AI never speaks as the user, to anyone. I had built a matchmaker and marketed a proxy.',
     ],
     es: [
       'Para junio de 2026 el producto funcionaba, así que dejé de construir y corrí una validación estructurada: tres pasadas paralelas de investigación profunda sobre panorama competitivo, economía de precios y salida al mercado de bajo presupuesto, con verificación adversarial de todo lo que cargaba peso.',
-      'Confirmó la mecánica y mató el encuadre. El onboarding conversacional hacia un matchmaker con IA y sin swipe es hoy la apuesta de consenso de la industria: Bumble anunció que quitaría el swipe del todo, el fundador de Hinge se fue a construir una app de citas con IA primero, y cuatro startups financiadas convergieron en la misma forma. Pero la investigación encontró que "agentes de IA representan a los usuarios" es el encuadre con más rechazo de la categoría, y las cifras de abajo salen de ahí. Los productos de agente-como-proxy que pude encontrar habían cerrado o pivotado. El 58% de quienes usan apps de citas llama catfishing a los mensajes escritos por IA, y el 68% de los estadounidenses no deja que una IA actúe sin revisión en su nombre.',
+      'Confirmó la mecánica y mató el encuadre. El onboarding conversacional hacia un matchmaker con IA y sin swipe es hoy la apuesta de consenso de la industria: Bumble anunció que quitaría el swipe del todo, el fundador de Hinge se fue a construir una app de citas con IA primero, y cuatro startups financiadas convergieron en la misma forma. Pero la investigación encontró que "agentes de IA representan a los usuarios" es el encuadre con más rechazo de la categoría, y las dos cifras de abajo salen de esa pasada, no de encuestas primarias que yo haya leído. Los productos de agente-como-proxy que pude encontrar habían cerrado o pivotado. El 58% de quienes usan apps de citas llama catfishing a los mensajes escritos por IA, y el 68% de los estadounidenses no deja que una IA actúe sin revisión en su nombre.',
       'La parte incómoda: mi arquitectura ya estaba del lado correcto de esa línea y mi copy no. No hay conversación agente-a-agente en ninguna parte del producto. El modelo de matching lee dos perfiles y dos resúmenes y los puntúa. La IA nunca habla como el usuario, con nadie. Había construido un matchmaker y comercializado un proxy.',
     ],
   } as LList,
@@ -222,18 +221,14 @@ const copy = {
     en: [
       'Validate the framing before writing 68,000 lines. Three deep-research passes cost me one day in June. They would have cost that same one day in October and changed the product\'s name, its copy, and probably its scope.',
       'Never let test fixtures share a code path with real users. That 44 of 59 users were fixtures is something I learned from a billing alert.',
-      'Finish the remediation or delete the document. A doc describing a fix I only half-applied makes the codebase look better than it is, to everyone including me.',
       'Ship narrow. One city, one community, a launch gate. I built for three connection types and two languages and zero cities.',
       'Wire the composition root first. Build the pipeline end to end with stub stages, then fill them in, and a correct-but-orphaned module becomes impossible by construction.',
-      'Write the design system down on day one. Tokens and rules in a file are cheap at the start and expensive to retrofit across thirty-five screens.',
     ],
     es: [
       'Validar el encuadre antes de escribir 68.000 líneas. Tres pasadas de investigación profunda me costaron un día en junio. Habrían costado ese mismo día en octubre y habrían cambiado el nombre del producto, su copy, y probablemente su alcance.',
       'Nunca dejar que los datos de prueba compartan ruta de código con usuarios reales. Que 44 de 59 usuarios fueran de prueba lo aprendí por una alerta de facturación.',
-      'Terminar la remediación o borrar el documento. Un doc que describe un arreglo que apliqué a medias hace ver el codebase mejor de lo que está, para todos incluido yo.',
       'Salir angosto. Una ciudad, una comunidad, una compuerta de lanzamiento. Construí para tres tipos de conexión y dos idiomas y cero ciudades.',
       'Conectar la raíz de composición primero. Construir el pipeline de punta a punta con etapas de relleno y después llenarlas, y un módulo correcto pero huérfano se vuelve imposible por construcción.',
-      'Escribir el sistema de diseño el día uno. Tokens y reglas en un archivo son baratos al principio y caros de retrofitear en treinta y cinco pantallas.',
     ],
   } as LList,
 
@@ -353,7 +348,7 @@ const stack = ['Next.js','TypeScript','React','Prisma','Postgres','Supabase','In
         <div><dt>{t(copy.kModels, lang)}</dt><dd>{t(copy.vModels, lang)}</dd></div>
       </dl>
 
-      <p class="ext"><a href={REPO} target="_blank" rel="noopener">github.com/hacu9/ai-dating ↗</a></p>
+      <p class="ext">{lang === 'es' ? 'Repositorio privado. Con gusto lo recorro en una llamada.' : 'Repository private. Happy to walk through it on a call.'}</p>
     </section>
 
     <figure class="shots">
@@ -477,14 +472,6 @@ est. daily egress ....  <span class="b">94 MB</span>  <span class="c">→ ~2.8 G
       </div>
       <figcaption>{t(copy.landCap, lang)}</figcaption>
     </figure>
-
-    <section class="blk">
-      <h2 class="cmd">$ cat docs/DESIGN_SYSTEM.md</h2>
-      <div class="out">
-        <h3>{t(copy.designH, lang)}</h3>
-        {tl(copy.design, lang).map((p) => <p>{p}</p>)}
-      </div>
-    </section>
 
     <section class="blk">
       <h2 class="cmd">$ ls ./built</h2>

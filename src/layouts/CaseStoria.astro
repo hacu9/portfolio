@@ -109,11 +109,11 @@ const copy = {
   position: {
     en: [
       'I built it in four days in mid February, in the same month Luxura launched, and I have not committed to it since. There are 54 commits, 25 Prisma models, 10 agent tools, and one test file. No shop has run it. Nobody has paid for it. The code can score a lead and book an appointment, and none of that has faced a real customer yet.',
-      'What the project needs next is one shop in Bogotá running it on their actual WhatsApp line for a month, so I can find out which of the 49,000 lines matter and which were guesses. Until that happens, more features would add more guesses.',
+      'What the project needs next is one shop in Bogotá running it on their actual WhatsApp line for a month, so I can find out which of the 49,000 lines matter and which were guesses. The queue architecture is built for concurrency and has never run under it, so that month would be the first load test too. Until it happens, more features would add more guesses.',
     ],
     es: [
       'La construí en cuatro días a mediados de febrero, el mismo mes en que salió Luxura, y no he commiteado desde entonces. Hay 54 commits, 25 modelos de Prisma, 10 herramientas de agente, y un archivo de test. Ninguna tienda la ha corrido. Nadie ha pagado por ella. El código puede puntuar un lead y agendar una cita, y nada de eso se ha enfrentado a un cliente real todavía.',
-      'Lo que el proyecto necesita ahora es una tienda en Bogotá corriéndolo en su línea real de WhatsApp durante un mes, para averiguar cuáles de las 49.000 líneas importan y cuáles eran suposiciones. Hasta que eso pase, más funciones serían solo más suposiciones.',
+      'Lo que el proyecto necesita ahora es una tienda en Bogotá corriéndolo en su línea real de WhatsApp durante un mes, para averiguar cuáles de las 49.000 líneas importan y cuáles eran suposiciones. La arquitectura de colas está hecha para concurrencia y nunca ha corrido bajo ella, así que ese mes sería también la primera prueba de carga. Hasta que eso pase, más funciones serían solo más suposiciones.',
     ],
   } as LList,
 
@@ -157,8 +157,8 @@ const copy = {
     es: 'Dejé que el agente recuerde solo las conversaciones que salieron bien',
   } as L,
   learnB: {
-    en: 'When a conversation ends, a cheap model extracts a structured insight (intent, what worked, what failed, an outcome type and a score), validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter matters: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures. With no pilot yet, the loop has run on test conversations only, which is the honest status of the mechanism I am proudest of.',
-    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado (intención, qué funcionó, qué falló, un tipo de resultado y un puntaje), validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es lo que importa: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos. Sin piloto todavía, el ciclo solo ha corrido sobre conversaciones de prueba, y ese es el estado honesto del mecanismo del que estoy más orgulloso.',
+    en: 'When a conversation ends, a cheap model extracts a structured insight (intent, what worked, what failed, an outcome type and a score), validated through a schema and stored with its own embedding. On the next inbound message the orchestrator vector-searches those insights and injects the two closest into the system prompt. The filter matters: only outcomes scoring 0.6 and above are eligible. An agent that learns from everything learns to repeat its own failures. With no pilot yet, the loop has run on test conversations only, so the mechanism I am proudest of is the one with the least evidence behind it.',
+    es: 'Cuando una conversación termina, un modelo barato extrae un insight estructurado (intención, qué funcionó, qué falló, un tipo de resultado y un puntaje), validado contra un esquema y guardado con su propio embedding. En el siguiente mensaje entrante el orquestador busca por vectores entre esos insights e inyecta los dos más cercanos en el system prompt. El filtro es lo que importa: solo califican los resultados con puntaje de 0,6 hacia arriba. Un agente que aprende de todo aprende a repetir sus propios fracasos. Sin piloto todavía, el ciclo solo ha corrido sobre conversaciones de prueba, así que el mecanismo del que estoy más orgulloso es el que menos evidencia tiene.',
   } as L,
 
   searchT: {
@@ -452,7 +452,7 @@ const thread = [
               <tr>
                 <td class="hi">Wompi</td>
                 <td>Stripe</td>
-                <td>{lang === 'es' ? 'Stripe no da de alta comercios colombianos. Esto se construyó sobre Stripe primero y se arrancó el mismo día, y el commit es el recibo.' : 'Stripe does not onboard Colombian merchants. This was built on Stripe first and ripped out the same day, and the commit is the receipt.'}</td>
+                <td>{lang === 'es' ? 'Stripe no da de alta comercios colombianos. Esto se construyó sobre Stripe primero y se arrancó el mismo día, seis horas después.' : 'Stripe does not onboard Colombian merchants. This was built on Stripe first and ripped out the same day, six hours in.'}</td>
               </tr>
               <tr>
                 <td class="hi">Capacitor</td>
@@ -493,26 +493,6 @@ const thread = [
       <div class="out">
         <h3>{t(copy.positionH, lang)}</h3>
         {tl(copy.position, lang).map((p) => <p>{p}</p>)}
-      </div>
-    </section>
-
-    <section class="blk">
-      <h2 class="cmd">$ cat GAPS.md</h2>
-      <div class="out">
-        <h3>{t(copy.gapsH, lang)}</h3>
-        <p>{t(copy.gapsLede, lang)}</p>
-        <div class="scroll">
-          <table>
-            <tbody>
-              {gaps.map((g) => (
-                <tr>
-                  <td class="hi gap-what">{t(g.what, lang)}</td>
-                  <td>{t(g.why, lang)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       </div>
     </section>
 

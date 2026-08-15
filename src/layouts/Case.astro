@@ -94,12 +94,12 @@ const copy = {
   } as L,
   app: {
     en: [
-      'That was the first fork and I did not know the answer. React Native? Something else? Then I found Capacitor and it changed how I build. The web app and the Android app became one artifact, one codebase, one deploy, as long as I stayed disciplined about responsive layout and wired up the native plugins for push, GPS and the camera myself.',
+      'Capacitor made the web app and the Android app one artifact: one codebase, one deploy, as long as I stayed disciplined about responsive layout and wired the native plugins for push, GPS and the camera myself.',
       'Then came the questions nobody warns you about. Publishing to Google Play takes weeks. It is two weeks of mandatory closed testing with twelve testers before you are allowed near production. Payments were another: RevenueCat for store subscriptions, and no web payments at all in the first release, because one billing surface was enough to get wrong. iOS I deferred and never shipped. The Capacitor target is in the repo. Android is where this market is.',
       'One consequence is still my favorite thing about the build. The shell loads the web app live from my server, so a JavaScript change reaches every installed phone on the next deploy. A store release is only needed when native code changes.',
     ],
     es: [
-      'Ese fue el primer bifurcación y no sabía la respuesta. ¿React Native? ¿Otra cosa? Entonces encontré Capacitor y cambió mi forma de construir. La web y la app de Android pasaron a ser un solo artefacto, un repo, un deploy, siempre que fuera disciplinado con el layout responsive y conectara yo mismo los plugins nativos de push, GPS y cámara.',
+      'Capacitor volvió la web y la app de Android un solo artefacto: un repo, un deploy, siempre que fuera disciplinado con el layout responsive y conectara yo mismo los plugins nativos de push, GPS y cámara.',
       'Después llegaron las preguntas de las que nadie te avisa. Publicar en Google Play toma semanas. Son dos semanas de pruebas cerradas obligatorias con doce testers antes de que te dejen acercarte a producción. Los pagos fueron otra: RevenueCat para las suscripciones de tienda, y cero pagos web en el primer release, porque una sola superficie de cobro ya era suficiente para equivocarse. iOS lo dejé para después y nunca salió. El target de Capacitor está en el repo. Android es donde está este mercado.',
       'Una consecuencia sigue siendo lo que más me gusta del build. El shell carga la web en vivo desde mi servidor, así que un cambio de JavaScript llega a todos los teléfonos instalados en el siguiente deploy. Solo se necesita un release de tienda cuando cambia código nativo.',
     ],
@@ -185,8 +185,8 @@ const copy = {
     ],
   } as LList,
   adsFoot: {
-    en: 'Top-of-funnel was almost entirely bought. The 48 signups that still arrived with the ads off are what organic discovery looked like. But the people already inside kept talking. Chat was three days old and was already the stickiest thing in the product. That comparison set the roadmap for the next two weeks.',
-    es: 'La parte alta del embudo era casi toda comprada. Los 48 registros que igual llegaron sin pauta son lo que era el descubrimiento orgánico. Pero la gente que ya estaba adentro siguió hablando. El chat tenía tres días y ya era lo más pegajoso del producto. Esa comparación definió el roadmap de las dos semanas siguientes.',
+    en: 'Top-of-funnel was almost entirely bought. The 48 signups that still arrived with the ads off are what organic discovery looked like. But the people already inside kept talking. Chat was three days old and was already the stickiest thing in the product. That comparison set the roadmap for the next two weeks. I also pulled a retention table that week and will not use it here: it measures a recency window, so it flatters whoever signed up last, and the ads-off day is the cleaner comparison because both cohorts were measured on the same day.',
+    es: 'La parte alta del embudo era casi toda comprada. Los 48 registros que igual llegaron sin pauta son lo que era el descubrimiento orgánico. Pero la gente que ya estaba adentro siguió hablando. El chat tenía tres días y ya era lo más pegajoso del producto. Esa comparación definió el roadmap de las dos semanas siguientes. Esa semana también saqué una tabla de retención que no voy a usar acá: mide una ventana de actividad reciente, así que favorece a quien se registró último, y el día sin pauta es la comparación más limpia porque ambas cohortes se midieron el mismo día.',
   } as L,
   cohortH: {
     en: 'A number I have to caveat before I use it',
@@ -522,24 +522,6 @@ const shots = [
 
         <p class="foot">{t(copy.adsFoot, lang)}</p>
 
-        <p class="lbl"># {t(copy.cohortH, lang)}</p>
-        <div class="scroll">
-          <table>
-            <thead>
-              <tr>
-                <th>{lang === 'es' ? 'Cohorte' : 'Signup cohort'}</th>
-                <th class="n">{lang === 'es' ? 'Aprobados' : 'Approved'}</th>
-                <th class="n">{lang === 'es' ? 'Activos en los 7 días al 9 mar' : 'Active in the 7 days to 9 Mar'}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>{lang === 'es' ? 'Semana 1 · 20 a 26 feb' : 'Week 1 · 20 to 26 Feb'}</td><td class="n">415</td><td class="n down">14.2%</td></tr>
-              <tr><td>{lang === 'es' ? 'Semana 2 · 27 feb a 5 mar' : 'Week 2 · 27 Feb to 5 Mar'}</td><td class="n">487</td><td class="n up">80.3%</td></tr>
-              <tr><td>{lang === 'es' ? 'Semana 3 · desde 6 mar' : 'Week 3 · 6 Mar on'}</td><td class="n">214</td><td class="n mid">99.5%</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="foot">{t(copy.cohortFoot, lang)}</p>
       </div>
     </section>
 
@@ -611,14 +593,6 @@ raw Twilio <span class="k">→</span> Twilio Verify <span class="k">→</span> r
 <span class="c">// three of those swaps happened on a single day: 2026-03-14</span></pre>
 
         <div class="call"><b>{t(copy.otpT, lang)}</b><p>{t(copy.otpB, lang)}</p></div>
-      </div>
-    </section>
-
-    <section class="blk">
-      <h2 class="cmd">$ ls ./built</h2>
-      <div class="out">
-        <ul class="tree">{tl(luxura.built, lang).map((b) => <li>{b}</li>)}</ul>
-        <div class="call"><b>{t(infraCall.title, lang)}</b><p>{t(infraCall.body, lang)}</p></div>
       </div>
     </section>
 
