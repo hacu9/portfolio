@@ -65,6 +65,12 @@ export interface Project {
    * published marketing site (luxura.vip), so they are his to reuse.
    */
   shots?: { src: string; alt: L }[];
+  /**
+   * Shape of those shots. Phone screenshots tile three across in a portrait
+   * frame; a desktop UI cropped into that frame loses more than half its width,
+   * so wide ones run as a single uncropped image instead.
+   */
+  shotLayout?: 'phones' | 'wide';
 }
 
 const rawProjects: Project[] = [
@@ -198,6 +204,7 @@ const rawProjects: Project[] = [
     url: 'https://monia-rho.vercel.app',
     urlLabel: { en: 'Open the demo', es: 'Abrir el demo' },
     caseSlug: 'work/monia',
+    shotLayout: 'wide',
     proves: { en: 'Correctness discipline under an agentic workflow', es: 'Disciplina de correctitud en un flujo agéntico' },
     summary: {
       en: 'No aggregator reaches Colombian banks, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
@@ -283,6 +290,7 @@ const rawProjects: Project[] = [
     period: '2026',
     lead: true,
     caseSlug: 'work/storia',
+    shotLayout: 'wide',
     proves: { en: 'Agent architecture, built fast', es: 'Arquitectura de agentes, construida rápido' },
     shots: [
       { src: 'images/storia-inbox.jpg', alt: { en: 'The Storia unified inbox with a live WhatsApp conversation', es: 'La bandeja unificada de Storia con una conversación de WhatsApp en vivo' } },

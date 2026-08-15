@@ -34,8 +34,8 @@ const base = import.meta.env.BASE_URL;
 
   {
     p.shots && (
-      <div class="card-shots" aria-hidden="true">
-        {p.shots.slice(0, 3).map((sh) => (
+      <div class={`card-shots ${p.shotLayout === 'wide' ? 'is-wide' : ''}`} aria-hidden="true">
+        {p.shots.slice(0, p.shotLayout === 'wide' ? 1 : 3).map((sh) => (
           <img src={asset(base, sh.src)} alt="" loading="lazy" decoding="async" />
         ))}
       </div>
@@ -127,11 +127,21 @@ const base = import.meta.env.BASE_URL;
     display: block;
     background: var(--ground);
   }
+  /* A desktop UI keeps its own proportions. Cropping one into the phone frame
+     threw away more than half the width, which is where the interface is. */
+  .card-shots.is-wide {
+    grid-template-columns: 1fr;
+  }
+  .card-shots.is-wide img {
+    aspect-ratio: auto;
+    height: auto;
+    object-fit: contain;
+  }
   @media (max-width: 34rem) {
-    .card-shots {
+    .card-shots:not(.is-wide) {
       grid-template-columns: 1fr 1fr;
     }
-    .card-shots img:last-child {
+    .card-shots:not(.is-wide) img:last-child {
       display: none;
     }
   }
