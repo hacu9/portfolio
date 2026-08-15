@@ -108,8 +108,13 @@ export const profile = {
    * It was once stretched to "I buy every user who installs it". That broke
    * the beat, 3 words then 4 then 8, so the clause that should snap was the
    * one that sagged, and it was near-tautological besides: a user is someone
-   * who installed. It is back to "I buy its users", now with no conjunction,
-   * so the three clauses land flat and escalate on their own.
+   * who installed.
+   *
+   * The third clause is now "I pay for its ads" (Henry, Aug 2026). It was
+   * "I buy its users", which claimed the wrong thing: users are people who
+   * showed up, ads are the line there was a budget for, and only the second
+   * is something you buy. The beat is unchanged, three clauses, no
+   * conjunction, escalating on their own. Keep that shape if you touch it.
    *
    * FOUR is counted, not rounded. Luxura, Mate, Femi and Storia are Henry's
    * from an empty repo. Level60 is integration inside Microsoft estates that
@@ -127,11 +132,11 @@ export const profile = {
    * commercial product in Meta Tech Provider onboarding.
    */
   lede: {
-    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I buy its users.',
-    // "I buy its users" works in English; in Spanish "comprar usuarios" reads
-    // as buying fake followers, so the Spanish buys the traffic instead, which
-    // is also the wording the Luxura outcome uses.
-    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, le compro el tráfico.',
+    en: 'Four products I started from an empty repo, and five unbroken years inside corporate Microsoft estates. Luxura is the one you can open right now: I built it, I run its server, I pay for its ads.',
+    // Spanish never said "comprar usuarios", which reads as buying fake
+    // followers. It said "le compro el tráfico" and now says "pago su pauta",
+    // which is the wording the Luxura pages use throughout.
+    es: 'Cuatro productos que arranqué desde un repositorio vacío, y cinco años ininterrumpidos dentro de entornos corporativos de Microsoft. Luxura es la que puedes abrir ahora mismo: la construí, opero su servidor, pago su pauta.',
   } as L,
 
   /** Used where a plain description is needed, such as meta tags. */

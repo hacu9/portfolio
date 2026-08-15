@@ -96,8 +96,8 @@ export const stackGroups: StackGroup[] = [
       'Geo-targeting', 'Creative production',
     ],
     note: {
-      en: 'I buy the traffic for my own products. It means I find out what an architecture decision costs per user the same week I make it.',
-      es: 'Yo compro el tráfico de mis propios productos. Eso significa que descubro lo que cuesta por usuario una decisión de arquitectura, en plata, la misma semana en que la tomo.',
+      en: 'I pay for the ads on my own products. It means I find out what an architecture decision costs per signup the same week I make it.',
+      es: 'Yo pago la pauta de mis propios productos. Eso significa que descubro lo que cuesta por registro una decisión de arquitectura, en plata, la misma semana en que la tomo.',
     },
   },
   {
