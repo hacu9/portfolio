@@ -42,8 +42,8 @@ const cvHref = `${base.replace(/\/+$/, '')}/cv/`;
 const copy = {
   title: { en: 'Femi teardown · Henry Cabello', es: 'Femi, por dentro · Henry Cabello' } as L,
   description: {
-    en: "A women's safety platform rewritten from 77,044 lines to 8,586, and the audit that found four of its core components built, tested, and mounted nowhere.",
-    es: 'Una plataforma de seguridad para mujeres reescrita de 77.044 líneas a 8.586, y la auditoría que encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
+    en: "A women's safety platform rewritten from 77,044 lines to 9,030, and the audit that found four of its core components built, tested, and mounted nowhere.",
+    es: 'Una plataforma de seguridad para mujeres reescrita de 77.044 líneas a 9.030, y la auditoría que encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
   } as L,
   back: { en: 'back to ./work', es: 'volver a ./work' } as L,
   status: { en: 'In development', es: 'En desarrollo' } as L,
@@ -110,8 +110,8 @@ const copy = {
   } as L,
   faceH: { en: 'Face matching in the browser', es: 'Comparación facial en el navegador' } as L,
   faceB: {
-    en: 'v1 sent the selfie to AWS Rekognition. v2 runs the comparison client-side, so the photo never has to leave the device and every match costs nothing. It also creates the most serious open item in the project, which belongs in the backlog rather than in this column.',
-    es: 'v1 mandaba la selfie a AWS Rekognition. v2 corre la comparación en el cliente, así que la foto nunca tiene que salir del dispositivo y cada comparación no cuesta nada. También crea el punto abierto más serio del proyecto, que pertenece al backlog y no a esta columna.',
+    en: 'v1 sent the selfie to AWS Rekognition. v2 compares it on the device, so the photo never leaves it and every match costs nothing. It also put the trust boundary on the wrong side, and I did not see that until I audited the endpoint. The browser computed the score and posted it, and the server wrote verified whenever it cleared the threshold. Anyone could post a 99 to that route and become a verified member. Verified members are who alerts get routed to, so that was the load-bearing claim in the whole product. The fix does not pretend to solve it. Until the comparison runs server side, a passing client score parks the record at pending for review, and a failing one is still a rejection. The same audit found a second numeric column the interface declared as a number, which is the raw SQL trade-off above coming due twice.',
+    es: 'v1 mandaba la selfie a AWS Rekognition. v2 la compara en el dispositivo, así que la foto nunca sale de ahí y cada comparación no cuesta nada. También dejó la frontera de confianza del lado equivocado, y no lo vi hasta que audité el endpoint. El navegador calculaba el puntaje y lo enviaba, y el servidor escribía verificado apenas superaba el umbral. Cualquiera podía enviar un 99 a esa ruta y volverse miembro verificado. Los miembros verificados son a quienes se enrutan las alertas, así que esa era la afirmación que sostenía todo el producto. El arreglo no finge resolverlo. Hasta que la comparación corra en el servidor, un puntaje que pasa deja el registro en pendiente para revisión, y uno que falla sigue siendo un rechazo. La misma auditoría encontró una segunda columna numeric que la interfaz declaraba como número, que es la contrapartida del SQL crudo de arriba cobrándose dos veces.',
   } as L,
 
   // ---- the audit
@@ -253,10 +253,10 @@ const unmeasured = [
             <div>
               <div class="mass-top">
                 <span>v2 · {lang === 'es' ? 'una sola app Next.js' : 'one Next.js app'}</span>
-                <span class="mass-n">8,586</span>
+                <span class="mass-n">9,030</span>
               </div>
               <div class="track"><i style="width:11.1%;background:var(--accent)"></i></div>
-              <div class="mass-note">17 {lang === 'es' ? 'páginas' : 'pages'} · 19 API routes · 53 {lang === 'es' ? 'componentes' : 'components'} · 8 {lang === 'es' ? 'servicios' : 'services'}</div>
+              <div class="mass-note">17 {lang === 'es' ? 'páginas' : 'pages'} · 19 API routes · 55 {lang === 'es' ? 'componentes' : 'components'} · 8 {lang === 'es' ? 'servicios' : 'services'}</div>
             </div>
           </div>
 
@@ -314,7 +314,7 @@ const unmeasured = [
           {tl(copy.repair, lang).map((p) => <p>{p}</p>)}
 
           <div class="after">
-            <div><b>99 / 99</b><span>{lang === 'es' ? 'Tests en verde' : 'Tests passing'}</span></div>
+            <div><b>117 / 117</b><span>{lang === 'es' ? 'Tests en verde' : 'Tests passing'}</span></div>
             <div><b>39</b><span>{lang === 'es' ? 'Rutas que compilan' : 'Routes building'}</span></div>
             <div><b>0</b><span>{lang === 'es' ? 'Avisos de eslint' : 'eslint warnings'}</span></div>
             <div><b>4</b><span>{lang === 'es' ? 'De 5 tests, rojos al revertir' : 'Of 5 tests, red on revert'}</span></div>

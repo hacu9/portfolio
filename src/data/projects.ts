@@ -443,8 +443,8 @@ const rawProjects: Project[] = [
       es: 'Reducir el código a un noveno, y luego auditar mi propio terminado',
     },
     summary: {
-      en: 'One tap raises an alert, the neighbours who opted in get told, and the emergency contacts get an SMS. A rewrite cut it from 77,044 lines to 8,586. Then an audit found four of its core components built, tested, and mounted nowhere.',
-      es: 'Un toque levanta una alerta, los vecinos que aceptaron reciben aviso, y los contactos de emergencia reciben un SMS. Una reescritura lo bajó de 77.044 líneas a 8.586. Después una auditoría encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
+      en: 'One tap raises an alert, the neighbours who opted in get told, and the emergency contacts get an SMS. A rewrite cut it from 77,044 lines to 9,030. Then an audit found four of its core components built, tested, and mounted nowhere.',
+      es: 'Un toque levanta una alerta, los vecinos que aceptaron reciben aviso, y los contactos de emergencia reciben un SMS. Una reescritura lo bajó de 77.044 líneas a 9.030. Después una auditoría encontró cuatro de sus componentes centrales construidos, probados y montados en ninguna parte.',
     },
     problem: {
       en: 'A panic button has one setting. Real situations run from walking home uneasy to an emergency in progress, and the response should not be identical. Femi grades an alert across four levels of severity and routes each one differently. Between emergencies it is a local forum, because an app you open only in the worst moment of your life is an app you will not have installed.',
@@ -471,8 +471,8 @@ const rawProjects: Project[] = [
     decisions: [
       {
         title: {
-          en: 'Rewrote three codebases into one, and cut 77,044 lines to 8,586',
-          es: 'Reescribí tres bases de código en una, y bajé de 77.044 líneas a 8.586',
+          en: 'Rewrote three codebases into one, and cut 77,044 lines to 9,030',
+          es: 'Reescribí tres bases de código en una, y bajé de 77.044 líneas a 9.030',
         },
         body: {
           en: 'v1 paid for every feature three times: a React Native screen, an Express route, and a serialization contract that both had to honour and neither enforced. Collapsing it onto one Next.js application removed the boundary rather than the features. The cost is a WebView, which will never match React Native on animation-heavy screens, and I am betting this product never needs one.',
