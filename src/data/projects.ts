@@ -207,8 +207,8 @@ const rawProjects: Project[] = [
     shotLayout: 'wide',
     proves: { en: 'Correctness discipline under an agentic workflow', es: 'Disciplina de correctitud en un flujo agéntico' },
     summary: {
-      en: 'No aggregator reaches Colombian banks, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
-      es: 'Ningún agregador llega a los bancos colombianos, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. Siete días, 271 commits, y una ronda de revisión que probó que 678 tests en verde no eran cobertura.',
+      en: 'No aggregator reaches all five of my accounts, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
+      es: 'Ningún agregador llega a mis cinco cuentas, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. Siete días, 271 commits, y una ronda de revisión que probó que 678 tests en verde no eran cobertura.',
     },
     shots: [
       {
@@ -225,8 +225,8 @@ const rawProjects: Project[] = [
       },
     ],
     problem: {
-      en: 'I bank in Colombia across five institutions and five currencies, and no aggregator covers any of them. Plaid and its peers do not reach Colombian banks, and the banks publish no usable API, so the standard answer, connect your accounts and see one ledger, does not exist here. What the banks do send is email: an alert per transaction and a statement PDF per month. That is a complete, timestamped record sitting in Gmail in a format no ledger reads. monia reads it. The mailbox is the API.',
-      es: 'Tengo plata en Colombia en cinco instituciones y cinco monedas, y ningún agregador cubre ninguna. Plaid y sus pares no llegan a los bancos colombianos, y los bancos no publican una API usable, así que la respuesta estándar, conecta tus cuentas y ve un solo libro, no existe acá. Lo que los bancos sí mandan es correo: una alerta por transacción y un PDF de extracto por mes. Eso es un registro completo y con fecha sentado en Gmail en un formato que ningún libro lee. monia lo lee. El buzón es la API.',
+      en: 'I bank in Colombia across five institutions and five currencies, and no aggregator reaches all five. Plaid does not operate here, the local ones miss the wallets and the exchange, and the banks publish no usable API, so the standard answer, connect your accounts and see one ledger, does not exist here. What the banks do send is email: an alert per transaction and a statement PDF per month. That is a complete, timestamped record sitting in Gmail in a format no ledger reads. monia reads it. The mailbox is the API.',
+      es: 'Tengo plata en Colombia en cinco instituciones y cinco monedas, y ningún agregador llega a las cinco. Plaid no opera acá, los locales se saltan las billeteras y el exchange, y los bancos no publican una API usable, así que la respuesta estándar, conecta tus cuentas y ve un solo libro, no existe acá. Lo que los bancos sí mandan es correo: una alerta por transacción y un PDF de extracto por mes. Eso es un registro completo y con fecha sentado en Gmail en un formato que ningún libro lee. monia lo lee. El buzón es la API.',
     },
     built: {
       en: [
