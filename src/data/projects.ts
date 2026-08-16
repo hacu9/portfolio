@@ -98,8 +98,8 @@ const rawProjects: Project[] = [
     caseSlug: 'work/luxura',
     proves: { en: 'Shipping, operating, and unit economics', es: 'Enviar, operar, y economía por usuario' },
     summary: {
-      en: 'Eleven weeks from an empty repo to Google Play, 5,000+ downloads, and two paying subscribers. I paused the ads for one day to find out which half of the funnel was real, then rebuilt onboarding around the answer.',
-      es: 'Once semanas de un repo vacío a Google Play, 5.000+ descargas y dos suscriptores pagos. Apagué la pauta un día para saber qué mitad del embudo era real, y reconstruí el onboarding alrededor de la respuesta.',
+      en: 'Eleven weeks from an empty repo to Google Play, and 5,000+ downloads across Bogotá and Medellín. I paused the ads for one day to find out which half of the funnel was real, then rebuilt onboarding around the answer.',
+      es: 'Once semanas de un repo vacío a Google Play, y 5.000+ descargas entre Bogotá y Medellín. Apagué la pauta un día para saber qué mitad del embudo era real, y reconstruí el onboarding alrededor de la respuesta.',
     },
     shots: [
       {
@@ -207,8 +207,8 @@ const rawProjects: Project[] = [
     shotLayout: 'wide',
     proves: { en: 'Correctness discipline under an agentic workflow', es: 'Disciplina de correctitud en un flujo agéntico' },
     summary: {
-      en: 'No aggregator reaches all five of my accounts, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Seven days, 271 commits, and a review round that proved 678 green tests were not coverage.',
-      es: 'Ningún agregador llega a mis cinco cuentas, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. Siete días, 271 commits, y una ronda de revisión que probó que 678 tests en verde no eran cobertura.',
+      en: 'No aggregator reaches all five of my accounts, so this one reads their email instead: transaction alerts and statement PDFs parsed into ledger rows across five institutions and five currencies. Live, with a public demo account anyone can open.',
+      es: 'Ningún agregador llega a mis cinco cuentas, así que este lee su correo: alertas de transacción y PDF de extractos convertidos en filas del libro, en cinco instituciones y cinco monedas. En vivo, con una cuenta de demo pública que cualquiera puede abrir.',
     },
     shots: [
       {
@@ -298,8 +298,8 @@ const rawProjects: Project[] = [
       { src: 'images/storia-agent.jpg', alt: { en: 'The Storia agent builder', es: 'El constructor de agentes de Storia' } },
     ],
     summary: {
-      en: 'Four days, 49,000 lines, and an AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up. No pilot has run yet.',
-      es: 'Cuatro días, 49.000 líneas, y un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema. Todavía no corre ningún piloto.',
+      en: 'An AI sales agent that reads a real catalogue, sends the photos and books the visit, across WhatsApp, Messenger, Instagram and the phone line. Multi-tenant from the schema up, Spanish first.',
+      es: 'Un agente de ventas con IA que lee un catálogo real, manda las fotos y agenda la visita, en WhatsApp, Messenger, Instagram y la línea telefónica. Multi-tenant desde el esquema, en español primero.',
     },
     problem: {
       en: 'A small business in Latin America gets reached on WhatsApp, Messenger, Instagram and the phone at the same time, and answers all four from one person\'s handset. Storia puts those channels behind AI agents that can actually carry the conversation.',

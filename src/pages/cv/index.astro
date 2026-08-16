@@ -11,7 +11,7 @@
  */
 import { t, tl } from '../../i18n/types';
 import { profile } from '../../data/profile';
-import { leadProjects, supportingProjects, STATUS_LABEL, projectName } from '../../data/projects';
+import { projects, STATUS_LABEL, projectName } from '../../data/projects';
 import { stackGroups } from '../../data/stack';
 import { timeline, presentLabel } from '../../data/timeline';
 import { visibleTestimonials as testimonials } from '../../data/testimonials';
@@ -21,6 +21,17 @@ const lang = 'en' as const;
 const base = import.meta.env.BASE_URL;
 const home = base.replace(/\/+$/, '') + '/';
 const photo = `${base.replace(/\/+$/, '')}/${profile.photo}`;
+
+/**
+ * The CV carries three projects, not eight. Luxura and monia shipped and are
+ * open to anyone; Storia is pre-launch and earns its line on the integration
+ * surface rather than on results. Mate and Femi are strong teardowns and were
+ * never launched, so on a document read in thirty seconds they establish
+ * "starts many, finishes few" against the two entries that say the opposite.
+ * Everything cut is one click away on the portfolio.
+ */
+const CV_PROJECTS = ['luxura', 'monia', 'storia'];
+const cvProjects = CV_PROJECTS.map((id) => projects.find((p) => p.id === id)!);
 
 const work = timeline.filter((e) => e.kind === 'work');
 const study = timeline.filter((e) => e.kind === 'education');
@@ -63,14 +74,26 @@ const study = timeline.filter((e) => e.kind === 'education');
 
       <section>
         <h2>Profile</h2>
-        <p class="lede">{t(profile.lede, lang)}</p>
-        <p>{tl(profile.thesis.body, lang)[0]}</p>
+        {/* Opens on the line the site opens on, with the product named. A CV
+            has no images to orient the reader, so the name does work the
+            generic version cannot. The sentence after it carries what a
+            recruiter checks in the first pass: stack, scope, and the years
+            inside somebody else's estate. The method paragraph that used to
+            sit here holds no checkable fact and lives on the portfolio. */}
+        <p class="lede">I built Luxura, ran the server, bought the ads.</p>
+        <p>
+          Senior full-stack engineer, 8+ years, working in TypeScript, Next.js and PostgreSQL.
+          Luxura went from an empty repo to Google Play in eleven weeks and 5,000+ downloads
+          across Bogotá and Medellín, and it still runs on infrastructure I operate and pay for.
+          Alongside it, five unbroken years at Level60 Consulting building Microsoft Graph, Teams
+          and Azure integrations for US corporate clients.
+        </p>
       </section>
 
       <section>
-        <h2>Selected work</h2>
+        <h2>Projects</h2>
         {
-          leadProjects.map((p) => (
+          cvProjects.map((p) => (
             <article class="item">
               <div class="item-head">
                 <h3>
@@ -129,21 +152,8 @@ const study = timeline.filter((e) => e.kind === 'education');
         }
       </section>
 
-      <section class="break">
-        <h2>Also shipped</h2>
-        <ul class="tight">
-          {
-            supportingProjects.map((p) => (
-              <li>
-                <strong>{projectName(p, lang)}</strong>, {t(p.tagline, lang)}. {t(p.problem, lang)}
-              </li>
-            ))
-          }
-        </ul>
-      </section>
-
       <section>
-        <h2>Technical</h2>
+        <h2>Skills</h2>
         <dl class="skills">
           {
             stackGroups.map((g) => (
@@ -154,14 +164,6 @@ const study = timeline.filter((e) => e.kind === 'education');
             ))
           }
         </dl>
-      </section>
-
-      <section>
-        <h2>Working with AI</h2>
-        <p>{t(stackGroups.find((g) => g.id === 'method')!.note!, lang)}</p>
-        <ul class="tight">
-          {tl(profile.verification, lang).map((v) => <li>{v}</li>)}
-        </ul>
       </section>
 
       <section>
@@ -182,7 +184,7 @@ const study = timeline.filter((e) => e.kind === 'education');
 
       <footer class="foot">
         <span>{profile.name}</span>
-        <a href={home}>hacu9.github.io/henry-portafolio</a>
+        <a href={home}>hacu9.github.io/portfolio</a>
       </footer>
     </div>
 
