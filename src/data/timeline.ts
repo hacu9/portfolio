@@ -26,8 +26,8 @@ export interface TimelineEntry {
 export const timeline: TimelineEntry[] = [
   {
     from: 'Jul 2021',
-    to: 'Present',
-    yearsOnly: '2021 -',
+    to: 'Aug 2026',
+    yearsOnly: '2021 - 2026',
     role: { en: 'Full-Stack Engineer', es: 'Ingeniero Full-Stack' },
     org: 'Level60 Consulting',
     detail: {
@@ -37,8 +37,9 @@ export const timeline: TimelineEntry[] = [
     highlights: {
       en: [
         'Principal engineer on the platform for five years. I joined it two years in and became the constant across it, owning the integration and alerting layers: multi-tenant Exchange calendar sync, Teams Panel discovery and tracking, peripheral fault detection, and global alerting with daily caps and summary digests.',
+        'The platform is a Laravel and PHP application, and I worked in it daily: Eloquent domain models, queued jobs and scheduled commands under Horizon, Passport OAuth2 on the API, and two administrative surfaces in Filament and Laravel Nova. Tests in PHPUnit, and Rector for refactoring a long-lived codebase.',
         'Replaced a Logic Apps pipeline with app-only Microsoft Graph ingestion for ServiceNow incidents, removing a hop that had to be maintained separately from the application.',
-        'Owned a separate Python service on Azure that integrates the platform with the client ERP, 58 endpoints, as its principal author.',
+        'Owned a separate Python service on Azure that integrates the platform with the client ERP, as its principal author.',
         'Ran the Azure platform the product sits on: Entra app registrations and multi-tenant consent, Blob Storage and the SAS credentials that reach it, Logic Apps, Azure SQL, Analysis Services, and Monitor data collection rules with KQL for room telemetry.',
         'Wrote the impact assessment when Microsoft retired the TeamworkDevice API. It was the only interface the product had for Teams Rooms device health, Microsoft confirmed no replacement was planned, and the assessment set what every customer tenant could still be told before any code changed.',
         'Traced a reporting pipeline that had shown no incident data for six months to an expired storage credential and a row-terminator mismatch in a bulk load, across Logic Apps, Azure SQL, Blob Storage and Analysis Services.',
@@ -48,8 +49,9 @@ export const timeline: TimelineEntry[] = [
       ],
       es: [
         'Ingeniero principal de la plataforma durante cinco años. Entré dos años después de que arrancara y me volví la constante del proyecto, a cargo de las capas de integración y alertas: sincronización multi-tenant de calendarios de Exchange, descubrimiento y seguimiento de paneles de Teams, detección de fallas en periféricos, y alertas globales con topes diarios y resúmenes.',
+        'La plataforma es una aplicación Laravel y PHP, y trabajé en ella a diario: modelos de dominio con Eloquent, trabajos en cola y comandos programados con Horizon, Passport OAuth2 en la API, y dos superficies administrativas en Filament y Laravel Nova. Pruebas con PHPUnit, y Rector para refactorizar un código de larga vida.',
         'Reemplacé un pipeline de Logic Apps con ingesta de incidentes de ServiceNow por Microsoft Graph app-only, y saqué del medio un salto que había que mantener aparte de la aplicación.',
-        'A cargo de un servicio aparte en Python sobre Azure que integra la plataforma con el ERP del cliente, 58 endpoints, como su autor principal.',
+        'A cargo de un servicio aparte en Python sobre Azure que integra la plataforma con el ERP del cliente, como su autor principal.',
         'Manejé la plataforma de Azure sobre la que corre el producto: registros de aplicación en Entra y consentimiento multi-tenant, Blob Storage y las credenciales SAS que lo alcanzan, Logic Apps, Azure SQL, Analysis Services, y reglas de recolección de Monitor con KQL para telemetría de salas.',
         'Escribí la evaluación de impacto cuando Microsoft retiró la API TeamworkDevice. Era la única interfaz que el producto tenía para la salud de los dispositivos de Teams Rooms, Microsoft confirmó que no habría reemplazo, y la evaluación definió qué se le podía decir a cada tenant antes de tocar código.',
         'Rastreé un pipeline de reportería que llevaba seis meses sin datos de incidentes hasta una credencial de almacenamiento vencida y un terminador de fila que no coincidía en una carga masiva, entre Logic Apps, Azure SQL, Blob Storage y Analysis Services.',
